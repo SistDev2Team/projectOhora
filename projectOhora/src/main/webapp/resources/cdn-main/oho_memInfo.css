@@ -1,0 +1,597 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Noto+Sans+KR:300,400,500,700&display=swap');
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    outline: 0;
+}
+
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+* {
+    letter-spacing: 0px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body, h1, h2, h3, h4, h5, h6, table, pre, xmp, plaintext, listing, input, textarea, select, button, a {
+    font-family: inherit;
+    line-height: normal;
+}
+
+span, a {
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+}
+
+html {
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow-x: hidden;
+}
+
+table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+span, a {
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+}
+
+input[type="text"] {
+    margin-right: 5px;
+
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 100px;
+}
+
+.displayNone {
+    display: none !important;
+}
+a {
+    text-decoration: none;
+}
+
+select {
+    appearance: none;
+
+    height: 40px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    background: #FFF url(https://ohora.kr/smartpc/_img/icon/icon_select.png) no-repeat 85% center;
+    padding: 5px 0 5px 15px;
+    vertical-align: middle;
+    min-width: 100px;
+}
+
+button {
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+input {
+    vertical-align: middle;
+}
+
+td label {
+    margin-right: 5px;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: none;
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    border-radius: 100%;
+    background: #ddd url(https://ohora.kr/smartpc/_img/icon/input_unchked.svg) no-repeat center center;
+    background-size: cover;
+}
+
+input[type="checkbox"]:checked {
+    background-image: url(https://ohora.kr/smartpc/_img/icon/input_chked.svg);
+
+    background-size: 85%;
+    background-color: #000;
+    border-color: #000;
+}
+/* 공용부 끝 */
+
+
+
+
+
+#container {
+    border: none;
+}
+
+#contents{
+    min-height: 670px;
+}
+
+.subSection{
+    padding: 100px 0 30px;
+
+}
+
+.subTitle{
+    padding: 5px 0;
+    text-align: center;
+    font-size: 30px;
+}
+
+.subTitle > span {
+    display: inline-block;
+    position: relative;
+    text-transform: lowercase;
+    font-family: 'Libre Baskerville', 'Noto Sans KR', sans-serif !important;
+}
+
+
+
+#member-edit-cont {
+
+}
+
+.mem-edit-layout {
+    width: 1050px;
+    margin: 0 auto;
+}
+
+#editForm{
+
+}
+
+.member-edit-wrap{
+
+}
+
+.edit-table-wrap{
+
+}
+
+.edit-table-top-wrap{
+    padding: 80px 0 20px;
+    font-size: 0;
+}
+
+.table-title{
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+    font-size: 23px;
+    font-weight: 500;
+    color: #000;
+}
+
+.pilsu-wrap{
+    text-align: right;
+
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+}
+
+.required{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 12px;
+    color: #333;
+    font-weight: 400;
+}
+
+/*  */
+
+.memeber-info-container{
+
+}
+
+.memeber-info-container > table {
+    position: relative;
+    width: 100%;
+
+}
+
+.memeber-info-container > table > tbody {
+
+}
+
+.memeber-info-container > table > tbody > tr {
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
+}
+
+.memeber-info-container > table > tbody > tr > th {
+    text-align: center;
+
+    vertical-align: middle;
+    height: 46px;
+    font-size: 16px;
+    color: #111;
+    font-weight: 500;
+    background: #eeeeee;
+}
+
+.th-title {
+
+}
+.th-required{
+    color: #f24443;
+    font-weight: bold;
+}
+
+.memeber-info-container > table > tbody > tr > td {
+    vertical-align: middle;
+    height: 60px;
+    padding: 10px 0 10px 50px;
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    line-height: 1.4;
+}
+
+#member-id{
+    width: 300px;
+
+
+}
+
+.SP_stxt{
+    font-size: 11px;
+    color: #666;
+    margin-top: 10px;
+
+}
+
+body input[type="password"] {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+#passwd {
+    width: 300px;
+}
+
+body input[type="password"]:focus + .pw-guideBox-wrap {
+    /* 비밀번호 포커스 올라가면 디스플레이 논 풀어야됨 */
+    vertical-align: top;
+    display: inline-block;
+}
+
+.pw-guideBox-wrap{ 
+
+    display: none;
+    vertical-align: top;
+}
+
+.pw-guideBox{
+
+}
+
+.pw-guide-content{
+
+}
+
+.pw-guide-tit{
+    font-size: 12px;
+    color: #333;
+}
+
+.pw-guide-list {
+    padding-top: 5px;
+    font-size: 11px;
+    color: #666;
+    line-height: 150%;
+}
+
+.pw-guide2{
+    padding-top: 10px;
+    font-size: 11px;
+    color: #666;
+}
+
+#passwd-confirm {
+    width: 300px;
+}
+
+#pwConfirmMsg{
+    font-size: 11px;
+    color: #dc0000;
+    margin-left: 5px;
+}
+
+.address:first-child{
+    padding-top: 5px;
+}
+
+.address{
+    padding-top: 5px;
+
+}
+
+#postcode1{
+    width: 100px;
+    font-size: 15px;
+    color: #333;
+    padding: 10px;
+
+
+}
+
+.postBtn{
+    height: 40px;
+    margin-bottom: 0;
+    line-height: 38px;
+    width: 70px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    color: #707070;
+    background: #f1f1f1;
+
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#addr1{
+    width: 300px;
+    margin-right: 10px !important;
+    font-size: 15px;
+    color: #333;
+
+}
+
+.addrguide{
+    font-size: 11px;
+    color: #666;
+    margin-top: 10px;
+}
+
+#addr2{
+    width: 300px;
+    margin-right: 10px !important;
+    font-size: 15px;
+    color: #333;
+}
+
+#phone1{
+    width: 80px;
+    margin-right: 5px;
+
+
+}
+
+#phone2{
+    width: 80px;
+    margin: 0 5px;
+    
+}
+
+#phone3{
+    width: 80px;
+    margin: 0 5px;
+    
+}
+
+#mobile-input{
+    display: flex;
+    align-items: center;
+    position: relative;
+
+}
+
+#mobile1{
+    width: 80px !important;
+    margin-right: 5px;
+    margin-bottom: 0;
+    vertical-align: top;
+}
+
+#mobile2{
+    width: 80px !important;
+    margin: 0 5px;
+}
+
+#mobile3{
+    width: 80px !important;
+    margin: 0 5px;
+}
+
+#btn-verify-mobile{
+    height: 40px;
+    margin-bottom: 0;
+    line-height: 38px;
+    padding: 0 10px;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    color: #707070;
+    background: #f1f1f1;
+}
+
+.SP_RadioBox{
+
+}
+
+td input[type="radio"] {
+    position: relative;
+    top: 2px;
+    margin-right: 5px;
+}
+
+.SP_RadioBox input {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.SP_RadioBox label {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    font-size: 12px;
+}
+
+.SP_stxt {
+    font-size: 11px;
+    color: #666;
+    margin-top: 10px;
+}
+
+#email1{
+    width: 300px;
+    margin-right: 5px;
+}
+
+#emailMsg{
+    /* 클래스에 error 있으면 메시지 뜸 */
+    padding-top: 10px;
+    font-size: 11px;
+    color: #666;
+}
+
+/*  */
+
+.additional-table{
+    margin-top: 10px;
+}
+
+.additional-table tbody > tr {
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
+}
+
+.additional-table tbody > tr > th {
+    text-align: center;
+
+    vertical-align: middle;
+    height: 46px;
+    font-size: 16px;
+    color: #111;
+    font-weight: 500;
+    background: #eeeeee;
+    
+}
+
+.additional-table tbody > tr > td {
+    vertical-align: middle;
+    height: 60px;
+    padding: 10px 0 10px 50px;
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    line-height: 1.4;
+}
+
+#birth_year{
+    width: 80px;
+}
+
+#birth_month{
+    width: 80px;
+}
+
+#birth_day{
+    width: 80px;
+}
+
+/*  */
+
+.info-use-agree-wrap{
+
+}
+
+.info-use-content{
+
+}
+
+.view-privacy-optional::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.check {
+
+}
+
+.SP_submitBtn_wrap {
+    font-size: 0;
+    text-align: center;
+    margin: 30px 0;
+}
+
+.SP_submitBtn_wrap .SP_submitBtn_left {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+    text-align: left;
+}
+
+.cnclBtn {
+    margin-left: 0;
+    margin-right: 10px;
+}
+
+.SP_submitBtn_wrap a {
+    width: 140px;
+    font-size: 15px;
+    color: #000;
+    line-height: 43px;
+    padding-right: 20px;
+    text-align: center;
+    background: url(https://ohora.kr/smartpc/_img/icon/arrow_more.png) no-repeat 115px 13px;
+    background-size: 6%;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    border: 1px solid #000;
+
+    display: inline-block;
+    vertical-align: top;
+    height: 45px;
+}
+
+.SP_submitBtn_wrap .SP_submitBtn_right {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50%;
+    text-align: right;
+}

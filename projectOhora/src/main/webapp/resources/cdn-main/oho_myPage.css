@@ -1,0 +1,547 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Noto+Sans+KR:300,400,500,700&display=swap');
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    outline: 0;
+    white-space: nowrap;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+body, h1, h2, h3, h4, h5, h6, table, pre, xmp, plaintext, listing, input, textarea, select, button, a {
+    font-family: inherit;
+    line-height: normal;
+}
+
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+* {
+    letter-spacing: 0px;
+}
+
+canvas {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+
+}
+
+strong {
+    font-weight: 500;
+}
+
+span, a {
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul, li, ol, dl, dt, dd {
+    list-style: none;
+}
+
+table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+/* 공용부 끝 */
+
+#main-container{
+    border: none;
+
+}
+
+#contents{
+
+    min-height: 670px;
+
+}
+
+#myPage-wrap{
+
+}
+
+.subSection{
+    padding: 60px 0 30px;
+
+}
+
+.subTitle{
+    padding: 5px 0;
+    text-align: center;
+    font-size: 30px;
+}
+
+.subTitle > span {
+    min-width: 100%;
+    font-size: 28px;
+    letter-spacing: -2px !important;
+
+    display: inline-block;
+    position: relative;
+    text-transform: lowercase;
+
+    font-family: 'Libre Baskerville', 'Noto Sans KR', sans-serif !important;
+
+}
+
+.profile-container{
+    margin-top: 8px;
+    color: #fff;
+    background: #111;
+
+}
+
+.member-info-wrap{
+    width: 1200px;
+    margin: 0 auto 10px;
+    padding: 66px 0 77px;
+    position: relative;
+
+}
+
+.member-info{
+    width: 600px;
+    display: inline-block;
+}
+
+.info-msg{
+    display: flex;
+    font-size: 0;
+}
+
+.member-radius{
+    position: relative;
+    display: inline-block;
+    margin-right: 60px;
+}
+
+.radius-box{
+
+}
+
+#member1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+
+.infoMegBox_wrap{
+    display: inline-block;
+    vertical-align: top;
+}
+
+.ment {
+    font-size: 26px;
+    line-height: 1;
+    padding-bottom: 12px;
+    font-weight: 300;
+}
+
+.member-name{
+
+}
+
+.grade {
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.group{
+
+}
+
+.gradeValue{
+    font-size: 14px;
+    color: #aaa;
+
+}
+
+.toNext-won{
+
+}
+
+.order_total{
+
+}
+
+.order_total_value{
+
+}
+
+.user-UtilLink{
+    font-size: 0;
+    margin-top: 45px;
+    white-space: nowrap;
+
+}
+
+.user-UtilLink >a:first-child {
+    padding-left: 0;
+}
+
+.user-UtilLink >a{
+    position: relative;
+    font-size: 15px;
+    color: #fff;
+    background: none;
+    height: unset;
+    line-height: unset;
+    text-align: left;
+    width: initial;
+    padding-right: 60px;
+    vertical-align: bottom;
+    display: inline-block;
+}
+
+.user-UtilLink >a::after{
+    content: '';
+    display: inline-block;
+    width: 9px;
+    height: 13px;
+    background: url(https://ohora.kr/smartpc/_img/icon/arrow_more_wh.png) no-repeat center center;
+    object-fit: contain;
+    background-size: 90%;
+    position: absolute;
+    top: 51%;
+    transform: translateY(-50%);
+    left: auto;
+    right: 40px;
+    bottom: auto;
+
+
+}
+
+
+
+.order_info_wrap{
+    display: inline-block;
+    float: right;
+    margin-top: 40px;
+
+
+}
+
+.point_coupon-wrap{
+    overflow: hidden;
+}
+
+.point_coupon{
+    font-size: 0;
+
+}
+
+.point_coupon > li:first-child  {
+    margin-left: 0;
+}
+
+.point_coupon > li{
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    box-sizing: border-box;
+    text-align: center;
+    margin-left: 90px;
+
+}
+
+.pnc_displayTable{
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+
+.pnc_displayTableInr{
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.myOrderInfoTitle{
+    font-size: 16px;
+    display: inline-block;
+    padding: 7px 3px;
+    border-bottom: 1px solid #fff;
+    font-weight: 300;
+}
+
+.myOrderInfoCont{
+
+}
+
+.myOrderInfoCont > a {
+    display: inline-block;
+
+    vertical-align: top;
+    font-size: 30px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    padding: 25px 0 15px;
+
+}
+
+/*  */
+
+.orderList-layout{
+    width: 1050px;
+    margin: 0 auto;
+
+}
+
+.subSection{
+    padding: 60px 0 30px;
+
+}
+
+.ol-title-wrap{
+
+}
+
+.ol-title-wrap > h3 {
+    font-size: 20px;
+    margin-bottom: 0;
+
+    font-family: 'Libre Baskerville', 'Noto Sans KR', sans-serif !important;
+
+    color: #000;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.ol-moreBtn{
+    display: inline-block;
+    float: right;
+
+
+}
+
+.ol-moreBtn > a{
+    font-size: 15px;
+    color: #000;
+    position: relative;
+    top: 5px;
+}
+
+.orderState_wrap {
+    margin: 55px 0 77px;
+    text-align: center;
+
+}
+
+.orderState_wrap > ul {
+    font-size: 0;
+}
+
+.orderState_wrap > ul >li:first-child  {
+    margin-left: 0;
+
+}
+
+.orderState_wrap > ul >li:first-child::after{
+    display: none;
+
+}
+
+.orderState_wrap > ul >li {
+    margin-left: 110px;
+
+    display: inline-block;
+    width: 180px;
+    height: 180px;
+    position: relative;
+    background: #000;
+}
+
+.orderState_wrap > ul >li::after{
+    left: -38%;
+
+    content: '';
+    display: inline-block;
+    width: 25px;
+    height: 40px;
+    background: url(https://ohora.kr/smartpc/_img/icon/swp_right_arrow.png) no-repeat center center;
+    background-size: 90%;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+}
+
+.orderState_wrap > ul >li > a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    padding: 45px 0;
+    font-size: 18px;
+}
+
+.orderState_wrap > ul >li > a > span {
+
+}
+
+.orderState_wrap > ul >li > a > .count{
+    display: block;
+    font-size: 40px;
+    color: #fff;
+    font-weight: 900;
+    line-height: 1;
+}
+
+
+.orderState_wrap > ul >li > a > .count > span{
+    margin-top: 25px;
+
+    display: block;
+    font-size: 40px;
+    color: #fff;
+    font-weight: 900;
+    line-height: 1;
+}
+
+/*  */
+
+.order-history-wrap {
+
+}
+
+.ordhistory-table{
+    width: 100%;
+
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+
+    line-height: normal;
+}
+
+thead > tr > th {
+    height: 47px;
+    font-size: 18px;
+
+    font-weight: 500;
+
+    vertical-align: middle;
+
+    color: #111;
+    background: #eeeeee;
+}
+ 
+tbody > .table-record > td {
+    height: 75px;
+    text-align: center;
+    padding-left: 0;
+
+    vertical-align: middle;
+    font-size: 15px;
+    color: #000;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+
+tbody > .table-record > td.center {
+    text-align: center;
+}
+
+.displayNone {
+    display: none !important;
+}
+
+/*  */
+
+.myShopMenu-layout{
+    width: 1050px;
+    font-size: 0;
+    padding: 40px 0 100px;
+    margin: 0 auto;
+
+}
+
+.myShopMenu-list:first-child{
+    margin-left: 0;
+
+}
+
+.myShopMenu-list {
+    display: inline-block;
+    width: calc(50% - 10px);
+    margin-left: 20px;
+    border-top: 2px solid #000;
+
+}
+
+.myShopMenu-list > ul {
+    font-size: 0;
+
+}
+
+.myShopMenu-list > ul > li {
+    display: block;
+    line-height: unset;
+    padding: 0;
+    text-align: left;
+    background: none;
+    color: #000;
+}
+
+.myShopMenu-list > ul > li > a{
+    border-bottom: 1px solid #eee;
+    padding: 30px 75px 30px 50px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    display: block;
+    position: relative;
+
+
+}
+
+.myShopMenu-list > ul > li > a::after {
+    content: '';
+    display: inline-block;
+    width: 15px;
+    height: 25px;
+    position: absolute;
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    right: 20px;
+    transform: translateY(-50%);
+    background: url(https://ohora.kr/smartpc/_img/icon/swp_right_arrow.png) no-repeat center center;
+    background-size: 80%;
+}
+
+.myShopMenu-list > ul > li > a > span {
+    color: #7f2929;
+    font-size: 15px;
+    float: right;
+
+}

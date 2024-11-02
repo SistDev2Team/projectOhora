@@ -1,0 +1,809 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Noto+Sans+KR:300,400,500,700&display=swap');
+
+/*container */
+element.style {
+	
+}
+#ivStyle #container {
+    border: none;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+#container {
+    border-top: 1px solid #e5e5e5;
+}
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    outline: 0;
+}
+* {
+    box-sizing: border-box;
+}
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+body, h1, h2, h3, h4, h5, h6, table, pre, xmp, plaintext, listing, input, textarea, select, button, a {
+    font-family: inherit;
+    line-height: normal;
+}
+style attribute {
+    --vh: 13.780000000000001px;
+    --vh2: 13.780000000000001px;
+    --topBanner: 0px;
+    --header: 0px;
+    --gnb: 0px;
+    --footer: 0px;
+    --vw: 5.4px;
+}
+html {
+    font-family: 'Noto Sans KR', sans-serif;
+    overflow-x: hidden;
+}
+/* container 끝 */
+
+/* id = contents */
+
+#contents {
+    min-height: 670px;
+}
+/* script */
+script {
+    display: none;
+}
+/* SP_mypage_wrap */
+#SP_mypage_wrap .SP_subSection {
+    padding: 60px 0 30px;
+}
+.SP_subSection {
+    padding: 100px 0 30px;
+}
+/* title */
+.SP_subContHeader .SP_subTitle, .SP_subSection .SP_subTitle, .SP_subLoginHeader .SP_subTitle {
+    padding: 5px 0;
+    text-align: center;
+    font-size: 30px;
+    /* text-transform: lowercase; */
+}
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+#ivStyle .SP_subContHeader .SP_subTitle span, #ivStyle .SP_subSection .SP_subTitle span, #ivStyle .SP_subLoginHeader .SP_subTitle span {
+    min-width: 100%;
+    font-size: 28px;
+    letter-spacing: -2px !important;
+}
+.SP_subContHeader .SP_subTitle span, .SP_subSection .SP_subTitle span, .SP_subLoginHeader .SP_subTitle span {
+    display: inline-block;
+    position: relative;
+    font-size: 32px;
+    min-width: 1200px;
+    text-transform: lowercase;
+}
+.eng_font, .eng_font * {
+    font-family: 'Libre Baskerville', 'Noto Sans KR', sans-serif !important;
+}
+.eng_font, .eng_font * {
+    font-family: 'Libre Baskerville', 'Noto Sans KR', sans-serif !important;
+}
+:lang(en), .eng_font, .titleCommon {
+    font-family: 'Libre Baskerville', serif !important;
+}
+span, a {
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+}
+h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+/* ------my page--------- */
+.SP_mypageInfomation_wrap {
+    margin-top: 8px;
+    color: #fff;
+    background: #111;
+}
+.SP_mypageInfomation_wrap .mypageInformation_inner {
+    width: 1200px;
+    margin: 0 auto 10px;
+    padding: 66px 0 77px;
+    position: relative;
+}
+/* my page message  */
+.SP_mypageInfomation_wrap .mypageInformation_inner .SP_Message {
+    width: 600px;
+    display: inline-block;
+}
+.SP_mypageInfomation_wrap .mypageInformation_inner .SP_information {
+    display: flex;
+}
+.SP_information {
+    font-size: 0;
+}
+.displaynone {
+    display: none !important;
+}
+.gauge-container {
+    width: 170px;
+    height: 170px;
+    display: block;
+    float: left;
+    overflow: hidden;
+    margin-right: 60px;
+}
+svg:not(:root) {
+    overflow-clip-margin: content-box;
+    overflow: hidden;
+}
+.gauge-container.one > .gauge > .dial {
+    stroke: #555;
+    stroke-width: 1;
+}
+path.dial{
+    fill: none;
+    stroke: rgb(238, 238, 238);
+    stroke-width: 2;   
+}
+:not(svg) {
+    transform-origin: 0px 0px;
+}
+.gauge-container.one > .gauge > .value-text {
+    fill: #fff;
+    font-weight: bold;
+    font-size: 20px;
+}
+text {
+    display: block;
+    white-space: nowrap;
+}
+.gauge-container.one > .gauge > .value {
+    stroke: #fff;
+    stroke-width: 1.8;
+}
+path.value{
+    fill: none;
+    stroke: rgb(102, 102, 102);
+    stroke-width: 2.5;
+    d: path("M 50 10 A 40 40 0 0 1 89.685 55.013");
+}
+.member-radius {
+    position: relative;
+    display: inline-block;
+    margin-right: 60px;
+}
+.radius-box {
+    /* 기본 스타일이 없으므로 필요한 경우 추가 스타일을 적용해야 할 수 있습니다 */
+}
+#member1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+canvas {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.member-radius .line {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.SP_mypageInfomation_wrap .mypageInformation_inner .SP_information .SP_infoMegBox_wrap {
+    display: inline-block;
+    vertical-align: top;
+}
+.SP_mypageInfomation_wrap .mypageInformation_inner .SP_information .SP_infoMegBox_wrap .ment {
+    font-size: 26px;
+    line-height: 1;
+    padding-bottom: 12px;
+    font-weight: 300;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+.SP_mypageInfomation_wrap .mypageInformation_inner .SP_information .SP_infoMegBox_wrap .ment strong, .SP_mypageInfomation_wrap .mypageInformation_inner .SP_information .SP_infoMegBox_wrap .grade strong {
+    font-weight: 500;
+}
+strong {
+    font-weight: bold;
+}
+span, a {
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+}
+.SP_mypageInfomation_wrap .mypageInformation_inner .SP_information .SP_infoMegBox_wrap .grade {
+    font-size: 20px;
+    margin-bottom: 30px;
+    font-weight: 300;
+    line-height: 1;
+}
+.SP_mypageInfomation_wrap .mypageInformation_inner .SP_information .SP_infoMegBox_wrap .gradeValue {
+    font-size: 14px;
+    color: #aaa;
+}
+.SP_infoUserUtilLink_wrap {
+    font-size: 0;
+    margin-top: 45px;
+    white-space: nowrap;
+}
+.SP_infoUserUtilLink_wrap a:first-child {
+    padding-left: 0;
+}
+.SP_infoUserUtilLink_wrap a {
+    position: relative;
+    font-size: 15px;
+    color: #fff !important;
+    background: none;
+    height: unset;
+    line-height: unset;
+    text-align: left;
+    width: initial;
+    padding-right: 60px;
+    vertical-align: bottom;
+    display: inline-block;
+}
+a {
+    text-decoration: none;
+}
+a:-webkit-any-link {
+    color: -webkit-link;
+    cursor: pointer;
+    text-decoration: underline;
+}
+.SP_infoUserUtilLink_wrap {
+    font-size: 0;
+    margin-top: 45px;
+    white-space: nowrap;
+}
+.SP_infoUserUtilLink_wrap a:after {
+    content: '';
+    display: inline-block;
+    width: 9px;
+    height: 13px;
+    background: url(https://ohora.kr/smartpc/_img/icon/arrow_more_wh.png) no-repeat center center;
+    object-fit: contain;
+    background-size: 90%;
+    position: absolute;
+    top: 51%;
+    transform: translateY(-50%);
+    left: auto;
+    right: 40px;
+    bottom: auto;
+}
+/* point 부분 */
+
+.SP_mypageInfomation_wrap .mypageInformation_inner .SP_myOrderInfo_wrap {
+    display: inline-block;
+    /* width: 49%; */
+    /* border: 1px solid #f90; */
+    float: right;
+    margin-top: 40px;
+}
+.SP_myOrderInfo_wrap .orderinfo_pay {
+    overflow: hidden;
+}
+.SP_myOrderInfoList {
+    font-size: 0;
+    /* position: absolute; */
+    /* left: auto; */
+    /* right: 0; */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    /* overflow: hidden; */
+    /* border: 1px solid #fff; */
+}
+ul, li, ol, dl, dt, dd {
+    list-style: none;
+}
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    /* padding-inline-start: 40px; */
+    unicode-bidi: isolate;
+}
+.SP_myOrderInfoList li:first-child {
+    margin-left: 0;
+}
+.SP_myOrderInfoList li {
+    display: inline-block;
+    vertical-align: top;
+    width: auto;
+    box-sizing: border-box;
+    text-align: center;
+    margin-left: 90px;
+}
+li {
+    list-style: none;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    unicode-bidi: isolate;
+}
+.SP_displayTable {
+    display: table;
+    width: 100%;
+    height: 100%;
+}
+.SP_displayTableInr {
+    display: table-cell;
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+.SP_myOrderInfoList .SP_myOrderInfoTitle {
+    font-size: 16px;
+    display: inline-block;
+    padding: 7px 3px;
+    border-bottom: 1px solid #fff;
+    font-weight: 300;
+}
+.SP_displayTableInr .SP_myOrderInfoCont a {
+    display: inline-block;
+}
+.SP_myOrderInfoList li a {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 30px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    padding: 25px 0 15px;
+}
+span, a {
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+/* 적립 내역 부분 */
+
+#ivStyle .SP_layoutFix {
+    width: 1050px;
+}
+.SP_layoutFix {
+    width: 1200px;
+    margin: 0 auto;
+}
+#SP_mypage_wrap .SP_subSection {
+    padding: 60px 0 30px;
+}
+.SP_myMileagelist_tab {
+    padding: 50px 0 47px !important;
+}
+.SP_subSection {
+    padding: 100px 0 30px;
+}
+.SP_myMileagelist_tab ul {
+    font-size: 0;
+}
+.SP_myMileagelist_tab li.selected {
+    border-color: #111;
+}
+.SP_myMileagelist_tab li:first-child {
+    margin-left: 0;
+}
+.SP_myMileagelist_tab li {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(33.3333333% - 11px);
+    box-sizing: border-box;
+    margin-left: 16px;
+    border: 1px solid #000;
+}
+.SP_myMileagelist_tab li.selected a {
+    background: #111;
+    color: #fff;
+    font-weight: 500;
+}
+.SP_myMileagelist_tab li a {
+    display: block;
+    padding: 12px 0;
+    color: #111;
+    font-size: 18px;
+    text-align: center;
+}
+span, a {
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+}
+.SP_myMileagelist_tab li.selected {
+    border-color: #111;
+}
+
+/* 테이블 */
+.SP_tableSt01_isThead {
+	border-collapse: collapse;
+    width: 100%;
+    /* margin-top: 20px; */
+}
+table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+table {
+    display: table;
+    
+    box-sizing: border-box;
+    text-indent: initial;
+    unicode-bidi: isolate;
+    border-spacing: 2px;
+    border-color: gray;
+}
+caption {
+    display: none !important;
+}
+caption {
+    display: table-caption;
+    text-align: -webkit-center;
+    unicode-bidi: isolate;
+}
+table {
+    border-collapse: separate;
+    text-indent: initial;
+    border-spacing: 2px;
+}
+colgroup {
+    display: table-column-group;
+    unicode-bidi: isolate;
+}
+col {
+    display: table-column;
+    unicode-bidi: isolate;
+}
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+    unicode-bidi: isolate;
+}
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+#SP_mypage_wrap .SP_tableSt01_isThead td {
+    height: 75px;
+    text-align: center;
+    padding-left: 0;
+}
+.xans-myshop-mileagehistorypackage td {
+    opacity: 0;
+}
+.SP_tableSt01_isThead td {
+    vertical-align: middle;
+    height: 65px;
+    font-size: 15px;
+    color: #000;
+    text-align: center;
+    border-top: 1px solid #eeeeee;
+    border-bottom: 1px solid #eeeeee;
+}
+.SP_tableSt01_isThead td a {
+    color: #111 !important;
+}
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+}
+#SP_mypage_wrap .SP_tableSt01_isThead th {
+    height: 47px;
+    font-size: 18px;
+}
+.SP_tableSt01_isThumNail th, .SP_tableSt01_isThead th {
+    /* font-size: 16px; */
+    font-weight: normal;
+    font-weight: 500;
+}
+.SP_tableSt01_isThead th {
+    vertical-align: middle;
+    height: 65px;
+    font-size: 18px;
+    color: #111;
+    font-weight: normal;
+    background: #eeeeee;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+/*  테이블 끝 */
+
+.displaynone {
+    display: none !important;
+}
+.SP_message {
+    padding: 50px;
+    font-size: 18px;
+    color: #111;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    position: relative;
+    top: -1px;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+/* 페이지 */
+element.style {
+}
+#SP_mypage_wrap .SP_pagenation_wrap {
+    padding-top: 70px;
+}
+.SP_pagenation_wrap {
+    padding-top: 120px;
+    font-size: 0;
+    text-align: center;
+}
+
+/* 이전페이지 */
+.SP_page_prev_wrap {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 30px;
+}
+.SP_pg_prevAll_btn {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 30px;
+    width: 14px;
+    height: 13px;
+    background: url(https://ohora.kr/smartpc/_img/icon/page_prevAll_btn.svg) no-repeat;
+}
+.SP_pg_prev_btn {
+    display: inline-block;
+    vertical-align: middle;
+    width: 7px;
+    height: 13px;
+    background: url(/smartpc/_img/icon/arrow_more_wh.png) no-repeat center center;
+}
+.SP_pg_prev_btn {
+    display: inline-block;
+    vertical-align: middle;
+    width: 7px;
+    height: 13px;
+    background: url(https://ohora.kr/smartpc/_img/icon/page_prev_btn.svg) no-repeat;
+}
+/* 이전 끝 */
+
+/* 페이지 번호 표시 */
+.SP_page_num_list {
+    display: inline-block;
+    vertical-align: middle;
+}
+.SP_page_num_list ol {
+    font-size: 0;
+}
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+.SP_page_num_list li {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 15px;
+}
+.SP_page_num_list li a.this {
+    font-weight: 900;
+    color: #000;
+}
+.SP_page_num_list li a {
+    display: block;
+    font-size: 15px;
+    color: #999;
+    text-align: center;
+    line-height: 40px;
+    position: relative;
+}
+.SP_page_num_list li a.this:after {
+    content: '';
+    display: inline-block;
+    width: 140%;
+    height: 2px;
+    background: #000;
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 오른쪽 */
+.SP_page_next_wrap {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 30px;
+}
+.SP_pg_next_btn {
+    display: inline-block;
+    vertical-align: middle;
+    width: 7px;
+    height: 13px;
+    background: url(https://ohora.kr/smartpc/_img/icon/page_next_btn.svg) no-repeat;
+}
+.SP_pg_nextAll_btn {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 30px;
+    width: 14px;
+    height: 13px;
+    background: url(https://ohora.kr/smartpc/_img/icon/page_nextAll_btn.svg) no-repeat;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    outline: 0;
+}
+/* -------------------- */
+.SP_pageGuideText_wrap {
+    background: #fff;
+}
+.SP_pageGuideText_wrap {
+    background: #fafafa;
+    margin-top: 100px;
+    margin-bottom: -100px;
+}
+#ivStyle .SP_layoutFix {
+    width: 1050px;
+}
+.SP_pageGuideText_wrap .inner {
+    padding: 45px 10px;
+}
+.SP_layoutFix {
+    width: 1200px;
+    margin: 0 auto;
+}
+.SP_pageGuideTxt_tt.bottom {
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+.SP_pageGuideTxt_tt {
+    display: inline-block;
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+    line-height: 1;
+    padding: 15px 0;
+    border-bottom: 1px solid #000;
+    margin: 40px 0 45px;
+}
+h1, h3 {
+    margin: 0;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+style attribute {
+    --vh: 12.6px;
+    --vh2: 12.25px;
+    --topBanner: 0px;
+    --header: 0px;
+    --gnb: 0px;
+    --footer: 0px;
+    --vw: 8.88px;
+}
+.SP_pageGuideTxt_cont.bottom {
+    padding: 0;
+    border: none;
+}
+.SP_pageGuideTxt_cont {
+    padding: 30px;
+    border: 1px solid #d8d8d8;
+}
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+.SP_pageGuideTxt_tt.bottom {
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+.SP_pageGuideTxt_tt {
+    display: inline-block;
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+    line-height: 1;
+    padding: 15px 0;
+    border-bottom: 1px solid #000;
+    margin: 40px 0 45px;
+}
+h1, h3 {
+    margin: 0;
+}
+.SP_pageGuideTxt_cont.bottom {
+    padding: 0;
+    border: none;
+}
+ul, li, ol, dl, dt, dd {
+    list-style: none;
+}
+.SP_pageGuideTxt_cont li {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.8;
+}

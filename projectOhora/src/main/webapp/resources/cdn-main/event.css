@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Noto+Sans+KR:300,400,500,700&display=swap');
+/* 폰트 */
+
+/* 타이틀 */
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.eventPage h2 {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.eventPage h2 {
+    text-transform: lowercase;
+}
+.titleCommon {
+    font-size: 29px;
+    line-height: 40px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 45px;
+}
+.titleCommon, .titleCommon * {
+    font-family: 'Noto Sans KR', sans-serif !important;
+}
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    outline: 0;
+}
+* {
+    box-sizing: border-box;
+}
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+/* 랩 */
+.wrap {
+    width: 1200px;
+    position: relative;
+    margin: 0 auto;
+}
+
+div {
+    display: block;
+    unicode-bidi: isolate;
+}
+
+
+/* 이벤트 */
+.eventPage .event-list .contents-box.active {
+    top: 0;
+    opacity: 1;
+}
+.contents-box.active a {
+    display: block;
+    opacity: 0.8;
+    transition: all .4s;
+    color: #000;
+    font-size: inherit;
+    text-decoration: none;
+}
+.eventPage .event-list .contents-box {
+    position: relative;
+    margin-bottom: 20px;
+    top: 50px;
+    opacity: 0;
+    transition: all .4s;
+}
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.eventPage .event-list .text-block {
+    position: absolute;
+    margin-left: 50%;
+    top: 50%;
+    padding: 0 45px;
+    transform: translate(0, -50%);
+}
+.eventPage .event-list .text-block .date {
+    font-size: 14px;
+    display: block;
+}
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+.eventPage .event-list .text-block h3 {
+    font-size: 21px;
+    margin: 10px 0;
+}
+.eventPage .event-list .text-block .desc {
+    font-size: 16px;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+.eventPage .view {
+    text-decoration: none;
+    width: 250px;
+    display: block;
+    margin: 50px auto;
+    height: 45px;
+    line-height: 45px;
+    background: black;
+    color: #fff;
+    text-align: center;
+    font-size: 14px;
+    display: block; 
+}
+
+/* 이벤트 배너 hover 효과 */
+.event-list {
+    opacity: 0.8; /* 기본 상태의 불투명도 70% */
+    transition: opacity 0.6s ease;
+}
+
+.event-list:hover {
+    opacity: 1; /* hover 시 불투명도 100% */
+}
+
+/* event_detail 페이지 */
+#ivStyle #container {
+    border: none;
+}
+#container {
+    border-top: 1px solid #e5e5e5;
+}
+link {
+    display: none;
+}
+body { overflow-x:hidden;}
+.contents.sub { padding-top:0;}
+
+.event-wrap img { display:block; margin: 0 auto; }
+#button { margin: 0 auto; display:block; width:1000px; }
+#button img { display:inline-block; }
+
+#slider-div2 { width:1000px; display:block; margin:0 auto; }
+
+
+.attractt-container {width: 1000px; display:block; margin: 0 auto; margin-bottom:100px; }
+
+.slick-slider .slick-dots{
+    top: 96%;
+    width: 896px;
+}
+.slick-slider .slick-dots li{
+    width:25%;
+}
+.event-wrap img {
+    display: block;
+    margin: 0 auto;
+}
+a {
+    text-decoration: none;
+    color:#000;
+}
+element.style {
+    width: 550px;
+    position: fixed;
+    bottom: 0;
+    right: 170px;
+    z-index: 10;
+    height: 45px;
+    text-align: center;
+    display: block;
+    background-color: #000;
+    color: #fff;
+    line-height: 45px;
+    font-size: 18px;
+}
+#contents {
+    min-height: 670px;
+}
+element.style {
+    padding-top: 157px !important;
+}

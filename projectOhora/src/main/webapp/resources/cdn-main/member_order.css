@@ -1,0 +1,2898 @@
+@import url('https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700|Noto+Sans+KR:300,400,500,700&display=swap');
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    outline: 0;
+}
+
+body, h1, h2, h3, h4, h5, h6, table, pre, xmp, plaintext, listing, input, textarea, select, button, a {
+    font-family: inherit;
+    line-height: normal;
+}
+* {
+    box-sizing: border-box;
+    letter-spacing: 0px;
+}
+
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+img {
+    max-width: 100%;
+    vertical-align: top;
+}
+form {
+    display: block;
+    margin-top: 0em;
+    unicode-bidi: isolate;
+}
+
+ul, li, ol, dl, dt, dd {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+h1, h3 {
+    margin: 0;
+}
+
+button {
+    background: transparent;
+    border: 0;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+}
+
+span, a {
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+}
+
+table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+body input[type="text"] {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 100px;
+}
+
+
+
+.dispNone {
+    display: none !important;
+}
+
+
+
+#order_form {
+ 
+}
+
+.order-container{
+    letter-spacing: -0.5px !important;
+
+    overflow: hidden;
+    padding: 55px 0 0;
+}
+
+.shippingInfo-container{
+    min-height: 670px;
+}
+
+.shippingInfo-container{
+    margin: 0 auto;
+    border: none;
+
+    position: relative;
+    padding: 0;
+    background: #fff;
+}
+
+.contents{
+    padding-bottom: 0;
+    margin-bottom: 30px;
+
+    margin: 0 auto;
+    max-width: 700px;
+
+    border: none;
+
+    overflow: visible;
+    opacity: 1;
+    height: auto;
+}
+
+#recent-info-container{
+    min-height: 189px;
+}
+
+.tab-wrap{
+    margin: -1px 0 0;
+}
+
+.for-real-addr-wrap{
+    border-top: 0;
+
+    display: flex;
+    font-size: 17px;
+    line-height: 17px;
+    word-break: break-all;
+
+    position: relative;
+}
+
+.for-real-addr-wrap::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.for-real-addr-wrap li {
+    display: flex;
+    flex: 1;
+    text-align: center;
+
+    position: relative;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    background: #fff;
+}
+
+
+/* 최근배송지/직접입력 선택시 */
+.selected{
+    position: relative;
+    border: none;
+    border-bottom: 2px solid #ddd;
+    background: #fff;
+
+
+}
+
+.selected::after {
+    content: "";
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    background: #000;
+}
+
+.for-real-addr-wrap li a {
+    padding: 17px 10px 12px;
+    font-size: 20px;
+    color: #000;
+
+    display: flex;
+    flex-basis: 100%;
+    justify-content: center;
+    flex-wrap: nowrap;
+    align-items: center;
+
+}
+
+.for-real-addr-wrap li.selected a {
+    border-left: 0;
+    font-weight: bold;
+    background: #fff;
+}
+
+
+/*  */
+
+#recent-addr-info {
+    display: block;
+    line-height: 24px;
+}
+
+#title-recentAddr{
+    position: relative;
+    padding: 30px 0;
+    word-wrap: break-word;
+    word-break: break-all;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+#title-recentAddr h3 {
+    font-size: 20px;
+    color: #000;
+}
+
+.sideRightBtn-wrap{
+    z-index: 2;
+
+    top: 72px;
+    right: 0;
+
+    position: absolute;
+}
+
+#chaneAddrList{
+    width: 83px !important;
+    height: 32px !important;
+    line-height: 32px !important;
+    background: #000 !important;
+    color: #fff !important;
+    border: 0 !important;
+    font-size: 14px !important;
+    border-radius: 0;
+
+    display: inline-block;
+    padding: 0;
+    margin-left: 10px !important;
+    box-sizing: border-box;
+
+    vertical-align: middle;
+
+
+    letter-spacing: -0.4px;
+    text-align: center;
+}
+
+/*  */
+
+#text-recentAddr{
+    padding: 0 0 45px;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+
+    background: none;
+    border: none;
+
+    position: relative;
+}
+
+.recentAddr-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1.4;
+
+    position: relative;
+    padding: 0;
+    color: #000;
+
+    overflow: hidden;
+}
+
+.name{
+    margin: 0;
+
+    width: 100%;
+    font-size: 16px;
+
+    display: inline-block;
+    padding: 0;
+    vertical-align: top;
+    color: #000;
+}
+
+#info-mainLabel{
+    color: #508bed;
+}
+
+#receiver{
+
+}
+#receiver-tel{
+
+}
+
+#receiver-tel::before {
+    content: "/";
+    margin: 0 5px;
+}
+
+.addr{
+    margin: 10px 0 0;
+    width: 100%;
+    font-size: 16px;
+}
+
+#addrZipCode{
+
+}
+
+#addrText{
+
+}
+
+/* 배송주소록 리스트 */
+
+#recentAddr-list {
+    padding: 0;
+    background: none;
+    border: none;
+    position: relative;
+}
+
+.heading{
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 0 !important;
+    border: 0 !important;
+    overflow: hidden !important;
+    visibility: hidden !important;
+}
+
+.shippingList-wrap{
+
+}
+
+.shippingList:first-child{
+    padding-top: 0 !important;
+}
+
+.shippingList{
+    font-size: 13px;
+    display: flex;
+    padding: 33px 0 30px !important;
+    border: none;
+    border-bottom: 1px solid #dbdbdb;
+
+    position: relative;
+    overflow: hidden;
+}
+
+.checkboxWrap{
+    display: flex;
+    align-items: flex-start;
+    width: 18px;
+    font-size: 0;
+    padding-top: 5px;
+    margin-right: 10px;
+
+    position: relative;
+}
+
+#shippingList-radio{
+    display: none;
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 3px !important;
+    border: 1px solid #ddd;
+
+    background-position: center;
+    background-size: 16px auto;
+
+    margin: 0;   
+    cursor: pointer;
+
+}
+
+#shippingList-radio:checked{
+    background-image: url(https://ohora.kr/web/upload/common/icon_check_bk.png) !important;
+}
+
+#shippingList-radio:checked + label {
+    background-image: url(https://ohora.kr/web/upload/common/icon_check_bk.png) !important;
+    padding: 0;
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    min-height: 0;
+    display: inline-block;
+    vertical-align: top;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 0;
+    line-height: 1;
+    background-size: 16px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-weight: bold;
+    position: relative;
+    cursor: pointer;
+}
+
+
+.sList-infoBox {
+    width: calc(100% - 65px);
+}
+
+.nameContact{
+    display: flex;
+}
+
+.name2{
+    display: inline-block;
+    padding: 0;
+    vertical-align: top;
+    color: #000;
+
+    line-height: 1.4;
+    font-size: 16px !important;
+}
+
+.name2::after {
+    margin: 0 5px;
+    content: "/";
+    color: #000;
+}
+
+.mainAddr-label{
+    font-size: 16px !important;
+    line-height: 1;
+    color: #000;
+}
+
+.mobile{
+    display: inline-block;
+    line-height: 1.4;
+    font-size: 16px !important;
+    color: #000;
+}
+.mobile::after{
+    margin: 0 5px;
+    content: "/";
+    color: #000;
+
+    line-height: 1.4;
+    font-size: 16px !important;
+}
+
+.tel {
+    display: inline-block;
+    line-height: 1.4;
+
+    font-size: 16px !important;
+    color: #000;
+}
+
+/*  */
+
+.description{
+    padding: 20px 0 0;
+    position: relative;
+
+}
+
+.address{
+    line-height: 1;
+    font-size: 16px;
+}
+
+.listZipCode{
+
+}
+
+/*  */
+
+.gotoSelfInput{
+    display: flex;
+    align-items: flex-start;
+    width: 33px;
+
+    position: relative;
+}
+
+.goroSelfBtn > img{
+    max-width: 100%;
+}
+
+
+/* 직접입력탭 */
+
+#selfInputAddr-form {
+    position: relative;
+}
+
+.radioBtn-wrap{
+    padding: 30px 0;
+
+    background: none;
+    border: none;
+    position: relative;
+}
+
+#sameAddr{
+    height: 0 !important;
+    line-height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+    border: 0 !important;
+}
+
+#sameAddr + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin: 0;
+    min-height: initial;
+    font-size: 20px;
+    line-height: 30px;
+    margin-right: 117px;
+
+    cursor: pointer;
+}
+
+#sameAddr:checked + label {
+    font-weight: bold;
+}
+
+#sameAddr + label::before {
+    position: absolute;
+    padding: 4px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: "";
+}
+
+#sameAddr:checked + label::before {
+    background: #000;
+    background-clip: content-box;
+
+    position: absolute;
+    padding: 4px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: "";
+}
+
+
+#newAddr{
+    height: 0 !important;
+    line-height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+    border: 0 !important;
+}
+
+
+#newAddr{
+    height: 0 !important;
+    line-height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+    border: 0 !important;
+}
+
+#newAddr + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin: 0;
+    min-height: initial;
+    font-size: 20px;
+    line-height: 30px;
+    margin-right: 117px;
+
+    cursor: pointer;
+}
+
+#newAddr:checked + label {
+    font-weight: bold;
+}
+
+#newAddr + label::before {
+    position: absolute;
+    padding: 4px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: "";
+}
+
+#newAddr:checked + label::before {
+    background: #000;
+    background-clip: content-box;
+
+    position: absolute;
+    padding: 4px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: "";
+}
+
+/*  */
+
+.inputTable-wrap{
+    margin-bottom: 0;
+    padding: 0 0 20px;
+
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #666;
+}
+
+.inputTable-wrap > table {
+    display: block;
+}
+
+.inputTable-wrap > table > tbody {
+    display: block;
+}
+
+.newAddr-name{
+    display: flex;
+    padding: 7px 0px;
+}
+
+.inputTable-wrap > table > tbody > tr > th {
+    height: 45px;
+
+    line-height: 1.3;
+    font-size: 16px;
+
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    color: #000;
+    padding: 0;
+    width: 80px ;
+
+    word-break: keep-all;
+    box-sizing: border-box;
+    font-weight: bold;
+
+    text-align: left;
+    vertical-align: top;
+}
+
+.icoRequired{
+    display: inline-block;
+    padding-top: 0;
+    margin: 0;
+    margin-left: -2px;
+    margin-top: 4px;
+    vertical-align: top;
+    background: none;
+    text-indent: 0;
+    width: 6px;
+    height: 6px;
+    font-size: 0;
+    line-height: 0;
+    white-space: nowrap;
+}
+
+.icoRequired::after{
+    content: "*";
+    color: #964e50;
+    font-size: 15px;
+    line-height: 1;
+
+    text-indent: 0;
+    white-space: nowrap;
+}
+
+.newAddr-name td {
+    padding: 0;
+    width: calc(100% - 60px - 0.1px);
+    display: block;
+    vertical-align: middle;
+}
+
+#rname{
+    height: 45px !important;
+    line-height: 45px !important;
+
+    display: inline-block;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+
+    width: 100%;    
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    outline-style: none;
+
+}
+
+#self-receiver-addr{
+    display: flex;
+    padding: 7px 0px;
+}
+
+#self-receiver-addr > th {
+    height: 45px;
+
+    line-height: 1.3;
+    font-size: 16px;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    color: #000;
+    padding: 0;
+    width: 80px;
+    word-break: keep-all;
+    box-sizing: border-box;
+    font-weight: bold;
+
+    text-align: left;
+    vertical-align: top;
+}
+
+#self-receiver-addr > td {
+    padding: 0;
+    width: calc(100% - 60px - 0.1px);
+    display: block;
+}
+
+.self-addr{
+    width: 100%;
+}
+
+#self-zipcodeWrap{
+    padding-top: 0;
+
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: 100%;
+    justify-content: space-between;
+
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+#rzipcode1{
+    display: block !important;
+    box-sizing: border-box;
+
+    width: calc(100% - 140px);
+    flex-grow: 0;
+    text-align: left;
+
+    height: 45px !important;
+    line-height: 45px !important;
+
+    padding: 0 15px;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    outline-style: none;
+}
+
+.btn{
+    z-index: 10;
+
+    height: 45px !important;
+    line-height: 45px !important;
+    width: 134px !important;
+    margin-left: 6px !important;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: #fff !important;
+    border: 1px solid #777 !important;
+    font-size: 16px !important;
+    color: #000 !important;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+
+}
+
+.btn > a{
+
+}
+
+#receiver-baseAddr-wrap{
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    width: 100%;
+}
+
+#raddr1{
+    height: 45px !important;
+    line-height: 45px !important;
+
+
+    display: inline-block;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+
+    width: 100%;   
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    outline-style: none;
+
+
+}
+
+#receiver-baseAddr-wrap2 {
+    padding-bottom: 0;
+
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    width: 100%;
+}
+
+#raddr2 {
+    height: 45px !important;
+    line-height: 45px !important;
+
+    display: inline-block;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+
+    width: 100%;
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    outline-style: none;
+
+
+}
+
+.self-receiver-tel{
+    display: flex;
+    padding: 7px 0px;
+}
+
+.self-receiver-tel > td {
+    display: flex;
+    align-items: center;
+    font-size: 0;
+
+    padding: 0;
+    width: calc(100% - 60px - 0.1px);
+}
+
+#rphone2_1 {
+    width: calc((100% - 20px) / 3);
+    margin: 0;
+
+    height: 45px !important;
+    line-height: 45px !important;
+
+    display: inline-block;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+
+    background: url(https://ohora.kr/web/upload/common/icon_select_gr_sm.png) no-repeat calc(100% - 15px) center / 14px auto !important;
+   
+    appearance: none;
+    max-width: 100%;
+    word-break: break-all;
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+
+    vertical-align: middle;
+    min-width: 100px;
+
+}
+
+#rphone2_1 option {
+
+}
+
+#rphone2_2{
+    margin: 0 10px;
+    width: calc((100% - 20px) / 3);
+    height: 45px !important;
+    line-height: 45px !important;
+    display: inline-block;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    appearance: none;
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    outline-style: none;
+    vertical-align: middle;
+
+}
+
+#rphone2_3{
+    width: calc((100% - 20px) / 3);
+    margin: 0;
+    height: 45px !important;
+    line-height: 45px !important;
+    display: inline-block;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    appearance: none;
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    outline-style: none;
+
+    
+}
+
+/*  */
+
+.orderForm-email{
+    display: flex;
+    padding: 7px 0px;
+}
+.orderForm-email td {
+    padding: 0;
+    width: calc(100% - 60px - 0.1px);
+    display: block;
+}
+
+.self-email{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#email1{
+    height: 45px !important;
+    line-height: 45px !important;
+
+    display: inline-block;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+
+    margin: 0;
+    width: calc(50% - 22px);
+    appearance: none;
+
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    outline-style: none;
+}
+
+.mailAddr-selectWrap{
+    margin: 0;
+    width: calc(50% - 22px);
+
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#email2{
+    height: 45px !important;
+    line-height: 45px !important;
+    display: inline-block;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+
+    outline: none !important;
+    width: 100%;
+
+    background-size: 14px auto !important;
+    background-position: calc(100% - 15px) center !important;
+    background: url(https://ohora.kr/web/upload/common/icon_select_gr_sm.png) no-repeat;
+    
+
+    max-width: 100%;
+    margin: 0;
+
+
+    word-break: break-all;
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    appearance: none;
+
+
+}
+
+.directInputEmail{
+    left: 1px;
+    width: calc(100% - 50px);
+
+    overflow: hidden;
+    position: absolute;
+    top: 1px;
+    right: 20px;
+    bottom: 1px;
+}
+
+.emailHelp{
+    margin: 0;
+    padding: 10px 0 0;
+    font-size: 15px;
+    line-height: 1.4;
+    color: #616161;
+    word-break: break-word;
+    text-align: left;
+}
+
+/*  */
+
+.deliMsg-wrap{
+    padding: 0;
+
+    background: none;
+    border: none;
+
+    position: relative;
+}
+
+#deliMsg_sel{
+    height: 50px !important;
+    line-height: 50px !important;
+    border-color: #bababa !important;
+    font-size: 14px;
+    padding: 0 20px;
+
+    display: inline-block;
+    box-sizing: border-box;
+    color: #616161 !important;
+    letter-spacing: -0.5px;
+
+    width: 100%;
+
+    background-size: 14px auto !important;
+    background: url(https://ohora.kr/web/upload/common/icon_select_gr_sm.png) no-repeat !important;
+    background-position: calc(100% - 15px) center !important;
+
+    max-width: 100%;
+    margin: 0;
+    word-break: break-all;
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+
+    vertical-align: middle;
+    min-width: 100px;
+    appearance: none;
+}
+
+.deliMsg-inputWrap{
+    margin-top: 10px;
+}
+
+#deliMsg{
+    appearance: none;
+
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;    box-sizing: border-box;
+    resize: none;
+    font-size: 14px;
+    outline: none;
+}
+
+/* 추가사항 */
+
+#additionalInput-wrap{
+
+    margin: 0 auto;
+    margin-top: 50px;
+    border: none;
+
+    position: relative;    
+    padding: 0;
+    background: #fff;
+}
+
+#addutionalInput-title{
+    padding-bottom: 35px;
+    padding: 42px 0 43px;
+    background: #fff;
+    margin: 0 auto;
+    max-width: 700px;
+    
+    position: relative;
+    cursor: pointer;
+
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+
+#addutionalInput-title::after{
+
+    transform: rotate(-135deg);
+    margin-top: -8px;
+
+    top: 50%;
+    right: 0;
+    width: 9.5px;
+    height: 9.5px;
+
+    border: 1px solid #000;
+    border-right: none;
+    border-bottom: none;
+    background: none;
+
+    position: absolute;
+    content: '';
+    display: block;
+
+    transition: .3s ease-out;
+    cursor: pointer;
+}
+
+#additionalInput-content{
+    padding-bottom: 0;
+    margin-bottom: 30px;
+
+    margin: 0 auto;
+    max-width: 700px;
+
+    border: none;
+
+    overflow: visible;
+    opacity: 1;
+    height: auto;    
+    transition: height .3s ease, opacity .3s ease-out;
+
+
+}
+
+.addArea{
+
+}
+
+.addTable-wrap{
+    padding: 0 0 20px;
+    margin-bottom: 7px;
+
+    margin-top: 7px;
+
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #666;
+
+}
+
+.addTable-wrap > table {
+    display: block;
+
+}
+
+.content-box{
+    display: block;
+}
+
+
+.content-box > tr {
+    display: flex;
+    padding: 7px 0px;
+}
+
+.content-th{
+    display: inline-block;
+    padding-right: 10px;
+    text-align: left;
+    line-height: 1.3;
+    font-size: 16px;
+    height: 50px;
+
+    flex-shrink: 0;
+    color: #000;
+    padding: 0;
+    width: 80px;
+
+    word-break: keep-all;   
+    box-sizing: border-box;
+    font-weight: bold;
+}
+
+.content-box > tr > td{
+    padding: 0;
+    width: calc(100% - 60px - 0.1px);
+    display: block;
+}
+
+#addrConfirm{
+    width: 0 !important;
+    height: 0 !important;
+    border: 0;
+    line-height: 0;
+    padding: 0;
+    margin: 0;
+
+    border-radius: 3px !important;
+    vertical-align: text-bottom;
+    background: url(https://img.echosting.cafe24.com/skin/mobile/common/bg_checkbox.png);
+    background-position: center;
+    background-size: 16px auto;
+
+    appearance: none;
+    position: relative;
+}
+
+#addrConfirm + label {
+    margin: 0;
+    padding-left: 25px;
+
+    background-image: url(https://img.echosting.cafe24.com/skin/mobile/common/bg_checkbox.png);
+    background-size: 16px auto;
+    background-position: left 6px;
+    background-repeat: no-repeat;
+
+    display: inline-block;
+    min-height: 29px;
+    line-height: 29px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#addrConfirm:checked + label {
+    background-image: url(https://ohora.kr/web/upload/common/icon_check_bk.png);
+}
+
+/* 주문 정보 */
+
+.orderPrd-container{
+
+}
+
+.orderPrd-wrap{
+    margin: 0 auto;
+    border: none;
+
+    position: relative;
+    padding: 0;
+    background: #fff;
+}
+
+#orderPrd-title{
+    padding-bottom: 35px;
+
+    padding: 42px 0 43px;
+    background: #fff;
+    margin: 0 auto;
+    max-width: 700px;
+
+    position: relative;
+    cursor: pointer;
+
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#orderPrd-title > h2 {
+    font-size: 20px;
+    line-height: 30px;
+
+    margin: 0 10px 0 0;
+    color: #000;
+}
+
+#orderPrd-title::after{
+    transform: rotate(-135deg);
+    margin-top: -8px;
+
+    top: 50%;
+    right: 0;
+    width: 9.5px;
+    height: 9.5px;
+
+
+    border: 1px solid #000;
+    border-right: none;
+    border-bottom: none;
+
+    background: none;
+    position: absolute;
+    content: '';
+    display: block;
+    transition: .3s ease-out;
+}
+
+#orderPrd-count{
+    margin-right: 25px;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #964e50;
+
+    flex: 1;
+    text-align: right;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+/* 주문상품 */
+
+.orderPrd-listArea{
+    padding-bottom: 0;
+    margin-bottom: 30px;
+
+    margin: 0 auto;
+    max-width: 700px;
+
+    border: none;
+
+    overflow: visible;
+    opacity: 1;
+    height: auto;
+    transition: height .3s ease, opacity .3s ease-out;
+
+}
+
+.orderPrd-list{
+
+}
+
+.orderPrd{
+    padding: 0 0px 20px;
+
+    margin: 0;
+    border: 0;
+
+    position: relative;    
+    box-sizing: border-box;
+    background: #fff;
+
+}
+
+.prdInfoBox{    
+    display: flex;
+    min-height: 104px;
+}   
+
+.thumbnail{
+    overflow: hidden;
+    width: 115px;
+    height: 115px;
+    margin-right: 20px;
+    border: 1px solid #d7d5d5;
+    box-sizing: border-box;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+}
+
+.description{
+    overflow: hidden;
+    flex: 1;
+    margin-top: -3px;
+}
+
+.prdName{
+    display: block;
+    margin: 0 0 5px;
+    font-weight: normal;
+    color: #333;
+}
+
+.prdName > a {
+    color: #000;
+    font-weight: bold;
+}
+
+.prdInfo{
+    margin: 0 0 14px;
+
+
+}
+
+.prdInfo>li {
+    margin: 0 0 2px;
+    font-size: 14px;
+    color: #666;
+}
+
+.wranTxt{
+    color: #db4e42;
+}
+
+.prdPrice{
+
+}
+
+.btnRemove{
+    position: relative;
+    width: 24px;
+    height: 24px;
+    border: 1px solid #b5b5b5;
+    border-radius: 2px;
+    margin: 0 0 0 4px;
+    text-indent: 150%;
+    font-size: 0;
+    line-height: 0;
+    white-space: nowrap;
+}
+
+.btnRemove::before{
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    content: "";
+    width: 14px;
+    height: 1px;
+    background: #7b7d8a;
+    transform: rotate(-45deg);
+}
+
+.btnRemove::after{
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    content: "";
+    width: 14px;
+    height: 1px;
+    background: #7b7d8a;
+    transform: rotate(-135deg);
+}
+
+/*  */
+
+.totalPrice{
+    margin: 0 0 35px;
+    background: #f8f9fa;
+    border: none;
+}
+
+.title{
+    padding: 13px 10px;
+    background: #eeeeee;
+
+    position: relative;
+
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.title h3 {
+    font-weight: normal;
+
+    font-size: 20px;
+    color: #000;
+}
+
+/* 적립금 */
+
+.usePoint-container{
+
+}
+
+#usePoint-wrap{
+    margin: 0 auto;
+    border: none;
+
+    position: relative;
+    padding: 0;
+    background: #fff;
+}
+
+#point_dc{
+    padding-bottom: 35px;
+    padding: 42px 0 43px;
+    background: #fff;
+    margin: 0 auto;
+    max-width: 700px;
+    position: relative;
+    position: relative;
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#point_dc::after {
+    transform: rotate(-135deg);
+    margin-top: -8px;
+
+    top: 50%;
+    right: 0;
+    width: 9.5px;
+    height: 9.5px;
+    border: 1px solid #000;
+    border-right: none;
+    border-bottom: none;
+    background: none;
+
+    position: absolute;
+    content: '';
+    display: block;
+    transition: .3s ease-out;
+    cursor: pointer;
+}
+
+
+#point_dc > h2{
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0 10px 0 0;
+    color: #000;
+}
+
+.dcContent{
+    padding-bottom: 50px;
+    margin-bottom: 30px;
+
+    margin: 0 auto;
+    max-width: 700px;
+    border: none;
+
+    overflow: visible;
+    opacity: 1;
+    height: auto;
+
+}
+
+#pointUseArea{
+    padding: 5px 0;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    border-bottom: 0;
+    text-align: left;
+}
+
+.heading2{
+    float: none;
+    font-size: 16px;
+
+    font-weight: normal;
+    color: #333;
+
+
+}
+
+.summary{
+    min-height: 0;
+    color: #000;
+    font-size: 16px;
+    vertical-align: baseline;
+    display: inline-block;
+}
+
+.UseablePoint{
+    font-weight: bold;
+    color: #000;
+
+}
+
+.control{
+    padding: 0;
+    margin: 15px 0 6px;
+    line-height: 1;
+    position: relative;
+}
+
+#input_point{
+    border-color: #bababa !important;
+    color: #000 !important;
+    font-size: 16px !important;
+    padding: 0 30px;
+
+    display: inline-block;
+    height: 50px !important;
+    line-height: 50px !important;
+
+    box-sizing: border-box;
+    letter-spacing: -0.5px;
+
+    width: calc(100% - 164px - 0.1px);
+    text-align: left;
+    vertical-align: top;
+
+    appearance: none;
+
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    outline-style: none;
+
+}
+
+#input_point + button {
+    display: inline-block;
+    padding: 0;
+    margin-left: 10px !important;
+    background: #fff !important;
+    border-color: #777 !important;
+    width: 158px !important;
+    height: 50px !important;
+    line-height: 50px !important;
+    font-size: 16px !important;
+    color: #000 !important;
+    box-sizing: border-box;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0 !important;
+
+    border: 1px solid #b5b5b5;
+    vertical-align: middle;
+    letter-spacing: -0.4px;
+    text-align: center;
+}
+
+.pointGuide{
+    padding: 10px 0 0;
+
+    margin: 0;
+    border: 0;
+
+    font-size: 16px;
+    line-height: 1.5;
+    color: #616161;
+    text-align: left;
+}
+
+.pointGuide::after{
+    display: block;
+    content: "";
+    clear: both;
+}
+
+.pointGuide li:first-child {
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.1;
+    color: #6d6d6d;
+    white-space: normal;
+    
+    cursor: pointer;
+}
+.pointGuide li{
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.1;
+    color: #6d6d6d;
+    white-space: normal;
+    padding-top: 6px;
+}
+
+#final-price-container{
+    margin: 0 auto;
+    border: none;
+
+    background: #fbfbfb;
+    position: relative;
+    padding: 0
+}
+
+#final-price-title {
+    pointer-events: none;
+    background: #fbfbfb;
+    padding-bottom: 20px;
+
+    padding: 42px 0 43px;
+
+    margin: 0 auto;
+    max-width: 700px;
+    position: relative;
+    cursor: pointer;
+
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#final-price-title > h2 {
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0 10px 0 0;
+    color: #000;
+
+
+}
+
+.final-content{
+    padding-bottom: 0;
+    margin-bottom: 30px;
+    margin: 0 auto;
+    max-width: 700px;
+    border: none;
+    overflow: visible;
+    opacity: 1;
+    height: auto;
+}
+
+.segment{
+    padding: 0;
+    background: none;
+    border: none;
+    position: relative;
+}
+
+.finalTable-wrap{
+    position: relative;
+    padding: 0 0 5px;
+    margin: 0;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #666;
+}
+
+.finalTable-wrap >table {
+    display: block;
+
+}
+
+.finalTable-wrap >table > tbody >tr {
+    color: #000;
+    padding: 15px 0;
+    display: flex;
+}
+
+.finalTable-wrap >table > tbody >tr > th {
+    font-weight: normal;
+    height: auto;
+    padding: 0;
+    width: 200px;
+    font-size: 16px;
+    color: #000;
+
+    line-height: 1.3;    
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+
+    word-break: keep-all;
+    box-sizing: border-box;
+}
+
+.finalTable-wrap >table > tbody >tr > td {
+    display: flex;
+    justify-content: flex-end;
+    width: 500px;
+    font-size: 16px;
+    color: #000;
+    padding: 0;
+    text-align: right;
+}
+
+.rightP::after {
+    content: "원";
+}
+
+.rightPdc{
+    font-weight: bold;   
+}
+
+.rightPdc::after {
+    content: "원";
+}
+
+.finalTable-wrap >table::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: #c4c4c4;
+    content: "";
+}
+
+.final-total-price{
+    padding: 20px 0 40px;
+    background: none;
+    margin: 0;
+    border-top-width: 0;
+
+    border-top: 1px solid #bababa;
+    color: #333;
+    font-size: 18px;
+    word-wrap: break-word;
+    word-break: break-all;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.final-total-price > h3 {
+    font-size: 19px;
+    line-height: 22px;
+    color: #000;
+
+    margin: 0 4px 0 0;
+}
+
+.txtStrong{
+    font-size: 20px;
+    line-height: 1;
+    color: #964e50;
+}
+
+#final-total-pay{
+    color: #964e50;
+}
+
+
+#final-total-pay::after {
+    content: "원";
+}
+
+/*  */
+
+#payMethod-container {
+    border-bottom: 0;
+
+    margin: 0 auto ;
+    border: none;    
+    
+    position: relative;
+    padding: 0;
+    background: #fff;
+
+}
+
+#payMethod-title {
+    pointer-events: none;
+    padding-bottom: 35px;
+    padding: 42px 0 43px;
+    background: #fff;
+    margin: 0 auto;
+    max-width: 700px;
+    position: relative;
+    cursor: pointer;
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+#payMethod-title > h2 {
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0 10px 0 0;
+    color: #000;
+
+}
+
+.pmContents {
+    padding: 0 0 25px;
+    margin-bottom: 30px;    
+    margin: 0 auto;
+    max-width: 700px;
+
+    border: none;   
+    overflow: visible;
+    opacity: 1;
+    height: auto;
+}
+
+.segment{
+    padding: 0;
+    background: none;
+    border: none;
+
+    position: relative;
+}
+
+.payMethod-ul{
+
+}
+
+.payMethodRecent-li{
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+#payMethod-recent{
+    appearance: none;
+
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+    border: 0 !important;
+}
+
+#payMethod-recent + label {
+    font-weight: bold;
+    border: 0;
+    padding: 0 0 0 35px;
+    color: #333;
+    background: none !important;
+    margin-bottom: 0;
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    min-height: initial;
+    font-size: 20px;
+    line-height: 30px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#payMethod-recent:checked + label::before {
+    background: #000;
+    background-clip: content-box;
+}
+
+#payMethod-recent + label::before {
+    position: absolute;
+    padding: 4px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: "";
+}
+
+#payMethod-recentName{
+    padding: 30px 0 25px 35px !important;
+    font-size: 18px;
+
+    overflow: visible;
+    opacity: 1;
+    height: auto;
+    background: none;
+
+    border: 0 !important;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.payMethodNew-li{
+    padding: 15px 0 0;
+    margin: 0;
+    position: relative;
+}
+
+#payMethod-new{
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+    border: 0 !important;
+}
+
+#payMethod-new + label {
+    background: none !important;
+    border: 0;
+    margin-bottom: 0;
+    font-weight: normal;
+    color: #000;
+    margin: 0;
+    display: inline-block;
+    position: relative;
+    padding-left: 35px !important;
+    margin: 0;
+    min-height: initial;
+    font-size: 20px;
+    line-height: 30px;
+    padding: 11px 15px 10px;
+    box-sizing: border-box;
+}
+
+#payMethod-new + label::before {
+    position: absolute;
+    padding: 4px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: "";
+}
+
+#payMethod-new:checked + label::before {
+    background: #000;
+    background-clip: content-box;
+}
+.inner {
+    overflow: visible;
+    opacity: 1;
+    height: auto;
+    transition: height .3s ease, opacity .3s ease-out;
+    padding: 35px 0 0 !important;
+    background: none;
+    border: 0 !important;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.base-label {
+    margin: 0;
+    margin-left: -1px;
+    margin-top: -1px;
+    width: 50%;
+    text-align: center;
+    border: 1px solid #999;
+    display: inline-block;
+    position: relative; /* 상대 위치 설정 */
+}
+
+#addr_paymethod0,
+#addr_paymethod1,
+#addr_paymethod2,
+#addr_paymethod3,
+#addr_paymethod4,
+#addr_paymethod5,
+#addr_paymethod6,
+#addr_paymethod7 {
+    visibility: hidden; /* 라디오 버튼을 보이지 않게 함 */
+    position: absolute; /* 라디오 버튼을 숨김 */
+}
+
+.base-label input + label {
+    width: 100%;
+    height: 75px;
+    line-height: 75px;
+    padding: 0;
+    font-size: 18px;
+    display: inline-block;
+    position: relative;
+    margin: 0;
+    min-height: initial;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.base-label input:checked + label {
+    background: #000;
+    color: #fff;
+    min-width: auto;
+}
+
+
+/*  */
+
+
+.payMethod_Guide {
+    margin: 0;
+
+}
+
+#payment_input_tcash{
+    padding: 0;
+    margin: 0;
+
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #666;
+}
+
+#payment_input_tcash > table {
+    display: block;
+}
+
+#payment_input_tcash > table > tbody > tr {
+    display: flex;
+    padding: 7px 0px;
+}
+
+#payment_input_tcash > table > tbody > tr >th {
+    line-height: 1.3;
+    font-size: 16px;
+    height: 50px;
+
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    color: #000;
+    padding: 0;
+    width: 80px;
+
+    box-sizing: border-box;
+    font-weight: bold;
+    word-break: keep-all;
+
+    text-align: left;
+    vertical-align: top;
+}
+
+.icoRequired{
+    margin-top: -10px !important;
+    margin-left: 2px;
+    display: inline-block;
+    padding-top: 0;
+    margin: 0;
+    vertical-align: top;
+    background: none;
+    text-indent: 0;
+    width: 6px;
+    height: 6px;    
+    font-size: 0;
+    line-height: 0;
+    white-space: nowrap;
+
+}
+
+.icoRequired::after{
+    content: "*";
+    color: #964e50;
+    font-size: 15px;
+    line-height: 1;
+    text-indent: 0;
+    
+}
+
+#payment_input_tcash > table > tbody > tr >td {
+    padding: 0;
+    width: calc(100% - 60px - 0.1px);
+}
+
+#allat_account_nm{
+    display: inline-block;
+    height: 50px !important;
+    line-height: 50px !important;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+
+    appearance: none;
+
+    width: 620px;
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    outline-style: none;
+}
+
+.helpArea-wrap{
+    margin: 0;
+    padding: 0;
+
+    max-width: 700px;
+}
+
+#pg_paymethod_info{
+    padding-top: 14px;
+
+    font-size: 16px;
+    line-height: 1.5;
+    color: #616161;    
+    
+    text-align: left;
+
+    padding: 20px 0;
+}
+
+#pg_paymethod_info_shipfee , #pg_paymethod_info_pg ,#kakaopay_info{
+    padding-left: 0;
+    padding-top: 6px;
+    font-size: 14px;
+    color: #616161;
+
+    position: relative;
+
+    padding: 6px 0 0;
+    word-break: break-word;
+}
+
+.helpArea ul.ec-base-help.typeDash li {
+    padding-left: 0;
+    padding-top: 6px;
+    font-size: 14px;
+    color: #616161;
+
+    position: relative;
+
+    padding: 6px 0 0;
+    word-break: break-word;
+}
+
+/* 현금영수증 */
+
+#cashReceipt-area{
+    padding: 0 0 5px;
+}
+
+.cr-title{
+    padding: 30px 0 55px;
+    font-size: 17px;
+    color: #333;
+    position: relative;
+
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+.cr-title > h3 {
+    font-size: 20px;
+    color: #000;
+
+}
+
+#cashReceiptOk {
+    appearance: none;
+
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+    border: 0 !important;
+    cursor: pointer;
+    background-size: 25px 25px;
+}
+
+#cashReceiptOk + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin: 0;
+    min-height: initial;
+    font-size: 20px;
+    line-height: 30px;
+    margin-right: 117px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#cashReceiptOk:checked + label {
+    font-weight: bold;
+}
+
+#cashReceiptOk:checked + label::before {
+    background: #000;
+    background-clip: content-box;
+}
+
+#cashReceiptNo{
+    appearance: none;
+
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+    border: 0 !important;
+    cursor: pointer;
+    background-size: 25px 25px;
+}
+#cashReceiptNo + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin: 0;
+    min-height: initial;
+    font-size: 20px;
+    line-height: 30px;
+    margin-right: 117px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#cashReceiptNo:checked + label {
+    font-weight: bold;
+}
+
+#cashReceiptNo:checked + label::before {
+    background: #000;
+    background-clip: content-box;
+}
+
+#cashReceiptNo + label:before {
+    position: absolute;
+    padding: 4px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: "";
+}
+
+
+#cashReceiptOk + label:before {
+    position: absolute;
+    padding: 4px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: "";
+}
+
+.cashReceipt-txtForm{
+
+}
+
+.formWrap{
+
+}
+
+#formBox{
+    display: block;
+    margin: 15px 0 0;
+    padding: 5px 0;
+    font-size: 0;
+}
+
+#cashreceipt_user_type2__0{
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+    border: 0 !important;
+
+    cursor: pointer;
+}
+
+#cashreceipt_user_type2__0 + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin: 0;
+    min-height: initial;
+    font-size: 20px;
+    line-height: 30px;
+    margin-right: 117px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#cashreceipt_user_type2__0:checked + label {
+    font-weight: bold;
+}
+
+#cashreceipt_user_type2__0:checked + label::before {
+    background: #000;
+    background-clip: content-box;
+}
+
+#cashreceipt_user_type2__0 + label:before {
+    position: absolute;
+    padding: 4px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: "";
+}
+
+
+
+
+
+
+
+#cashreceipt_user_type2__1{
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-image: none !important;
+    border: 0 !important;
+
+    cursor: pointer;
+}
+
+#cashreceipt_user_type2__1 + label {
+    display: inline-block;
+    position: relative;
+    padding-left: 35px;
+    margin: 0;
+    min-height: initial;
+    font-size: 20px;
+    line-height: 30px;
+    margin-right: 117px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+#cashreceipt_user_type2__1:checked + label {
+    font-weight: bold;
+}
+
+#cashreceipt_user_type2__1:checked + label::before {
+    background: #000;
+    background-clip: content-box;
+}
+
+#cashreceipt_user_type2__1 + label:before {
+    position: absolute;
+    padding: 4px;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 1px solid #bababa;
+    box-sizing: border-box;
+    border-radius: 50%;
+    content: "";
+}
+
+
+
+#cashreceipt_mobile_display_area{
+    display: flex;
+    width: 100%;
+    font-size: 0;
+    margin-top: 20px;
+}
+
+#cashreceipt_mobile_display_area >#cashreceipt_user_mobile1{
+    margin: 0;
+    width: calc((100% - 20px) / 3);
+    display: inline-block;
+    height: 50px !important;
+    line-height: 50px !important;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    background: url(https://ohora.kr/web/upload/common/icon_select_gr_sm.png) no-repeat !important;
+    background-position: calc(100% - 15px) center !important;
+    background-size: 14px auto !important;
+    word-break: break-all;
+    font-weight: inherit;
+    border: 1px solid #d7d5d5;
+    appearance: none;
+}
+
+#cashreceipt_user_mobile2, #cashreceipt_user_mobile3{
+    margin: 0 10px;
+    width: calc((100% - 20px) / 3);
+    display: inline-block;
+    height: 50px !important;
+    line-height: 50px !important;
+    padding: 0 15px;
+    box-sizing: border-box;
+    border-color: #dadada !important;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+    appearance: none;
+}
+
+
+#cashreceipt_regno_display_area{
+    display: flex;
+    width: 100%;
+    font-size: 0;
+    margin-top: 20px;
+
+
+}
+
+#cashreceipt_reg_no{
+    width: 100%;
+
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 100px;
+}
+
+.saveArea{
+    margin-top: 25px;
+    padding: 0;
+    background: none;
+    border: none;
+    position: relative;
+}
+
+#save_paymethod{
+    border: 0;
+    line-height: 0;
+    padding: 0;
+    margin: 0;
+
+    width: 0 !important;
+    height: 0 !important;
+}
+
+#save_paymethod + label {
+    padding-left: 22px;
+    background-image: url(https://img.echosting.cafe24.com/skin/mobile/common/bg_checkbox.png);
+    background-size: 16px auto;
+    background-position: left 6px;
+    background-repeat: no-repeat;
+
+}
+
+#save_paymethod:checked + label {
+    background-image: url(https://ohora.kr/web/upload/common/icon_check_bk.png);
+}
+
+
+/* 적립 예정 */
+
+#pointBenefit{
+    border-top: 10px solid #f3f3f3;
+    border-bottom: 0;
+    border: none;
+
+    margin: 0 auto;
+    position: relative;
+}
+
+#pbTitle{
+    padding-bottom: 35px;
+    padding: 42px 0 43px;
+    background: #fff;
+    margin: 0 auto;
+    max-width: 700px;
+    position: relative;
+    cursor: pointer;
+    word-wrap: break-word;
+    word-break: break-all;
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#pbTitle > h2 {
+    font-size: 20px;
+    line-height: 30px;
+    margin: 0 10px 0 0;
+    color: #000;
+}
+
+#pointTitle{
+    margin-right: 25px;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #964e50;
+
+    flex: initial;
+    white-space: initial;
+    text-align: left;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+#pointTitle::after {
+    transform: rotate(-135deg);
+    margin-top: -8px;
+
+    top: 50%;
+    right: 0;
+    width: 9.5px;
+    height: 9.5px;
+    border: 1px solid #000;
+    border-right: none;
+    border-bottom: none;
+    background: none;
+
+    position: absolute;
+    content: '';
+    display: block;
+}
+
+.ec-base-table{
+    position: relative;
+    padding: 0 0 5px;
+
+    margin: 0;
+
+    word-break: break-all;
+    word-wrap: break-word;
+    color: #666;
+}
+
+.ec-base-table > table {
+    display: block;
+}
+
+.ec-base-table > table > tbody {
+    display: block;
+}
+
+.ec-base-table > table > tbody >tr{
+    color: #000;
+    padding: 15px 0;
+    display: flex;
+}
+
+.ec-base-table > table > tbody > tr > th {
+    font-weight: normal;
+    height: auto;
+    padding: 0;
+    width: 200px;
+    font-size: 16px;
+    color: #000;
+    line-height: 1.3;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    word-break: keep-all;
+    box-sizing: border-box;
+}
+
+
+.ec-base-table > table  > tbody >  tr > td {
+    display: flex;
+    justify-content: flex-end;
+    width: calc(100% - 100px);
+    font-size: 16px;
+    color: #000;
+    padding: 0;
+    text-align: right;
+    vertical-align: middle;
+}
+
+.ec-base-table > table::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background: #c4c4c4;
+    content: "";
+}
+
+/*  */
+
+.totalPay{
+    padding: 25px 0;
+    background: none;
+    margin: 0;
+
+    border-top: 1px solid #bababa;
+    color: #333;
+    font-size: 18px;
+    word-wrap: break-word;
+    word-break: break-all;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.heading3{
+    font-size: 19px;
+    line-height: 22px;
+    color: #000;
+    margin: 0 4px 0 0;
+}
+
+.txtEm{
+    font-size: 20px;
+    line-height: 1;
+    color: #964e50;
+}
+
+/* 동의문 */
+
+.SP_pageGuideText_wrap {
+    margin-top: 0;
+    background: #fff;
+
+    max-width: 1050px;
+    margin: 0 auto;
+
+    padding: 30px 0;
+}
+
+.SP_pageGuideText_wrap > h3 {
+    display: inline-block;
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+    line-height: 1;
+    padding: 15px 0;
+    border-bottom: 1px solid #000;
+    margin: 40px 0 45px;
+}
+
+.SP_pageGuideTxt_cont{
+    padding: 30px;
+    border: 1px solid #d8d8d8;
+}
+
+.SP_pageGuideTxt_cont> h4 {
+    padding-top: 0;
+
+    padding: 30px 0 10px;
+    font-size: 17px;
+    font-weight: 400;
+}
+
+.SP_pageGuideTxt_cont > ul >li {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.8;
+}
+
+.more{
+    margin-left: 10px;
+    font-weight: 500;
+    text-decoration: underline;
+    font-size: 12px;
+    cursor: pointer;
+
+}
+
+.detail_cont{
+    display: block;
+    margin: 10px 0;
+
+    overflow-y: auto;
+    padding: 10px;
+    max-height: 150px;
+    border: 1px solid #777;
+    background: #fbfbfb;
+    font-size: 12px;
+}
+
+.YKtitle{
+    padding: 0;
+    margin-bottom: 5px;
+    font-weight: 600;
+
+    position: relative;
+    word-wrap: break-word;
+    word-break: break-all;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+/* 결제하기 */ 
+
+.ec-base-button{
+    position: fixed;
+    margin: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 620px;
+    z-index: 1000;
+    cursor: pointer;
+
+    text-align: right;
+}
+
+.btnSubmit{
+    height: 75px !important;
+    line-height: 75px !important;
+    font-size: 18px;
+    max-width: 620px;
+
+    margin: 0;
+    background: #000;
+
+    text-align: center;
+
+    padding: 0 4px;
+    font-weight: normal;
+    width: 100%;
+    color: #fff;
+    border: 1px solid #4a5164;
+    display: inline-block;
+    letter-spacing: -0.4px;
+    font-family: 'Noto Sans KR', sans-serif;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.for-view-btn{
+    border: 0;
+    vertical-align: baseline;
+    outline: 0;
+}

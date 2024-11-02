@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>projectOhora</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+    <description>MVC 패턴 서블릿</description>
+    <description>Controller</description>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>mvc.controller.DispatcherServlet</servlet-class>
+    <init-param>
+      <description>URL과 Handler 등록 파일경로</description>
+      <param-name>path</param-name>
+      <param-value>/WEB-INF/commandHandler.properties</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name> 
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  
+  <resource-ref>
+	 <description>Oracle Datasource</description>
+	 <res-ref-name>jdbc/myoracle</res-ref-name>
+	 <res-type>javax.sql.DataSource</res-type>
+	 <res-auth>Container</res-auth>
+  </resource-ref>
+  
+  <filter>
+  	<description>인코딩</description>
+  	<filter-name>characterEncodingFilter</filter-name>
+  	<filter-class>com.filter.CharacterEncodingFilter</filter-class>
+  	<init-param>
+  		<description>인코딩 초기값</description>
+  		<param-name>encoding</param-name>
+  		<param-value>UTF-8</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>characterEncodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  </filter-mapping>
+  
+</web-app>
