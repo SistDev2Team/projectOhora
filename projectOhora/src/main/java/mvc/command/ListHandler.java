@@ -65,8 +65,6 @@ public class ListHandler implements CommandHandler{
 				pvo = new PagingVO(currentPage, numberPerPage, numberOfPageBlock, searchWord);
 				list = dao.search(searchWord, currentPage, numberPerPage);
 			}
-			
-			list = dao.prdCate(this.currentPage, this.numberPerPage, this.categoryNumber);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

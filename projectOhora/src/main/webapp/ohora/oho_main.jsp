@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +24,6 @@
 <%@include file="header.jsp" %>
 </head>
 <body>
-
-   
     <div class="main_container">
         <!-- 메인 배너 (메인 이미지 - 스와이프) 영역 -->
         <div class="mainSwipeBanner">
@@ -82,350 +82,70 @@
 
            <div class="common_list_box">
                <div class="swiper-container swiper mySwiper2">
-                   <ul class="items-swiper-wrapper swiper-wrapper">
+                   <ul class="items-swiper-wrapper swiper-wrapper">            
+                   		  
+					<c:forEach var="newPrd" items="${newProducts}"  varStatus="status">
+    <li id="item${ status.index + 1 }" class="item-swiper-slide swiper-slide">
+        <div class="container-complete" data-prd-num="${newPrd.pdt_id}">
+            <dl>
+                <a href="/projectOhora/product/detail.do?pdt_id=${newPrd.pdt_id}&cate_no=121" class="viewlink"></a>
+                <div class="base-img">
+                    <div class="thumb">
+                        <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="../resources/images/prd_image/imgs/${newPrd.pdt_img_url}.jpg">
+                        <img loading="lazy" class="hover_img" width="800" height="800" src="../resources/images/prd_image/imgs_hover/${newPrd.pdt_img_url}.jpg">
+                    </div>
+                    <span class="soldout-img" style="display: ${newPrd.pdt_count==0 ? 'block' : 'none'};">
+                        <a href="">
+                            <span>coming<br>soon</span>
+                        </a>
+                    </span>
+                </div>
+                
+                <div class="base-mask">
+                    <dd class="name-container">
+                        <p class="name">
+                            <span>${newPrd.pdt_name}</span>
+                        </p>
+                    </dd>    
+                    <dd class="price-container">
+                        <p class="normal-price">
+                        	<fmt:formatNumber value="${newPrd.pdt_amount}" type="number" pattern="#,##0" />
+                        </p>
+                        <p class="sale-price">
+                        	<fmt:formatNumber value="${newPrd.pdt_discount_amount}" type="number" pattern="#,##0" />
+                        </p>
+						<c:if test="${newPrd.pdt_discount_rate > 0}">
+						    <p class="discount">
+						        <fmt:formatNumber value="${newPrd.pdt_discount_rate / 100}" type="percent"/>
+						    </p>
+						</c:if>
+                    </dd>
 
-                       <!-- li == 상품 1개 -->
-                       <li id="item1" class="item-swiper-slide swiper-slide">
-                           <div class="container-complete" data-prd-num="1">
-                               <dl>
-                                   <a href="#" class="viewlink"></a>
-                                   <div class="base-img">
-                                       <div class="thumb">
-                                           <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="https://ohora.kr/web/product/medium/202410/a4319a39311c7063ccda48fa243d716b.jpg">
-                                           <img loading="lazy" class="hover_img" width="800" height="800" src="https://ohora.kr/web/product/big/202410/6a2a952291cc448f4a18f1ae81aa4d40.jpg">
-                                       </div>
-                                       <!-- 아래는 품절일 시 ON -->
-                                       <span class="soldout-img" style=" display: none; ">
-                                           <a href="/product/detail.html?product_no=2107&amp;cate_no=121&amp;display_group=1">
-                                               <span>coming<br>soon</span>
-                                           </a>
-                                       </span>
+                    <dd class="prdRegiDate">등록일: ${newPrd.pdt_adddate}</dd>
 
-                                   </div>
+                    <div class="prdInfoBot">
+                        <div class="rvCount">
+                            <div class="rvWrap">
+                                <p class="rv_count_wrap">
+                                    <span class="rv_count_value">${newPrd.pdt_review_count}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-                                   <div class="base-mask">
-                                       <dd class="name-container">
-                                           <p class="name">
-                                               <span>N 뮤트 라인 네일</span>
-                                           </p>
-                                       </dd>    
-                                       <dd class="price-container">
-                                           <p class="normal-price">
-                                               14,800
-                                               <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="sale-price">
-                                              12,580 
-                                              <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="discount">
-                                               15%
-                                           </p>
-                                       </dd>
+                    <div class="into_cart">
+                        <img class="cart_icon" src="" alt="카트 가짜 아이콘">
+                    </div>
 
-                                       <dd class="prdRegiDate">등록일</dd>
-
-                                       <div class="prdInfoBot">
-                                           <div class="rvCount">
-                                               <div class="rvWrap">
-                                                   <p class="rv_count_wrap">
-                                                       <span class="rv_count_value">20</span>
-                                                       <!-- 얘넨 데이터로 상품번호 가져와서 리뷰수 끌어오는듯 -->
-                                                        <!-- brfore에 '리뷰' 있음 -->
-                                                   </p>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                       <div class="into_cart">
-                                           <img class="cart_icon" src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/btn_list_cart.gif" alt="카트 가짜 아이콘">
-                                           <!-- 온클릭 이벤트 걸려있음 ( 상품 아이디 가져가는듯 ) -->
-                                       </div>
-
-                                       <div class="only_info_dispNone">
-                                           <!-- 여기 strong으로 해쉬태그가 들어있음 -->
-                                           <span style="font-size:12px;color:#555555;">#네일 #젤스트립 #핑크 #프렌치 #자석 #글리터 #골드</span>
-                                       </div>
-                                   </div>
-                                   <!-- base_mask -->
-                               </dl>
-                   
-                           </div>
-                       </li>
-
-                       <li id="item2" class="item-swiper-slide swiper-slide">
-                           <div class="container-complete" data-prd-num="1">
-                               <dl>
-                                   <a href="" class="viewlink"></a>
-                                   <div class="base-img">
-                                       <div class="thumb">
-                                           <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="https://ohora.kr/web/product/medium/202410/a4319a39311c7063ccda48fa243d716b.jpg">
-                                           <img loading="lazy" class="hover_img" width="800" height="800" src="https://ohora.kr/web/product/big/202410/6a2a952291cc448f4a18f1ae81aa4d40.jpg">
-                                       </div>
-                                       <!-- 아래는 품절일 시 ON -->
-                                       <span class="soldout-img" style=" display: none; ">
-                                           <a href="/product/detail.html?product_no=2107&amp;cate_no=121&amp;display_group=1">
-                                               <span>coming<br>soon</span>
-                                           </a>
-                                       </span>
-
-                                   </div>
-
-                                   <div class="base-mask">
-                                       <dd class="name-container">
-                                           <p class="name">
-                                               <span>N 뮤트 라인 네일</span>
-                                           </p>
-                                       </dd>    
-                                       <dd class="price-container">
-                                           <p class="normal-price">
-                                               14,800
-                                               <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="sale-price">
-                                              12,580 
-                                              <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="discount">
-                                               15%
-                                           </p>
-                                       </dd>
-
-                                       <dd class="prdRegiDate">등록일</dd>
-
-                                       <div class="prdInfoBot">
-                                           <div class="rvCount">
-                                               <div class="rvWrap">
-                                                   <p class="rv_count_wrap">
-                                                       <span class="rv_count_value">20</span>
-                                                       <!-- 얘넨 데이터로 상품번호 가져와서 리뷰수 끌어오는듯 -->
-                                                        <!-- brfore에 '리뷰' 있음 -->
-                                                   </p>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                       <div class="into_cart">
-                                           <img class="cart_icon" src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/btn_list_cart.gif" alt="카트 가짜 아이콘">
-                                           <!-- 온클릭 이벤트 걸려있음 ( 상품 아이디 가져가는듯 ) -->
-                                       </div>
-
-                                       <div class="only_info_dispNone">
-                                           <!-- 여기 strong으로 해쉬태그가 들어있음 -->
-                                           <span style="font-size:12px;color:#555555;">#네일 #젤스트립 #핑크 #프렌치 #자석 #글리터 #골드</span>
-                                       </div>
-                                   </div>
-                                   <!-- base_mask -->
-                               </dl>
-                   
-                           </div>
-                       </li>
-
-                       <li id="item3" class="item-swiper-slide swiper-slide">
-                           <div class="container-complete" data-prd-num="1">
-                               <dl>
-                                   <a href="" class="viewlink"></a>
-                                   <div class="base-img">
-                                       <div class="thumb">
-                                           <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="https://ohora.kr/web/product/medium/202410/a4319a39311c7063ccda48fa243d716b.jpg">
-                                           <img loading="lazy" class="hover_img" width="800" height="800" src="https://ohora.kr/web/product/big/202410/6a2a952291cc448f4a18f1ae81aa4d40.jpg">
-                                       </div>
-                                       <!-- 아래는 품절일 시 ON -->
-                                       <span class="soldout-img" style=" display: none; ">
-                                           <a href="/product/detail.html?product_no=2107&amp;cate_no=121&amp;display_group=1">
-                                               <span>coming<br>soon</span>
-                                           </a>
-                                       </span>
-
-                                   </div>
-
-                                   <div class="base-mask">
-                                       <dd class="name-container">
-                                           <p class="name">
-                                               <span>N 뮤트 라인 네일</span>
-                                           </p>
-                                       </dd>    
-                                       <dd class="price-container">
-                                           <p class="normal-price">
-                                               14,800
-                                               <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="sale-price">
-                                              12,580 
-                                              <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="discount">
-                                               15%
-                                           </p>
-                                       </dd>
-
-                                       <dd class="prdRegiDate">등록일</dd>
-
-                                       <div class="prdInfoBot">
-                                           <div class="rvCount">
-                                               <div class="rvWrap">
-                                                   <p class="rv_count_wrap">
-                                                       <span class="rv_count_value">20</span>
-                                                       <!-- 얘넨 데이터로 상품번호 가져와서 리뷰수 끌어오는듯 -->
-                                                        <!-- brfore에 '리뷰' 있음 -->
-                                                   </p>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                       <div class="into_cart">
-                                           <img class="cart_icon" src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/btn_list_cart.gif" alt="카트 가짜 아이콘">
-                                           <!-- 온클릭 이벤트 걸려있음 ( 상품 아이디 가져가는듯 ) -->
-                                       </div>
-
-                                       <div class="only_info_dispNone">
-                                           <!-- 여기 strong으로 해쉬태그가 들어있음 -->
-                                           <span style="font-size:12px;color:#555555;">#네일 #젤스트립 #핑크 #프렌치 #자석 #글리터 #골드</span>
-                                       </div>
-                                   </div>
-                                   <!-- base_mask -->
-                               </dl>
-                   
-                           </div>
-                       </li>
-
-                       <li id="item4" class="item-swiper-slide swiper-slide">
-                           <div class="container-complete" data-prd-num="1">
-                               <dl>
-                                   <a href="" class="viewlink"></a>
-                                   <div class="base-img">
-                                       <div class="thumb">
-                                           <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="https://ohora.kr/web/product/medium/202410/a4319a39311c7063ccda48fa243d716b.jpg">
-                                           <img loading="lazy" class="hover_img" width="800" height="800" src="https://ohora.kr/web/product/big/202410/6a2a952291cc448f4a18f1ae81aa4d40.jpg">
-                                       </div>
-                                       <!-- 아래는 품절일 시 ON -->
-                                       <span class="soldout-img" style=" display: none; ">
-                                           <a href="/product/detail.html?product_no=2107&amp;cate_no=121&amp;display_group=1">
-                                               <span>coming<br>soon</span>
-                                           </a>
-                                       </span>
-
-                                   </div>
-
-                                   <div class="base-mask">
-                                       <dd class="name-container">
-                                           <p class="name">
-                                               <span>N 뮤트 라인 네일</span>
-                                           </p>
-                                       </dd>    
-                                       <dd class="price-container">
-                                           <p class="normal-price">
-                                               14,800
-                                               <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="sale-price">
-                                              12,580 
-                                              <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="discount">
-                                               15%
-                                           </p>
-                                       </dd>
-
-                                       <dd class="prdRegiDate">등록일</dd>
-
-                                       <div class="prdInfoBot">
-                                           <div class="rvCount">
-                                               <div class="rvWrap">
-                                                   <p class="rv_count_wrap">
-                                                       <span class="rv_count_value">20</span>
-                                                       <!-- 얘넨 데이터로 상품번호 가져와서 리뷰수 끌어오는듯 -->
-                                                        <!-- brfore에 '리뷰' 있음 -->
-                                                   </p>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                       <div class="into_cart">
-                                           <img class="cart_icon" src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/btn_list_cart.gif" alt="카트 가짜 아이콘">
-                                           <!-- 온클릭 이벤트 걸려있음 ( 상품 아이디 가져가는듯 ) -->
-                                       </div>
-
-                                       <div class="only_info_dispNone">
-                                           <!-- 여기 strong으로 해쉬태그가 들어있음 -->
-                                           <span style="font-size:12px;color:#555555;">#네일 #젤스트립 #핑크 #프렌치 #자석 #글리터 #골드</span>
-                                       </div>
-                                   </div>
-                                   <!-- base_mask -->
-                               </dl>
-                   
-                           </div>
-                       </li>
-
-                       <li id="item5" class="item-swiper-slide swiper-slide">
-                           <div class="container-complete" data-prd-num="1">
-                               <dl>
-                                   <a href="" class="viewlink"></a>
-                                   <div class="base-img">
-                                       <div class="thumb">
-                                           <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="https://ohora.kr/web/product/medium/202410/a4319a39311c7063ccda48fa243d716b.jpg">
-                                           <img loading="lazy" class="hover_img" width="800" height="800" src="https://ohora.kr/web/product/big/202410/6a2a952291cc448f4a18f1ae81aa4d40.jpg">
-                                       </div>
-                                       <!-- 아래는 품절일 시 ON -->
-                                       <span class="soldout-img" style=" display: none; ">
-                                           <a href="/product/detail.html?product_no=2107&amp;cate_no=121&amp;display_group=1">
-                                               <span>coming<br>soon</span>
-                                           </a>
-                                       </span>
-
-                                   </div>
-
-                                   <div class="base-mask">
-                                       <dd class="name-container">
-                                           <p class="name">
-                                               <span>N 뮤트 라인 네일</span>
-                                           </p>
-                                       </dd>    
-                                       <dd class="price-container">
-                                           <p class="normal-price">
-                                               14,800
-                                               <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="sale-price">
-                                              12,580 
-                                              <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="discount">
-                                               15%
-                                           </p>
-                                       </dd>
-
-                                       <dd class="prdRegiDate">등록일</dd>
-
-                                       <div class="prdInfoBot">
-                                           <div class="rvCount">
-                                               <div class="rvWrap">
-                                                   <p class="rv_count_wrap">
-                                                       <span class="rv_count_value">20</span>
-                                                       <!-- 얘넨 데이터로 상품번호 가져와서 리뷰수 끌어오는듯 -->
-                                                        <!-- brfore에 '리뷰' 있음 -->
-                                                   </p>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                       <div class="into_cart">
-                                           <img class="cart_icon" src="" alt="카트 가짜 아이콘">
-                                           <!-- 온클릭 이벤트 걸려있음 ( 상품 아이디 가져가는듯 ) -->
-                                       </div>
-
-                                       <div class="only_info_dispNone">
-                                           <!-- 여기 strong으로 해쉬태그가 들어있음 -->
-                                           <span style="font-size:12px;color:#555555;">#네일 #젤스트립 #핑크 #프렌치 #자석 #글리터 #골드</span>
-                                       </div>
-                                   </div>
-                                   <!-- base_mask -->
-                               </dl>
-                   
-                           </div>
-                       </li>
-                    </ul>
-
+                    <div class="only_info_dispNone">
+                        <span style="font-size:12px;color:#555555;"><!-- 해시태그 들어가야함 --></span>
+                    </div>
+                </div>
+            </dl>
+        </div>
+    </li>
+</c:forEach>
+</ul>
                     <div class="swiper-scrollbar"></div>
 
                 </div>
@@ -456,347 +176,68 @@
            <div class="common_list_box2">
                <div class="swiper-container swiper mySwiper3">
                    <ul class="items-swiper-wrapper swiper-wrapper">
+					<c:forEach var="bestPrd" items="${bestProducts}"  varStatus="status">
+    <li id="item${ status.index + 1 }" class="item-swiper-slide swiper-slide">
+        <div class="container-complete" data-prd-num="${bestPrd.pdt_id}">
+            <dl>
+                <a href="/projectOhora/product/detail.do?pdt_id=${bestPrd.pdt_id}&cate_no=121" class="viewlink"></a>
+                <div class="base-img">
+                    <div class="thumb">
+                        <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="../resources/images/prd_image/imgs/${bestPrd.pdt_img_url}.jpg">
+                        <img loading="lazy" class="hover_img" width="800" height="800" src="../resources/images/prd_image/imgs_hover/${bestPrd.pdt_img_url}.jpg">
+                    </div>
+                    <span class="soldout-img" style="display: ${bestPrd.pdt_count==0 ? 'block' : 'none'};">
+                        <a href="">
+                            <span>coming<br>soon</span>
+                        </a>
+                    </span>
+                </div>
+                
+                <div class="base-mask">
+                    <dd class="name-container">
+                        <p class="name">
+                            <span>${bestPrd.pdt_name}</span>
+                        </p>
+                    </dd>    
+                    <dd class="price-container">
+                        <p class="normal-price">
+                        	<fmt:formatNumber value="${bestPrd.pdt_amount}" type="number" pattern="#,##0" />
+                        </p>
+                        <p class="sale-price">
+                        	<fmt:formatNumber value="${bestPrd.pdt_discount_amount}" type="number" pattern="#,##0" />
+                        </p>
+						<c:if test="${bestPrd.pdt_discount_rate > 0}">
+						    <p class="discount">
+						        <fmt:formatNumber value="${bestPrd.pdt_discount_rate / 100}" type="percent" />
+						    </p>
+						</c:if>
+                    </dd>
 
-                       <!-- li == 상품 1개 -->
-                       <li id="item1" class="item-swiper-slide swiper-slide">
-                           <div class="container-complete" data-prd-num="1">
-                               <dl>
-                                   <a href="" class="viewlink"></a>
-                                   <div class="base-img">
-                                       <div class="thumb">
-                                           <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="https://ohora.kr/web/product/medium/202410/a4319a39311c7063ccda48fa243d716b.jpg">
-                                           <img loading="lazy" class="hover_img" width="800" height="800" src="https://ohora.kr/web/product/big/202410/6a2a952291cc448f4a18f1ae81aa4d40.jpg">
-                                       </div>
-                                       <!-- 아래는 품절일 시 ON -->
-                                       <span class="soldout-img" style=" display: none; ">
-                                           <a href="/product/detail.html?product_no=2107&amp;cate_no=121&amp;display_group=1">
-                                               <span>coming<br>soon</span>
-                                           </a>
-                                       </span>
+                    <dd class="prdRegiDate">등록일: ${bestPrd.pdt_adddate}</dd>
 
-                                   </div>
+                    <div class="prdInfoBot">
+                        <div class="rvCount">
+                            <div class="rvWrap">
+                                <p class="rv_count_wrap">
+                                    <span class="rv_count_value">${bestPrd.pdt_review_count}</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
 
-                                   <div class="base-mask">
-                                       <dd class="name-container">
-                                           <p class="name">
-                                               <span>N 뮤트 라인 네일</span>
-                                           </p>
-                                       </dd>    
-                                       <dd class="price-container">
-                                           <p class="normal-price">
-                                               14,800
-                                               <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="sale-price">
-                                              12,580 
-                                              <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="discount">
-                                               15%
-                                           </p>
-                                       </dd>
+                    <div class="into_cart">
+                        <img class="cart_icon" src="" alt="카트 가짜 아이콘">
+                    </div>
 
-                                       <dd class="prdRegiDate">등록일</dd>
+                    <div class="only_info_dispNone">
+                        <span style="font-size:12px;color:#555555;"><!-- 해시태그 들어가야함 --></span>
+                    </div>
+                </div>
+            </dl>
+        </div>
+    </li>
+</c:forEach>
 
-                                       <div class="prdInfoBot">
-                                           <div class="rvCount">
-                                               <div class="rvWrap">
-                                                   <p class="rv_count_wrap">
-                                                       <span class="rv_count_value">20</span>
-                                                       <!-- 얘넨 데이터로 상품번호 가져와서 리뷰수 끌어오는듯 -->
-                                                        <!-- brfore에 '리뷰' 있음 -->
-                                                   </p>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                       <div class="into_cart">
-                                           <img class="cart_icon" src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/btn_list_cart.gif" alt="카트 가짜 아이콘">
-                                           <!-- 온클릭 이벤트 걸려있음 ( 상품 아이디 가져가는듯 ) -->
-                                       </div>
-
-                                       <div class="only_info_dispNone">
-                                           <!-- 여기 strong으로 해쉬태그가 들어있음 -->
-                                           <span style="font-size:12px;color:#555555;">#네일 #젤스트립 #핑크 #프렌치 #자석 #글리터 #골드</span>
-                                       </div>
-                                   </div>
-                                   <!-- base_mask -->
-                               </dl>
-                   
-                           </div>
-                       </li>
-
-                       <li id="item2" class="item-swiper-slide swiper-slide">
-                           <div class="container-complete" data-prd-num="1">
-                               <dl>
-                                   <a href="" class="viewlink"></a>
-                                   <div class="base-img">
-                                       <div class="thumb">
-                                           <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="https://ohora.kr/web/product/medium/202410/a4319a39311c7063ccda48fa243d716b.jpg">
-                                           <img loading="lazy" class="hover_img" width="800" height="800" src="https://ohora.kr/web/product/big/202410/6a2a952291cc448f4a18f1ae81aa4d40.jpg">
-                                       </div>
-                                       <!-- 아래는 품절일 시 ON -->
-                                       <span class="soldout-img" style=" display: none; ">
-                                           <a href="/product/detail.html?product_no=2107&amp;cate_no=121&amp;display_group=1">
-                                               <span>coming<br>soon</span>
-                                           </a>
-                                       </span>
-
-                                   </div>
-
-                                   <div class="base-mask">
-                                       <dd class="name-container">
-                                           <p class="name">
-                                               <span>N 뮤트 라인 네일</span>
-                                           </p>
-                                       </dd>    
-                                       <dd class="price-container">
-                                           <p class="normal-price">
-                                               14,800
-                                               <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="sale-price">
-                                              12,580 
-                                              <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="discount">
-                                               15%
-                                           </p>
-                                       </dd>
-
-                                       <dd class="prdRegiDate">등록일</dd>
-
-                                       <div class="prdInfoBot">
-                                           <div class="rvCount">
-                                               <div class="rvWrap">
-                                                   <p class="rv_count_wrap">
-                                                       <span class="rv_count_value">20</span>
-                                                       <!-- 얘넨 데이터로 상품번호 가져와서 리뷰수 끌어오는듯 -->
-                                                        <!-- brfore에 '리뷰' 있음 -->
-                                                   </p>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                       <div class="into_cart">
-                                           <img class="cart_icon" src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/btn_list_cart.gif" alt="카트 가짜 아이콘">
-                                           <!-- 온클릭 이벤트 걸려있음 ( 상품 아이디 가져가는듯 ) -->
-                                       </div>
-
-                                       <div class="only_info_dispNone">
-                                           <!-- 여기 strong으로 해쉬태그가 들어있음 -->
-                                           <span style="font-size:12px;color:#555555;">#네일 #젤스트립 #핑크 #프렌치 #자석 #글리터 #골드</span>
-                                       </div>
-                                   </div>
-                                   <!-- base_mask -->
-                               </dl>
-                   
-                           </div>
-                       </li>
-
-                       <li id="item3" class="item-swiper-slide swiper-slide">
-                           <div class="container-complete" data-prd-num="1">
-                               <dl>
-                                   <a href="" class="viewlink"></a>
-                                   <div class="base-img">
-                                       <div class="thumb">
-                                           <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="https://ohora.kr/web/product/medium/202410/a4319a39311c7063ccda48fa243d716b.jpg">
-                                           <img loading="lazy" class="hover_img" width="800" height="800" src="https://ohora.kr/web/product/big/202410/6a2a952291cc448f4a18f1ae81aa4d40.jpg">
-                                       </div>
-                                       <!-- 아래는 품절일 시 ON -->
-                                       <span class="soldout-img" style=" display: none; ">
-                                           <a href="/product/detail.html?product_no=2107&amp;cate_no=121&amp;display_group=1">
-                                               <span>coming<br>soon</span>
-                                           </a>
-                                       </span>
-
-                                   </div>
-
-                                   <div class="base-mask">
-                                       <dd class="name-container">
-                                           <p class="name">
-                                               <span>N 뮤트 라인 네일</span>
-                                           </p>
-                                       </dd>    
-                                       <dd class="price-container">
-                                           <p class="normal-price">
-                                               14,800
-                                               <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="sale-price">
-                                              12,580 
-                                              <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="discount">
-                                               15%
-                                           </p>
-                                       </dd>
-
-                                       <dd class="prdRegiDate">등록일</dd>
-
-                                       <div class="prdInfoBot">
-                                           <div class="rvCount">
-                                               <div class="rvWrap">
-                                                   <p class="rv_count_wrap">
-                                                       <span class="rv_count_value">20</span>
-                                                       <!-- 얘넨 데이터로 상품번호 가져와서 리뷰수 끌어오는듯 -->
-                                                        <!-- brfore에 '리뷰' 있음 -->
-                                                   </p>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                       <div class="into_cart">
-                                           <img class="cart_icon" src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/btn_list_cart.gif" alt="카트 가짜 아이콘">
-                                           <!-- 온클릭 이벤트 걸려있음 ( 상품 아이디 가져가는듯 ) -->
-                                       </div>
-
-                                       <div class="only_info_dispNone">
-                                           <!-- 여기 strong으로 해쉬태그가 들어있음 -->
-                                           <span style="font-size:12px;color:#555555;">#네일 #젤스트립 #핑크 #프렌치 #자석 #글리터 #골드</span>
-                                       </div>
-                                   </div>
-                                   <!-- base_mask -->
-                               </dl>
-                   
-                           </div>
-                       </li>
-
-                       <li id="item4" class="item-swiper-slide swiper-slide">
-                           <div class="container-complete" data-prd-num="1">
-                               <dl>
-                                   <a href="" class="viewlink"></a>
-                                   <div class="base-img">
-                                       <div class="thumb">
-                                           <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="https://ohora.kr/web/product/medium/202410/a4319a39311c7063ccda48fa243d716b.jpg">
-                                           <img loading="lazy" class="hover_img" width="800" height="800" src="https://ohora.kr/web/product/big/202410/6a2a952291cc448f4a18f1ae81aa4d40.jpg">
-                                       </div>
-                                       <!-- 아래는 품절일 시 ON -->
-                                       <span class="soldout-img" style=" display: none; ">
-                                           <a href="/product/detail.html?product_no=2107&amp;cate_no=121&amp;display_group=1">
-                                               <span>coming<br>soon</span>
-                                           </a>
-                                       </span>
-
-                                   </div>
-
-                                   <div class="base-mask">
-                                       <dd class="name-container">
-                                           <p class="name">
-                                               <span>N 뮤트 라인 네일</span>
-                                           </p>
-                                       </dd>    
-                                       <dd class="price-container">
-                                           <p class="normal-price">
-                                               14,800
-                                               <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="sale-price">
-                                              12,580 
-                                              <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="discount">
-                                               15%
-                                           </p>
-                                       </dd>
-
-                                       <dd class="prdRegiDate">등록일</dd>
-
-                                       <div class="prdInfoBot">
-                                           <div class="rvCount">
-                                               <div class="rvWrap">
-                                                   <p class="rv_count_wrap">
-                                                       <span class="rv_count_value">20</span>
-                                                       <!-- 얘넨 데이터로 상품번호 가져와서 리뷰수 끌어오는듯 -->
-                                                        <!-- brfore에 '리뷰' 있음 -->
-                                                   </p>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                       <div class="into_cart">
-                                           <img class="cart_icon" src="https://img.echosting.cafe24.com/design/skin/admin/ko_KR/btn_list_cart.gif" alt="카트 가짜 아이콘">
-                                           <!-- 온클릭 이벤트 걸려있음 ( 상품 아이디 가져가는듯 ) -->
-                                       </div>
-
-                                       <div class="only_info_dispNone">
-                                           <!-- 여기 strong으로 해쉬태그가 들어있음 -->
-                                           <span style="font-size:12px;color:#555555;">#네일 #젤스트립 #핑크 #프렌치 #자석 #글리터 #골드</span>
-                                       </div>
-                                   </div>
-                                   <!-- base_mask -->
-                               </dl>
-                   
-                           </div>
-                       </li>
-
-                       <li id="item5" class="item-swiper-slide swiper-slide">
-                           <div class="container-complete" data-prd-num="1">
-                               <dl>
-                                   <a href="" class="viewlink"></a>
-                                   <div class="base-img">
-                                       <div class="thumb">
-                                           <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="https://ohora.kr/web/product/medium/202410/a4319a39311c7063ccda48fa243d716b.jpg">
-                                           <img loading="lazy" class="hover_img" width="800" height="800" src="https://ohora.kr/web/product/big/202410/6a2a952291cc448f4a18f1ae81aa4d40.jpg">
-                                       </div>
-                                       <!-- 아래는 품절일 시 ON -->
-                                       <span class="soldout-img" style=" display: none; ">
-                                           <a href="/product/detail.html?product_no=2107&amp;cate_no=121&amp;display_group=1">
-                                               <span>coming<br>soon</span>
-                                           </a>
-                                       </span>
-
-                                   </div>
-
-                                   <div class="base-mask">
-                                       <dd class="name-container">
-                                           <p class="name">
-                                               <span>N 뮤트 라인 네일</span>
-                                           </p>
-                                       </dd>    
-                                       <dd class="price-container">
-                                           <p class="normal-price">
-                                               14,800
-                                               <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="sale-price">
-                                              12,580 
-                                              <!-- 여기 after로 '원' 찍혀있음 -->
-                                           </p>
-                                           <p class="discount">
-                                               15%
-                                           </p>
-                                       </dd>
-
-                                       <dd class="prdRegiDate">등록일</dd>
-
-                                       <div class="prdInfoBot">
-                                           <div class="rvCount">
-                                               <div class="rvWrap">
-                                                   <p class="rv_count_wrap">
-                                                       <span class="rv_count_value">20</span>
-                                                       <!-- 얘넨 데이터로 상품번호 가져와서 리뷰수 끌어오는듯 -->
-                                                        <!-- brfore에 '리뷰' 있음 -->
-                                                   </p>
-                                               </div>
-                                           </div>
-                                       </div>
-
-                                       <div class="into_cart">
-                                           <img class="cart_icon" src="" alt="카트 가짜 아이콘">
-                                           <!-- 온클릭 이벤트 걸려있음 ( 상품 아이디 가져가는듯 ) -->
-                                       </div>
-
-                                       <div class="only_info_dispNone">
-                                           <!-- 여기 strong으로 해쉬태그가 들어있음 -->
-                                           <span style="font-size:12px;color:#555555;">#네일 #젤스트립 #핑크 #프렌치 #자석 #글리터 #골드</span>
-                                       </div>
-                                   </div>
-                                   <!-- base_mask -->
-                               </dl>
-                   
-                           </div>
-                       </li>
                    </ul>
                    <div class="swiper-scrollbar"></div>
  

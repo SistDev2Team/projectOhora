@@ -394,11 +394,11 @@ span.material-symbols-outlined {
 									<li id="itembox${ status.index + 1 }" class="item-wrap">
 										<div class="item-container">
 											<dl>
-												<a href="" class="item-viewlink"></a>
+												<a href="/projectOhora/product/detail.do?pdt_id=${pdt.pdt_id}&cate_no=${param.cate_no}" class="item-viewlink"></a>
 												<div class="item-image">
-													<img src="../resources/images/prd_image/마롱네일1jpg.jpg"
+													<img src="../resources/images/prd_image/imgs/${pdt.pdt_img_url}.jpg"
 														alt="" width="800" height="800" /> <img
-														src="../resources/images/prd_image/마롱네일2.jpg" alt=""
+														src="../resources/images/prd_image/imgs_hover/${pdt.pdt_img_url}.jpg" alt=""
 														width="800" height="800" />
 												</div>
 												<div class="item-info">

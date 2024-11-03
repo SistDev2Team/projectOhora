@@ -11,5 +11,9 @@
 </head>
 <body>
 	<a href="/projectOhora/example/test.do">Handler Test</a>
+	
+	<h3>
+		<a href="/projectOhora/ohora/main.do">오호라 메인페이지 접속</a>
+	</h3>
 </body>
 </html>

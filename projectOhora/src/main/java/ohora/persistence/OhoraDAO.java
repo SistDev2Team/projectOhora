@@ -22,7 +22,9 @@ public interface OhoraDAO {
 	// 검색시 총페이지
 	int getTotalPages(int numberPerPage, String searchWord) throws SQLException;
 	
-	
+	// 상품 상세 정보
+	ProductDTO prdDetail(int pdt_id) throws SQLException;
+
 /* boolean userCheck(String userId, String password) throws SQLException; */ //로그인
 	
 	String findLoginId(String name, String contact, String contactType); // 아이디 찾기
@@ -34,6 +36,5 @@ public interface OhoraDAO {
 	int validateUser(String userId, String password); // 로그인
 	
 	boolean isDuplicate(String type, String value) throws SQLException;	// 회원가입시 입력값 중복처리용
-
 	
 }
