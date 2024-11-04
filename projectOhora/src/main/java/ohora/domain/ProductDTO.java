@@ -25,6 +25,7 @@ public class ProductDTO {
 	private int pdt_sales_count;
 	private Date pdt_adddate;
 	private int pdt_viewcount;
+	private String pdt_description;
 	
 	private int pdt_discount_amount;
 }

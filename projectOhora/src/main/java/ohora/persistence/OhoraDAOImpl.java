@@ -492,6 +492,7 @@ public class OhoraDAOImpl implements OhoraDAO{
 	    int pdt_discount_amount;
 
 	    String sql = "SELECT * FROM O_PRODUCT WHERE pdt_id = ?";
+	    
 	    String pdtViewUpdate = "UPDATE O_PRODUCT SET pdt_viewcount = pdt_viewcount + 1 WHERE pdt_id = ?";
 		ProductDTO pdtDetail = null;
 
@@ -509,10 +510,12 @@ public class OhoraDAOImpl implements OhoraDAO{
 		    if (rs.next()) {
 		        pdtDetail = new ProductDTO();
 	        	pdt_id = rs.getInt("pdt_id");
+	        	cat_id = rs.getInt("cat_id");
 	            pdt_name = rs.getString("pdt_name");
 	            pdt_amount = rs.getInt("pdt_amount");
 	            pdt_discount_rate = rs.getInt("pdt_discount_rate");
 	            pdt_img_url = rs.getString("pdt_img_url");
+	            pdt_review_count = rs.getInt("pdt_review_count");
 	            pdt_viewcount = rs.getInt("pdt_viewcount");
 	            pdt_discount_amount = (pdt_discount_rate != 0)
 	                ? pdt_amount - (int)(pdt_amount * pdt_discount_rate / 100.0f ) // 할인율 적용
@@ -523,7 +526,8 @@ public class OhoraDAOImpl implements OhoraDAO{
 		                    .pdt_amount(pdt_amount)
 		                    .pdt_discount_rate(pdt_discount_rate)
 		                    .pdt_img_url(pdt_img_url)
-		                    .pdt_review_count(pdt_viewcount)
+		                    .pdt_review_count(pdt_review_count)
+		                    .pdt_viewcount(pdt_viewcount)
 		                    .pdt_discount_amount(pdt_discount_amount)
 		                    .build();
 		    } 
@@ -540,4 +544,88 @@ public class OhoraDAOImpl implements OhoraDAO{
 		return pdtDetail;
 
 	}
+	@Override
+	public ArrayList<ProductDTO> prdOption(int pdt_id) throws SQLException {
+
+		System.out.println("ArrayList<ProductDTO> prdOption(int pdt_id, int amount)...");
+		
+	    ArrayList<ProductDTO> optPdt = new ArrayList<ProductDTO>();
+	    ProductDTO pdt = null;
+	    int cat_id = 0;
+
+	    String sql2 = "SELECT cat_id FROM o_product WHERE pdt_id = ?";
+	    pstmt = conn.prepareStatement(sql2);
+	    pstmt.setInt(1, pdt_id);
+	    rs = pstmt.executeQuery();
+
+	    if (rs.next()) {
+	        cat_id = rs.getInt("cat_id");
+	    }
+
+	    String sql = "SELECT * FROM o_product";
+	    switch (cat_id) {
+	        case 1: // 네일 상품일때
+	            sql += " WHERE pdt_id BETWEEN 172 AND 175";
+	            break;
+	        case 2: // 페디 상품일때
+	            sql += " WHERE pdt_id BETWEEN 169 AND 171";
+	            break;
+	    }
+
+	    pstmt = conn.prepareStatement(sql);
+	    rs = pstmt.executeQuery();
+
+	    try {
+	        while (rs.next()) {
+	            pdt_id = rs.getInt("pdt_id");
+	            int scat_id = rs.getInt("scat_id");
+	            int pdt_number = rs.getInt("pdt_number");
+	            String pdt_name = rs.getString("pdt_name");
+	            int pdt_amount = rs.getInt("pdt_amount");
+	            int pdt_discount_rate = rs.getInt("pdt_discount_rate");
+	            String pdt_img_url = rs.getString("pdt_img_url");
+	            int pdt_count = rs.getInt("pdt_count");
+	            int pdt_review_count = rs.getInt("pdt_review_count");
+	            int pdt_sales_count = rs.getInt("pdt_sales_count");
+	            Date pdt_adddate = rs.getDate("pdt_adddate");
+	            int pdt_viewcount = rs.getInt("pdt_viewcount");
+	            int pdt_discount_amount = (pdt_discount_rate != 0)
+	                ? pdt_amount - (int)(pdt_amount * pdt_discount_rate / 100.0f) // 할인율 적용
+	                : pdt_amount;
+	            String pdt_description = rs.getString("pdt_description");
+
+	            pdt = new ProductDTO().builder()
+	                .pdt_id(pdt_id)
+	                .cat_id(cat_id)
+	                .scat_id(scat_id)
+	                .pdt_number(pdt_number)
+	                .pdt_name(pdt_name)
+	                .pdt_amount(pdt_amount)
+	                .pdt_discount_rate(pdt_discount_rate)
+	                .pdt_img_url(pdt_img_url)
+	                .pdt_count(pdt_count)
+	                .pdt_review_count(pdt_review_count)
+	                .pdt_sales_count(pdt_sales_count)
+	                .pdt_adddate(pdt_adddate)
+	                .pdt_viewcount(pdt_viewcount)
+	                .pdt_discount_amount(pdt_discount_amount)
+	                .pdt_description(pdt_description)
+	                .build();
+
+	            optPdt.add(pdt);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        try {
+	            if (rs != null) rs.close();
+	            if (pstmt != null) pstmt.close();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    System.out.println(optPdt.toString());
+	    return optPdt;
+	}
+
 }

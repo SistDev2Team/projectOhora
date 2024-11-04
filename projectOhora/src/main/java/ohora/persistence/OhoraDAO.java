@@ -13,6 +13,8 @@ public interface OhoraDAO {
 	
 	ArrayList<ProductDTO> search(String searchWord,	int currentPage, int numberPerPage) throws SQLException;
 	
+	ArrayList<ProductDTO> prdOption(int pdt_id) throws SQLException;
+	
 	// 1-3. 총 레코드 수
 	int getTotalRecords(int categoryNumber) throws SQLException;
 	

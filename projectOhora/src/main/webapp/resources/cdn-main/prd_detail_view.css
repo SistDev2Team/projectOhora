@@ -1,11 +1,33 @@
 @charset "UTF-8";
 
-body {
-    max-width: 1200px; /* 페이지의 최대 너비를 설정 */
-    margin: 0 auto; /* 페이지를 가로 중앙 정렬 */
-    padding: 0 20px; /* 좌우 여백을 일정하게 추가 */
-    box-sizing: border-box; /* 패딩이 너비 계산에 포함되도록 */
+button {
+  background: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
 }
+span,
+a {
+  font-family: inherit;
+  color: inherit;
+  font-size: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+li,
+ol,
+dl,
+dt,
+dd {
+  list-style: none;
+}
+
 /* 테이블 전체 스타일 */
 .infoTbl {
     width: 100%;
@@ -755,4 +777,8 @@ body.renewed_widget {
 /* 탭 선택 부드러운 스크롤 이동 */
 html {
     scroll-behavior: smooth; /* 모든 스크롤에 부드러운 이동 적용 */
+}
+
+.SP_detailContainer {
+    padding-top: 50px;
 }

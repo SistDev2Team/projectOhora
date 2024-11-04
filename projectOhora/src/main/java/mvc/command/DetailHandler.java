@@ -39,6 +39,8 @@ public class DetailHandler implements CommandHandler{
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("Detail Handler..");
+
+        ArrayList<ProductDTO> optPdt = null;
 		
 		try {
 			this.pdt_id = Integer.parseInt(request.getParameter("pdt_id"));
@@ -58,6 +60,12 @@ public class DetailHandler implements CommandHandler{
 		ProductDTO pdtDetail = null;
 
 		try {
+			optPdt = dao.prdOption(pdt_id); // 신상품 카테고리 번호 수정
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
 			pdtDetail = dao.prdDetail(this.pdt_id);
 			
 		} catch (Exception e) {
@@ -66,6 +74,7 @@ public class DetailHandler implements CommandHandler{
 			conn.close();
 		}
 		
+		request.setAttribute("optionProducts", optPdt);
 		request.setAttribute("pdtDetail", pdtDetail);
 		
 		String path = "/ohora/prd_detail_view.jsp";

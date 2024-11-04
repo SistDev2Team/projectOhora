@@ -99,6 +99,7 @@
             </a>
           </div>
 
+
           <!-- 헤더 주메뉴 -->
           <div class="gnb_menu_container">
             <ul class="gnb_menu_wrap menu_1ul">
@@ -124,7 +125,7 @@
                     >
                   </li>
                   <li>
-                    <a href="/projectOhora/product/list.do?cate_no=470&currentPage=1"
+                    <a href="/projectOhora/product/list.do?cate_no=49&currentPage=1"
                       ><span>커스텀</span></a
                     >
                   </li>
@@ -140,9 +141,9 @@
               <li class="eng_font menu_1li submenu">
                 <a href="/projectOhora/product/list.do?cate_no=671&currentPage=1">outlet</a>
               </li>
-              <li class="eng_font"><a href="/event/index.html">event</a></li>
+              <li class="eng_font"><a href="/projectOhora/ohora/event_index.jsp">event</a></li>
               <li class="eng_font">
-                <a href="/board/gallery/list.html?board_no=13">how to</a>
+                <a href="/projectOhora/ohora/howto.jsp">how to</a>
               </li>
             </ul>
           </div>
@@ -153,7 +154,7 @@
             <div
               class="xans-element- xans-layout xans-layout-orderbasketcount small_icon m_cart common_cart"
             >
-              <a href="/order/basket.html"
+              <a href="/projectOhora/ohora/offcart.jsp"
                 ><b class="count EC-Layout-Basket-count">0</b></a
               >
             </div>
@@ -161,7 +162,277 @@
           </div>
         </div>
       </div>
+ 
+
+    <!-- 검색 -->
+    <div class="hd_search_container" style="overflow: hidden; display: none">
+      <div class="SP_search_wrap">
+        <div class="SP_utilListSearch_inner">
+          <form
+            id="searchBarForm"
+            name=""
+            action="/product/search.html"
+            method="get"
+            target="_self"
+            enctype="multipart/form-data"
+          >
+            <input id="banner_action" name="banner_action" value="" type="hidden" />
+            <div class="xans-element- xans-layout xans-layout-searchheader">
+          
+              <fieldset>
+                <legend style="display: none">검색</legend>
+                <input
+                  id="keyword"
+                  name="keyword"
+                  fw-filter=""
+                  fw-label="검색어"
+                  fw-msg=""
+                  class="inputTypeText"
+                  placeholder=""
+                  onkeyup="SEARCH_HASHTAG.getHashtag($(this)); "
+                  autocomplete="off"
+                  onmousedown="SEARCH_BANNER.clickSearchForm(this)"
+                  value=""
+                  type="text"
+                /><button
+                  type="button"
+                  class="SP_srh_submit_btn"
+                  onclick="SEARCH_BANNER.submitSearchBanner(this); return false;"
+                >
+                  <span class="SP_cm_icon SP_black_search_icon"></span>
+                </button>
+              </fieldset>
+            </div>
+          </form>
+        </div>
+    
+        <!--------------- 검색 키워드 --------------->
+        <div class="SP_utilListKeyword_inner">
+          <ul>
+            <li><a href="/projectOhora/product/list.do?cate_no=671&currentPage=1">#OUTLET 입장하기</a></li>
+            <li><a href="/projectOhora/product/list.do?cate_no=120&currentPage=1">#BEST 디자인 추천</a></li>
+            <li><a href="/projectOhora/projectOhora/ohora/event_event6.jsp">#첫구매 젤램프 증정</a></li>
+          </ul>
+        </div>
+        <!--------------- 검색 키워드 --------------->
+      </div>
     </div>
+
+    <!-- 더보기 -->
+    <div class="hd_cate_container" style="overflow: hidden; display: none">
+      <div class="SP_category_wrap" style="margin-top: 172px;">
+        <div class="inner">
+      
+          <div class="cate_wrap first">
+   
+
+            <div class="big_txt">
+              <a class="eng_font big_" href="/projectOhora/product/list.do">
+                <span>new</span>
+              </a>
+              <a class="/projectOhora/product/list.do">
+                <span></span>
+              </a>
+              <a class="/projectOhora/product/list.do">
+                <span></span>
+              </a>
+            </div>
+            <div class="big_txt" style="margin-top: 60px;">
+              <a class="eng_font big_" href="/projectOhora/product/list.do">
+                <span>best</span>
+              </a>
+              <a href="/projectOhora/product/list.do">
+                <span>네일</span>
+              </a>
+              <a href="/projectOhora/product/list.do">
+                <span>페디</span>
+              </a>
+            </div>
+          </div>
+          <div class="cate_wrap first">
+            <div class="big_txt">
+              <a class="eng_font big_" href="/projectOhora/product/list.do">
+                <span>nail</span>
+              </a>
+              <a class="" href="/projectOhora/product/list.do">
+                <span>젤스트립</span>
+              </a>
+              <a class="" href="/projectOhora/product/list.do">
+                <span>젤네일팁</span>
+              </a>
+            </div>
+            <div class="big_txt" style="margin-top: 63px;">
+              <a class="eng_font big_" href="/projectOhora/product/list.do">
+                <span>pedi</span>
+              </a>
+              <a class="" href="/projectOhora/product/list.do">
+                <span>젤스트립</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="cate_wrap first">
+            <div class="big_txt">
+              <a class="eng_font big_" href="/projectOhora/product/list.do">
+                <span>outlet</span>
+              </a>
+            </div>
+            <div class="big_txt">
+              <span></span>
+
+              <span></span>
+
+              <span></span>
+            </div>
+
+            <div class="big_txt" style="margin-top: 80px;">
+              <a class="eng_font big_" href="/projectOhora/product/list.do">
+                <span>custom</span>
+              </a>
+            </div>
+            <div class="big_txt" style="margin-top: 45px;">
+              <a class="eng_font big_" href="/projectOhora/product/list.do">
+                <span>care &amp; tool</span>
+              </a>
+            </div>
+          </div>
+
+          <!--------- 첫번째 줄 메뉴(신제품 출시 관련 수정 영역) --------->
+          <style>
+          
+          </style>
+
+          <!------- 두번째 줄 메뉴 ------>
+          <div class="cate_wrap second">
+  
+            <div class="big_txt" style="margin-left: 35px; margin-bottom: 42px;">
+              <a class="big_ eng_font" href="/projectOhora/ohora/event_index.jsp">
+                <span>event</span>
+              </a>
+            </div>
+
+            <div class="big_txt" style="margin-left: 35px;  margin-bottom: 42px;">
+              <a
+                class="big_ eng_font"
+                href="/projectOhora/ohora/oho_review.jsp"
+              >
+                <span>review</span>
+              </a>
+            </div>
+            <div class="big_txt" style="margin-left: 35px;">
+              <a class="big_ eng_font" href="#empty">
+                <span style="margin-top: 10px;">brand</span>
+              </a>
+              <a class="" href="/projectOhora/ohora/ohora_Fend_brand4.jsp">
+                <span>about</span>
+              </a>
+              <a class="" href="#empty">
+                <span>membership</span>
+              </a>
+              <a class="" href="/projectOhora/ohora/magazine.jsp">
+                <span>magazine</span>
+              </a>
+              <a class="" href="#empty">
+                <span>collaboration</span>
+              </a>
+            </div>
+          </div>
+          <!------ 두번째 줄 메뉴 ------>
+          <!------ 세번째 줄 메뉴 ------>
+          <div class="cate_wrap crew">
+            <!--오호라 크루 추천-->
+            <div
+              class="common_reco_section recommend_crew swiper-container swiper-container-initialized swiper-container-horizontal load-complete"
+            >
+              <h3>오호라 크루 추천</h3>
+              <div
+                df-banner-code="common-recommend"
+                class="recommend_banner_wrap swiper-wrapper df-bannermanager df-bannermanager-common-recommend"
+                style="
+                  transition-duration: 0ms;
+                  transform: translate3d(-260px, 0px, 0px);
+                "
+              >
+                <div
+                  df-banner-clone=""
+                  class="SP_eventBn_li swiper-slide swiper-slide-prev"
+                >
+                  <a
+                    href="#empty"
+                    ><div class="imgBox">
+                      <img
+                        src="https://ohora.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/94fad6d6474acf635b9c771591480a7c.png"
+                        alt="페이코 상시 12% 할인"
+                      />
+                    </div>
+                    <div class="txtBox">페이코 상시 12% 할인</div></a
+                  >
+                </div>
+                <div
+                  df-banner-clone=""
+                  class="SP_eventBn_li swiper-slide swiper-slide-active"
+                >
+                  <a href="#empty"
+                    ><div class="imgBox">
+                      <img
+                        src="	https://ohora.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/4cd90f97beaaeddde49bbad02da10bc5.webp"
+                        alt="앱 다운 시 무료배송"
+                      />
+                    </div>
+                    <div class="txtBox">앱 다운 시 무료배송</div></a
+                  >
+                </div>
+                <div
+                  df-banner-clone=""
+                  class="SP_eventBn_li swiper-slide swiper-slide-next"
+                >
+                  <a href="#empty"
+                    ><div class="imgBox">
+                      <img
+                        src="https://ohora.kr/web/upload/appfiles/ZaReJam3QiELznoZeGGkMG/0b48933209882b54093f40d23cb23246.webp"
+                        alt="신규회원 젤램프 증정"
+                      />
+                    </div>
+                    <div class="txtBox">신규회원 젤램프 증정</div></a
+                  >
+                </div>
+              </div>
+              <!-- 스와이퍼 스크롤 -->
+              <div class="swiper-scrollbar">
+                <div
+                  class="swiper-scrollbar-drag"
+                  style="
+                    transition-duration: 0ms;
+                    transform: translate3d(85px, 0px, 0px);
+                    width: 85px;
+                  "
+                ></div>
+              </div>
+              <span
+                class="swiper-notification"
+                aria-live="assertive"
+                aria-atomic="true"
+              ></span>
+            </div>
+            <!--// 오호라 크루 추천-->
+            <div class="third_cate">
+              <a href="https://oe9lp.channel.io/home"><span>CS Center</span></a>
+              <a href="/projectOhora/ohora/notice.jsp"
+                ><span>Notice</span></a
+              >
+              <a href="/projectOhora/ohora/FAQ.jsp"><span>FAQ</span></a>
+              <a href="/projectOhora/ohora/howto.jsp">How to</a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
+
+  </div> <!-- sticky 적용을 위한 태그-->
+
+  
   <!-- 슬라이더 초기화 코드 -->
     <script>
       $(document).ready(function () {
@@ -178,6 +449,64 @@
         });
       });
     </script>
+
+    <script>
+      $(document).ready(function() {
+        const searchContainer = $('.hd_search_container');
+        const cateContainer = $('.hd_cate_container');
+
+        searchContainer.hide();
+        cateContainer.hide();
+
+        // 검색 버튼 클릭 시
+        $('.small_icon.search_fixed_btn').on('click', function() {
+          if (!searchContainer.is(':visible')) {
+            cateContainer.stop(true, true).fadeOut(300, function() {
+              searchContainer.stop(true, true).slideDown(500).animate({ opacity: 1 }, { duration: 10 });
+              $('#keyword').focus();
+            });
+          } else {
+            searchContainer.stop(true, true).slideUp(500).animate({ opacity: 0 }, { duration: 10 });
+          }
+        });
+
+        // 더보기 버튼 클릭 시
+        $('.SMS_menu').on('click', function() {
+          if (!cateContainer.is(':visible')) {
+            searchContainer.stop(true, true).fadeOut(300, function() {
+              cateContainer.stop(true, true).slideDown(500).animate({ opacity: 1 }, { duration: 10 });
+              $('#keyword').focus();
+            });
+          } else {
+            cateContainer.stop(true, true).slideUp(500).animate({ opacity: 0 }, { duration: 10 });
+          }
+        });
+      });
+    </script>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <!-- 오호라 크루 추천 스와이퍼 -->
+    <script>
+     $(document).ready(function() {
+      var swiper = new Swiper("div.common_reco_section.recommend_crew.swiper-container.swiper-container-initialized.swiper-container-horizontal", {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        loop: false, 
+        pagination: {
+          el: ".swiper-scrollbar",
+          clickable: true,
+        },
+        navigation: {
+          nextEl: "div.recommend_banner_wrap.swiper-wrapper.df-bannermanager.df-bannermanager-common-recommend > div.SP_eventBn_li.swiper-slide.swiper-slide-next",
+          prevEl: "div.recommend_banner_wrap.swiper-wrapper.df-bannermanager.df-bannermanager-common-recommend > div.SP_eventBn_li.swiper-slide.swiper-slide-prev",
+        }
+      });
+    });
+
+    </script>    
+  
 
   </body>
 </html>

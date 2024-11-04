@@ -777,7 +777,7 @@ span.rvCount {
 }
 
 span.rvCount::before {
-  content: "리뷰";
+  content: "由щ럭";
   font-weight: normal;
   margin-right: 3px;
 }
@@ -1140,7 +1140,7 @@ span.rvCount::before {
   text-align: center;
 }
 
-/* 泥댄겕 �씠誘몄� �몴�떆 */
+/* 筌ｋ똾寃� 占쎌뵠沃섎챷占� 占쎈ご占쎈뻻 */
 .side-check-type-color
   .side-type-list-color
   > li
@@ -1161,7 +1161,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='肄붾엫�븨�겕']+label::before
+  > input[value$='�굜遺얠뿫占쎈릅占쎄쾿']+label::before
 	{
 	background: #E4A0A6;
 }
@@ -1169,7 +1169,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='釉붾（�꽕�씠鍮�']+label::before
+  > input[value$='�뇡遺억펷占쎄퐬占쎌뵠�뜮占�']+label::before
 	{
 	background: #73A3CC;
 }
@@ -1177,7 +1177,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='�늻�뱶踰좎씠吏�']+label::before
+  > input[value$='占쎈듇占쎈굡甕곗쥙�뵠筌욑옙']+label::before
 	{
 	background: #F0DDBF;
 }
@@ -1185,7 +1185,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='�젅�뱶踰꾧굔�뵒']+label::before
+  > input[value$='占쎌쟿占쎈굡甕곌쑨援뷂옙逾�']+label::before
 	{
 	background: #90101A;
 }
@@ -1193,7 +1193,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='�솕�씠�듃']+label::before
+  > input[value$='占쎌넅占쎌뵠占쎈뱜']+label::before
 	{
 	background: #fff;
 	border: 1px solid #e6e6e6;
@@ -1202,7 +1202,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='怨⑤뱶']+label::before
+  > input[value$='�ⓥ뫀諭�']+label::before
 	{
 	background: #D4B56A;
 }
@@ -1210,7 +1210,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='洹몃┛']+label::before
+  > input[value$='域밸챶�뵛']+label::before
 	{
 	background: #B3D465;
 }
@@ -1218,7 +1218,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='�삉濡쒖슦']+label::before
+  > input[value$='占쎌굢嚥≪뮇�뒭']+label::before
 	{
 	background: #F7C94E;
 }
@@ -1226,7 +1226,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='�늻�뱶踰좎씠吏�']+label::before
+  > input[value$='占쎈듇占쎈굡甕곗쥙�뵠筌욑옙']+label::before
 	{
 	background: #F0DDBF;
 }
@@ -1234,7 +1234,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='�띁�뵆']+label::before
+  > input[value$='占쎈쓠占쎈탣']+label::before
 	{
 	background: #8957A1;
 }
@@ -1242,7 +1242,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='釉붾옓']+label::before
+  > input[value$='�뇡遺얠삌']+label::before
 	{
 	background: #000;
 }
@@ -1250,7 +1250,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='釉뚮씪�슫']+label::before
+  > input[value$='�뇡�슢�뵬占쎌뒲']+label::before
 	{
 	background: #8A705A;
 }
@@ -1258,7 +1258,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='�떎踰꾧렇�젅�씠']+label::before
+  > input[value$='占쎈뼄甕곌쑨�젃占쎌쟿占쎌뵠']+label::before
 	{
 	background: #C6C6C6;
 }
@@ -1266,7 +1266,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='�꽕�삩']+label::before
+  > input[value$='占쎄퐬占쎌궔']+label::before
 	{
 	background: #DEF33D;
 }
@@ -1274,7 +1274,7 @@ span.rvCount::before {
 .side-check-type-color
   .side-type-list-color
   > li
-  > input[value$='�삤�젋吏�']+label::before
+  > input[value$='占쎌궎占쎌젉筌욑옙']+label::before
 	{
 	background: #FEA36D;
 }
@@ -1470,3 +1470,18 @@ iframe {
   height: 100%;
   width: 100%;
 }
+
+#ivStyle .SP_layoutFix {
+    width: 1050px;
+}
+
+.first-wrap {
+    border: none;
+    border-top: 1px solid #e5e5e5;
+}
+
+.SP_layoutFix {
+    width: 1200px;
+    margin: 0 auto;
+}
+

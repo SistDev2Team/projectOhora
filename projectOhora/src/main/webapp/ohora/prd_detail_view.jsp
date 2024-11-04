@@ -259,223 +259,73 @@ document.querySelector(".up").onclick = function() {
 							class="xans-element- xans-product xans-product-addproduct SP_productAddSet_wrap view open">
 							<div class="SP_prdAddSet_title">
 								<h3>추가구성상품</h3>
-								<a href="javascript:void(0);"
-									class="SP_js_toggle_btn SP_prdAddSetToggle"></a>
+								<a href="javascript:void(0);" class="SP_js_toggle_btn SP_prdAddSetToggle"></a>
 							</div>
 							<ul class="SP_prdAddSetList_wrap">
-								<li data-prd-num="1810" class="xans-record-">
-									<div class="SP_addSetInfo">
-										<div class="SP_addSetThumb">
-											<a href="/product/프로-네일-강화제/1810/"><img
-												src="//www.ohora.kr/web/product/tiny/202301/14ab26965938da6deb35ec09da2cb8c2.jpg"
-												alt="" id="ec-add-product-composed-product-1810"></a>
-										</div>
-										<div class="SP_prdAddSetList">
-											<ul>
-												<li class="SP_addSetList_tt">
-													<!-- <div class="SP_prdAddSet_tt">상품명</div> -->
-													<div class="SP_prdAddSet_cont SP_prdAddSet_prdtt">프로
-														네일 강화제</div>
-												</li>
-												<li class="desc">강력한 보호막을 형성하는 네일 강화제</li>
-												<li class=" add_prd_price">
-													<!-- <div class="SP_prdAddSet_tt"><span>판매가 : </span></div> -->
-													<div class="SP_prdAddSet_cont SP_prdAddSet_price">
-														<span class="">19,800</span>
+								<c:choose>
+									<c:when test="${ empty optionProducts }">
+										<li>No Data</li>
+								</c:when>
+									<c:otherwise>
+									<c:forEach var="optprd"  items="${ optionProducts }">
+										<li data-prd-num="${optprd.pdt_id}" class="xans-record-">
+											<div class="SP_addSetInfo">
+												<div class="SP_addSetThumb">
+													<a href="#"><img
+														src="../resources/images/prd_image/imgs/${optprd.pdt_img_url}.jpg"
+														alt="" id="ec-add-product-composed-product-1810"></a>
+												</div>
+												<div class="SP_prdAddSetList">
+													<ul>
+														<li class="SP_addSetList_tt">
+															<!-- <div class="SP_prdAddSet_tt">상품명</div> -->
+															<div class="SP_prdAddSet_cont SP_prdAddSet_prdtt">${optprd.pdt_name}</div>
+														</li>
+														<li class="desc">${optprd.pdt_description}</li>
+														<li class=" add_prd_price">
+															<!-- <div class="SP_prdAddSet_tt"><span>판매가 : </span></div> -->
+															<div class="SP_prdAddSet_cont SP_prdAddSet_price">
+																<span class="">
+																	<fmt:formatNumber value="${optprd.pdt_discount_amount}"	type="number" pattern="#,##0" />
+																</span>
+															</div>
+														</li>
+														<li class="displaynone add_prd_sale">
+															<!-- <div class="SP_prdAddSet_tt"><span>할인판매가 : </span></div> -->
+															<div class="SP_prdAddSet_cont">
+																<span class=""></span>
+															</div>
+														</li>
+													</ul>
+												</div>
+												<div class="SP_prdAddSetOpt_wrap displaynone">
+													<div
+														class="xans-element- xans-product xans-product-noneoption xans-record-">
+														<ul>
+															<li><strong class="name">상품선택</strong>
+																<div class="SP_prdAddSetOptBox">
+																	<select id="addproduct_option_id_1810_1"
+																		name="addproduct_option_name_1810" required="true"
+																		option_title="프로 네일 강화제">
+																		<option value="*" selected="selected">- 상품 선택 -</option>
+																		<option value="P0000CRQ000A">프로 네일 강화제</option>
+																	</select>
+																</div></li>
+														</ul>
 													</div>
-												</li>
-												<li class="displaynone add_prd_sale">
-													<!-- <div class="SP_prdAddSet_tt"><span>할인판매가 : </span></div> -->
-													<div class="SP_prdAddSet_cont">
-														<span class=""></span>
+													<div class="displaynone selectButton" id="">
+														<a href="#none" class="btnSubmit sizeS" onclick="">옵션선택</a>
 													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="SP_prdAddSetOpt_wrap displaynone">
-											<div
-												class="xans-element- xans-product xans-product-noneoption xans-record-">
-												<ul>
-													<li><strong class="name">상품선택</strong>
-														<div class="SP_prdAddSetOptBox">
-															<select id="addproduct_option_id_1810_1"
-																name="addproduct_option_name_1810" required="true"
-																option_title="프로 네일 강화제">
-																<option value="*" selected="selected">- 상품 선택 -</option>
-																<option value="P0000CRQ000A">프로 네일 강화제</option>
-															</select>
-														</div></li>
-												</ul>
+												</div>
+												<div class="btn add-opt-click">
+													<a href="#none">추가</a>
+												</div>
 											</div>
-											<div class="displaynone selectButton" id="">
-												<a href="#none" class="btnSubmit sizeS" onclick="">옵션선택</a>
-											</div>
-										</div>
-										<div class="btn add-opt-click">
-											<a href="#none">추가</a>
-										</div>
-									</div>
-								</li>
-								<li data-prd-num="607" class="xans-record-">
-									<div class="SP_addSetInfo">
-										<div class="SP_addSetThumb">
-											<a href="/product/프로-글로시-탑젤/607/"><img
-												src="//www.ohora.kr/web/product/tiny/202209/3af9ada90db0007c7f67a764f1bab0e2.jpg"
-												alt="" id="ec-add-product-composed-product-607"></a>
-										</div>
-										<div class="SP_prdAddSetList">
-											<ul>
-												<li class="SP_addSetList_tt">
-													<!-- <div class="SP_prdAddSet_tt">상품명</div> -->
-													<div class="SP_prdAddSet_cont SP_prdAddSet_prdtt">프로
-														글로시 탑젤</div>
-												</li>
-												<li class="desc">광택과 볼륨감을 더하는 탑젤</li>
-												<li class=" add_prd_price">
-													<!-- <div class="SP_prdAddSet_tt"><span>판매가 : </span></div> -->
-													<div class="SP_prdAddSet_cont SP_prdAddSet_price">
-														<span class="">19,800</span>
-													</div>
-												</li>
-												<li class="displaynone add_prd_sale">
-													<!-- <div class="SP_prdAddSet_tt"><span>할인판매가 : </span></div> -->
-													<div class="SP_prdAddSet_cont">
-														<span class=""></span>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="SP_prdAddSetOpt_wrap displaynone">
-											<div
-												class="xans-element- xans-product xans-product-noneoption xans-record-">
-												<ul>
-													<li><strong class="name">상품선택</strong>
-														<div class="SP_prdAddSetOptBox">
-															<select id="addproduct_option_id_607_2"
-																name="addproduct_option_name_607" required="true"
-																option_title="프로 글로시 탑젤">
-																<option value="*" selected="selected">- 상품 선택 -</option>
-																<option value="P00000XJ000A">프로 글로시 탑젤</option>
-															</select>
-														</div></li>
-												</ul>
-											</div>
-											<div class="displaynone selectButton" id="">
-												<a href="#none" class="btnSubmit sizeS" onclick="">옵션선택</a>
-											</div>
-										</div>
-										<div class="btn add-opt-click">
-											<a href="#none">추가</a>
-										</div>
-									</div>
-								</li>
-								<li data-prd-num="615" class="xans-record-">
-									<div class="SP_addSetInfo">
-										<div class="SP_addSetThumb">
-											<a href="/product/프로-이지필-리무버/615/"><img
-												src="//www.ohora.kr/web/product/tiny/202205/4b0524fd24c8d0d23eab8ad3d33dc4dd.jpg"
-												alt="" id="ec-add-product-composed-product-615"></a>
-										</div>
-										<div class="SP_prdAddSetList">
-											<ul>
-												<li class="SP_addSetList_tt">
-													<!-- <div class="SP_prdAddSet_tt">상품명</div> -->
-													<div class="SP_prdAddSet_cont SP_prdAddSet_prdtt">프로
-														이지필 리무버</div>
-												</li>
-												<li class="desc">순하고 깔끔한 저자극 리무버</li>
-												<li class=" add_prd_price">
-													<!-- <div class="SP_prdAddSet_tt"><span>판매가 : </span></div> -->
-													<div class="SP_prdAddSet_cont SP_prdAddSet_price">
-														<span class="">12,800</span>
-													</div>
-												</li>
-												<li class="displaynone add_prd_sale">
-													<!-- <div class="SP_prdAddSet_tt"><span>할인판매가 : </span></div> -->
-													<div class="SP_prdAddSet_cont">
-														<span class=""></span>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="SP_prdAddSetOpt_wrap displaynone">
-											<div
-												class="xans-element- xans-product xans-product-noneoption xans-record-">
-												<ul>
-													<li><strong class="name">상품선택</strong>
-														<div class="SP_prdAddSetOptBox">
-															<select id="addproduct_option_id_615_3"
-																name="addproduct_option_name_615" required="true"
-																option_title="프로 이지필 리무버">
-																<option value="*" selected="selected">- 상품 선택 -</option>
-																<option value="P00000XR000A">프로 이지필 리무버</option>
-															</select>
-														</div></li>
-												</ul>
-											</div>
-											<div class="displaynone selectButton" id="">
-												<a href="#none" class="btnSubmit sizeS" onclick="">옵션선택</a>
-											</div>
-										</div>
-										<div class="btn add-opt-click">
-											<a href="#none">추가</a>
-										</div>
-									</div>
-								</li>
-								<li data-prd-num="1821" class="xans-record-">
-									<div class="SP_addSetInfo">
-										<div class="SP_addSetThumb">
-											<a href="/product/프로-네일-프라이머-플러스/1821/"><img
-												src="//www.ohora.kr/web/product/tiny/202302/d4f41e7f995c4a0a0c7f5b2f75547f48.jpg"
-												alt="" id="ec-add-product-composed-product-1821"></a>
-										</div>
-										<div class="SP_prdAddSetList">
-											<ul>
-												<li class="SP_addSetList_tt">
-													<!-- <div class="SP_prdAddSet_tt">상품명</div> -->
-													<div class="SP_prdAddSet_cont SP_prdAddSet_prdtt">프로
-														네일 프라이머 플러스</div>
-												</li>
-												<li class="desc">유지력을 높여주는 네일 프라이머</li>
-												<li class=" add_prd_price">
-													<!-- <div class="SP_prdAddSet_tt"><span>판매가 : </span></div> -->
-													<div class="SP_prdAddSet_cont SP_prdAddSet_price">
-														<span class="">14,800</span>
-													</div>
-												</li>
-												<li class="displaynone add_prd_sale">
-													<!-- <div class="SP_prdAddSet_tt"><span>할인판매가 : </span></div> -->
-													<div class="SP_prdAddSet_cont">
-														<span class=""></span>
-													</div>
-												</li>
-											</ul>
-										</div>
-										<div class="SP_prdAddSetOpt_wrap displaynone">
-											<div
-												class="xans-element- xans-product xans-product-noneoption xans-record-">
-												<ul>
-													<li><strong class="name">상품선택</strong>
-														<div class="SP_prdAddSetOptBox">
-															<select id="addproduct_option_id_1821_4"
-																name="addproduct_option_name_1821" required="true"
-																option_title="프로 네일 프라이머 플러스">
-																<option value="*" selected="selected">- 상품 선택 -</option>
-																<option value="P0000CSB000A">프로 네일 프라이머 플러스</option>
-															</select>
-														</div></li>
-												</ul>
-											</div>
-											<div class="displaynone selectButton" id="">
-												<a href="#none" class="btnSubmit sizeS" onclick="">옵션선택</a>
-											</div>
-										</div>
-										<div class="btn add-opt-click">
-											<a href="#none">추가</a>
-										</div>
-									</div>
-								</li>
-							</ul>
+										</li>
+									</c:forEach>
+									</c:otherwise>
+								</c:choose>
+								</ul>
 						</div>
 						<script
 							src="/smartpc/include/detailPage/addProduct/st01_addProduct/_js/addProduct.js"></script>
