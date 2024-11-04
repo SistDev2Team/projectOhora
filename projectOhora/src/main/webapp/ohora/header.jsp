@@ -89,7 +89,7 @@
         <div class="SMS_fixed_inner">
           <div class="xans-element- xans-layout xans-layout-logotop fixed_logo">
             <a
-              href="/projectOhora/main"
+              href="/projectOhora/ohora/main.do"
               style="display: block; text-align: center; margin-top: 30px"
             >
               <img

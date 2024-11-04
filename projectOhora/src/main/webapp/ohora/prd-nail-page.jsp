@@ -136,52 +136,52 @@ span.material-symbols-outlined {
 					
 					<ul class="menu_2ul">
 						<li class="menu_2li" data-cate="${param.cate_no }" data-depth="2">
-							<a href="/product/list.html?cate_no=${param.cate_no }">ALL</a>
+							<a href="/projectOhora/product/list.do?cate_no=${param.cate_no}&currentPage=1">ALL</a>
 						</li>				
 					    <!-- 전체상품일 때 -->
 					    <c:if test="${param.cate_no == 44}">
 					        <li class="menu_2li" data-cate="160" data-depth="2">
-					            <a href="/product/list.do?cate_no=160&currentPage=1">네일</a>
+					            <a href="/projectOhora/product/list.do?cate_no=160&currentPage=1">네일</a>
 					        </li>
 					        <li class="menu_2li" data-cate="161" data-depth="2">
-					            <a href="/product/list.do?cate_no=161&currentPage=1">페디</a>
+					            <a href="/projectOhora/product/list.do?cate_no=161&currentPage=1">페디</a>
 					        </li>
 					        <li class="menu_2li" data-cate="49" data-depth="2">
-					            <a href="/product/list.do?cate_no=49&currentPage=1">케어 &amp; 툴</a>
+					            <a href="/projectOhora/product/list.do?cate_no=49&currentPage=1">케어 &amp; 툴</a>
 					        </li>
 					    </c:if>
 					
 					    <!-- 베스트상품일 때 -->
 					    <c:if test="${param.cate_no == 120}">
 					        <li class="menu_2li" data-cate="125" data-depth="2">
-					            <a href="/product/list.do?cate_no=125&currentPage=1">네일</a>
+					            <a href="/projectOhora/product/list.do?cate_no=125&currentPage=1">네일</a>
 					        </li>
 					        <li class="menu_2li" data-cate="127" data-depth="2">
-					            <a href="/product/list.do?cate_no=127&currentPage=1">페디</a>
+					            <a href="/projectOhora/product/list.do?cate_no=127&currentPage=1">페디</a>
 					        </li>
 					        <li class="menu_2li" data-cate="432" data-depth="2">
-					            <a href="/product/list.do?cate_no=432&currentPage=1">젤네일팁</a>
+					            <a href="/projectOhora/product/list.do?cate_no=600&currentPage=1">젤네일팁</a>
 					        </li>
 					        <li class="menu_2li" data-cate="431" data-depth="2">
-					            <a href="/product/list.do?cate_no=431&currentPage=1">젤스트립</a>
+					            <a href="/projectOhora/product/list.do?cate_no=431&currentPage=1">젤스트립</a>
 					        </li>
 					        <li class="menu_2li" data-cate="540" data-depth="2">
-					            <a href="/product/list.do?cate_no=540&currentPage=1">케어 &amp; 툴</a>
+					            <a href="/projectOhora/product/list.do?cate_no=540&currentPage=1">케어 &amp; 툴</a>
 					        </li>
 					    </c:if>
 					</ul>
 
 					<ul class="menu_3ul">
 						<li class="menu_3li" data-cate="${param.cate_no }" data-depth="3">
-					                <a href="/product/list.html?cate_no=${param.cate_no }">ALL</a>
+					                <a href="/projectOhora/product/list.do?cate_no=${param.cate_no}&currentPage=1">ALL</a>
 					    </li>
 				    	<c:choose>
 					        <c:when test="${param.cate_no == 160 || param.cate_no == 161 }">
 					            <li class="menu_3li" data-cate="436" data-depth="3">
-					                <a href="/product/list.do?cate_no=436&currentPage=1">젤네일팁</a>
+					                <a href="/projectOhora/product/list.do?cate_no=436&currentPage=1">젤네일팁</a>
 					            </li>
 					            <li class="menu_3li" data-cate="435" data-depth="3">
-					                <a href="/product/list.do?cate_no=435&currentPage=1">젤스트립</a>
+					                <a href="/projectOhora/product/list.do?cate_no=435&currentPage=1">젤스트립</a>
 					            </li>
 					        </c:when>
 				    	</c:choose>
@@ -236,8 +236,19 @@ span.material-symbols-outlined {
 
 	<div id="mainImg_layout">
 		<div id="banner-image-wrap">
-			<img src="//ohora.kr/web/upload/category/shop1_44_top_718895.jpg"
-				alt="메인이미지" />
+			<c:choose>
+	        <c:when test="${param.cate_no == '44'}">
+	            <img src="../resources/images/main_all_img.jpg" alt="메인이미지" />
+	        </c:when>
+	        <c:when test="${param.cate_no == '120'}">
+	            <li data-path="120">
+		            <img src="../resources/images/main_best_img.jpg" alt="인기상품이미지" />
+	            </li>
+	        </c:when>
+	        <c:when test="${param.cate_no == '121'}">
+		            <img src="../resources/images/main_new_img.jpg" alt="신상품이미지" />
+	        </c:when>
+	        </c:choose>
 		</div>
 	</div>
 	

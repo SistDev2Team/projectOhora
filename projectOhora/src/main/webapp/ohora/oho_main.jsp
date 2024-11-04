@@ -108,17 +108,25 @@
                         </p>
                     </dd>    
                     <dd class="price-container">
-                        <p class="normal-price">
-                        	<fmt:formatNumber value="${newPrd.pdt_amount}" type="number" pattern="#,##0" />
-                        </p>
-                        <p class="sale-price">
-                        	<fmt:formatNumber value="${newPrd.pdt_discount_amount}" type="number" pattern="#,##0" />
-                        </p>
-						<c:if test="${newPrd.pdt_discount_rate > 0}">
-						    <p class="discount">
-						        <fmt:formatNumber value="${newPrd.pdt_discount_rate / 100}" type="percent"/>
-						    </p>
-						</c:if>
+                    	<c:choose>
+							<c:when test="${newPrd.pdt_discount_rate != 0}">
+								<p class="normal-price">
+									<fmt:formatNumber value="${newPrd.pdt_amount}"
+										type="number" pattern="#,##0" />
+								</p>
+								<p class="sale-price">
+									<fmt:formatNumber value="${newPrd.pdt_discount_amount}"
+										type="number" pattern="#,##0" />
+								</p>
+								<p class="discount">${newPrd.pdt_discount_rate}%</p>
+							</c:when>
+							<c:otherwise>
+								<p class="sale-price">
+									<fmt:formatNumber value="${newPrd.pdt_amount}"
+										type="number" pattern="#,##0" />
+								</p>
+							</c:otherwise>
+						</c:choose>
                     </dd>
 
                     <dd class="prdRegiDate">등록일: ${newPrd.pdt_adddate}</dd>
@@ -200,17 +208,25 @@
                         </p>
                     </dd>    
                     <dd class="price-container">
-                        <p class="normal-price">
-                        	<fmt:formatNumber value="${bestPrd.pdt_amount}" type="number" pattern="#,##0" />
-                        </p>
-                        <p class="sale-price">
-                        	<fmt:formatNumber value="${bestPrd.pdt_discount_amount}" type="number" pattern="#,##0" />
-                        </p>
-						<c:if test="${bestPrd.pdt_discount_rate > 0}">
-						    <p class="discount">
-						        <fmt:formatNumber value="${bestPrd.pdt_discount_rate / 100}" type="percent" />
-						    </p>
-						</c:if>
+                    	<c:choose>
+							<c:when test="${bestPrd.pdt_discount_rate != 0}">
+								<p class="normal-price">
+									<fmt:formatNumber value="${bestPrd.pdt_amount}"
+										type="number" pattern="#,##0" />
+								</p>
+								<p class="sale-price">
+									<fmt:formatNumber value="${bestPrd.pdt_discount_amount}"
+										type="number" pattern="#,##0" />
+								</p>
+								<p class="discount">${bestPrd.pdt_discount_rate}%</p>
+							</c:when>
+							<c:otherwise>
+								<p class="sale-price">
+									<fmt:formatNumber value="${bestPrd.pdt_amount}"
+										type="number" pattern="#,##0" />
+								</p>
+							</c:otherwise>
+						</c:choose>
                     </dd>
 
                     <dd class="prdRegiDate">등록일: ${bestPrd.pdt_adddate}</dd>

@@ -137,9 +137,7 @@ li {
 }
 
 a:-webkit-any-link {
-    color: -webkit-link;
     cursor: pointer;
-    text-decoration: underline;
 }
 
 .SP_gallListTable_wrap li .imgLink img {
@@ -511,7 +509,5 @@ input {
 }
 
 a:-webkit-any-link {
-    color: -webkit-link;
     cursor: pointer;
-    text-decoration: underline;
 }
