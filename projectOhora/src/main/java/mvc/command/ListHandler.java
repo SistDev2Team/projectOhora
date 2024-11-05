@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.util.ConnectionProvider;
 
@@ -32,6 +33,8 @@ public class ListHandler implements CommandHandler{
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("List Handler..");
 		
+		HttpSession session = request.getSession();
+		
 		try {
 			this.currentPage = Integer.parseInt(request.getParameter("currentPage"));
 			
@@ -54,30 +57,39 @@ public class ListHandler implements CommandHandler{
 		
 		PagingVO pvo = null;
 		
-		try {
-			
-			if ( categoryNumber != 0 && searchWord == null || searchWord.equals("") ) {
-				// 페이징처리 O + 검색 X
-				pvo = new PagingVO(currentPage, numberPerPage, numberOfPageBlock, categoryNumber);
-				list = dao.prdCate(this.currentPage, this.numberPerPage, this.categoryNumber);
-			}else {
-				// 페이징처리 O + 검색 O
-				pvo = new PagingVO(currentPage, numberPerPage, numberOfPageBlock, searchWord);
-				list = dao.search(searchWord, currentPage, numberPerPage);
+		if( categoryNumber == 671 && session.getAttribute("UserPk") == null ) {
+			response.sendRedirect("/projectOhora/ohora/login.jsp?loginCheck=fail");
+			return null;
+		} else {
+
+			try {
+				
+				if ( categoryNumber != 0 && searchWord == null || searchWord.equals("") ) {
+					// 페이징처리 O + 검색 X
+					pvo = new PagingVO(currentPage, numberPerPage, numberOfPageBlock, categoryNumber);
+					list = dao.prdCate(this.currentPage, this.numberPerPage, this.categoryNumber);
+				}else {
+					// 페이징처리 O + 검색 O
+					pvo = new PagingVO(currentPage, numberPerPage, numberOfPageBlock, searchWord);
+					list = dao.search(searchWord, currentPage, numberPerPage);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				conn.close();
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			conn.close();
+			
+			request.setAttribute("list", list);
+			request.setAttribute("pvo", pvo);
+			
+			String path = "/ohora/prd-nail-page.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(path);
+			
+			return "/ohora/prd-nail-page.jsp";
+			
 		}
 		
-		request.setAttribute("list", list);
-		request.setAttribute("pvo", pvo);
 		
-		String path = "/ohora/prd-nail-page.jsp";
-		RequestDispatcher dispatcher = request.getRequestDispatcher(path);
-		
-		return "/ohora/prd-nail-page.jsp";
 	}
 
 }

@@ -35,12 +35,18 @@ public class DetailHandler implements CommandHandler{
 	
 	int categoryNumber = 0;		// 상품을 구분하는 번호 ( 신상품, 인기상품, 전체상품, 카테고리별  등등 )
 	
-	
+    String pdt_description;
+    
+    int opt_id;				// 옵션 ID
+	String opt_name;		// 옵션 ID
+	int opt_amount;			// 옵션 가격
+	int opt_count;			// 옵션 수량
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("Detail Handler..");
 
         ArrayList<ProductDTO> optPdt = null;
+        ArrayList<ProductDTO> prdOptCmb = null;
 		
 		try {
 			this.pdt_id = Integer.parseInt(request.getParameter("pdt_id"));
@@ -66,6 +72,12 @@ public class DetailHandler implements CommandHandler{
 		}
 		
 		try {
+			prdOptCmb = dao.prdOptCmb(pdt_id); // 롱 숏 콤보박스 생성
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		try {
 			pdtDetail = dao.prdDetail(this.pdt_id);
 			
 		} catch (Exception e) {
@@ -76,6 +88,7 @@ public class DetailHandler implements CommandHandler{
 		
 		request.setAttribute("optionProducts", optPdt);
 		request.setAttribute("pdtDetail", pdtDetail);
+		request.setAttribute("prdOptCmb", prdOptCmb);
 		
 		String path = "/ohora/prd_detail_view.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(path);

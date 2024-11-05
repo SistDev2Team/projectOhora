@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +53,7 @@
                   tabindex="0"
                 >
                   <a
-                    href="/event/event6.html"
+                    href="${contextPath}/event/event6.html"
                     tabindex="0"
                     style="display: block"
                     ><img
@@ -77,10 +78,10 @@
             <div
               class="xans-element- xans-layout xans-layout-statelogoff SP_gnb_inr"
             >
-              <a href="/member/join_intro.html"
+              <a href="${contextPath}/ohora/join.jsp"
                 ><span class="title">회원가입</span></a
               >|
-              <a href="/member/login.html" class="log"
+              <a href="${contextPath}/ohora/login.jsp" class="log"
                 ><span class="title">로그인</span></a
               >
             </div>
@@ -89,7 +90,7 @@
         <div class="SMS_fixed_inner">
           <div class="xans-element- xans-layout xans-layout-logotop fixed_logo">
             <a
-              href="/projectOhora/ohora/main.do"
+              href="${contextPath}/ohora/main.do"
               style="display: block; text-align: center; margin-top: 30px"
             >
               <img
@@ -104,46 +105,45 @@
           <div class="gnb_menu_container">
             <ul class="gnb_menu_wrap menu_1ul">
               <li class="eng_font menu_1li submenu">
-                <a href="/projectOhora/product/list.do?cate_no=121&currentPage=1">new</a>
+                <a href="${contextPath}/product/list.do?cate_no=121&currentPage=1">new</a>
               </li>
               <li class="eng_font menu_1li submenu">
-                <a href="/projectOhora/product/list.do?cate_no=120&currentPage=1">best</a>
+                <a href="${contextPath}/product/list.do?cate_no=120&currentPage=1">best</a>
               </li>
 
               <li class="eng_font">
-                <a href="/projectOhora/product/list.do?cate_no=44&currentPage=1">product</a>
+                <a href="${contextPath}/product/list.do?cate_no=44&currentPage=1">product</a>
                 <!-- 마우스 오버 시 나오는 영역(product) -->
                 <ul class="menu_2ul">
                   <li>
-                    <a href="/projectOhora/product/list.do?cate_no=160&currentPage=1"
+                    <a href="${contextPath}/product/list.do?cate_no=160&currentPage=1"
                       ><span>네일</span></a
                     >
                   </li>
                   <li>
-                    <a href="/projectOhora/product/list.do?cate_no=161&currentPage=1"
+                    <a href="${contextPath}/product/list.do?cate_no=161&currentPage=1"
                       ><span>페디</span></a
                     >
                   </li>
                   <li>
-                    <a href="/projectOhora/product/list.do?cate_no=49&currentPage=1"
+                    <a href="${contextPath}/product/list.do?cate_no=49&currentPage=1"
                       ><span>커스텀</span></a
                     >
                   </li>
                   <li>
-                    <a href="/projectOhora/product/list.do?cate_no=49&currentPage=1"
+                    <a href="${contextPath}/product/list.do?cate_no=49&currentPage=1"
                       ><span>케어 &amp; 툴</span></a
                     >
                   </li>
                 </ul>
                 <!-- //마우스 오버 시 나오는 영역(product) -->
               </li>
-
               <li class="eng_font menu_1li submenu">
-                <a href="/projectOhora/product/list.do?cate_no=671&currentPage=1">outlet</a>
+                <a href="${contextPath}/product/list.do?cate_no=671&currentPage=1">outlet</a>
               </li>
-              <li class="eng_font"><a href="/projectOhora/ohora/event_index.jsp">event</a></li>
+              <li class="eng_font"><a href="${contextPath}/ohora/event_index.jsp">event</a></li>
               <li class="eng_font">
-                <a href="/projectOhora/ohora/howto.jsp">how to</a>
+                <a href="${contextPath}/ohora/howto.jsp">how to</a>
               </li>
             </ul>
           </div>
@@ -154,7 +154,7 @@
             <div
               class="xans-element- xans-layout xans-layout-orderbasketcount small_icon m_cart common_cart"
             >
-              <a href="/projectOhora/ohora/offcart.jsp"
+              <a href="${contextPath}/ohora/offcart.jsp"
                 ><b class="count EC-Layout-Basket-count">0</b></a
               >
             </div>
@@ -209,9 +209,9 @@
         <!--------------- 검색 키워드 --------------->
         <div class="SP_utilListKeyword_inner">
           <ul>
-            <li><a href="/projectOhora/product/list.do?cate_no=671&currentPage=1">#OUTLET 입장하기</a></li>
-            <li><a href="/projectOhora/product/list.do?cate_no=120&currentPage=1">#BEST 디자인 추천</a></li>
-            <li><a href="/projectOhora/projectOhora/ohora/event_event6.jsp">#첫구매 젤램프 증정</a></li>
+            <li><a href="${contextPath}/product/list.do?cate_no=671&currentPage=1">#OUTLET 입장하기</a></li>
+            <li><a href="${contextPath}/product/list.do?cate_no=120&currentPage=1">#BEST 디자인 추천</a></li>
+            <li><a href="${contextPath}/ohora/event_event6.jsp">#첫구매 젤램프 증정</a></li>
           </ul>
         </div>
         <!--------------- 검색 키워드 --------------->
@@ -227,45 +227,45 @@
    
 
             <div class="big_txt">
-              <a class="eng_font big_" href="/projectOhora/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do">
                 <span>new</span>
               </a>
-              <a class="/projectOhora/product/list.do">
+              <a class="${contextPath}/product/list.do">
                 <span></span>
               </a>
-              <a class="/projectOhora/product/list.do">
+              <a class="${contextPath}/product/list.do">
                 <span></span>
               </a>
             </div>
             <div class="big_txt" style="margin-top: 60px;">
-              <a class="eng_font big_" href="/projectOhora/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do">
                 <span>best</span>
               </a>
-              <a href="/projectOhora/product/list.do">
+              <a href="${contextPath}/product/list.do">
                 <span>네일</span>
               </a>
-              <a href="/projectOhora/product/list.do">
+              <a href="${contextPath}/product/list.do">
                 <span>페디</span>
               </a>
             </div>
           </div>
           <div class="cate_wrap first">
             <div class="big_txt">
-              <a class="eng_font big_" href="/projectOhora/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do">
                 <span>nail</span>
               </a>
-              <a class="" href="/projectOhora/product/list.do">
+              <a class="" href="${contextPath}/product/list.do">
                 <span>젤스트립</span>
               </a>
-              <a class="" href="/projectOhora/product/list.do">
+              <a class="" href="${contextPath}/product/list.do">
                 <span>젤네일팁</span>
               </a>
             </div>
             <div class="big_txt" style="margin-top: 63px;">
-              <a class="eng_font big_" href="/projectOhora/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do">
                 <span>pedi</span>
               </a>
-              <a class="" href="/projectOhora/product/list.do">
+              <a class="" href="${contextPath}/product/list.do">
                 <span>젤스트립</span>
               </a>
             </div>
@@ -273,7 +273,7 @@
 
           <div class="cate_wrap first">
             <div class="big_txt">
-              <a class="eng_font big_" href="/projectOhora/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do">
                 <span>outlet</span>
               </a>
             </div>
@@ -286,12 +286,12 @@
             </div>
 
             <div class="big_txt" style="margin-top: 80px;">
-              <a class="eng_font big_" href="/projectOhora/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do">
                 <span>custom</span>
               </a>
             </div>
             <div class="big_txt" style="margin-top: 45px;">
-              <a class="eng_font big_" href="/projectOhora/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do">
                 <span>care &amp; tool</span>
               </a>
             </div>
@@ -306,7 +306,7 @@
           <div class="cate_wrap second">
   
             <div class="big_txt" style="margin-left: 35px; margin-bottom: 42px;">
-              <a class="big_ eng_font" href="/projectOhora/ohora/event_index.jsp">
+              <a class="big_ eng_font" href="${contextPath}/ohora/event_index.jsp">
                 <span>event</span>
               </a>
             </div>
@@ -314,7 +314,7 @@
             <div class="big_txt" style="margin-left: 35px;  margin-bottom: 42px;">
               <a
                 class="big_ eng_font"
-                href="/projectOhora/ohora/oho_review.jsp"
+                href="${contextPath}/ohora/oho_review.jsp"
               >
                 <span>review</span>
               </a>
@@ -323,13 +323,13 @@
               <a class="big_ eng_font" href="#empty">
                 <span style="margin-top: 10px;">brand</span>
               </a>
-              <a class="" href="/projectOhora/ohora/ohora_Fend_brand4.jsp">
+              <a class="" href="${contextPath}/ohora/ohora_Fend_brand4.jsp">
                 <span>about</span>
               </a>
               <a class="" href="#empty">
                 <span>membership</span>
               </a>
-              <a class="" href="/projectOhora/ohora/magazine.jsp">
+              <a class="" href="${contextPath}/ohora/magazine.jsp">
                 <span>magazine</span>
               </a>
               <a class="" href="#empty">
@@ -417,11 +417,11 @@
             <!--// 오호라 크루 추천-->
             <div class="third_cate">
               <a href="https://oe9lp.channel.io/home"><span>CS Center</span></a>
-              <a href="/projectOhora/ohora/notice.jsp"
+              <a href="${contextPath}/ohora/notice.jsp"
                 ><span>Notice</span></a
               >
-              <a href="/projectOhora/ohora/FAQ.jsp"><span>FAQ</span></a>
-              <a href="/projectOhora/ohora/howto.jsp">How to</a>
+              <a href="${contextPath}/ohora/FAQ.jsp"><span>FAQ</span></a>
+              <a href="${contextPath}/ohora/howto.jsp">How to</a>
             </div>
           </div>
           

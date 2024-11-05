@@ -21,6 +21,11 @@
 <body>
 
     
+    <c:if test="${param.loginCheck == 'fail'}">
+    <script>
+        alert("회원만 접근권한이 있습니다.");
+    </script>
+</c:if>
    
     <c:if test="${param.error == 'true'}">
     <script>

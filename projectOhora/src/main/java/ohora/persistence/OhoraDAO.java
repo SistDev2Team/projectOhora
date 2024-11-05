@@ -9,11 +9,13 @@ import ohora.domain.ProductDTO;
 public interface OhoraDAO {
 	ArrayList<DeptVO> selectTest() throws SQLException;
 	
-	ArrayList<ProductDTO> prdCate(int currentPage, int numberPerPage, int categoryNumber) throws SQLException;
+	ArrayList<ProductDTO> prdCate(int currentPage, int numberPerPage, int categoryNumber) throws SQLException;	// cate_no 에 따른 상품 ( new , best , all , outlet )
 	
-	ArrayList<ProductDTO> search(String searchWord,	int currentPage, int numberPerPage) throws SQLException;
+	ArrayList<ProductDTO> search(String searchWord,	int currentPage, int numberPerPage) throws SQLException;	// 상품 검색
 	
-	ArrayList<ProductDTO> prdOption(int pdt_id) throws SQLException;
+	ArrayList<ProductDTO> prdOption(int pdt_id) throws SQLException;	// 추가구성상품 존재여부 구분하기
+	
+	ArrayList<ProductDTO> prdOptCmb(int pdt_id) throws SQLException;	//	롱, 숏 존재하는 상품 구분
 	
 	// 1-3. 총 레코드 수
 	int getTotalRecords(int categoryNumber) throws SQLException;

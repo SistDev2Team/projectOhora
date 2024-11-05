@@ -28,4 +28,11 @@ public class ProductDTO {
 	private String pdt_description;
 	
 	private int pdt_discount_amount;
+	
+	
+	private int opt_id;				// 옵션 ID
+	private String opt_name;		// 옵션 ID
+	private int opt_amount;			// 옵션 가격
+	private int opt_count;			// 옵션 수량
+	
 }

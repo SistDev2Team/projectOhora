@@ -58,7 +58,7 @@
   
   <filter-mapping>
     <filter-name>authenticationFilter</filter-name>
-     <url-pattern>/ohora/oho_mypage.jsp</url-pattern>     
+     <url-pattern>/ohora/oho_mypage.jsp</url-pattern> 
   </filter-mapping>
   
    <servlet>

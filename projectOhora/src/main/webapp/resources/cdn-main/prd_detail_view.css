@@ -779,6 +779,9 @@ html {
     scroll-behavior: smooth; /* 모든 스크롤에 부드러운 이동 적용 */
 }
 
-.SP_detailContainer {
+.SP_detailContainer, .SP_detailLayout > div > div.prdDetail_crew.not_slide
+,.SP_detailLayout > div > .common_list_container.reco_new_container{
     padding-top: 50px;
+    max-width : 1200px;
+    margin : 0 auto;
 }

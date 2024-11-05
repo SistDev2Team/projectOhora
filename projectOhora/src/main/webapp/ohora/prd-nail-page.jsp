@@ -2,9 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page trimDirectiveWhitespaces="true"%>
-<%
-
-%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +29,6 @@ span.material-symbols-outlined {
 <body>
 
 	<%@include file="header.jsp"%>
-
 
 	<div id="first-wrap">
 	<div class="SP_layoutFix prdList_menu_wrap layout-view">
@@ -74,42 +71,42 @@ span.material-symbols-outlined {
 						<c:choose>
 					        <c:when test="${param.cate_no == '44'}">
 					            <li data-path="44">
-					                <a href="/projectOhora/product/list.do?cate_no=44&currentPage=1">전체상품</a>
+					                <a href="${contextPath}/product/list.do?cate_no=44&currentPage=1">전체상품</a>
 					            </li>
 					        </c:when>
 					        <c:when test="${param.cate_no == '160'}">
 					            <li data-path="160">
-					                <a href="/projectOhora/product/list.do?cate_no=160&currentPage=1">네일</a>
+					                <a href="${contextPath}/product/list.do?cate_no=160&currentPage=1">네일</a>
 					            </li>
 					        </c:when>
 					        <c:when test="${param.cate_no == '120'}">
 					            <li data-path="120">
-					                <a href="/projectOhora/product/list.do?cate_no=120&currentPage=1">베스트</a>
+					                <a href="${contextPath}/product/list.do?cate_no=120&currentPage=1">베스트</a>
 					            </li>
 					        </c:when>
 					        <c:when test="${param.cate_no == '121'}">
 					            <li data-path="121">
-					                <a href="/projectOhora/product/list.do?cate_no=121&currentPage=1">신상품</a>
+					                <a href="${contextPath}/product/list.do?cate_no=121&currentPage=1">신상품</a>
 					            </li>
 					        </c:when>
 					        <c:when test="${param.cate_no == '161'}">
 					            <li data-path="121">
-					                <a href="/projectOhora/product/list.do?cate_no=161&currentPage=1">페디</a>
+					                <a href="${contextPath}/product/list.do?cate_no=161&currentPage=1">페디</a>
 					            </li>
 					        </c:when>
 					        <c:when test="${param.cate_no == '160'}">
 					            <li data-path="121">
-					                <a href="/projectOhora/product/list.do?cate_no=160&currentPage=1">네일</a>
+					                <a href="${contextPath}/product/list.do?cate_no=160&currentPage=1">네일</a>
 					            </li>
 					        </c:when>
 					        <c:when test="${param.cate_no == '49'}">
 					            <li data-path="121">
-					                <a href="/projectOhora/product/list.do?cate_no=49&currentPage=1">케어 &amp; 툴</a>
+					                <a href="${contextPath}/product/list.do?cate_no=49&currentPage=1">케어 &amp; 툴</a>
 					            </li>
 					        </c:when>
 					        <c:when test="${param.cate_no == '671'}">
 					            <li data-path="121">
-					                <a href="/projectOhora/product/list.do?cate_no=671&currentPage=1">outlet</a>
+					                <a href="${contextPath}/product/list.do?cate_no=671&currentPage=1">outlet</a>
 					            </li>
 					        </c:when>
 					    </c:choose>
@@ -119,69 +116,69 @@ span.material-symbols-outlined {
 				<div class="cate_list">
 					<ul class="menu_1ul">
 						<li class="menu_1li" data-cate="44" data-depth="1"><a
-							href="/projectOhora/product/list.do?cate_no=44&currentPage=1">전체상품</a></li>
+							href="${contextPath}/product/list.do?cate_no=44&currentPage=1">전체상품</a></li>
 						<li class="menu_1li" data-cate="120" data-depth="1"><a
-							href="/projectOhora/product/list.do?cate_no=120&currentPage=1">베스트</a></li>
+							href="${contextPath}/product/list.do?cate_no=120&currentPage=1">베스트</a></li>
 						<li class="menu_1li" data-cate="121" data-depth="1"><a
-							href="/projectOhora/product/list.do?cate_no=121&currentPage=1">신상품</a></li>
+							href="${contextPath}/product/list.do?cate_no=121&currentPage=1">신상품</a></li>
 						<li class="menu_1li" data-cate="204" data-depth="1"><a
-							href="/projectOhora/product/list.do?cate_no=204&currentPage=1">pedi</a></li>
+							href="${contextPath}/product/list.do?cate_no=204&currentPage=1">pedi</a></li>
 						<li class="menu_1li" data-cate="600" data-depth="1"><a
-							href="/projectOhora/product/list.do?cate_no=600&currentPage=1">gelstrip</a></li>
+							href="${contextPath}/product/list.do?cate_no=600&currentPage=1">gelstrip</a></li>
 						<li class="menu_1li" data-cate="605" data-depth="1"><a
-							href="/projectOhora/product/list.do?cate_no=605&currentPage=1">gelnailtip</a></li>
+							href="${contextPath}/product/list.do?cate_no=605&currentPage=1">gelnailtip</a></li>
 						<li class="menu_1li" data-cate="671" data-depth="1"><a
-							href="/projectOhora/product/list.do?cate_no=671&currentPage=1">outlet</a></li>
+							href="${contextPath}/product/list.do?cate_no=671&currentPage=1">outlet</a></li>
 					</ul>
 					
 					<ul class="menu_2ul">
 						<li class="menu_2li" data-cate="${param.cate_no }" data-depth="2">
-							<a href="/projectOhora/product/list.do?cate_no=${param.cate_no}&currentPage=1">ALL</a>
+							<a href="${contextPath}/product/list.do?cate_no=${param.cate_no}&currentPage=1">ALL</a>
 						</li>				
 					    <!-- 전체상품일 때 -->
 					    <c:if test="${param.cate_no == 44}">
 					        <li class="menu_2li" data-cate="160" data-depth="2">
-					            <a href="/projectOhora/product/list.do?cate_no=160&currentPage=1">네일</a>
+					            <a href="${contextPath}/product/list.do?cate_no=160&currentPage=1">네일</a>
 					        </li>
 					        <li class="menu_2li" data-cate="161" data-depth="2">
-					            <a href="/projectOhora/product/list.do?cate_no=161&currentPage=1">페디</a>
+					            <a href="${contextPath}/product/list.do?cate_no=161&currentPage=1">페디</a>
 					        </li>
 					        <li class="menu_2li" data-cate="49" data-depth="2">
-					            <a href="/projectOhora/product/list.do?cate_no=49&currentPage=1">케어 &amp; 툴</a>
+					            <a href="${contextPath}/product/list.do?cate_no=49&currentPage=1">케어 &amp; 툴</a>
 					        </li>
 					    </c:if>
 					
 					    <!-- 베스트상품일 때 -->
 					    <c:if test="${param.cate_no == 120}">
 					        <li class="menu_2li" data-cate="125" data-depth="2">
-					            <a href="/projectOhora/product/list.do?cate_no=125&currentPage=1">네일</a>
+					            <a href="${contextPath}/product/list.do?cate_no=125&currentPage=1">네일</a>
 					        </li>
 					        <li class="menu_2li" data-cate="127" data-depth="2">
-					            <a href="/projectOhora/product/list.do?cate_no=127&currentPage=1">페디</a>
+					            <a href="${contextPath}/product/list.do?cate_no=127&currentPage=1">페디</a>
 					        </li>
 					        <li class="menu_2li" data-cate="432" data-depth="2">
-					            <a href="/projectOhora/product/list.do?cate_no=600&currentPage=1">젤네일팁</a>
+					            <a href="${contextPath}/product/list.do?cate_no=600&currentPage=1">젤네일팁</a>
 					        </li>
 					        <li class="menu_2li" data-cate="431" data-depth="2">
-					            <a href="/projectOhora/product/list.do?cate_no=431&currentPage=1">젤스트립</a>
+					            <a href="${contextPath}/product/list.do?cate_no=431&currentPage=1">젤스트립</a>
 					        </li>
 					        <li class="menu_2li" data-cate="540" data-depth="2">
-					            <a href="/projectOhora/product/list.do?cate_no=540&currentPage=1">케어 &amp; 툴</a>
+					            <a href="${contextPath}/product/list.do?cate_no=540&currentPage=1">케어 &amp; 툴</a>
 					        </li>
 					    </c:if>
 					</ul>
 
 					<ul class="menu_3ul">
 						<li class="menu_3li" data-cate="${param.cate_no }" data-depth="3">
-					                <a href="/projectOhora/product/list.do?cate_no=${param.cate_no}&currentPage=1">ALL</a>
+					                <a href="${contextPath}/product/list.do?cate_no=${param.cate_no}&currentPage=1">ALL</a>
 					    </li>
 				    	<c:choose>
 					        <c:when test="${param.cate_no == 160 || param.cate_no == 161 }">
 					            <li class="menu_3li" data-cate="436" data-depth="3">
-					                <a href="/projectOhora/product/list.do?cate_no=436&currentPage=1">젤네일팁</a>
+					                <a href="${contextPath}/product/list.do?cate_no=436&currentPage=1">젤네일팁</a>
 					            </li>
 					            <li class="menu_3li" data-cate="435" data-depth="3">
-					                <a href="/projectOhora/product/list.do?cate_no=435&currentPage=1">젤스트립</a>
+					                <a href="${contextPath}/product/list.do?cate_no=435&currentPage=1">젤스트립</a>
 					            </li>
 					        </c:when>
 				    	</c:choose>
@@ -396,8 +393,6 @@ span.material-symbols-outlined {
 			<div id="item-list-wrap">
 				<div id="item-list">
 					<ul id="item-list-ul">
-						<!--상품 하나마다 li 하나씩 복붙-->
-
 						<c:choose>
 							<c:when test="${ empty list }">
 								<li>No Data</li>
@@ -409,7 +404,7 @@ span.material-symbols-outlined {
 									<li id="itembox${ status.index + 1 }" class="item-wrap">
 										<div class="item-container">
 											<dl>
-												<a href="/projectOhora/product/detail.do?pdt_id=${pdt.pdt_id}&cate_no=${param.cate_no}" class="item-viewlink"></a>
+												<a href="${contextPath}/product/detail.do?pdt_id=${pdt.pdt_id}&cate_no=${param.cate_no}" class="item-viewlink"></a>
 												<div class="item-image">
 													<img src="../resources/images/prd_image/imgs/${pdt.pdt_img_url}.jpg"
 														alt="" width="800" height="800" /> <img

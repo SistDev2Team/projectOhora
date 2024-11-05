@@ -544,6 +544,7 @@ public class OhoraDAOImpl implements OhoraDAO{
 		return pdtDetail;
 
 	}
+	
 	@Override
 	public ArrayList<ProductDTO> prdOption(int pdt_id) throws SQLException {
 
@@ -628,4 +629,44 @@ public class OhoraDAOImpl implements OhoraDAO{
 	    return optPdt;
 	}
 
+	@Override
+	public ArrayList<ProductDTO> prdOptCmb(int pdt_id) throws SQLException {
+
+	    System.out.println("ArrayList<ProductDTO> prdOptCmb(int pdt_id)...");
+
+	    ArrayList<ProductDTO> prdOptCmb = new ArrayList<>();  // 초기화 추가
+	    ProductDTO pdt_ls = null;
+
+	    String sql = "SELECT o.opt_name "
+	            + " FROM o_product p "
+	            + " JOIN o_pdtoption o ON p.pdt_id = o.pdt_id "
+	            + " WHERE p.scat_id IS NOT NULL "
+	            + " AND o.pdt_id = ? ";
+	    pstmt = conn.prepareStatement(sql);
+	    pstmt.setInt(1, pdt_id);
+	    rs = pstmt.executeQuery();
+
+	    System.out.println(sql);
+
+	    try {
+	        while (rs.next()) {
+	            String opt_name = rs.getString("opt_name");  // 옵션명
+
+	            pdt_ls = new ProductDTO().builder()
+	                    .opt_name(opt_name)
+	                    .build();
+
+	            prdOptCmb.add(pdt_ls);  // NullPointerException 방지
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        rs.close();
+	        pstmt.close();
+	    }
+	    System.out.println(prdOptCmb.toString());
+	    return prdOptCmb;
+	}
+
+	
 }
