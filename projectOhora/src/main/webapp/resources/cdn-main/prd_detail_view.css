@@ -261,6 +261,12 @@ dd {
   align-content: stretch;
 }
 
+.SP_dtPrdOptionList_wrap > .SP_prdListItemInfo > li {
+    padding: 12px 0;
+    line-height: 1;
+    margin-bottom: 14px;
+}
+
 .SP_prdListItemInfo .title {
   font-weight: bold;
 }
@@ -298,11 +304,6 @@ dd {
 .SP_detail_content .quantity {
   display: flex;
   align-items: center;
-}
-
-.quantity img {
-  width: 20px;
-  height: 20px;
 }
 
 input[type="text"] {
@@ -378,11 +379,11 @@ input[type="text"] {
   background-color: black;
 }
 
-.SP_dfList_quantity .SP_detail_content a.down {
+.SP_dfList_quantity .SP_detail_content a.down, #totalProducts > table > tbody.add_products > tr > td:nth-child(2) > span > a.down.eAddProductQuantityDownClass {
     background: url(https://ohora.kr/smartpc/_img/icon/quantity_dw.svg) no-repeat center center;
 }
 
-.SP_dfList_quantity .SP_detail_content a.up {
+.SP_dfList_quantity .SP_detail_content a.up, #totalProducts > table > tbody.add_products > tr > td:nth-child(2) > span > a.up.eAddProductQuantityUpClass {
     background: url(	https://ohora.kr/smartpc/_img/icon/quantity_up.svg) no-repeat center center;
 }
 
@@ -404,6 +405,14 @@ input[type="text"] {
     width: 70px;
     min-width: 70px;
     height: 27px;
+}
+
+.xans-element-.xans-product.xans-product-detaildesign.SP_dtPrdOptionList_wrap > ul > li.display_상품명.xans-record-.SP_dfList_prdName > span > span{
+	display: inline;
+}
+
+.xans-element-.xans-product.xans-product-detaildesign.SP_dtPrdOptionList_wrap > ul > li.xans-record-.SP_dfList_quantity > div{
+	display: contents;
 }
 
 .SP_dtPrdOptionList_wrap .title {
@@ -578,10 +587,6 @@ input[type="text"] {
     width: 115px;
     height: 115px;
     box-sizing: border-box;
-}
-
-.SP_totalProducts{
-    display: none;
 }
 
 /* 리뷰쪽 css */
@@ -784,4 +789,265 @@ html {
     padding-top: 50px;
     max-width : 1200px;
     margin : 0 auto;
+}
+
+.SP_totalProducts .SP_addOptPrdTotal tr, .SP_totalProducts table tbody.add_products tr.add_product {
+    padding: 25px 30px;
+    background: rgba(195, 195, 195, 0.2);
+    margin-bottom: 15px;
+}
+
+.renew_prdDetail .SP_totalProducts .SP_addOptPrdTotal tr, .renew_prdDetail .SP_totalProducts table tbody.add_products tr.add_product {
+    padding: 30px;
+}
+
+.SP_totalProducts table tbody.add_products tr.add_product {
+    border-top: 1px solid #eee;
+    position: relative;
+    margin-bottom: 0;
+    padding: 20px 15px;
+}
+
+.SP_prdDtail_wrap #totalProducts {
+    margin: 0;
+    padding: 0;
+}
+
+#totalProducts {
+    padding: 12px 0;
+    padding-bottom: 26px;
+    margin-bottom: 20px;
+}
+
+#totalProducts > table{
+	display: table;
+	width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.SP_totalProducts .SP_addOptPrdTotal {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.SP_totalProducts .SP_addOptPrdTotal tr, .SP_totalProducts table tbody.add_products tr.add_product {
+    padding: 25px 30px;
+    background: rgba(195, 195, 195, 0.2);
+    margin-bottom: 15px;
+}	
+
+.SP_totalProducts table tbody.add_products tr.add_product {
+    border-top: 1px solid #eee;
+    position: relative;
+    margin-bottom: 0;
+    padding: 20px 15px;
+}
+
+.SP_totalProducts table tbody tr {
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+caption {
+    display: none;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+.SP_totalProducts table th {
+    display: none;
+}
+
+.SP_totalProducts table tbody tr {
+    margin-bottom: 0;
+}
+
+.SP_totalProducts table tbody tr {
+    display: block;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.SP_totalProducts span.quantity {
+    display: block;
+    position: relative;
+}
+
+.SP_totalProducts span.quantity a, .SP_totalProducts span.quantity input + a {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    width: 33px;
+    height: 33px;
+}
+
+.renew_prdDetail .SP_totalProducts table tr td .delete {
+    top: 30px;
+    right: 30px;
+    width: 20px;
+    height: 20px;
+    background-size: 15px auto;
+    background-position: center;
+}
+
+.SP_totalProducts table tr td .delete {
+    position: absolute;
+    top: -32px;
+    right: 3px;
+    display: block;
+    width: 12px;
+    height: 12px;
+    background: url(https://www.ohora.kr/smartpc/_img/icon/icon_close_bl.png) no-repeat;
+    background-size: cover;
+}
+
+.renew_prdDetail .SP_totalProducts .SP_addOptPrdTotal tr.option_product td.right > span:after, .renew_prdDetail .SP_totalProducts table tbody tr.add_product td.right > span:after {
+    font-size: inherit;
+    content: "원";
+    display: inline-block;
+    vertical-align: top;
+}
+
+.SP_totalProducts span.quantity a img {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+img {
+    vertical-align: top;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.SP_totalProducts table tbody.add_products tr.add_product td span.quantity input {
+    text-align: center;
+}
+
+.SP_totalProducts span.quantity input[type="text"] {
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    height: 33px;
+    width: 87px;
+    min-width: 80px;
+}
+
+.SP_totalProducts span.quantity input[type="text"] {
+    padding: 0;
+    width: 100%;
+    height: 34px;
+    padding: 0;
+    margin: 0 3px;
+    border: 0;
+    text-align: center;
+    font-size: 17px;
+    color: #000;
+    border: 1px solid #eeeeee;
+    width: 103px;
+}
+
+body input[type="text"] {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 100px;
+}
+
+input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+    overflow-clip-margin: 0px !important;
+    overflow: clip !important;
+}
+
+input[type="text" i] {
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
+}
+
+.SP_totalProducts .SP_addOptPrdTotal tr.option_product td:first-child, .SP_totalProducts table tbody.add_products tr.add_product td:first-child {
+    width: 80% !important;
+    display: block;		
+}
+
+.SP_totalProducts table tbody.add_products tr.add_product td span.quantity {
+    width: 180px !important;
+    text-align: center;
+}
+
+
+.SP_totalProducts table tbody.add_products tr.add_product td span.quantity a.up {
+    left: auto;
+    right: 0;
+}
+
+.SP_totalProducts table tbody.add_products tr.add_product td span.quantity a {
+    position: absolute;
+    left: 0;
+    right: auto;
+    top: auto;
+    bottom: auto;
+}
+
+.SP_totalProducts span.quantity a, .SP_totalProducts span.quantity input + a {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    width: 33px;
+    height: 33px;
+}
+
+.SP_totalProducts span.quantity input + a {
+    /* left: auto; */
+    /* right: 0; */
+    background: url(/smartpc/_img/icon/quantity_up.svg) no-repeat center center;
+    border: 1px solid #313131;
+}
+
+.SP_totalProducts span.quantity a {
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0; */
+    /* right: auto; */
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    background: url(/smartpc/_img/icon/quantity_dw.svg) no-repeat center center;
+    border: 1px solid #313131;
+    vertical-align: middle;
+}
+
+.SP_totalProducts .SP_addOptPrdTotal tr.option_product td.right, .SP_totalProducts table tbody tr.add_product td.right {
+    position: absolute;
+    display: block;
+    right: 25px;
+    bottom: 30px;
 }

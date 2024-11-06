@@ -80,27 +80,39 @@ span.material-symbols-outlined {
 								</li>
 								<li class="display_가격 xans-record- SP_dfList_price strike"
 									style="display: list-item;"><span class="title">가격</span>
-									<span class="SP_detail_content" style=""> <span style="">
-											<strong id="span_product_price_text"
-											style="text-decoration: line-through;"> <fmt:formatNumber
-													value="${ pdtDetail.pdt_amount }" type="number"
-													groupingUsed="true" />
-										</strong> <input id="product_price" name="product_price" value=""
-											type="hidden" style="">
-									</span> <span class="salesPrice"> <fmt:formatNumber
-												value="${pdtDetail.pdt_discount_amount}" type="number"
-												groupingUsed="true" />
-									</span> <span class="dcPercent">${ pdtDetail.pdt_discount_rate }%</span>
-								</span></li>
+									<span class="SP_detail_content" style="">
+										<c:choose>
+										<c:when test="${ pdtDetail.pdt_discount_rate != 0 }">
+											<span style="">
+												<strong id="span_product_price_text" style="text-decoration: line-through;">
+													<fmt:formatNumber value="${ pdtDetail.pdt_amount }" type="number" groupingUsed="true" />
+												</strong>
+												<input id="product_price" name="product_price" value="" type="hidden" style="">
+											</span>
+											<span class="salesPrice">
+												<fmt:formatNumber value="${pdtDetail.pdt_discount_amount}" type="number" groupingUsed="true" />
+											</span>
+											<span class="dcPercent">${ pdtDetail.pdt_discount_rate }%</span>
+										</c:when>
+										<c:otherwise>
+											<span class="salesPrice">
+												<fmt:formatNumber value="${pdtDetail.pdt_discount_amount}" type="number" groupingUsed="true" />
+											</span>
+										</c:otherwise>
+										</c:choose>
+									</span>
+								</li>
 
 								<c:choose>
 									<c:when test="${empty prdOptCmb}">
 										<li class="xans-record- SP_dfList_quantity"
 											style="display: list-item;"><span class="title">수량</span>
-											<span class="SP_detail_content"> <a href="#none"
-												class="down"></a> <input id="quantity_clone" value="1"
-												type="text" readonly=""> <a href="#none" class="up"></a>
-										</span></li>
+											<div class="SP_detail_content">
+											    <a href="#none" class="down" onclick="changeQuantity(-1, ${pdtDetail.pdt_discount_amount})"></a>
+											    <input id="quantity_clone" value="1" type="text" readonly="">
+											    <a href="#none" class="up" onclick="changeQuantity(1, ${pdtDetail.pdt_discount_amount})"></a>
+											</div>
+										</li>
 									</c:when>
 									<c:otherwise>
 										<div class="SP_prdOptTb_cont">
@@ -123,36 +135,6 @@ span.material-symbols-outlined {
 										</div>
 									</c:otherwise>
 								</c:choose>
-
-								<script>
-								    // 큰 이미지를 변경하는 function
-								    function changeImage(imageSrc) {
-								        document.getElementById('mainImage').src = imageSrc;
-								    }
-								        // 주문 수량 기능
-								document.querySelector(".down").onclick = function() {
-								    var quantityInput = document.getElementById("quantity_clone");
-								    var currentValue = parseInt(quantityInput.value);
-								
-								    if (currentValue > 1) {
-								        quantityInput.value = currentValue - 1;
-								    } else {
-								        alert("최소 주문수량은 1개 입니다");
-								    }
-								};
-								
-								document.querySelector(".up").onclick = function() {
-								    var quantityInput = document.getElementById("quantity_clone");
-								    var currentValue = parseInt(quantityInput.value);
-								    quantityInput.value = currentValue + 1;
-								};
-								</script>
-
-
-								<li class="xans-record- SP_dfList_mileageInfo"
-									style="display: list-item;"></li>
-								<li class="display_할인판매가 xans-record- SP_dfList_salePrice"
-									style="display: list-item;"></li>
 							</ul>
 
 							<div class="share_btn">
@@ -160,19 +142,8 @@ span.material-symbols-outlined {
 									src="https://cdn-icons-png.flaticon.com/512/1828/1828960.png">
 								</span>
 							</div>
-
 							<!-------------------------- //상품 정보 호출 ---------------------------->
 						<!------------------------- //옵션 출력 ------------------------------>
-						<!-- 세트상품 -->
-						<link rel="stylesheet"
-							href="/smartpc/include/detailPage/setProduct/df_setProduct/_css/setProduct.css">
-						<script
-							src="/smartpc/include/detailPage/setProduct/df_setProduct/_js/setProduct.js"></script>
-						<!-- // 세트상품 -->
-
-						<!-- 추가구성상품 -->
-						<link rel="stylesheet"
-							href="/smartpc/include/detailPage/addProduct/st01_addProduct/_css/addProduct.css">
 						<!-- 추가 구성 상품 -->
 						<div
 							class="xans-element- xans-product xans-product-addproduct SP_productAddSet_wrap view open">
@@ -187,8 +158,8 @@ span.material-symbols-outlined {
 										<li>추가 구성상품 없음</li>
 									</c:when>
 									<c:otherwise>
-										<c:forEach var="optprd" items="${ optionProducts }">
-											<li data-prd-num="${optprd.pdt_id}" class="xans-record-">
+										<c:forEach var="optprd" items="${ optionProducts }" varStatus="status">
+											<li data-prd-num="${ status.index + 1 }" class="xans-record-">
 												<div class="SP_addSetInfo">
 													<div class="SP_addSetThumb">
 														<a href="#"><img
@@ -249,17 +220,7 @@ span.material-symbols-outlined {
 								</c:choose>
 							</ul>
 						</div>
-						<script>
-    // 추가 구성상품 토글 function
-document.querySelector(".SP_prdAddSetToggle").onclick = function() {
-    var element = document.querySelector(".SP_prdAddSetList_wrap");
-    if (element.style.display === "none" || element.style.display === "") {
-        element.style.display = "block";  // 보이게 설정
-    } else {
-        element.style.display = "none";   // 숨기기
-    }
-};
-</script>
+
 						<!----------------------------------- 선택 상품 출력 영역 ----------------------------------->
 						<div id="totalProducts" class="SP_totalProducts ">
 							<table border="0" summary="">
@@ -294,19 +255,141 @@ document.querySelector(".SP_prdAddSetToggle").onclick = function() {
 										</span></td>
 									</tr>
 								</tbody>
+								<tbody class="SP_addOptPrdTotal option_products">
+								</tbody>
+                                <tbody class="add_products">
+                                </tbody>
 							</table>
 						</div>
 						<!----------------------------------- //선택 상품 출력 영역 ----------------------------------->
+
+<script>
+$(document).ready(function () {
+    
+    $(".add-opt-click a").on("click", function() {
+        const $this = $(this);  // 현재 클릭된 '추가' 버튼
+        let count = 1; // count 초기화 (각 추가된 항목에 대한 인덱스 추적)
+
+        // 이미 추가된 상품인지 확인 (data-added 속성을 사용)
+        if ($this.data("added")) {
+            alert("해당 옵션이 이미 추가되었습니다.");
+            return;  // 이미 추가되었으면 함수 종료
+        }
+
+        // 현재 클릭된 버튼의 부모 <li> 요소에서 텍스트 추출
+        const productNameElement = $this.closest("li").find(".SP_prdAddSetList .SP_addSetList_tt .SP_prdAddSet_cont.SP_prdAddSet_prdtt");
+        const productName = productNameElement.text().trim();  // 상품명 추출
+        const productId = $this.closest("li").data("prd-num"); // 상품의 pdt_id (data-prd-num)
+        var productDiscountAmount = parseInt($this.closest("li").find(".SP_prdAddSet_price span").text().trim().replace(/[^0-9.-]+/g, "")); // 할인가 (정수로 변환)
+
+        // 새로운 <tr> 태그 생성
+        const newProductRow = `<tr class="add_product" data-option-add-index="\${count}">
+            <td>
+                <p class="product">\${productName}<br> - <span>\${productName}</span></p>
+            </td>
+            <td>
+                <span class="quantity" style="width:65px;">
+                    <input type="text" name="quantity_opt[]" class="quantity_opt" value="1" product-no="\${productId}">
+                    <a href="#none" class="up"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif" alt="수량증가"></a>
+                    <a href="#none" class="down"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif" alt="수량감소"></a>
+                </span>
+                <a href="#none" class="delete"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_price_delete.gif" alt="삭제"></a>
+            </td>
+            <td class="right">
+                <span>
+                    <span class="ec-front-product-item-price">\${formatPrice(productDiscountAmount)}</span>
+                </span>
+            </td>
+        </tr>`;
+
+        // 동적으로 생성된 <tr>을 add_products 테이블에 추가
+        $(".add_products").append(newProductRow);
+
+        // 삭제 이벤트
+        $(".delete").off("click").on("click", function () {
+            $(this).closest("tr").remove();  // 해당 <tr> 삭제
+            $(".add-opt-click a").data("added", false);
+        });
+
+        // 수량 증가 버튼 클릭 시
+        $(".add_products").on("click", ".up", function() {
+            const $row = $(this).closest("tr"); // 현재 버튼의 상위 <tr> 요소
+            const $quantityInput = $row.find(".quantity_opt"); // 해당 행의 수량 input 필드
+            let currentValue = parseInt($quantityInput.val());
+            // 수량 증가
+            if (!isNaN(currentValue)) {
+                $quantityInput.val(currentValue + 1);
+                updateAmount($row); // 수량 변경 후 amount 업데이트
+            }
+        });
+
+        // 수량 감소 버튼 클릭 시
+        $(".add_products").on("click", ".down", function() {
+            const $row = $(this).closest("tr"); // 현재 버튼의 상위 <tr> 요소
+            const $quantityInput = $row.find(".quantity_opt"); // 해당 행의 수량 input 필드
+            let currentValue = parseInt($quantityInput.val());
+            // 수량 감소, 1보다 작아지지 않도록 설정
+            if (!isNaN(currentValue) && currentValue > 1) {
+                $quantityInput.val(currentValue - 1);
+                updateAmount($row); // 수량 변경 후 amount 업데이트
+            }
+        });
+
+        // 수량 입력 값 변경 시 (직접 입력 시에도 업데이트)
+        $(".add_products").on("input", ".quantity_opt", function() {
+            const $row = $(this).closest("tr"); // 현재 input의 상위 <tr> 요소
+            updateAmount($row); // 수량 변경 후 amount 업데이트
+        });
+
+        // 수량 변경 후 amount 업데이트 함수
+        function updateAmount($row) {
+            const quantity = parseInt($row.find(".quantity_opt").val());
+            const price = productDiscountAmount; // 고정된 상품 가격 사용
+            const amount = quantity * price; // 총액 계산
+            $row.find(".ec-front-product-item-price").text(formatPrice(amount)); // 총액 업데이트
+        }
+
+        // 가격을 #,##0 형식으로 포맷하는 함수
+        function formatPrice(price) {
+            return price.toLocaleString('ko-KR'); // 한글 로케일로 천 단위 구분 기호 추가
+        }
+
+        // count 증가
+        count++;  
+    });
+});
+</script>
+
+
+
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 						<!----------------------------------- 최종 금액 ----------------------------------->
 						<div id="totalPrice" class="SP_totalPrice">
-							<strong>총 상품금액 (개수)</strong> : <span
-								class="total SP_totalPriceNum"> <strong> <em>
-										<fmt:formatNumber value="${pdtDetail.pdt_discount_amount}"
-											type="number" groupingUsed="true" />
-								</em>
-							</strong> (1개)
-							</span>
+						    <strong>총 상품금액 (개수)</strong> : 
+						    <span class="total SP_totalPriceNum">
+						        <strong>
+						            <em id="totalAmount">
+						                <fmt:formatNumber value="${pdtDetail.pdt_discount_amount}" type="number" groupingUsed="true" />
+						            </em>
+						            (<span id="totalQuantityDisplay">1</span>개)
+						        </strong>
+						    </span>
 						</div>
+						<!----------------------------------- //최종 금액 ----------------------------------->
 						<div class="action_btn_wrap">
 							<div class="xans-element- xans-product xans-product-action "
 								style="width: 100%;">
@@ -1969,11 +2052,10 @@ document.querySelector(".SP_prdAddSetToggle").onclick = function() {
 				<!------------------------------ //SP_detailRelationPrd_wrap -------------------------------->
 			</div>
 
-			<!-- Swiper JS -->
-			<script
-				src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<!-- Swiper JS -->
+<script	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-			<script>
+<script>
     // 모든 탭 링크에 부드러운 스크롤 적용하기
     document.querySelectorAll('.SP_detailPrdTab_wrap a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -1990,10 +2072,38 @@ document.querySelector(".SP_prdAddSetToggle").onclick = function() {
             }
         });
     });
+    
 </script>
 
-			<!-- 가로스크롤 -->
-			<script>
+
+<script>
+    // 큰 이미지를 변경하는 function
+    function changeImage(imageSrc) {
+        document.getElementById('mainImage').src = imageSrc;
+    }
+</script>
+
+<script>
+function changeQuantity(amount, basePrice) {
+    const quantityInput = document.getElementById("quantity_clone");
+    const totalQuantity = document.getElementById("totalQuantityDisplay");
+    const totalAmount = document.getElementById("totalAmount");
+
+    let currentQuantity = parseInt(quantityInput.value);
+    let newQuantity = currentQuantity + amount;
+
+    if (newQuantity < 1) {
+        newQuantity = 1;
+    }
+
+    quantityInput.value = newQuantity;
+    totalQuantity.textContent = newQuantity;
+    totalAmount.textContent = new Intl.NumberFormat().format(basePrice * newQuantity);
+}
+</script>
+
+<!-- 가로스크롤 -->
+<script>
     var swiper = new Swiper(".mySwiper", {
       slidesPerView: 3,
       spaceBetween: 30,
@@ -2002,8 +2112,21 @@ document.querySelector(".SP_prdAddSetToggle").onclick = function() {
         clickable: true,
       },
     });
-  </script>
+</script>
+<script>
+// 추가 구성상품 토글 function
+document.querySelector(".SP_prdAddSetToggle").onclick = function() {
+    var element = document.querySelector(".SP_prdAddSetList_wrap");
+    if (element.style.display === "none" || element.style.display === "") {
+        element.style.display = "block";  // 보이게 설정
+    } else {
+        element.style.display = "none";   // 숨기기
+    }
+};
+</script>
+
+
+  
 			<%@include file="footer.jsp"%>
 </body>
-
 </html>

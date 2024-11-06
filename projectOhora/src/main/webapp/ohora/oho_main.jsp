@@ -179,17 +179,7 @@
                <span data-cate="125">네일</span>
                <span data-cate="127">페디</span>
                <span data-cate="49">케어&툴</span>
-           </div>
-<%
-        String userID = (String) session.getAttribute("userID");
-        if (session.getAttribute("userID") != null) {
- %>
- 		<script>
- 			alert("회원만 접근권한이 있습니다.");
- 		</script>
-<%
-        } else {
-%>        	
+           </div>	
 <div class="common_list_box2">
                <div class="swiper-container swiper mySwiper3">
                    <ul class="items-swiper-wrapper swiper-wrapper">
@@ -272,9 +262,6 @@
                 <div class="swiper-button-next2"></div>
                 <div class="swiper-button-prev2"></div>
                </div>
-<%
-        }
-%>        	
                <!-- 스와이퍼 컨테이너 -->
            </div>
        </div>
