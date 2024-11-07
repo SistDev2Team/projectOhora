@@ -471,7 +471,7 @@
 
                     <div class="xans-element- xans-order xans-order-totalorder SP_tableBtn_wrap"><div class="SP_tableBtnAlign_right">
                             <div class="btn buy_btn">
-                            	<a href="/projectOhora/product/orderpage.do" onclick="Basket.orderSelectBasket(this)" link-order="/order/orderform.html?basket_type=all_buy" link-login="/member/login.html" class="SP_cm_btn ">구매하기</a>
+                            	<a href="/projectOhora/product/orderpage.do?pdtId=2&pdtId=3&pdtId=5&pdtCount=1&pdtCount=2&pdtCount=1" onclick="Basket.orderSelectBasket(this)" link-order="/order/orderform.html?basket_type=all_buy" link-login="/member/login.html" class="SP_cm_btn ">구매하기</a>
                             </div>
                             <div class="displaynone">
                                 <a href="/" class="SP_cm_btn">계속 쇼핑하기</a>

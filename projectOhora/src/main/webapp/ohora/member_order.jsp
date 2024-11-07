@@ -1,6 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ page import="com.util.ConvertInt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,7 @@
 <title>오호라</title>
 <link rel="shortcut icon" type="image/x-icon" href="http://localhost/jspPro/images/SiSt.ico">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
 <link rel="stylesheet" href="../resources/cdn-main/member_order.css">
@@ -23,8 +26,7 @@
 </head>
 <body>
 
-
-<form action="" id="order_form">
+<form action="/projectOhora/product/order_result.do" id="order_form">
     <div class="order-container" id="wrap"> <!--mCafe24Order-->
 
         <div class="first-container">  <!--billingNshipping-->
@@ -38,20 +40,32 @@
                         <div class="tab-wrap">
                             <ul class="for-real-addr-wrap">
                                 <!-- 선택된 탭li 는 class에 selected 추가됨 -->
-                                <li class="selected">
-                                    <a href="#">최근 배송지</a>
-                                </li>
-                                <li>
-                                    <a href="#">직접 입력</a>
-                                </li>
+                                <c:choose>
+								    <c:when test="${ empty addrList }">
+								        <li id="addrinput1">
+		                                    <a href="#" id="preaddr">최근 배송지</a>
+		                                </li>
+		                                <li id="addrinput2" class="selected">
+		                                    <a href="#" id="selfaddr">직접 입력</a>
+		                                </li>
+								    </c:when>
+								    <c:otherwise>
+								        <li id="addrinput1" class="selected">
+		                                    <a href="#" id="preaddr">최근 배송지</a>
+		                                </li>
+		                                <li id="addrinput2">
+		                                    <a href="#" id="selfaddr">직접 입력</a>
+		                                </li>
+								    </c:otherwise>
+								</c:choose>
                                 <!-- 밑에 둘은 각각 li 위치에 있지만 data- 만 가지고 있음  -->
                                 <div class="for-real-addr"></div>
                                 <div class="for-real-addr"></div>
                             </ul>
                         </div>
                         <!-- 최근배송지/직접입력 상단탭 끝 -->
-
-                        <div id="recent-addr-info">
+						
+                        <div id="recent-addr-info" style="display:${empty addrList ? 'none' : 'block'}">
 
                             <div id="title-recentAddr">
                                 <h3>
@@ -71,24 +85,24 @@
                                         <span id="info-mainLabel">[기본]</span> 
                                         <!-- [기본]주소지를 선택할 경우에만 span안에 [기본] 이라는 텍스트 채워짐-->
 
-                                        <span id="receiver">수령인</span>
-                                        <span id="receiver-tel">010-1234-5678</span>
+                                        <span id="receiver">${empty addrList ? '' : addrList[0].addr_name }</span>
+                                        <span id="receiver-tel">${empty addrList ? '' : addrList[0].addr_tel }</span>
                                         <!-- 번호 앞에 before로 / 달려있음 -->
                                     </p>
 
                                     <p class="addr">
                                         [
-                                        <span id="addrZipCode">07285</span>
+                                        <span id="addrZipCode">${empty addrList ? '' : addrList[0].addr_zipcode }</span>
                                         ]
                                         <span id="addrText">
-                                            용인시 처인구 오야꼬동 614 6321
+                                            ${empty addrList ? '' : addrList[0].addr_address }
                                         </span>
                                     </p>
 
                                 </div>
                             </div>
                         
-                            <div id="recentAddr-list">
+                            <div id="recentAddr-list" style="display:none">
                                 <!-- 작은 검정 변경하기 눌러야지만 display none 풀림 -->
                                 <h3 class="heading">배송지를 선택해주세요</h3>
                                 <ul class="shippingList-wrap">
@@ -179,10 +193,10 @@
                         </div>
                         <!-- 최근 배송지 끝 -->
 
-                        <div id="selfInputAddr-form">
+                        <div id="selfInputAddr-form" style="display:${empty addrList ? 'block' : 'none'}">
                             <!-- 직접입력탭. display none으로 가려져있음 -->
                             <div class="radioBtn-wrap">
-                                <input type="radio" id="sameAddr" name="sameAddr">
+                                <input type="radio" id="sameAddr" name="sameAddr" checked>
                                 <label for="sameAddr">회원 정보와 동일</label>
                                 <!-- 선택하면 before가 라디오 버튼에 검정색 찍어줌 -->
 
@@ -209,14 +223,7 @@
                                                 </span>
                                             </th>
                                             <td>
-                                            	<c:choose>
-													<c:when test="${ empty userDTO }">
-														<input type="text" id="rname" name="rname" value="수령인">
-													</c:when>
-													<c:otherwise>
-														<input type="text" id="rname" name="rname" value="${userDTO.user_name}">
-													</c:otherwise>
-                                                </c:choose>
+                                                <input type="text" id="rname" name="rname" value="${empty userDTO ? '수령인' : userDTO.user_name}">
                                             </td>
                                         </tr>
 
@@ -232,19 +239,21 @@
                                             <td>
                                                 <ul class="self-addr">
                                                     <li id="self-zipcodeWrap">
-                                                        <input type="text" maxlength="14" placeholder="우편번호" id="rzipcode1" name="rzipcode1" class="inputTypeText" readonly>
-                                                        <div class="btn" style="z-index: 10;" onclick="카카오api소환">
+                                                        <input type="text" maxlength="14" placeholder="우편번호" id="rzipcode1" name="rzipcode1" 
+                                                        class="inputTypeText" readonly value="${empty addrList ? '' : addrList[0].addr_zipcode }">
+                                                        <div class="btn" style="z-index: 10;" onclick="postCode()">
                                                             <a class="for-view-btn">우편번호</a>
                                                         </div>
                                                     </li>
-
                                                     <li id="receiver-baseAddr-wrap">
-                                                        <input type="text" id="raddr1" name="raddr1" placeholder="기본주소" class="inputTypeText" maxlength="100" readonly>
+                                                       <input type="text" id="raddr1" name="raddr1" placeholder="기본주소" class="inputTypeText" 
+                                                        maxlength="100" readonly value="${empty addrList ? '' : addrList[0].addr_address }">
                                                     </li>
                                                     <li id="receiver-baseAddr-wrap2">
                                                         <input type="text" id="raddr2" name="raddr2" placeholder="상세주소를 입력하세요" class="inputTypeText" maxlength="255">
                                                     </li>
                                                 </ul>
+                                                /
                                             </td>
                                         </tr>
                                         <tr class="self-receiver-tel">
@@ -255,7 +264,7 @@
                                                     번호
                                                     <span class="icoRequired">
                                                         <!-- 애프터에 필수표시로 별찍음 * -->
-                                                    </span>
+                                                    </span>                                            
                                                 </span>
                                             </th>
                                             <td>
@@ -266,20 +275,11 @@
                                                     <option value="017">017</option>
                                                     <option value="018">018</option>
                                                     <option value="019">019</option>
-                                            </select>
+                                            </select> 
                                             -
-                                            <c:choose>
-											    <c:when test="${ empty userDTO }">
-											         <input type="text" id="rphone2_2" name="rphone2_2" maxlength="4">
-			                                           -
-			                                         <input type="text" id="rphone2_3" name="rphone2_3" maxlength="4">
-											    </c:when>
-											    <c:otherwise>
-											        <input type="text" id="rphone2_2" name="rphone2_2" maxlength="4" value="${telArr[1]}">
-			                                           -
-			                                         <input type="text" id="rphone2_3" name="rphone2_3" maxlength="4" value="${telArr[2]}">
-											    </c:otherwise>
-											</c:choose>
+                                            <input type="text" id="rphone2_2" name="rphone2_2" maxlength="4" value="${empty userDTO ? '' : telArr[1]}">
+                                            -
+                                            <input type="text" id="rphone2_3" name="rphone2_3" maxlength="4" value="${empty userDTO ? '' : telArr[2]}">
                                             </td>
                                         </tr>
 
@@ -289,19 +289,12 @@
                                                     이메일
                                                     <span class="icoRequired">
                                                         <!-- 애프터에 필수표시로 별찍음 * -->
-                                                    </span>
+                                                    </span>                                            
                                                 </span>
                                             </th>
                                             <td>
                                                 <div class="self-email">
-                                                	<c:choose>
-													    <c:when test="${ empty userDTO }">
-													        <input type="text" id="email1" name="email1">
-													    </c:when>
-													    <c:otherwise>
-													        <input type="text" id="email1" name="email1" value="${ emailArr[0] }">
-													    </c:otherwise>
-													</c:choose>
+                                                    <input type="text" id="email1" name="email1" value="${ empty userDTO ? '' : emailArr[0] }">
                                                     @
                                                     <span class="mailAddr-selectWrap">
                                                         <select name="email2" id="email2">
@@ -318,13 +311,14 @@
                                                             <option value="etc">직접입력</option>
                                                         </select>
                                                         <span class="directInputEmail">
-                                                        	<c:choose>
+                                                          <c:choose>
 															    <c:when test="${ empty userDTO }">
 															        <!-- 직접입력 누르면 셀렉트랑 같은 위치에 이놈이 display none 풀리면서(클래스 토글인듯) 입력창 나타남 셀렉트가 none되고-->
                                                             		<input type="text" id="direcEmail" name="direcEmail" class="" placeholder="직접입력" >
 															    </c:when>
 															    <c:otherwise>
-                                                            		<input type="text" id="direcEmail" name="direcEmail" class="" placeholder="직접입력" value="${ emailArr[1] }" >
+                                                            		<input type="text" id="direcEmail" name="direcEmail" class="" 
+                                                            		placeholder="직접입력" value="${empty userDTO ? '' : emailArr[1] }" >
 															    </c:otherwise>
 															</c:choose>
                                                         </span>
@@ -338,7 +332,6 @@
                                             </td>
                                         </tr>
                                     </tbody>
-
                                 </table>
                             </div>
                             <!-- 인풋테이블랩 끝 -->
@@ -346,7 +339,6 @@
                         </div>
                     </div>
                     <!-- 최근배송지/ 직접입력 구간 끝 -->
-
                     <div class="deliMsg-wrap">
                         <select name="deliMsg_sel" id="deliMsg_sel">
                             <option value>배송 요청사항 선택</option>
@@ -362,14 +354,11 @@
                         <div class="deliMsg-inputWrap ">
                             <textarea name="deliMsg" id="deliMsg"></textarea>
                         </div>
-                    </div>
-                    <!-- 배송메시지 끝 -->
-
+                    </div> <!-- 배송메시지 끝 -->
                 </div>
             </div>
         </div>
     </div>
-
     <div id="additionalInput-wrap" class="folded">
         <div id="addutionalInput-title">
             <h2>추가입력</h2>
@@ -392,7 +381,7 @@
                                     확인
                                     <span class="icoRequired">
                                         <!-- 애프터로 필수입력 별표 -->
-                                    </span>                          
+                                    </span>
                                 </th>
                                 <td>
                                     <input type="checkbox" id="addrConfirm" name="addrConfirm">
@@ -410,27 +399,28 @@
         </div>
     </div>
     <!-- 추가정보 체크 끝 -->
-
     <div class="orderPrd-container">
         <div class="orderPrd-wrap">
             <!-- 여기서 selected 클래스로 폴드구현 -->
-             
             <div id="orderPrd-title">
                 <h2>주문 상품</h2>
                 <span id="orderPrd-count" style="display: none;">2개</span>
                 <!-- display none였다가 폴드 접히면 none 풀리면서 상품 종류 갯수 찍힘 -->
                  <!-- after로 폴드 아이콘 디자인 -->
             </div>
-            
             <div class="orderPrd-listArea">
                 <!-- 배송비까지 담고있는 태그 -->
-
                 <div class="orderPrd-list">
-
                     <!-- 이제부터 div 하나 == 상품 1 -->
-                    <div class="orderPrd">
+                    <c:set var="discountSum" value="0"></c:set>
+                    <c:set var="amountSum" value="0"></c:set>
+                    <c:set var="totalSum" value="0"></c:set>
+                    <c:forEach items="${ pdtList }" var="pdt" varStatus="status">
+                    
+			<div class="orderPrd">
                         <div class="prdInfoBox">
                             <div class="thumbnail">
+                            <input type="hidden" id="pdtId" name="pdtId" value="${pdt.pdt_id}">
                                 <a href="#">
                                     <img src="https://ohora.kr/web/product/tiny/202410/b8ead469934d039305eba65f492d0d2f.jpg" alt="상품썸네일" width="90" height="90">
                                 </a>
@@ -438,7 +428,8 @@
                             <div class="description">
 
                                 <strong class="prdName" title="상품명">
-                                    <a href="#">N 딥 네일</a>
+                                    <a href="#">${pdt.pdt_name}</a>
+                                    <input type="hidden" name="pdtName" value="${pdt.pdt_name}">
                                 </strong>
 
                                 <ul class="prdInfo">
@@ -447,26 +438,31 @@
                                         <!-- 옵션이 있다면 noOption 클래스가 사라지면서 [옵션: 02. 미디엄] 이런거 뜸 -->
                                     </li>
                                     <li>
-                                        수량: 1개
+                                        수량: ${pdtCountArray[status.index]}개
+                                        <input type="hidden" id="pdtCount" name="pdtCount" value="${pdtCountArray[status.index]}">
                                     </li>
                                     <li>
                                         할인금액: 
                                         <span class="wranTxt">
                                             -
                                             <span>
-                                                2,220
+                                            <fmt:formatNumber value="${(pdt.pdt_amount -pdt.pdt_discount_amount) * pdtCountArray[status.index]}"
+                                            type="number" pattern="#,##0" />
                                             </span>
                                         </span>
                                     </li>
                                 </ul>
 
                                 <div class="prdPrice">
-                                    <span>12,580</span>
+                                    <span><fmt:formatNumber value="${pdt.pdt_discount_amount * pdtCountArray[status.index]}" type="number" pattern="#,##0" /></span>
+                                    <input type="hidden" name="pdtDcAmount" value="${pdt.pdt_discount_amount * pdtCountArray[status.index]}">
                                     <span class="originPrice">
-                                        <span>14,800</span>
+                                        <span><fmt:formatNumber value="${pdt.pdt_amount * pdtCountArray[status.index]}" type="number" pattern="#,##0" />
+                                        <input type="hidden" name="pdtAmount" value="${pdt.pdt_amount * pdtCountArray[status.index]}">
                                     </span>
-                                </div>  
-
+                                </div>
+							<c:set var="discountSum" value="${ discountSum + ((pdt.pdt_amount -pdt.pdt_discount_amount) * pdtCountArray[status.index])}"></c:set>
+							<c:set var="amountSum" value="${ amountSum + (pdt.pdt_amount * pdtCountArray[status.index])}"></c:set>
                             </div>
                             <!-- description -->
                             <button type="button" class="btnRemove" id="btrRm">
@@ -476,67 +472,17 @@
                             
                         </div>
                     </div>
-                    <!-- 상품 하나 끝 -->
-
-                    <div class="orderPrd">
-                        <div class="prdInfoBox">
-                            <div class="thumbnail">
-                                <a href="#">
-                                    <img src="https://ohora.kr/web/product/tiny/202410/b8ead469934d039305eba65f492d0d2f.jpg" alt="상품썸네일" width="90" height="90">
-                                </a>
-                            </div>
-                            <div class="description">
-
-                                <strong class="prdName" title="상품명">
-                                    <a href="#">N 딥 네일</a>
-                                </strong>
-
-                                <ul class="prdInfo">
-                                    <li title="옵션">
-                                        <p class="option noOption"></p>
-                                        <!-- 옵션이 있다면 noOption 클래스가 사라지면서 [옵션: 02. 미디엄] 이런거 뜸 -->
-                                    </li>
-                                    <li>
-                                        수량: 1개
-                                    </li>
-                                    <li>
-                                        할인금액: 
-                                        <span class="wranTxt">
-                                            -
-                                            <span>
-                                                2,220
-                                            </span>
-                                        </span>
-                                    </li>
-                                </ul>
-
-                                <div class="prdPrice">
-                                    <span>12,580</span>
-                                    <span class="originPrice">
-                                        <span>14,800</span>
-                                    </span>
-                                </div>  
-
-                            </div>
-                            <!-- description -->
-                            <button type="button" class="btnRemove" id="btrRm">
-                                <!-- 비포 애프터 각각 걸려서 X 표시 구현 -->
-                                 삭제
-                            </button>
-                            
-                        </div>
-                    </div>
-                    <!-- 상품 하나 끝 -->
+</c:forEach>
 
                 </div>
                 <!-- 상품 나열 끝  -->
-
+				<c:set var="deliFee" value="${(amountSum-discountSum) >50000 ? 0 : 3000}"></c:set>
                 <div class="totalPrice">
                     <div class="title">
                         <h3>배송비</h3>
                         <span class="deliFee-wrap">
                             <span id="deliFee">
-                                0 (무료)
+                            	<fmt:formatNumber value="${deliFee}" type="number" pattern="#,##0" />
                             </span>
                         </span>
 
@@ -548,6 +494,49 @@
         </div>
     </div>
 
+    <div class="bonusItemContainer" style="display:none">
+        <div class="bonusItemWrap">
+            <div class="bonusTitle">
+                <h2>사은품</h2>
+                <span id="bonusHeading" class="txtSt"></span>
+            </div>
+
+            <div class="bonuscontent">
+                <div class="bonusItemBox">
+                    <div class="bprd">
+                        <div class="bThumb">
+                            <img src="https://ohora.kr/web/product/tiny/20191205/5985fa7457e4046c67aaa6cbf04840d5.jpg" alt="">
+                        </div>
+                        <div class="bDesc">
+                            <label class="giftChoice">
+                                <span class="">
+                                    <input name="sel_product[]" id="sel_product219" gift_point="0.00" max_count="1" offer_auto="F" value="219" type="checkbox">
+                                </span>
+                                <strong class="prdName2" title="상품명">
+                                    [사은품] 젤램프(취소시 재지급 불가) 
+                                </strong>
+                            </label>
+                            <ul>
+                                <li>
+                                    <span class="ec-b-qty">
+                                        <button type="button" onclick="" id="qtyMinus">
+                                            <img src="https://img.echosting.cafe24.com/skin/mobile/common/ico_quantity_down_new.jpg" class="down" alt="down" width="33" height="29">
+                                        </button>
+                                        <input id="gift_amount_219" name="gift_amount_219" class="amount" readonly="1" value="1" type="text">
+                                        <button type="button" onclick="" id="qtyPlus">
+                                            <img src="https://img.echosting.cafe24.com/skin/mobile/common/ico_quantity_up_new.jpg" class="up" alt="up" width="33" height="29">
+                                        </button>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="usePoint-container">
         <div id="usePoint-wrap">
             <div id="point_dc">
@@ -555,16 +544,49 @@
                 <!-- 애프터로 폴드 디자인 -->
             </div>
             <div class="dcContent">
-                <div id="pointUseArea" class="pointUseArea">
+                
+                <div class="couponUseArea">
+                    <strong class="heading4">
+                        할인쿠폰
+                        <span class="coupCnt">
+                            1장
+                        </span>
+                    </strong>
+
+                    <div class="cControl">
+
+                        <span class="dcPriceBox">
+                           
+                            <span class="totalDc">
+                                3,000
+                            </span>
+                            <input type="hidden" name="icpnId" value="0">
+                            <input type="hidden" name="icpnDc" value="3000">
+
+                        </span>
+                        <a href="#" id="gotoCoupon"></a>
+
+                    </div>
+                    <ul id="useCpList">
+                        <li id="useCpItem">
+                            <span id="txt_cpn_contents0">[주문별] [웰컴 쿠폰] 신규 회원 무료배송(2만원 이상 구매 시) (~2024-11-04 23:14:33) (결제조건: 제한 없음)</span>
+                        </li>
+                    </ul>
+                </div>
+
+
+
+
+                <div id="pointUseArea" class="pointUseArea" style="">
                     <strong class="heading2">적립금</strong>
                     <span class="summary">
                         (
-                            <span class="UseablePoint">0원</span>
+                            <span class="UseablePoint" data-point="${empty userDTO ? 0 : userDTO.user_point }">${empty userDTO ? 0 : userDTO.user_point }원</span>
                         사용 가능 )
                     </span>
                     <div class="control">
                         <input type="text" id="input_point" name="input_point">
-                        <button type="button">전액 사용</button>
+                        <button type="button" id="btn_point">전액 사용</button>
                     </div>
                     <ul class="pointGuide">
                         
@@ -597,7 +619,7 @@
                             <tr>
                                 <th scope="row">주문금액</th>
                                 <td class="rightP">
-                                    <span id="total-price">74,000</span>
+                                    <span id="total-price"><fmt:formatNumber value="${amountSum}" type="number" pattern="#,##0" /></span>
                                     <!-- after로 '원' -->
                                 </td>                            
                             </tr>
@@ -605,7 +627,7 @@
                                 <th scope="row">배송비</th>
                                 <td class="rightP">
                                     +
-                                    <span id="total-deliPrice">0</span>
+                                    <span id="total-deliPrice"><fmt:formatNumber value="${deliFee}" type="number" pattern="#,##0" /></span>
                                     <!-- 애프터로 원 -->
                                 </td>
                             </tr>
@@ -613,7 +635,7 @@
                                 <th scope="row">할인금액</th>
                                 <td class="rightPdc">
                                     -
-                                    <span id="total-discount">2,220</span>
+                                    <span id="total-discount"><fmt:formatNumber value="${discountSum}" type="number" pattern="#,##0" /></span>
                                     <!-- 애프터로 원 -->
                                 </td>
                             </tr>
@@ -621,13 +643,16 @@
                     </table>
                     <!-- 애프터로 선 하나 -->
                 </div>
+                <c:set var="totalSum" value="${amountSum-discountSum}"></c:set>
 
                 <div class="final-total-price">
                     <h3>최종 결제 금액</h3>
                     <strong class="txtStrong">
                         <span id="final-total-pay">
-                            71,780
+                            <fmt:formatNumber value="${totalSum + deliFee}" type="number" pattern="#,##0" />
                             <!-- 애프터로 원 -->
+                            <input type="hidden" name="totalSum" value="${totalSum}">
+                            <input type="hidden" name="discountSum" value="${discountSum}">
                         </span>
                     </strong>
                 </div>
@@ -635,6 +660,7 @@
             </div>
         </div>
     </div>
+    
     <!-- 최종 결제금액 칸 끝 -->
 
     <div id="payMethod-container">
@@ -670,35 +696,35 @@
 
                         <div class="inner">
                             <span class="base-label">
-                                <input type="radio" id="addr_paymethod0" name="addr_paymethod">
+                                <input type="radio" id="addr_paymethod0" name="addr_paymethod" value="휴대폰 결제">
                                 <label for="addr_paymethod0">휴대폰 결제</label>
                             </span>
                             <span class="base-label">
-                                <input type="radio" id="addr_paymethod1" name="addr_paymethod">
+                                <input type="radio" id="addr_paymethod1" name="addr_paymethod" value="신용카드 결제">
                                 <label for="addr_paymethod1">신용카드 결제</label>
                             </span>
                             <span class="base-label">
-                                <input type="radio" id="addr_paymethod2" name="addr_paymethod">
+                                <input type="radio" id="addr_paymethod2" name="addr_paymethod" value="가상계좌 결제">
                                 <label for="addr_paymethod2">가상계좌 결제</label>
                             </span>
                             <span class="base-label">
-                                <input type="radio" id="addr_paymethod3" name="addr_paymethod">
+                                <input type="radio" id="addr_paymethod3" name="addr_paymethod" value="실시간 계좌이체">
                                 <label for="addr_paymethod3">실시간 계좌이체</label>
                             </span>
                             <span class="base-label">
-                                <input type="radio" id="addr_paymethod4" name="addr_paymethod">
+                                <input type="radio" id="addr_paymethod4" name="addr_paymethod" value="네이버페이(간편결재)">
                                 <label for="addr_paymethod4">네이버페이(간편결재)</label>
                             </span>
                             <span class="base-label">
-                                <input type="radio" id="addr_paymethod5" name="addr_paymethod">
+                                <input type="radio" id="addr_paymethod5" name="addr_paymethod" value="카카오페이(간편결제)">
                                 <label for="addr_paymethod5">카카오페이(간편결제)</label>
                             </span>
                             <span class="base-label">
-                                <input type="radio" id="addr_paymethod6" name="addr_paymethod">
+                                <input type="radio" id="addr_paymethod6" name="addr_paymethod" value="토스(간편결제)">
                                 <label for="addr_paymethod6">토스(간편결제)</label>
                             </span>
                             <span class="base-label">
-                                <input type="radio" id="addr_paymethod7" name="addr_paymethod">
+                                <input type="radio" id="addr_paymethod7" name="addr_paymethod" value="페이코(간편결제)">
                                 <label for="addr_paymethod7">페이코(간편결제)</label>
                             </span>
                         </div>
@@ -766,7 +792,7 @@
                      </div>
                 </div>
                 
-                <div id="cashReceipt-area">
+                <div id="cashReceipt-area" style="display:none">
                     <!-- 계좌이체, 가상계좌일 떄만 뜸 -->
                     <div class="cr-title">
                         <h3>현금영수증</h3>
@@ -838,7 +864,17 @@
 
     </div>
     <!-- 결제 수단 끝 -->
+    <c:if test="${userDTO.mem_id == 1 }">
+    	<c:set var="rate" value="0.01f"></c:set>
+    </c:if>
+    <c:if test="${userDTO.mem_id == 2 }">
+    	<c:set var="rate" value="0.02f"></c:set>
+    </c:if>
+    <c:if test="${userDTO.mem_id == 3 }">
+    	<c:set var="rate" value="0.03f"></c:set>
+    </c:if>
 
+	<c:set var="point" value="${Math.floor(totalSum * rate)}"></c:set>
     <!-- 적립예정.. 얘도 selected 줘서 폴드 토글 -->
     <div id="pointBenefit">
         <div id="pbTitle">
@@ -847,7 +883,7 @@
 
             <span id="pointTitle">
             <!-- 폴드가 펼쳐지면 얘는 none -->
-                <span>717원</span> 
+                <span>${ ConvertInt.convInt(point) }원</span> 
                 예정
             </span>
             <!-- 여기서 애프터로 폴드아이콘 디자인 -->
@@ -870,7 +906,7 @@
                             
                             <tr>
                                 <th scope="row">회원 적립금</th>
-                                <td class="right"><span id="mMemberMileage" class="price">717원</span></td>
+                                <td class="right"><span id="mMemberMileage" class="price">${ ConvertInt.convInt(point) }원</span></td>
                             </tr>
                 
                             <tr>
@@ -886,13 +922,12 @@
                     </table>
                     <!-- 애프터로 선 하나 -->
                 </div>
-
             </div>
-
+			
             <div class="totalPay">
                 <h3 class="heading3">적립 예정금액</h3>
                 <strong class="txtEm">
-                    <span id="mAllMileageSum" style="">717원</span>
+                    <span id="mAllMileageSum" style="">${ ConvertInt.convInt(point) }원</span>
                 </strong>
             </div>
 
@@ -954,6 +989,8 @@
     </div>
 
 </form>
+
+
 
 
 

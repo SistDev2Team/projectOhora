@@ -96,7 +96,7 @@ body input[type="text"] {
 }
 
 .shippingInfo-container{
-    min-height: 670px;
+   /*  min-height: 670px; */
 }
 
 .shippingInfo-container{
@@ -1608,7 +1608,7 @@ body input[type="text"] {
 
 #pointUseArea{
     padding: 5px 0;
-    margin-top: 0 !important;
+    margin-top: 25px !important;
     padding-top: 0 !important;
     border-bottom: 0;
     text-align: left;
@@ -2895,4 +2895,439 @@ body input[type="text"] {
     border: 0;
     vertical-align: baseline;
     outline: 0;
+}
+
+/* 사은품 */
+
+.bonusItemContainer{
+
+}
+
+.bonusItemWrap{
+    margin: 0 auto;
+    border: none;
+
+    position: relative;
+    padding: 0;
+    background: #fff;
+
+}
+
+.bonusTitle{
+    padding-bottom: 35px;
+    padding: 42px 0 43px;
+    background: #fff;
+    margin: 0 auto;
+    max-width: 700px;
+
+    position: relative;
+    cursor: pointer;
+
+    word-wrap: break-word;
+    word-break: break-all;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+.bonusTitle::after {
+    transform: rotate(-135deg);
+    margin-top: -8px;
+
+    top: 50%;
+    right: 0;
+    width: 9.5px;
+    height: 9.5px;
+
+    border: 1px solid #000;
+    border-right: none;
+    border-bottom: none;
+    background: none;
+
+    position: absolute;
+    content: '';
+    display: block;
+}
+
+.bonusTitle > h2 {
+    font-size: 20px;
+    line-height: 30px;
+
+    margin: 0 10px 0 0;
+    color: #000;
+
+
+}
+
+#bonusHeading{
+    margin-right: 25px;
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: bold;
+    color: #964e50;
+
+    flex: initial;
+    white-space: initial;
+    text-align: left;
+
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.bonuscontent{
+    padding-bottom: 0;
+    margin-bottom: 30px;
+
+    margin: 0 auto;
+    max-width: 700px;
+    border: none;
+
+    overflow: visible;
+    opacity: 1;
+    height: auto;
+}
+
+.bonusItemBox{
+    padding: 0 0px 20px;
+    margin: 0;
+    border: 0;
+    position: relative;
+    box-sizing: border-box;
+    background: #fff;
+
+}
+
+.bprd{
+    align-items: center;
+
+    display: flex;
+    min-height: 104px;
+}
+
+.bThumb{
+    overflow: hidden;
+    width: 115px;
+    height: 115px;
+    margin-right: 20px;
+    border: 1px solid #d7d5d5;
+    box-sizing: border-box;
+}
+
+.bThumb > img{
+    width: 100%;
+    height: 100%;
+}
+
+.bDesc{
+    overflow: hidden;
+
+    flex: 1;
+    margin-top: -3px;
+}
+
+.giftChoice{
+    min-height: 10px;
+    line-height: 1.3;
+    display: inline-block;
+
+    margin-right: 0;
+
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+
+.bDesc > span {
+    display: inline-block;
+}
+
+#sel_product219 {
+    margin-top: 3px !important;
+    margin-right: 7px !important;
+
+    border-radius: 3px !important;
+    width: 15px !important;
+    height: 15px !important;
+    vertical-align: text-bottom;
+
+    border: 1px solid #ddd;
+    background: url(https://img.echosting.cafe24.com/skin/mobile/common/bg_checkbox.png);
+    background-position: center;
+    background-size: 16px auto;
+
+    margin: 0;
+    cursor: pointer;
+    appearance: none;
+}
+
+#sel_product219:checked {
+    background-image: url(https://ohora.kr/web/upload/common/icon_check_bk.png);
+}
+
+.prdName2{
+    display: inline-block;
+    vertical-align: top;
+    color: #000;
+    margin-left: 2px;
+
+    margin: 0 0 5px;
+    font-weight: normal;
+}
+
+.bDesc > ul {
+    margin: 10px 0 0;
+}
+
+.bDesc > ul > li {
+    font-size: 0;
+    margin: 0;
+    line-height: 0;
+    color: #666;
+
+}
+
+.ec-b-qty{
+    margin-left: 28px;
+    margin: 0;
+    display: flex;
+    position: relative;
+    font-size: 0;
+}
+
+#qtyMinus{
+    position: relative;
+    height: 37px;
+    width: 37px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 0;
+
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+}
+
+#qtyMinus::before {
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.4);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+}
+
+#qtyMinus::after {
+    width: 8px;
+    display: block;
+    position: absolute;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.4);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+}
+
+#qtyMinus > img {
+    vertical-align: middle;
+    position: relative;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.amount{
+    margin: 0 2px;
+    width: 100px !important;
+    height: 37px !important;
+    line-height: 37px !important;
+    border: 1px solid #000 !important;
+    text-align: center;
+
+    display: inline-block;
+    padding: 0 15px;
+    box-sizing: border-box;
+    color: #616161 !important;
+    font-size: 16px;
+    letter-spacing: -0.5px;
+}
+
+#qtyPlus{
+    position: relative;
+    height: 37px;
+    width: 37px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    border-radius: 0;
+
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+}
+
+#qtyPlus::before {
+    width: 1px;
+    height: 10px;
+
+    display: block;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+}
+
+#qtyPlus::after {
+    display: block;
+    position: absolute;
+    width: 10px;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.4);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+}
+
+#qtyPlus > img {
+    vertical-align: middle;
+
+    position: relative;
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+}
+
+
+/*  */
+
+.couponUseArea{
+    padding: 5px 0;
+
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+
+    border-bottom: 0;
+    text-align: left;
+}
+
+.heading4{
+    float: none;
+    font-size: 16px;
+
+    font-weight: normal;
+    color: #333;
+}
+
+.coupCnt{
+    font-weight: bold;
+    color: #000;
+
+}
+
+.cControl{
+    padding: 0;
+    margin: 15px 0 6px;
+    line-height: 1;
+    position: relative;
+}
+
+.dcPriceBox{
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+
+    position: relative;
+    display: inline-block;
+    padding: 0 30px;
+    box-sizing: border-box;
+    border: 1px solid #bababa;
+    vertical-align: top;
+    color: #000;
+}
+
+.dcPriceBox::after {
+    content: "";
+    position: absolute;
+    right: 17px;
+    top: 50%;
+    transform: translateY(-50%) rotate(135deg);
+    width: 10px;
+    height: 10px;
+    border: 1px solid #000;
+    border-right: none;
+    border-bottom: none;
+}
+
+.totalDc::after{
+    content: "원";
+}
+
+#gotoCoupon{
+
+    width: 100% !important;
+    height: 50px !important;
+    line-height: 50px !important;
+    opacity: 0;
+
+    display: inline-block;
+    padding: 0;
+    margin-left: 10px !important;
+    background: #fff !important;
+    border-color: #777 !important;
+
+    font-size: 16px !important;
+    color: #000 !important;
+    box-sizing: border-box;
+
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-radius: 0 !important;
+    border: 1px solid #b5b5b5;
+    vertical-align: middle;
+
+    letter-spacing: -0.4px;
+    text-align: center;
+}
+
+#useCpList{
+    padding: 10px 0 0;
+
+    margin: 0;
+    border: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #616161;
+    text-align: left;
+}
+
+#useCpItem{
+    padding: 0;
+    font-size: 15px;
+    line-height: 1.1;
+    color: #6d6d6d;
+
+    position: relative;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    word-break: break-word;
+}
+
+#txt_cpn_contents0{
+
+}
+
+#useCpList::after {
+    display: block;
+    content: "";
+    clear: both;
 }

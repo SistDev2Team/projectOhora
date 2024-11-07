@@ -1,0 +1,430 @@
+#ivStyle .SP_layoutFix {
+    width: 1050px;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.SP_layoutFix {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.displaynone {
+    display: none !important;
+}
+.SP_Ohora_msg {
+    text-align: center;
+    padding-top: 85px;
+}
+
+.SP_Ohora_msg span {
+    display: block;
+    font-size: 15px;
+    color: #000;
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%;
+}
+img {
+    vertical-align: top;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.SP_Ohora_msg .main_msg {
+    margin-top: 25px;
+    margin-bottom: 17px;
+    font-size: 27px;
+    color: #000;
+}
+.SP_Ohora_msg span {
+    display: block;
+    font-size: 15px;
+    color: #000;
+    line-height: 1.5;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+    unicode-bidi: isolate;
+    margin-block-end: 1em;
+}
+
+input:not([type="image" i]) {
+    box-sizing: border-box;
+}
+
+input[type="hidden" i] {
+    display: none !important;
+}
+
+input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+    overflow-clip-margin: 0px !important;
+    overflow: clip !important;
+}
+
+input[type="hidden" i] {
+    appearance: none;
+    background-color: initial;
+    cursor: default;
+    padding: initial;
+    border: initial;
+}
+
+input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
+}
+
+input {
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+#SMS_OrderResult.order_result_wrap {
+    padding: 100px 0 50px;
+    margin: 0 auto;
+    max-width: 610px;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+
+.member_result_form {
+    padding: 20px 0;
+}
+
+.member_result_form .top_area {
+    padding: 95px 0 85px;
+    background: url(https://www.ohora.kr/web/upload/common/check_icon.png) no-repeat top center;
+    background-size: 55px auto;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+.member_result_form .top_area h3 {
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+h1, h3 {
+    margin: 0;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+.member_result_form .top_area p {
+    text-align: center;
+    padding: 45px 0 0;
+    line-height: 1.5;
+    font-size: 16px;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+#SMS_OrderResult.order_result_wrap .member_result_form .top_area p a {
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.member_result_form a {
+    text-decoration: none;
+    color: inherit;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+#SMS_OrderResult.order_result_wrap .member_result_form .bottom_area {
+    padding: 0;
+    margin: 0 30px;
+    text-align: center;
+    background: #f5f5f5;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.member_result_form .bottom_area {
+    padding: 0;
+    margin: 0 30px;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+#SMS_OrderResult.order_result_wrap .member_result_form .bottom_area ul {
+    display: inline-block;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.member_result_form .bottom_area ul {
+    padding: 30px 0;
+    background: #f5f5f5;
+}
+
+ul, li, ol, dl, dt, dd {
+    list-style: none;
+}
+
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+
+#SMS_OrderResult.order_result_wrap .member_result_form .bottom_area li {
+    text-align: left;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.member_result_form .bottom_area li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: #000;
+    font-size: 20px;
+    font-weight: 400;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    unicode-bidi: isolate;
+}
+
+.member_result_form .bottom_area li strong {
+    display: inline-block;
+    width: 110px;
+    font-weight: bold;
+}
+.member_result_form .bottom_area li > * {
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.member_result_form .bottom_area li span {
+}
+.member_result_form .bottom_area li > * {
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+#SMS_OrderResult.order_result_wrap .member_result_form .bottom_area li {
+    text-align: left;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.member_result_form .bottom_area li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: #000;
+    font-size: 20px;
+    font-weight: 400;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+li {
+    list-style: none;
+}
+ul, li, ol, dl, dt, dd {
+    list-style: none;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    unicode-bidi: isolate;
+}
+
+.member_result_form .bottom_area li strong {
+    display: inline-block;
+    width: 110px;
+    font-weight: bold;
+}
+.member_result_form .bottom_area li > * {
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+.member_result_form .bottom_area li span {
+}
+.member_result_form .bottom_area li > * {
+    font-size: inherit;
+    color: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+span, a {
+    font-family: inherit;
+    color: inherit;
+    font-size: inherit;
+}
+
+#SMS_OrderResult.order_result_wrap .member_result_form .btn_area {
+    margin: 80px 0 0;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.member_result_form .btn_area {
+    padding: 0;
+    margin: 80px 0 0;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+.member_result_form .btn a {
+    display: block;
+    padding: 0;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    font-size: 20px;
+    line-height: 75px;
+    height: 75px;
+    font-weight: bold;
+    letter-spacing: -0.25px;
+    border-radius: 8px;
+    text-align: center;
+}
+.member_result_form a {
+    text-decoration: none;
+    color: inherit;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+
+#SMS_OrderResult.order_result_wrap .member_result_form .top_area p a {
+    display: inline-block;
+    position: relative;
+    font-weight: 700;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.member_result_form a {
+    text-decoration: none;
+    color: inherit;
+}
+.member_result_form * {
+    letter-spacing: -0.5px;
+}
+
+#SMS_OrderResult.order_result_wrap .member_result_form .top_area p a::after {
+    display: block;
+    position: absolute;
+    bottom: -3px;
+    width: 100%;
+    height: 2px;
+    background: #000;
+    content: "";
+}
+
