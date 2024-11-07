@@ -62,12 +62,24 @@ public class OhoraDAOImpl implements OhoraDAO{
 		    	sql += " AND cat_id = 3";
 		        break;
 		    case 432:	// 베스트 상품중에서 젤네일팁 상품
-		    	sql += " AND pdt_sales_count >= 300 "; 
-		    	sql += " AND scat_id = 2";
+		    	sql += " AND pdt_sales_count >= 300 "
+		    		+  " AND scat_id = 2";
 		        break;
 		    case 431:	// 베스트 상품중에서 젤스트립 상품
-		    	sql += " AND pdt_sales_count >= 300 "; 
-		    	sql += " AND scat_id = 1";
+		    	sql += " AND pdt_sales_count >= 300 "
+		    	    +  " AND scat_id = 1";
+		        break;
+		    case 125:	// 베스트 상품중에서 네일 상품
+		    	sql += " AND pdt_sales_count >= 300 "
+		    	    +  " AND cat_id = 1";
+		        break;
+		    case 127:	// 베스트 상품중에서 페디 상품
+		    	sql += " AND pdt_sales_count >= 300 "
+		    	    +  " AND cat_id = 2";
+		        break;
+		    case 540:	// 베스트 상품중에서 케어&툴 상품
+		    	sql += " AND pdt_sales_count >= 300 "
+		    	    +  " AND cat_id = 3";
 		        break;
 		}
 		return sql;

@@ -50,7 +50,7 @@
   	<dispatcher>REQUEST</dispatcher>
   </filter-mapping>
   
-    <filter>
+   <filter>
     <description>인증</description>
     <filter-name>authenticationFilter</filter-name>
     <filter-class>com.filter.AuthenticationFilter</filter-class>

@@ -74,12 +74,7 @@ span.material-symbols-outlined {
 					                <a href="${contextPath}/product/list.do?cate_no=44&currentPage=1">전체상품</a>
 					            </li>
 					        </c:when>
-					        <c:when test="${param.cate_no == '160'}">
-					            <li data-path="160">
-					                <a href="${contextPath}/product/list.do?cate_no=160&currentPage=1">네일</a>
-					            </li>
-					        </c:when>
-					        <c:when test="${param.cate_no == '120'}">
+					        <c:when test="${param.cate_no == '120' || param.cate_no == '125' || param.cate_no == '127' || param.cate_no == '432' || param.cate_no == '431' || param.cate_no == '540'}">
 					            <li data-path="120">
 					                <a href="${contextPath}/product/list.do?cate_no=120&currentPage=1">베스트</a>
 					            </li>
@@ -122,21 +117,21 @@ span.material-symbols-outlined {
 						<li class="menu_1li" data-cate="121" data-depth="1"><a
 							href="${contextPath}/product/list.do?cate_no=121&currentPage=1">신상품</a></li>
 						<li class="menu_1li" data-cate="204" data-depth="1"><a
-							href="${contextPath}/product/list.do?cate_no=204&currentPage=1">pedi</a></li>
+							href="${contextPath}/product/list.do?cate_no=127&currentPage=1">pedi</a></li>
 						<li class="menu_1li" data-cate="600" data-depth="1"><a
-							href="${contextPath}/product/list.do?cate_no=600&currentPage=1">gelstrip</a></li>
+							href="${contextPath}/product/list.do?cate_no=431&currentPage=1">gelstrip</a></li>
 						<li class="menu_1li" data-cate="605" data-depth="1"><a
-							href="${contextPath}/product/list.do?cate_no=605&currentPage=1">gelnailtip</a></li>
+							href="${contextPath}/product/list.do?cate_no=432&currentPage=1">gelnailtip</a></li>
 						<li class="menu_1li" data-cate="671" data-depth="1"><a
 							href="${contextPath}/product/list.do?cate_no=671&currentPage=1">outlet</a></li>
 					</ul>
 					
 					<ul class="menu_2ul">
-						<li class="menu_2li" data-cate="${param.cate_no }" data-depth="2">
-							<a href="${contextPath}/product/list.do?cate_no=${param.cate_no}&currentPage=1">ALL</a>
-						</li>				
 					    <!-- 전체상품일 때 -->
 					    <c:if test="${param.cate_no == 44}">
+							<li class="menu_2li" data-cate="44" data-depth="2">
+								<a href="${contextPath}/product/list.do?cate_no=44&currentPage=1">ALL</a>
+							</li>				
 					        <li class="menu_2li" data-cate="160" data-depth="2">
 					            <a href="${contextPath}/product/list.do?cate_no=160&currentPage=1">네일</a>
 					        </li>
@@ -149,7 +144,10 @@ span.material-symbols-outlined {
 					    </c:if>
 					
 					    <!-- 베스트상품일 때 -->
-					    <c:if test="${param.cate_no == 120}">
+					    <c:if test="${param.cate_no == 120 || param.cate_no == 125 || param.cate_no == 127 || param.cate_no == 432 || param.cate_no == 431 || param.cate_no == 540}">
+					    	<li class="menu_2li" data-cate="120" data-depth="2">
+								<a href="${contextPath}/product/list.do?cate_no=120&currentPage=1">ALL</a>
+							</li>	
 					        <li class="menu_2li" data-cate="125" data-depth="2">
 					            <a href="${contextPath}/product/list.do?cate_no=125&currentPage=1">네일</a>
 					        </li>
@@ -157,7 +155,7 @@ span.material-symbols-outlined {
 					            <a href="${contextPath}/product/list.do?cate_no=127&currentPage=1">페디</a>
 					        </li>
 					        <li class="menu_2li" data-cate="432" data-depth="2">
-					            <a href="${contextPath}/product/list.do?cate_no=600&currentPage=1">젤네일팁</a>
+					            <a href="${contextPath}/product/list.do?cate_no=432&currentPage=1">젤네일팁</a>
 					        </li>
 					        <li class="menu_2li" data-cate="431" data-depth="2">
 					            <a href="${contextPath}/product/list.do?cate_no=431&currentPage=1">젤스트립</a>
@@ -220,7 +218,8 @@ span.material-symbols-outlined {
 
 	    // menu_3ul 태그 처리
 	    const menu_3ul = document.querySelector('div.cate_list > ul.menu_3ul');
-	    if ((cateNo === 121 || cateNo === 120 || cateNo === 44 || cateNo === 671 ) && menu_3ul) {
+	    if (( cateNo === 121 || cateNo === 120 || cateNo === 44 || cateNo === 671  || cateNo === 671
+	    	|| cateNo === 125  || cateNo === 127  || cateNo === 432 || cateNo === 431  || cateNo === 540 ) && menu_3ul) {
 	        menu_3ul.remove();
 	    } else {
 	        menu_3ul.querySelectorAll('li').forEach(item => {

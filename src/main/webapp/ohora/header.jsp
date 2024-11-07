@@ -76,11 +76,6 @@
         <div class="SP_top_wrap">
           <div class="layout_Top">
      <div class="xans-element- xans-layout xans-layout-statelogoff SP_gnb_inr">
-            
-        
-                    <a href="${pageContext.request.contextPath}/oho_mypage.do">
-				    <span class="title">마이페이지</span>
-					</a>
                  
 				<c:if test="${not empty sessionScope.userPk}">
 				    <a href="${pageContext.request.contextPath}/oho_mypage.do">
@@ -91,17 +86,15 @@
 					</a>
 				</c:if>
 				
-				
-				
-				    <c:if test="${empty sessionScope.userPk}">
-						<a href="${pageContext.request.contextPath}/RegisterHandlerstart.do">
-						    <span class="title">회원가입</span>
-						</a>
-				    <a href="${pageContext.request.contextPath}/ohora/login.jsp" class="log">
-				        <span class="title">로그인</span>
-				    </a>
-				    </c:if>
-             
+			    <c:if test="${empty sessionScope.userPk}">
+					<a href="${pageContext.request.contextPath}/RegisterHandlerstart.do">
+					    <span class="title">회원가입</span>
+					</a>
+			    <a href="${pageContext.request.contextPath}/ohora/login.jsp" class="log">
+			        <span class="title">로그인</span>
+			    </a>
+			    </c:if>
+            
             </div>
             
           </div>
@@ -135,31 +128,25 @@
                 <!-- 마우스 오버 시 나오는 영역(product) -->
                 <ul class="menu_2ul">
                   <li>
-                    <a href="${contextPath}/product/list.do?cate_no=160&currentPage=1"
-                      ><span>네일</span></a
-                    >
+                    <a href="${contextPath}/product/list.do?cate_no=160&currentPage=1"><span>네일</span></a>
                   </li>
                   <li>
-                    <a href="${contextPath}/product/list.do?cate_no=161&currentPage=1"
-                      ><span>페디</span></a
-                    >
+                    <a href="${contextPath}/product/list.do?cate_no=161&currentPage=1"><span>페디</span></a>
                   </li>
                   <li>
-                    <a href="${contextPath}/product/list.do?cate_no=49&currentPage=1"
-                      ><span>커스텀</span></a
-                    >
+                    <a href="${contextPath}/product/list.do?cate_no=49&currentPage=1"><span>커스텀</span></a>
                   </li>
                   <li>
-                    <a href="${contextPath}/product/list.do?cate_no=49&currentPage=1"
-                      ><span>케어 &amp; 툴</span></a
+                    <a href="${contextPath}/product/list.do?cate_no=49&currentPage=1"><span>케어 &amp; 툴</span></a
                     >
                   </li>
                 </ul>
                 <!-- //마우스 오버 시 나오는 영역(product) -->
               </li>
               <li class="eng_font menu_1li submenu">
-                <a href="${contextPath}/product/list.do?cate_no=671&currentPage=1">outlet</a>
+	              <a href="${contextPath}/product/list.do?cate_no=671&currentPage=1"><span>outlet</span></a>
               </li>
+              <li class="eng_font"><a href="${contextPath}/ohora/event_index.jsp">event</a></li>
               <li class="eng_font"><a href="${contextPath}/ohora/event_index.jsp">event</a></li>
               <li class="eng_font">
                 <a href="${contextPath}/ohora/howto.jsp">how to</a>
