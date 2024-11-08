@@ -20,6 +20,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="http://localhost/jspPro/resources/cdn-main/example.js"></script>
+<script src="../resources/js/cart_cookie.js"></script>
 <style>
 span.material-symbols-outlined {
 	vertical-align: text-bottom;
@@ -443,8 +444,9 @@ span.material-symbols-outlined {
 														</p>
 													</div>
 													<div class="cart-in">
-														<img src="../image/btn_list_cart.gif" alt="" onclick="" />
-													</div>
+								                        <img src="../resources/images/btn_list_cart.gif" data-pdtid="${pdt.pdt_id}" alt="장바구니 추가 버튼" />
+								                    </div>
+								                    
 												</div>
 											</dl>
 										</div>

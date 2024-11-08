@@ -13,6 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
 <link rel="stylesheet" href="../resources/cdn-main/oho_main.css">
+<script src="../resources/js/cart_cookie.js"></script>
  <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -162,9 +163,10 @@ System.out.print(" 로그인안함 userPk : " + userPk);
                             </div>
                         </div>
                     </div>
-
-                    <div class="into_cart">
-                        <img class="cart_icon" src="" alt="카트 가짜 아이콘">
+					<div class="cart-in">
+                        <img src="../resources/images/btn_list_cart.gif"
+                            data-pdtid="${pdt.pdt_id}"
+                            alt="장바구니 추가 버튼" />
                     </div>
 
                     <div class="only_info_dispNone">
@@ -262,8 +264,8 @@ System.out.print(" 로그인안함 userPk : " + userPk);
                         </div>
                     </div>
 
-                    <div class="into_cart">
-                        <img class="cart_icon" src="" alt="카트 가짜 아이콘">
+					<div class="cart-in">
+                        <img src="../resources/images/btn_list_cart.gif" data-pdtid="${pdt.pdt_id}" alt="장바구니 추가 버튼" />
                     </div>
 
                     <div class="only_info_dispNone">

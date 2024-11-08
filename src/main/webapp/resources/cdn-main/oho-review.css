@@ -188,17 +188,15 @@ textarea {
 
 .score-graph{
     /* 동적 */
-    width: max(100%, 12px);
+    background-color: #bcc2cc;
     height: 12px;
     border-radius: 8px;
 }
 
-.highest .score-graph{
+.highest {
     /* 동적 */
-    width: max(100%, 12px);
-    background-color: #14161a;
-    height: 12px;
-    border-radius: 8px;
+    background-color: #14161a !important;
+
 }
 
 /*  */
@@ -262,12 +260,14 @@ textarea {
 
 .prd-review-summary-contents{
     border-radius: 0;
-
-    cursor: pointer;
+   width: calc((100% - 56px) / 8 - 0.1px);
+    padding-bottom: calc((100% - 56px) / 8);
+        cursor: pointer;
     display: inline-block;
     overflow: hidden;
     position: relative;
     height: 0;
+    
 
 }
 
@@ -759,7 +759,7 @@ textarea {
 
 .cmtOn {
     opacity: 1;
-    max-height: 500px; /* 원하는 최대 높이로 설정 */
+    max-height: 800px; /* 원하는 최대 높이로 설정 */
 }
 
 .cmtOff {
@@ -832,6 +832,18 @@ textarea {
     width: 25%;
 }
 
+
+.rv-nameMsg {
+	
+	margin-bottom: 4px;
+    color: #14161a;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+        font-size: 12px;
+    line-height: 18px;
+}
+
 .rv-footer-wrap{
     text-align: center;
     padding-top: 25px;
@@ -867,3 +879,100 @@ textarea {
     line-height: 43px;
     text-align: center;
 }
+
+
+.write-comment-btn-wrap{
+	    display: block;
+	    
+    margin-top: 8px;
+    height: 40px;
+	    
+}
+
+
+
+.writeBtn-box{
+	    float: right;
+    font-size: 0;
+}
+
+.cancelWriting{
+	border: solid 1px #d8dde5;
+    background-color: #ffffff;
+    color: #14161a;
+        padding: 0 18px;
+    height: 34px;
+    border-radius: 4px;
+    cursor: pointer;
+        font-size: 12px;
+    line-height: 18px;
+    transition: opacity 1s;
+}
+
+
+.disBtn{
+	
+    opacity: 0.5 !important;
+    pointer-events: none !important;
+    
+        border-color: #bcc2cc !important;
+    background-color: #bcc2cc !important;
+    
+        margin-left: 8px !important;
+   
+        color: #ffffff !important;
+        padding: 0 18px !important;
+    height: 34px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+font-size: 12px !important;
+    line-height: 18px !important;
+    
+}
+
+.submitComment{
+	    margin-left: 8px;
+    border: solid 1px #14161a;
+    background-color: #14161a;
+    color: #ffffff;
+    
+        padding: 0 18px;
+    height: 34px;
+    border-radius: 4px;
+    cursor: pointer;
+    
+        font-size: 12px;
+    line-height: 18px;
+}
+
+
+.videoWrap{
+	margin-left: 8px;
+	border-radius: 0;
+	cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    height: 0;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    height: 0;
+
+
+}
+
+
+.videoBox{
+	top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+        position: absolute;
+    border-radius: 4px;
+        width: 100%;
+    transition-duration: 0.45s;    
+    object-fit: cover;
+}
+
+
