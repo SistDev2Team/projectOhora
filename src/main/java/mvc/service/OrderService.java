@@ -20,7 +20,6 @@ public class OrderService {
 			conn = ConnectionProvider.getConnection();
 			// 트랜잭션 처리
 			conn.setAutoCommit(false);
-			System.out.println("오토커밋 false");
 			
 			// 주문 INSERT
 			String orderId = dao.insertOrder(conn, userPk, icpnId, ordName, ordAddress, zipCode, ordTel, ordEmail, ordPassword
@@ -64,14 +63,12 @@ public class OrderService {
 			conn.commit();
 			System.out.println("커밋 완료");
 			conn.setAutoCommit(true);
-			System.out.println("오토커밋 true");
 			return orderId;
 		} catch (Exception e) {
 			JdbcUtil.rollback(conn);
 			System.out.println("롤백..");
 			try {
 				conn.setAutoCommit(true);
-				System.out.println("오토커밋 true");
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}

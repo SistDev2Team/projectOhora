@@ -263,7 +263,6 @@ span.material-symbols-outlined {
 							</table>
 						</div>
 						<!----------------------------------- //선택 상품 출력 영역 ----------------------------------->
-
 <script>
 $(document).ready(function () {
     
@@ -305,49 +304,54 @@ $(document).ready(function () {
 
         // 동적으로 생성된 <tr>을 add_products 테이블에 추가
         $(".add_products").append(newProductRow);
-
-        // 삭제 이벤트
-        $(".delete").off("click").on("click", function () {
-            $(this).closest("tr").remove();  // 해당 <tr> 삭제
-            $(".add-opt-click a").data("added", false);
-        });
-        
-        // 수량 감소 버튼 클릭 시
-        $(".add_products").on("click", ".down", function() {
-            const $row = $(this).closest("tr"); // 현재 버튼의 상위 <tr> 요소
-            const $quantityInput = $row.find(".quantity_opt"); // 해당 행의 수량 input 필드
-            let currentValue = parseInt($quantityInput.val());
-            // 수량 감소, 1보다 작아지지 않도록 설정
-            if (!isNaN(currentValue) && currentValue > 1) {
-                $quantityInput.val(currentValue - 1);
-                updateAmount($row); // 수량 변경 후 amount 업데이트
-            }
-        });
-
-        // 수량 입력 값 변경 시 (직접 입력 시에도 업데이트)
-        $(".add_products").on("input", ".quantity_opt", function() {
-            const $row = $(this).closest("tr"); // 현재 input의 상위 <tr> 요소
-            updateAmount($row); // 수량 변경 후 amount 업데이트
-        });
-
-        // 수량 변경 후 amount 업데이트 함수
-        function updateAmount($row) {
-            const quantity = parseInt($row.find(".quantity_opt").val());
-            const price = productDiscountAmount; // 고정된 상품 가격 사용
-            const amount = quantity * price; // 총액 계산
-            $row.find(".ec-front-product-item-price").text(formatPrice(amount)); // 총액 업데이트
-        }
-
-        // 가격을 #,##0 형식으로 포맷하는 함수
-        function formatPrice(price) {
-            return price.toLocaleString('ko-KR'); // 한글 로케일로 천 단위 구분 기호 추가
-        }
-
-        // count 증가
-        count++;  
     });
+	    
+	 // 가격을 #,##0 형식으로 포맷하는 함수
+    function formatPrice(price) {
+        return new Intl.NumberFormat('ko-KR').format(price);
+    }
+    
 });
 </script>
+
+<script>
+function changeOptionQuantity(amount, basePrice) {
+    const quantityInput = document.getElementById("quantity_clone");
+    const totalQuantity = document.getElementById("totalQuantityDisplay");
+    const totalAmount = document.getElementById("totalAmount");
+
+    let currentQuantity = parseInt(quantityInput.value);
+    let newQuantity = currentQuantity + amount;
+
+    if (newQuantity < 1) {
+        newQuantity = 1;
+    }
+
+    quantityInput.value = newQuantity;
+    totalQuantity.textContent = newQuantity;
+    totalAmount.textContent = new Intl.NumberFormat().format(basePrice * newQuantity);
+}
+</script>
+
+<script>
+function changeQuantity(amount, basePrice) {
+    const quantityInput = document.getElementById("quantity_clone");
+    const totalQuantity = document.getElementById("totalQuantityDisplay");
+    const totalAmount = document.getElementById("totalAmount");
+
+    let currentQuantity = parseInt(quantityInput.value);
+    let newQuantity = currentQuantity + amount;
+
+    if (newQuantity < 1) {
+        newQuantity = 1;
+    }
+
+    quantityInput.value = newQuantity;
+    totalQuantity.textContent = newQuantity;
+    totalAmount.textContent = new Intl.NumberFormat().format(basePrice * newQuantity);
+}
+</script>
+
 
 
 						<!----------------------------------- 최종 금액 ----------------------------------->
@@ -1136,24 +1140,6 @@ $(document).ready(function () {
     }
 </script>
 
-<script>
-function changeQuantity(amount, basePrice) {
-    const quantityInput = document.getElementById("quantity_clone");
-    const totalQuantity = document.getElementById("totalQuantityDisplay");
-    const totalAmount = document.getElementById("totalAmount");
-
-    let currentQuantity = parseInt(quantityInput.value);
-    let newQuantity = currentQuantity + amount;
-
-    if (newQuantity < 1) {
-        newQuantity = 1;
-    }
-
-    quantityInput.value = newQuantity;
-    totalQuantity.textContent = newQuantity;
-    totalAmount.textContent = new Intl.NumberFormat().format(basePrice * newQuantity);
-}
-</script>
 
 <!-- 가로스크롤 -->
 <script>

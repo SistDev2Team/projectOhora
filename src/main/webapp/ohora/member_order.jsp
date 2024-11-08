@@ -34,12 +34,14 @@
             <div class="shippingInfo-container">
 
                 <div class="contents">
-        
+        			
                     <div id="recent-info-container"> 
                     <!-- 여기서 최근배송지/ 직접입력 갖고있음  -->
+                    <c:if test="${not empty userDTO }">
                         <div class="tab-wrap">
                             <ul class="for-real-addr-wrap">
                                 <!-- 선택된 탭li 는 class에 selected 추가됨 -->
+                                
                                 <c:choose>
 								    <c:when test="${ empty addrList }">
 								        <li id="addrinput1">
@@ -95,7 +97,7 @@
                                         <span id="addrZipCode">${empty addrList ? '' : addrList[0].addr_zipcode }</span>
                                         ]
                                         <span id="addrText">
-                                            ${empty addrList ? '' : addrList[0].addr_address }
+                                            ${empty addrList ? '' : addrList[0].addr_address_main }
                                         </span>
                                     </p>
 
@@ -192,9 +194,11 @@
                             </div>                   
                         </div>
                         <!-- 최근 배송지 끝 -->
+                        </c:if>
 
                         <div id="selfInputAddr-form" style="display:${empty addrList ? 'block' : 'none'}">
                             <!-- 직접입력탭. display none으로 가려져있음 -->
+                            <c:if test="${not empty userDTO }">
                             <div class="radioBtn-wrap">
                                 <input type="radio" id="sameAddr" name="sameAddr" checked>
                                 <label for="sameAddr">회원 정보와 동일</label>
@@ -203,7 +207,7 @@
                                 <input type="radio" id="newAddr" name="sameAddr">
                                 <label for="newAddr">새로운 배송지</label>
                             </div>
-
+							</c:if>
                             <div class="inputTable-wrap">
                                 <table>
                                     
@@ -247,10 +251,11 @@
                                                     </li>
                                                     <li id="receiver-baseAddr-wrap">
                                                        <input type="text" id="raddr1" name="raddr1" placeholder="기본주소" class="inputTypeText" 
-                                                        maxlength="100" readonly value="${empty addrList ? '' : addrList[0].addr_address }">
+                                                        maxlength="100" readonly value="${empty addrList ? '' : addrList[0].addr_address_main }">
                                                     </li>
                                                     <li id="receiver-baseAddr-wrap2">
-                                                        <input type="text" id="raddr2" name="raddr2" placeholder="상세주소를 입력하세요" class="inputTypeText" maxlength="255">
+                                                        <input type="text" id="raddr2" name="raddr2" placeholder="상세주소를 입력하세요" class="inputTypeText"
+                                                         maxlength="255" value="${empty addrList ? '' : addrList[0].addr_address_detail }">
                                                     </li>
                                                 </ul>
                                                 /
@@ -338,6 +343,7 @@
                             <!-- 애프터로 선하나 긋는데 굳이? -->
                         </div>
                     </div>
+                    
                     <!-- 최근배송지/ 직접입력 구간 끝 -->
                     <div class="deliMsg-wrap">
                         <select name="deliMsg_sel" id="deliMsg_sel">
@@ -536,7 +542,7 @@
         </div>
     </div>
 
-
+	<c:if test="${not empty userDTO }">
     <div class="usePoint-container">
         <div id="usePoint-wrap">
             <div id="point_dc">
@@ -558,7 +564,7 @@
                         <span class="dcPriceBox">
                            
                             <span class="totalDc">
-                                3,000
+                                0
                             </span>
                             <input type="hidden" name="icpnId" value="0">
                             <input type="hidden" name="icpnDc" value="3000">
@@ -602,7 +608,7 @@
         </div>
     </div>
     <!-- 적립금 끝 -->
-
+	</c:if>
     <div id="final-price-container">
         <div id="final-price-title">
             <h2>최종 결제 정보</h2>
@@ -672,6 +678,7 @@
         <div class="pmContents">
             <div class="segment">
                 <ul class="payMethod-ul">
+                <c:if test="${not empty userDTO }">
                     <li class="payMethodRecent-li">
                         <!-- 라디오 누를 때 li에 셀렉트 줬다뺏다로 css 처리함  -->
                         <input type="radio" name="payMethod" id="payMethod-recent" checked>
@@ -684,13 +691,15 @@
                             <!-- 최근에 결제한 수단명 -->
                         </div>
                     </li>
-
+				</c:if>
                     <li class="payMethodNew-li">
                         <!-- 다른 결제수단 누르면 여기로 selected -->
                         <input type="radio" name="payMethod" id="payMethod-new">
                         <label for="payMethod-new">
                             <!-- 비포어로 라디오 부분 -->
+                            <c:if test="${not empty userDTO }">
                              <span>다른</span>
+                             </c:if>
                              결제수단
                         </label>
 

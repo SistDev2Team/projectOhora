@@ -1,8 +1,8 @@
 $("#btn_payment").on("click", function(event){
-	if ($("#rzipcode1").val() && $("#raddr1").val()){
+	if ($("#rzipcode1").val() && $("#raddr1").val() && $("#raddr2").val() && $("#rphone2_2").val() && $("#rphone2_3").val() && $("#email1").val()){
 		$("#order_form").submit();
 	} else{
-		alert("배송지를 입력하세요")
+		alert("배송지 정보를 입력하세요")
 		event.preventDefault();
 	}
 })

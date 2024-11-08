@@ -20,20 +20,13 @@ public class OrderPageHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("OrderPageHandler process..");
-		/*
-		 * HttpSession session = request.getSession(); 
-		 * int userPk = (int) session.getAttribute("userPk");
-		 * 
-		 * if (userPk == null) {
-		 * 
-		 * }
-		 * 
-		 * String[] pdt_id = request.getParameterValues("pdt_ids");
-		 * 
-		 */
+
 		int userPk = 0;
 		HttpSession session = request.getSession();
-	    userPk = (int) session.getAttribute("userPk");
+		if (session.getAttribute("userPk") != null) {
+			userPk = (int) session.getAttribute("userPk");
+		}
+	    
 	    System.out.println(userPk);
 		
 		String[] pdtidArr = request.getParameterValues("pdtId");
@@ -57,15 +50,15 @@ public class OrderPageHandler implements CommandHandler {
 		ArrayList<ProductDTO> pdtList = null;
 		
 		try {
-			
-			userDTO = orderPageService.getUserInfo(userPk);
+			if (userPk != 0) {
+				userDTO = orderPageService.getUserInfo(userPk);
+				addrList = orderPageService.getAddrList(userPk);
+				couponList = orderPageService.getCouponList(userPk);
+			}
 			
 			if (pdtidArr != null) {
 				pdtList = orderPageService.getProductList(pdtidArr);
 			}
-			
-			addrList = orderPageService.getAddrList(userPk);
-			couponList = orderPageService.getCouponList(userPk);
 
 			if (userDTO != null) {
 				emailArr = userDTO.getUser_email() != null ? userDTO.getUser_email().split("@") : new String[]{"", ""};

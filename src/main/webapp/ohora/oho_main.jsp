@@ -165,7 +165,7 @@ System.out.print(" 로그인안함 userPk : " + userPk);
                     </div>
 					<div class="cart-in">
                         <img src="../resources/images/btn_list_cart.gif"
-                            data-pdtid="${pdt.pdt_id}"
+                            data-pdtid="${newPrd.pdt_id}"
                             alt="장바구니 추가 버튼" />
                     </div>
 
@@ -265,7 +265,7 @@ System.out.print(" 로그인안함 userPk : " + userPk);
                     </div>
 
 					<div class="cart-in">
-                        <img src="../resources/images/btn_list_cart.gif" data-pdtid="${pdt.pdt_id}" alt="장바구니 추가 버튼" />
+                        <img src="../resources/images/btn_list_cart.gif" data-pdtid="${bestPrd.pdt_id}" alt="장바구니 추가 버튼" />
                     </div>
 
                     <div class="only_info_dispNone">

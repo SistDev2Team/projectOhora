@@ -17,11 +17,11 @@ public class OrderHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("OrderHandler...");
-		//TODO
 		int userPk = 0;
 		HttpSession session = request.getSession();
-	    userPk = (int) session.getAttribute("userPk");
-	    System.out.println(userPk);
+		if (session.getAttribute("userPk") != null) {
+			userPk = (int) session.getAttribute("userPk");
+		}
 		
 		String orderId = null;
 		String rname = request.getParameter("rname");
@@ -53,7 +53,7 @@ public class OrderHandler implements CommandHandler {
 		for (int i = 0; i < pdtNames.length; i++) {
 			System.out.println("주문제품id: "+pdtNames[i] + ", 주문제품수량: "+pdtCounts[i]+", 주문제품가격: "+pdtAmounts[i]+", 주문제품할인가격: "+pdtDcAmounts[i]);
 		}
-				
+		
 		int totalSum = Integer.parseInt(request.getParameter("totalSum"));
 		int discountSum = Integer.parseInt(request.getParameter("discountSum"));
 		int input_point = 0;

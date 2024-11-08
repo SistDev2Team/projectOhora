@@ -129,7 +129,7 @@ public class OrderDAOImpl implements OrderDAO{
 		        	addr_name = rs.getString("addr_name");
 		        	addr_htel = rs.getString("addr_htel");
 		        	addr_tel = rs.getString("addr_tel");
-		        	addr_address_main = rs.getString("addr_address");
+		        	addr_address_main = rs.getString("addr_address_main");
 		        	addr_address_detail = rs.getString("addr_address_detail");
 		        	addr_zipcode = rs.getString("addr_zipcode");
 		        	addr_main = rs.getString("addr_main");
@@ -345,7 +345,7 @@ public class OrderDAOImpl implements OrderDAO{
 			throws SQLException {
 		this.conn = conn;
 		int seq = 0;
-		String state = "결제완료";
+		String state = "상품준비중";
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT O_ORDER_SEQ.CURRVAL FROM DUAL ");
@@ -353,7 +353,7 @@ public class OrderDAOImpl implements OrderDAO{
 				seq = rs.getInt(1);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 		String sql = "INSERT INTO O_ORDDETAIL (OPDT_ID, ORD_PK, OPDT_NAME, OPDT_AMOUNT, OPDT_DCAMOUNT, OPDT_OPNAME, OPDT_OPAMOUNT"
