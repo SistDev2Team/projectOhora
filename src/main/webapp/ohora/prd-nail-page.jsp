@@ -444,7 +444,7 @@ span.material-symbols-outlined {
 														</p>
 													</div>
 													<div class="cart-in">
-								                        <img src="../resources/images/btn_list_cart.gif" data-pdtid="${pdt.pdt_id}" alt="장바구니 추가 버튼" />
+								                        <img src="../resources/images/btn_list_cart.gif" data-pdtId="${pdt.pdt_id}" alt="장바구니 추가 버튼" />
 								                    </div>
 								                    
 												</div>

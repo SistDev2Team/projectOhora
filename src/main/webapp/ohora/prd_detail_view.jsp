@@ -109,9 +109,9 @@ span.material-symbols-outlined {
 										<li class="xans-record- SP_dfList_quantity"
 											style="display: list-item;"><span class="title">수량</span>
 											<div class="SP_detail_content">
-											    <a href="#none" class="down" onclick="changeQuantity(-1, ${pdtDetail.pdt_discount_amount})"></a>
-											    <input id="quantity_clone" value="1" type="text" readonly="">
-											    <a href="#none" class="up" onclick="changeQuantity(1, ${pdtDetail.pdt_discount_amount})"></a>
+											    <a href="#none" class="down" ></a>
+											    <input id="quantity_opt" class="quantity_opt" value="1" type="text" readonly="">
+											    <a href="#none" class="up" ></a>
 											</div>
 										</li>
 									</c:when>
@@ -263,94 +263,7 @@ span.material-symbols-outlined {
 							</table>
 						</div>
 						<!----------------------------------- //선택 상품 출력 영역 ----------------------------------->
-<script>
-$(document).ready(function () {
-    
-    $(".add-opt-click a").on("click", function() {
-        const $this = $(this);  // 현재 클릭된 '추가' 버튼
-        let count = 1; // count 초기화 (각 추가된 항목에 대한 인덱스 추적)
-
-        // 이미 추가된 상품인지 확인 (data-added 속성을 사용)
-        if ($this.data("added")) {
-            alert("해당 옵션이 이미 추가되었습니다.");
-            return;  // 이미 추가되었으면 함수 종료
-        }
-
-        // 현재 클릭된 버튼의 부모 <li> 요소에서 텍스트 추출
-        const productNameElement = $this.closest("li").find(".SP_prdAddSetList .SP_addSetList_tt .SP_prdAddSet_cont.SP_prdAddSet_prdtt");
-        const productName = productNameElement.text().trim();  // 상품명 추출
-        const productId = $this.closest("li").data("prd-num"); // 상품의 pdt_id (data-prd-num)
-        var productDiscountAmount = parseInt($this.closest("li").find(".SP_prdAddSet_price span").text().trim().replace(/[^0-9.-]+/g, "")); // 할인가 (정수로 변환)
-
-        // 새로운 <tr> 태그 생성
-        const newProductRow = `<tr class="add_product" data-option-add-index="\${count}">
-            <td>
-                <p class="product">\${productName}<br> - <span>\${productName}</span></p>
-            </td>
-            <td>
-                <span class="quantity" style="width:65px;">
-                    <input type="text" name="quantity_opt[]" class="quantity_opt" value="1" product-no="\${productId}">
-                    <a href="#none" class="up"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif" alt="수량증가"></a>
-                    <a href="#none" class="down"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif" alt="수량감소"></a>
-                </span>
-                <a href="#none" class="delete"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_price_delete.gif" alt="삭제"></a>
-            </td>
-            <td class="right">
-                <span>
-                    <span class="ec-front-product-item-price">\${formatPrice(productDiscountAmount)}</span>
-                </span>
-            </td>
-        </tr>`;
-
-        // 동적으로 생성된 <tr>을 add_products 테이블에 추가
-        $(".add_products").append(newProductRow);
-    });
-	    
-	 // 가격을 #,##0 형식으로 포맷하는 함수
-    function formatPrice(price) {
-        return new Intl.NumberFormat('ko-KR').format(price);
-    }
-    
-});
-</script>
-
-<script>
-function changeOptionQuantity(amount, basePrice) {
-    const quantityInput = document.getElementById("quantity_clone");
-    const totalQuantity = document.getElementById("totalQuantityDisplay");
-    const totalAmount = document.getElementById("totalAmount");
-
-    let currentQuantity = parseInt(quantityInput.value);
-    let newQuantity = currentQuantity + amount;
-
-    if (newQuantity < 1) {
-        newQuantity = 1;
-    }
-
-    quantityInput.value = newQuantity;
-    totalQuantity.textContent = newQuantity;
-    totalAmount.textContent = new Intl.NumberFormat().format(basePrice * newQuantity);
-}
-</script>
-
-<script>
-function changeQuantity(amount, basePrice) {
-    const quantityInput = document.getElementById("quantity_clone");
-    const totalQuantity = document.getElementById("totalQuantityDisplay");
-    const totalAmount = document.getElementById("totalAmount");
-
-    let currentQuantity = parseInt(quantityInput.value);
-    let newQuantity = currentQuantity + amount;
-
-    if (newQuantity < 1) {
-        newQuantity = 1;
-    }
-
-    quantityInput.value = newQuantity;
-    totalQuantity.textContent = newQuantity;
-    totalAmount.textContent = new Intl.NumberFormat().format(basePrice * newQuantity);
-}
-</script>
+<!-- 페이지 콘텐츠 -->
 
 
 
@@ -1163,8 +1076,137 @@ document.querySelector(".SP_prdAddSetToggle").onclick = function() {
     }
 };
 </script>
+<script>
+$(document).ready(function () {
+    let maxCount = $(".add-opt-click a").length; // 최대 개수 (예: 추가구성상품의 갯수)
 
+    // '추가' 버튼 클릭 이벤트
+    $(document).on("click", ".add-opt-click a", function() {
+        if ($(".add_product").length >= maxCount) {
+            alert("더 이상 추가할 수 없습니다.");
+            return; 
+        }
 
+        const $this = $(this);
+        const productId = $this.closest("li").data("prd-num");
+
+        // 중복 확인
+        if ($(`tr[data-product-id='\${productId}']`).length > 0) {
+            alert("해당 옵션이 이미 추가되었습니다.");
+            return;
+        }
+
+        const productName = $this.closest("li").find(".SP_prdAddSet_cont.SP_prdAddSet_prdtt").text().trim();
+        const productDiscountAmount = parseInt($this.closest("li").find(".SP_prdAddSet_price span").text().trim().replace(/[^0-9.-]+/g, ""));
+
+        const newProductRow = `<tr class="add_product" data-product-id="\${productId}">
+            <td>
+                <p class="product">\${productName}<br> - <span>\${productName}</span></p>
+            </td>
+            <td>
+                <span class="quantity" style="width:65px;">
+                    <input type="text" name="quantity_opt[]" class="quantity_opt" value="1" product-no="\${productId}">
+                    <a href="#none" class="up"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif" alt="수량증가"></a>
+                    <a href="#none" class="down"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif" alt="수량감소"></a>
+                </span>
+                <a href="#none" class="delete"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_price_delete.gif" alt="삭제"></a>
+            </td>
+            <td class="right">
+                <span class="ec-front-product-item-price">\${formatPrice(productDiscountAmount)}</span>
+            </td>
+        </tr>`;
+
+        $(".add_products").append(newProductRow);
+        updateTotal();
+    });
+    
+
+    // 수량 증가 및 감소 이벤트
+    $(document).on("click", ".quantity .up", function () {
+        const $quantityInput = $(this).siblings("input.quantity_opt");
+        let currentQuantity = parseInt($quantityInput.val(), 10);
+        const pricePerUnit = parseInt($(this).closest("tr").find(".ec-front-product-item-price").text().replace(/[^0-9.-]+/g, ""), 10) / currentQuantity;
+
+        currentQuantity++;
+        $quantityInput.val(currentQuantity);
+        updateAmount($(this).closest("tr"), pricePerUnit * currentQuantity);
+        updateTotal();
+    });
+
+    $(document).on("click", ".quantity .down", function () {
+        const $quantityInput = $(this).siblings("input.quantity_opt");
+        let currentQuantity = parseInt($quantityInput.val(), 10);
+        const pricePerUnit = parseInt($(this).closest("tr").find(".ec-front-product-item-price").text().replace(/[^0-9.-]+/g, ""), 10) / currentQuantity;
+
+        if (currentQuantity > 1) {
+            currentQuantity--;
+            $quantityInput.val(currentQuantity);
+            updateAmount($(this).closest("tr"), pricePerUnit * currentQuantity);
+            updateTotal();
+        }
+    });
+
+    // 수량 증가 및 감소 이벤트
+    $(document).on("click", ".SP_detail_content .up", function () {
+        const $quantityInput = $(this).siblings("input.quantity_opt");
+        let currentQuantity = parseInt($quantityInput.val(), 10);
+        const pricePerUnit = parseInt($(".SP_detail_content .salesPrice").text().replace(/[^0-9.-]+/g, ""), 10);
+        
+        console.log(currentQuantity);
+        console.log(pricePerUnit);
+
+        currentQuantity++;
+        $quantityInput.val(currentQuantity);
+        updateTotal();
+    });
+
+    $(document).on("click", ".SP_detail_content .down", function () {
+        const $quantityInput = $(this).siblings("input.quantity_opt");
+        let currentQuantity = parseInt($quantityInput.val(), 10);
+        const pricePerUnit = parseInt($(".SP_detail_content .salesPrice").text().replace(/[^0-9.-]+/g, ""), 10);
+
+        if (currentQuantity > 1) {
+            currentQuantity--;
+            $quantityInput.val(currentQuantity);
+            updateTotal();
+        }
+    });
+    
+    // 삭제 이벤트
+    $(document).on("click", ".delete", function () {
+        $(this).closest("tr").remove();
+        updateTotal();
+    });
+
+    // 합계 금액 업데이트 함수
+    function updateAmount($row, newTotal) {
+        $row.find(".ec-front-product-item-price").text(formatPrice(newTotal));
+    }
+
+ 	// 전체 수량과 합계 금액 업데이트
+    function updateTotal() {
+        let totalQuantity = 0;
+        let totalAmount = 0;
+
+        $(".add_product").each(function () {
+            const quantity = parseInt($(this).find(".quantity_opt").val(), 10);
+            const amount = parseInt($(this).find(".ec-front-product-item-price").text().replace(/[^0-9.-]+/g, ""), 10);
+            
+            totalQuantity += quantity;
+            totalAmount += amount;
+        });
+
+        $("#totalQuantityDisplay").text(totalQuantity);
+        $("#totalAmount").text(formatPrice(totalAmount));
+    }
+
+    // 가격 포맷 함수
+    function formatPrice(price) {
+        return price.toLocaleString('ko-KR');
+    }
+    
+});
+</script>
   
 			<%@include file="footer.jsp"%>
 </body>
