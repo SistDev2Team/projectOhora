@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import net.sf.json.JSONObject;
 import ohora.domain.AddrDTO;
 import ohora.domain.DeptVO;
@@ -91,6 +93,14 @@ public interface OhoraDAO {
 	//댓글 더보기
 	JSONObject selectMoreReview(Connection conn, int currentRevCnt, int pdtId, String sort) throws SQLException;
 
+	ProductDTO getProductById(String pdtid) throws SQLException;
 
+	ArrayList<ProductDTO> selectProductList(String[] pdtidArr) throws SQLException;
+
+	// 장바구니에 담긴 전체 상품 합계 출력
+	List<ProductDTO> getCartItems(List<String> pdtIds) throws SQLException;
+	
+	// 회원 장바구니 버튼 클릭 시 디비 저장 ajax
+	int addCart(int userId, int pdtId, HttpServletRequest request);
 	
 }

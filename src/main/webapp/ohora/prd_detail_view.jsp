@@ -1121,57 +1121,31 @@ $(document).ready(function () {
     });
     
 
-    // 수량 증가 및 감소 이벤트
+    // 추가구성상품 수량 증가 및 감소 이벤트
     $(document).on("click", ".quantity .up", function () {
-        const $quantityInput = $(this).siblings("input.quantity_opt");
-        let currentQuantity = parseInt($quantityInput.val(), 10);
+        const quantityInput = $(this).siblings("input.quantity_opt");
+        let currentQuantity = parseInt(quantityInput.val(), 10);
         const pricePerUnit = parseInt($(this).closest("tr").find(".ec-front-product-item-price").text().replace(/[^0-9.-]+/g, ""), 10) / currentQuantity;
 
         currentQuantity++;
-        $quantityInput.val(currentQuantity);
+        quantityInput.val(currentQuantity);
         updateAmount($(this).closest("tr"), pricePerUnit * currentQuantity);
         updateTotal();
     });
 
     $(document).on("click", ".quantity .down", function () {
-        const $quantityInput = $(this).siblings("input.quantity_opt");
-        let currentQuantity = parseInt($quantityInput.val(), 10);
+        const quantityInput = $(this).siblings("input.quantity_opt");
+        let currentQuantity = parseInt(quantityInput.val(), 10);
         const pricePerUnit = parseInt($(this).closest("tr").find(".ec-front-product-item-price").text().replace(/[^0-9.-]+/g, ""), 10) / currentQuantity;
 
         if (currentQuantity > 1) {
             currentQuantity--;
-            $quantityInput.val(currentQuantity);
+            quantityInput.val(currentQuantity);
             updateAmount($(this).closest("tr"), pricePerUnit * currentQuantity);
             updateTotal();
         }
     });
 
-    // 수량 증가 및 감소 이벤트
-    $(document).on("click", ".SP_detail_content .up", function () {
-        const $quantityInput = $(this).siblings("input.quantity_opt");
-        let currentQuantity = parseInt($quantityInput.val(), 10);
-        const pricePerUnit = parseInt($(".SP_detail_content .salesPrice").text().replace(/[^0-9.-]+/g, ""), 10);
-        
-        console.log(currentQuantity);
-        console.log(pricePerUnit);
-
-        currentQuantity++;
-        $quantityInput.val(currentQuantity);
-        updateTotal();
-    });
-
-    $(document).on("click", ".SP_detail_content .down", function () {
-        const $quantityInput = $(this).siblings("input.quantity_opt");
-        let currentQuantity = parseInt($quantityInput.val(), 10);
-        const pricePerUnit = parseInt($(".SP_detail_content .salesPrice").text().replace(/[^0-9.-]+/g, ""), 10);
-
-        if (currentQuantity > 1) {
-            currentQuantity--;
-            $quantityInput.val(currentQuantity);
-            updateTotal();
-        }
-    });
-    
     // 삭제 이벤트
     $(document).on("click", ".delete", function () {
         $(this).closest("tr").remove();
@@ -1187,7 +1161,15 @@ $(document).ready(function () {
     function updateTotal() {
         let totalQuantity = 0;
         let totalAmount = 0;
+        
+        // 기존의 총 수량과 총 금액 가져오기
+        const existingTotalQuantity = parseInt($("#totalQuantityDisplay").text(), 10) || 0;
+        const existingTotalAmount = parseInt($("#totalAmount").text().replace(/[^0-9.-]+/g, ""), 10) || 0;
 
+        console.log("> totalQuantityDisplay : " + existingTotalQuantity);
+        console.log("> totalAmount : " + existingTotalAmount);
+        
+        
         $(".add_product").each(function () {
             const quantity = parseInt($(this).find(".quantity_opt").val(), 10);
             const amount = parseInt($(this).find(".ec-front-product-item-price").text().replace(/[^0-9.-]+/g, ""), 10);
@@ -1196,10 +1178,62 @@ $(document).ready(function () {
             totalAmount += amount;
         });
 
+        console.log("> totalQuantity : " + totalQuantity);
+        console.log("> quantity : " + quantity);
+        
         $("#totalQuantityDisplay").text(totalQuantity);
         $("#totalAmount").text(formatPrice(totalAmount));
     }
 
+    // 기존 상품 수량 증가 이벤트
+       $(document).on("click", ".SP_detail_content .up", function () {
+           const quantityInput = $(this).siblings("input.quantity_opt");
+           let currentQuantity = parseInt(quantityInput.val(), 10);
+           const pricePerUnit = parseInt($(".SP_detail_content .salesPrice").text().replace(/[^0-9.-]+/g, ""), 10);
+
+           // 수량 증가
+           currentQuantity++;
+
+           // 기존의 총 수량과 총 금액 가져오기
+           const existingTotalQuantity = parseInt($("#totalQuantityDisplay").text(), 10) || 0;
+           const existingTotalAmount = parseInt($("#totalAmount").text().replace(/[^0-9.-]+/g, ""), 10) || 0;
+
+           // 새로운 총 수량 및 총 금액 계산
+           const updatedTotalQuantity = existingTotalQuantity + 1;
+           const updatedTotalAmount = existingTotalAmount + pricePerUnit;
+
+           // 값 업데이트
+           quantityInput.val(currentQuantity);
+           $("#totalQuantityDisplay").text(updatedTotalQuantity);
+           $("#totalAmount").text(formatPrice(updatedTotalAmount));
+       });
+
+
+       $(document).on("click", ".SP_detail_content .down", function () {
+           const quantityInput = $(this).siblings("input.quantity_opt");
+           let currentQuantity = parseInt(quantityInput.val(), 10);
+           const pricePerUnit = parseInt($(".SP_detail_content .salesPrice").text().replace(/[^0-9.-]+/g, ""), 10);
+
+           if (currentQuantity > 1) {
+               currentQuantity--;
+
+               // 기존의 총 수량과 총 금액 가져오기
+               const existingTotalQuantity = parseInt($("#totalQuantityDisplay").text(), 10) || 0;
+               const existingTotalAmount = parseInt($("#totalAmount").text().replace(/[^0-9.-]+/g, ""), 10) || 0;
+
+               // 새로운 총 수량 및 총 금액 계산
+               const updatedTotalQuantity = existingTotalQuantity - 1;
+               const updatedTotalAmount = existingTotalAmount - pricePerUnit;
+
+               // 값 업데이트
+               quantityInput.val(currentQuantity);
+               $("#totalQuantityDisplay").text(updatedTotalQuantity);
+               $("#totalAmount").text(formatPrice(updatedTotalAmount));
+           }
+       });
+       
+ 	
+ 	
     // 가격 포맷 함수
     function formatPrice(price) {
         return price.toLocaleString('ko-KR');

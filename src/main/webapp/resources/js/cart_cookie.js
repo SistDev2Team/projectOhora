@@ -84,7 +84,7 @@ $(document).ready(function () {
     updateCartCount();
 
     $(document).on("click", ".cart-in img", function () {
-        const pdtId = $(this).data("pdtId");
+        const pdtId = $(this).data("pdtid");
         addToCart(pdtId);
         updateCartCount();
     });
