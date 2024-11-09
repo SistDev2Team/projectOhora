@@ -1161,28 +1161,23 @@ $(document).ready(function () {
     function updateTotal() {
         let totalQuantity = 0;
         let totalAmount = 0;
-        
-        // 기존의 총 수량과 총 금액 가져오기
-        const existingTotalQuantity = parseInt($("#totalQuantityDisplay").text(), 10) || 0;
-        const existingTotalAmount = parseInt($("#totalAmount").text().replace(/[^0-9.-]+/g, ""), 10) || 0;
+        let a = 0;
+        let b = 0;
 
-        console.log("> totalQuantityDisplay : " + existingTotalQuantity);
-        console.log("> totalAmount : " + existingTotalAmount);
-        
-        
         $(".add_product").each(function () {
-            const quantity = parseInt($(this).find(".quantity_opt").val(), 10);
+            const quantity = parseInt($(this).find(".quantity_opt").val(), 10);		// 선택한 input 태그의 value 값
             const amount = parseInt($(this).find(".ec-front-product-item-price").text().replace(/[^0-9.-]+/g, ""), 10);
             
             totalQuantity += quantity;
             totalAmount += amount;
+            a = quantity;
+            b = amount;
         });
-
-        console.log("> totalQuantity : " + totalQuantity);
-        console.log("> quantity : " + quantity);
+        const existingTotalQuantity = parseInt($("#totalQuantityDisplay").text(), 10) || 0;
+        const existingTotalAmount = parseInt($("#totalAmount").text().replace(/[^0-9.-]+/g, ""), 10) || 0;
         
-        $("#totalQuantityDisplay").text(totalQuantity);
-        $("#totalAmount").text(formatPrice(totalAmount));
+        $("#totalQuantityDisplay").text(existingTotalQuantity + a);
+        $("#totalAmount").text(formatPrice(existingTotalAmount + b));
     }
 
     // 기존 상품 수량 증가 이벤트

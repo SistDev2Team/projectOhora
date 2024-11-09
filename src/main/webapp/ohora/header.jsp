@@ -1,6 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%
+    Integer userPk = (Integer) session.getAttribute("userPk");
+    if (userPk == null) {
+        userPk = 0; // 기본값 설정
+    }
+%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
@@ -12,6 +18,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cdn-main/header.css">
+<script>
+	const userPk = <%= userPk %>;
+	console.log("userPk 값: " + userPk);
+</script>
+<style>
 <script src="http://localhost/jspPro/resources/cdn-main/example.js"></script>
   <link
       rel="stylesheet"
@@ -27,6 +38,7 @@
 </style>
   
 </head>
+<div id="userPk" data-user-pk="<%= userPk %>"></div>
 <div class="SP_topBanner" style="display: block">
       <div class="SP_layoutMin">
         <div class="SP_topBn_inr"></div>
@@ -160,7 +172,7 @@
             <div
               class="xans-element- xans-layout xans-layout-orderbasketcount small_icon m_cart common_cart"
             >
-              <a href="${contextPath}/ohora/offcart.jsp"
+              <a href="${contextPath}/product/cart.do"
                 ><b class="count EC-Layout-Basket-count">0</b></a
               >
             </div>
