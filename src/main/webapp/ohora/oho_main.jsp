@@ -2,13 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page trimDirectiveWhitespaces="true" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>오호라</title>
-<link rel="shortcut icon" type="image/x-icon" href="http://localhost/jspPro/images/SiSt.ico">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
@@ -24,7 +22,6 @@
 <%@include file="header.jsp" %>
 </head>
 <body>
-
 <%-- <% 
 Integer userPk = (Integer) session.getAttribute("userPk");
 if(userPk != null){
@@ -549,8 +546,90 @@ System.out.print(" 로그인안함 userPk : " + userPk);
         console.log("로그인 상태입니다. 쿠키 함수가 실행되지 않습니다.");
 
         // 비회원이 아닐 경우 클릭 이벤트를 제거하거나 다른 동작 설정
-        $(document).off("click", ".cart-in img");
-    }
+        $(document).on("click", ".cart-in img", function () {
+        	const pdtId = $(this).data("pdtid");
+        	checkCart(userPk, pdtId);
+	    });
+	}
+   
+    let isProcessing = false;
+    async function checkCart(userPk, pdtId) {
+		if (isProcessing) return;
+        isProcessing = true;
+        
+        try {
+            const response = await $.ajax({
+                url: "<%=contextPath %>/product/checkcart.ajax",
+                type: "POST",
+                dataType: "json",
+                data: { userPk, pdtId }
+            });
+
+            if (response.status === 'empty') {
+            	await addToUserCart(userPk, pdtId);
+            } else {
+            	if (confirm("장바구니에 동일한 상품이 있습니다.\r\n장바구니에 추가하시겠습니까?")) {
+                    await updateCart(userPk, pdtId);
+                }
+            }
+        } catch (error) {
+            console.error("error:", error);
+        } finally {
+            isProcessing = false;
+        }
+	 
+	}
+	
+	async function addToUserCart(userPk, pdtId) {
+	    try {
+	        const response = await $.ajax({
+	            url: "<%=contextPath %>/product/addcart.ajax",
+	            type: "POST",
+	            dataType: "json",
+	            data: { userPk, pdtId }
+	        });
+	        
+	        if (response.status === 'success'){
+	        	alert("상품이 장바구니에 추가되었습니다.");
+	        	$(".EC-Layout-Basket-count").text(response.count);
+	        } else{
+	        	alert("장바구니 추가 실패");
+	        }
+	    } catch (error) {
+	        console.error("insert failed:", error);
+	    }
+	}
+	
+	async function updateCart(userPk, pdtId) {
+	    try {
+	        const response = await $.ajax({
+	            url: "<%=contextPath %>/product/updatecart.ajax",
+	            type: "POST",
+	            dataType: "json",
+	            data: { userPk, pdtId }
+	        });
+	        
+	        if (response.status === 'success'){
+	        	alert("장바구니 상품 수량이 증가되었습니다.");
+	        } else{
+	        	alert("장바구니 추가 실패");
+	        }
+	    } catch (error) {
+	        console.error("update failed:", error);
+	    }
+	}
+   
+   function initCartCount(userPk){
+	   $.ajax({
+           url: "<%=contextPath %>/product/initcart.ajax",
+           type: "POST",
+           dataType: "json",
+           data: { userPk },
+           success: function (jsonResponse){
+        	   $(".EC-Layout-Basket-count").text(jsonResponse.count);
+          }
+       });
+   }
 
     // 비회원 장바구니 쿠키 함수
     const CookieUtil = {
@@ -634,7 +713,11 @@ System.out.print(" 로그인안함 userPk : " + userPk);
 
     // 초기화
     $(document).ready(function () {
-        updateCartCount();
+    	if (userPk == 0) {
+        	updateCartCount();    		
+    	} else{
+    		initCartCount(userPk);
+    	}
     });
 </script>
 

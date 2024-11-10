@@ -66,7 +66,7 @@ span.material-symbols-outlined {
 
 				<div class="btnArea">
 					<div class="btn">
-						<a href="../ohora/oho_main.jsp">계속 쇼핑하기</a>
+						<a href="${contextPath}/ohora/main.do">계속 쇼핑하기</a>
 						<!-- 일단 main으로 보냈는데
 						오호라는 여기로 날라감
 						https://www.ohora.kr/product/list.html?cate_no=120&page_num=1-->

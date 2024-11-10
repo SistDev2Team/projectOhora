@@ -18,6 +18,8 @@ import com.util.ConnectionProvider;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import ohora.domain.ProductDTO;
+import ohora.persistence.CartDAO;
+import ohora.persistence.CartDAOImpl;
 import ohora.persistence.OhoraDAO;
 import ohora.persistence.OhoraDAOImpl;
 
@@ -25,13 +27,14 @@ public class CartHandler implements CommandHandler {
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("CartHandler: process() 메서드 진입");
+        System.out.println("CartHandler process..");
         
         int userPk = 0;
         HttpSession session = request.getSession();
         if (session.getAttribute("userPk") != null) {
            userPk = (int) session.getAttribute("userPk");
         }
+        String auth = null;
         
         if (userPk == 0) {
         	String viewType = request.getParameter("viewType");
@@ -109,6 +112,7 @@ public class CartHandler implements CommandHandler {
                     return null;
                 } else {
                     request.setAttribute("cartItems", cartItems);
+                    request.setAttribute("auth", auth);
                     return "/ohora/iscart.jsp";
                 }
             } catch (SQLException e) {
@@ -118,11 +122,19 @@ public class CartHandler implements CommandHandler {
             }
         } else {
         	//로그인 상태
+        	auth = "auth";
+        	ArrayList<ProductDTO> cartItems = new ArrayList<>();
         	
+        	try (Connection conn = ConnectionProvider.getConnection()) {
+        		CartDAO dao = new CartDAOImpl(conn);
+        		cartItems = dao.getCartItems(userPk);
+        	}
+        	
+        	request.setAttribute("cartItems", cartItems);
+        	request.setAttribute("auth", auth);
+            return "/ohora/iscart.jsp";
         	
         }
-
-        return null;
     }
     
 }

@@ -6,6 +6,8 @@
     if (userPk == null) {
         userPk = 0; // 기본값 설정
     }
+    
+    String contextPath = request.getContextPath();
 %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
@@ -20,7 +22,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cdn-main/header.css">
 <script>
 	const userPk = <%= userPk %>;
-	console.log("userPk 값: " + userPk);
+	console.log("userPk 값<header>: " + userPk);
 </script>
 <style>
 <script src="http://localhost/jspPro/resources/cdn-main/example.js"></script>

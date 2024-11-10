@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page trimDirectiveWhitespaces="true" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -216,7 +217,14 @@
                                         </div>
 
                                         <!-- 버튼 영역 -->
-                                        <a href="#none" onclick="deleteItem(${status.index});" class="btnNormal SMScart_option_del_btnTD">삭제</a>
+                                        <c:choose>
+				                            <c:when test="${empty auth}">
+				                                <a href="#none" onclick="deleteItem(${status.index});" class="btnNormal SMScart_option_del_btnTD">삭제</a>
+				                            </c:when>
+				                            <c:otherwise>
+				                                <a href="${contextPath}/product/deletecart.do?pdtId=${dto.pdt_id}" class="btnNormal SMScart_option_del_btnTD">삭제</a>
+				                            </c:otherwise>
+				                        </c:choose>
                                         <div class="btnArea typeFull displaynone">
                                             <span class="gLeft">
                                                 <a href="#none" onclick="selBasketDel('basket_chk_id_${status.index}');"
@@ -1159,6 +1167,7 @@
         $(document).ready(function () {
             // 페이지 로드 시 장바구니 카운트 초기화
             updateCartCount();
+            
 
             // 장바구니 추가 버튼 클릭 시
             $(document).on("click", ".cart-in img", function () {

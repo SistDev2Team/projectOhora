@@ -100,7 +100,4 @@ public interface OhoraDAO {
 	// 장바구니에 담긴 전체 상품 합계 출력
 	List<ProductDTO> getCartItems(List<String> pdtIds) throws SQLException;
 	
-	// 회원 장바구니 버튼 클릭 시 디비 저장 ajax
-	int addCart(int userId, int pdtId, HttpServletRequest request);
-	
 }

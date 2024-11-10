@@ -752,7 +752,7 @@ span.material-symbols-outlined {
 	</div>
 	
 	
-	   <script>
+<script>
    // 쿠키 생성 스크립트
     // 비회원 상태일 경우
     if (userPk == 0) {
@@ -769,8 +769,90 @@ span.material-symbols-outlined {
         console.log("로그인 상태입니다. 쿠키 함수가 실행되지 않습니다.");
 
         // 비회원이 아닐 경우 클릭 이벤트를 제거하거나 다른 동작 설정
-        $(document).off("click", ".cart-in img");
-    }
+        $(document).on("click", ".cart-in img", function () {
+        	const pdtId = $(this).data("pdtid");
+        	checkCart(userPk, pdtId);
+	    });
+	}
+   
+    let isProcessing = false;
+    async function checkCart(userPk, pdtId) {
+		if (isProcessing) return;
+        isProcessing = true;
+        
+        try {
+            const response = await $.ajax({
+                url: "<%=contextPath %>/product/checkcart.ajax",
+                type: "POST",
+                dataType: "json",
+                data: { userPk, pdtId }
+            });
+
+            if (response.status === 'empty') {
+            	await addToUserCart(userPk, pdtId);
+            } else {
+            	if (confirm("장바구니에 동일한 상품이 있습니다.\r\n장바구니에 추가하시겠습니까?")) {
+                    await updateCart(userPk, pdtId);
+                }
+            }
+        } catch (error) {
+            console.error("error:", error);
+        } finally {
+            isProcessing = false;
+        }
+	 
+	}
+	
+	async function addToUserCart(userPk, pdtId) {
+	    try {
+	        const response = await $.ajax({
+	            url: "<%=contextPath %>/product/addcart.ajax",
+	            type: "POST",
+	            dataType: "json",
+	            data: { userPk, pdtId }
+	        });
+	        
+	        if (response.status === 'success'){
+	        	alert("상품이 장바구니에 추가되었습니다.");
+	        	$(".EC-Layout-Basket-count").text(response.count);
+	        } else{
+	        	alert("장바구니 추가 실패");
+	        }
+	    } catch (error) {
+	        console.error("insert failed:", error);
+	    }
+	}
+	
+	async function updateCart(userPk, pdtId) {
+	    try {
+	        const response = await $.ajax({
+	            url: "<%=contextPath %>/product/updatecart.ajax",
+	            type: "POST",
+	            dataType: "json",
+	            data: { userPk, pdtId }
+	        });
+	        
+	        if (response.status === 'success'){
+	        	alert("장바구니 상품 수량이 증가되었습니다.");
+	        } else{
+	        	alert("장바구니 추가 실패");
+	        }
+	    } catch (error) {
+	        console.error("update failed:", error);
+	    }
+	}
+   
+   function initCartCount(userPk){
+	   $.ajax({
+           url: "<%=contextPath %>/product/initcart.ajax",
+           type: "POST",
+           dataType: "json",
+           data: { userPk },
+           success: function (jsonResponse){
+        	   $(".EC-Layout-Basket-count").text(jsonResponse.count);
+          }
+       });
+   }
 
     // 비회원 장바구니 쿠키 함수
     const CookieUtil = {
@@ -854,7 +936,11 @@ span.material-symbols-outlined {
 
     // 초기화
     $(document).ready(function () {
-        updateCartCount();
+    	if (userPk == 0) {
+        	updateCartCount();    		
+    	} else{
+    		initCartCount(userPk);
+    	}
     });
 </script>
 	

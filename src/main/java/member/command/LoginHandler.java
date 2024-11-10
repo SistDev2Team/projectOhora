@@ -22,7 +22,7 @@ public class LoginHandler implements CommandHandler {
             if (session != null) {
                 session.invalidate(); // 세션 무효화하기
             }
-            response.sendRedirect(request.getContextPath() + "/ohora/oho_main.jsp");
+            response.sendRedirect(request.getContextPath() + "/ohora/main.do");
             return null;
         }
 
@@ -65,7 +65,7 @@ public class LoginHandler implements CommandHandler {
                 session.removeAttribute("originalUrl"); // 제거를 해주는게 좋겠지?
                 response.sendRedirect(originalUrl); // 그리고 이동 해 주면 되겠지?
             } else {
-            	response.sendRedirect(request.getContextPath() + "/ohora/oho_main.jsp"); //애초에 로그인페이지에서 왔다면?
+            	response.sendRedirect(request.getContextPath() + "/ohora/main.do"); //애초에 로그인페이지에서 왔다면?
             }          
         } else {
             // 인증 실패 시 에러 메시지 전달

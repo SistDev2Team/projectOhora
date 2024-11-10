@@ -17,7 +17,6 @@ public class MainPageHandler implements CommandHandler {
 
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        System.out.println("Main Handler..");
 
         ArrayList<ProductDTO> newProducts;
         ArrayList<ProductDTO> bestProducts;

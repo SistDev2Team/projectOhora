@@ -431,7 +431,14 @@ public class OhoraDAOImpl implements OhoraDAO{
             }
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        } finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
         return userExists;
     }
 
@@ -1739,79 +1746,6 @@ public class OhoraDAOImpl implements OhoraDAO{
 
 		    return cartItems;
 		}
-		
-
-		// 회원 장바구니 버튼 클릭 시 디비 저장 시작
-		@Override
-		public int addCart(int userId, int pdtId, HttpServletRequest request) {
-			
-		    System.out.println("dao userId : " + userId);
-		    System.out.println("dao pdtId : " + pdtId);
-		    
-		    String optIdSql = "SELECT b.opt_id FROM o_product a INNER JOIN o_pdtoption b ON a.pdt_id = b.pdt_id WHERE a.pdt_id = ?";
-		    String checkSql = "SELECT clist_pdt_count FROM o_cartlist WHERE user_id = ? AND pdt_id = ? AND opt_id = ? AND clist_select = 'Y'";
-		    String updateSql = "UPDATE o_cartlist SET clist_pdt_count = clist_pdt_count + 1 WHERE user_id = ? AND pdt_id = ? AND opt_id = ? AND clist_select = 'Y'";
-		    String insertSql = "INSERT INTO o_cartlist (clist_id, user_id, pdt_id, opt_id, clist_pdt_count, clist_adddate, clist_select) VALUES (addcart_seq.NEXTVAL, ?, ?, ?, 1, SYSDATE, 'Y')";
-		    String productCountSql = "SELECT COUNT(DISTINCT pdt_id) AS product_count FROM o_cartlist WHERE user_id = ? AND clist_select = 'Y'";
-		    
-		    int productCount = 0;
-		    int optionId = 0;
-		    
-		    try (Connection conn = ConnectionProvider.getConnection();
-		         PreparedStatement optIdStmt = conn.prepareStatement(optIdSql);
-		         PreparedStatement checkStmt = conn.prepareStatement(checkSql);
-		         PreparedStatement updateStmt = conn.prepareStatement(updateSql);
-		         PreparedStatement insertStmt = conn.prepareStatement(insertSql);
-		         PreparedStatement productCountStmt = conn.prepareStatement(productCountSql)) {
-		        
-		        // 1. 옵션 ID 가져오기
-		        optIdStmt.setInt(1, pdtId);
-		        ResultSet optRs = optIdStmt.executeQuery();
-		        if (optRs.next()) {
-		            optionId = optRs.getInt("opt_id");
-		        } else {
-		            System.out.println("해당 제품에 옵션이 없습니다. 기본 옵션 ID 0으로 설정합니다.");
-		            optionId = 0;
-		        }
-
-		        // 2. 장바구니에 상품 있는지 확인
-		        checkStmt.setInt(1, userId);
-		        checkStmt.setInt(2, pdtId);
-		        checkStmt.setInt(3, optionId);
-		        ResultSet rs = checkStmt.executeQuery();
-
-		        if (rs.next()) {
-		            // 3. 상품과 옵션이 존재하면 수량 증가
-		            updateStmt.setInt(1, userId);
-		            updateStmt.setInt(2, pdtId);
-		            updateStmt.setInt(3, optionId);
-		            updateStmt.executeUpdate();
-		        } else {
-		            // 4. 상품과 옵션이 존재하지 않으면 추가
-		            insertStmt.setInt(1, userId);
-		            insertStmt.setInt(2, pdtId);
-		            insertStmt.setInt(3, optionId);
-		            insertStmt.executeUpdate();
-		            
-		            Integer oldProductCount = (Integer) request.getSession().getAttribute("productCount");
-		            oldProductCount = oldProductCount + 1;
-		            request.getSession().setAttribute("productCount", oldProductCount);
-		        }
-		        // 5. 유저의 총 상품 수 가져오기
-		        productCountStmt.setInt(1, userId);
-		        ResultSet countRs = productCountStmt.executeQuery();
-		        if (countRs.next()) {
-		            productCount = countRs.getInt("product_count");
-		        }
-		    } catch (SQLException e) {
-		        e.printStackTrace();
-		    } catch (NamingException e) {
-		        e.printStackTrace();
-		    }
-
-		    return productCount;
-		}
-		// 회원 장바구니 버튼 클릭 시 디비 저장 끝
 }
 
 
