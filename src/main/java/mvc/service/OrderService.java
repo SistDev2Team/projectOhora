@@ -30,16 +30,16 @@ public class OrderService {
 				throw new RuntimeException();
 			}
 			
+			// 사용된 쿠폰 삭제 처리
 			if (icpnId != 0) {
-				System.out.println("사용된 쿠폰 삭제");
 				int deletedCount = dao.deleteCoupon(conn, userPk, icpnId);
 				if (deletedCount == 0) {
 					throw new RuntimeException();
 				}
 			}
 			
+			// 적립금 사용 처리
 			if (ordUsePoint >= 3000) {
-				// 적립금 사용 처리
 				int rowCount = 0;
 				int point = dao.checkPoint(conn, userPk);
 				if (point >= 3000 && point >= ordUsePoint) {
@@ -54,6 +54,7 @@ public class OrderService {
 				}
 			}
 			
+			// 회원 장바구니 구매항목 삭제 처리
 			if (userPk != 0) {
 				System.out.println("회원 구매 장바구니 삭제");
 				CartDAO cao = new CartDAOImpl(conn);

@@ -98,53 +98,6 @@ public class OhoraDAOImpl implements OhoraDAO{
 	}
 
 	@Override
-	public ArrayList<DeptVO> selectTest() throws SQLException {
-		int deptno;
-		String dname;
-		String loc;
-		
-		ArrayList<DeptVO> list = null;
-		String sql = "SELECT * FROM dept";
-		
-		DeptVO dvo = null;
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			
-			if (rs.next()) {
-				list = new ArrayList<DeptVO>();
-				do {
-
-					deptno = rs.getInt("deptno");
-					dname = rs.getString("dname");
-					loc = rs.getString("loc");
-
-					dvo = new DeptVO().builder()
-							.deptno(deptno)
-							.dname(dname)
-							.loc(loc)
-							.build();
-
-					list.add(dvo);
-
-				} while (rs.next());
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-		return list;
-	}
-	
-	@Override
 	public int getTotalRecords(int categoryNumber) throws SQLException {
 		int totalRecords = 0;
 		String sql = null;

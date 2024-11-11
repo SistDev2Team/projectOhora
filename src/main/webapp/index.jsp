@@ -11,8 +11,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-	<a href="/projectOhora/example/test.do">Handler Test</a>
-	
 	<h1>
 		<a href="${contextPath}/ohora/main.do">오호라 메인페이지 접속</a>
 	</h1>

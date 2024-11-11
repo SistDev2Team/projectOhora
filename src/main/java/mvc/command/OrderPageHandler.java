@@ -31,7 +31,7 @@ public class OrderPageHandler implements CommandHandler {
 		String[] pdtCountArr = request.getParameterValues("pdtCount");
 		
 		if (pdtidArr == null || pdtCountArr == null) {
-			response.sendRedirect("/projectOhora/ohora/oho_main.jsp");
+			response.sendRedirect("/projectOhora/ohora/main.do");
 		}
 
 		int[] pdtCountArray = new int[pdtCountArr.length];

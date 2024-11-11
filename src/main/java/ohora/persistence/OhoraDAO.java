@@ -19,8 +19,7 @@ import ohora.domain.ReviewRating;
 import ohora.domain.UserDTO;
 
 public interface OhoraDAO {
-	ArrayList<DeptVO> selectTest() throws SQLException;
-	
+
 	ArrayList<ProductDTO> prdCate(int currentPage, int numberPerPage, int categoryNumber) throws SQLException;	// cate_no 에 따른 상품 ( new , best , all , outlet )
 	
 	ArrayList<ProductDTO> search(String searchWord,	int currentPage, int numberPerPage) throws SQLException;	// 상품 검색

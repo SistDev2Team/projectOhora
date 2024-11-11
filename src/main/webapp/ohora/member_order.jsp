@@ -742,12 +742,7 @@
                         </colgroup>
                         <tbody>
                             <tr>
-                                <th scope="row">예금주명 
-                                    <span class="icoRequired">필수</span>
-                                </th>
-                                <td>
-                                    <input id="allat_account_nm" name="allat_account_nm" fw-filter="" fw-label="무통장 입금자명" fw-msg="" class="inputTypeText" placeholder="" size="26" maxlength="30" value="" type="text">
-                                </td>
+                                
                             </tr>
                         </tbody>
                     </table>
