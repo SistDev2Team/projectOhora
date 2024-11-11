@@ -30,10 +30,10 @@ public class OrderService {
 				throw new RuntimeException();
 			}
 			
-			// 사용된 쿠폰 삭제 처리
+			// 사용된 쿠폰 처리
 			if (icpnId != 0) {
-				int deletedCount = dao.deleteCoupon(conn, userPk, icpnId);
-				if (deletedCount == 0) {
+				int updateCount = dao.updateCoupon(conn, userPk, icpnId);
+				if (updateCount == 0) {
 					throw new RuntimeException();
 				}
 			}

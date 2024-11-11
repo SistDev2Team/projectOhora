@@ -466,16 +466,16 @@ public class OrderDAOImpl implements OrderDAO{
 	}
 
 	@Override
-	public int deleteCoupon(Connection conn, int userPk, int icpnId) throws SQLException {
+	public int updateCoupon(Connection conn, int userPk, int icpnId) throws SQLException {
 		this.conn = conn;
-		String sql = "DELETE FROM O_ISSUEDCOUPON WHERE user_id = ? AND icpn_id = ? ";
+		String sql = "UPDATE o_issuedcoupon SET icpn_isused = 'Y' WHERE user_id = ? AND icpn_id = ? ";
 		
-		int deletedCount = 0;
+		int rowCount = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
 		    pstmt.setInt(1, userPk);
 		    pstmt.setInt(2, icpnId);
-		    deletedCount = pstmt.executeUpdate();
+		    rowCount = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -486,7 +486,7 @@ public class OrderDAOImpl implements OrderDAO{
 			}
 		}
 		
-		return deletedCount;
+		return rowCount;
 	}
 
 }
