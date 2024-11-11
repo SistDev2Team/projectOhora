@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import com.util.ConnectionProvider;
 import com.util.JdbcUtil;
 
+import ohora.persistence.CartDAO;
+import ohora.persistence.CartDAOImpl;
 import ohora.persistence.OrderDAO;
 import ohora.persistence.OrderDAOImpl;
 
@@ -14,7 +16,7 @@ public class OrderService {
 	
 	public String OrderProcess(int userPk, int icpnId, String ordName, String ordAddress, String zipCode, String ordTel, String ordEmail, String ordPassword
 			, int ordTotalAmount, int ordCpnDiscount, int ordPdtDiscount, int ordUsePoint, String ordPayOption, int ordDeliveryFee
-			, String[] pdtNames, int[] pdtCounts, int[] pdtAmounts, int[] pdtDcAmounts) {
+			,String[] pdtIdArr , String[] pdtNames, int[] pdtCounts, int[] pdtAmounts, int[] pdtDcAmounts) {
 		Connection conn = null;
 		try {
 			conn = ConnectionProvider.getConnection();
@@ -29,7 +31,11 @@ public class OrderService {
 			}
 			
 			if (icpnId != 0) {
-				// 쿠폰 삭제
+				System.out.println("사용된 쿠폰 삭제");
+				int deletedCount = dao.deleteCoupon(conn, userPk, icpnId);
+				if (deletedCount == 0) {
+					throw new RuntimeException();
+				}
 			}
 			
 			if (ordUsePoint >= 3000) {
@@ -44,6 +50,15 @@ public class OrderService {
 					}
 				} else {
 					System.out.println("Point 3000 미만 - 사용 불가.");
+					throw new RuntimeException();
+				}
+			}
+			
+			if (userPk != 0) {
+				System.out.println("회원 구매 장바구니 삭제");
+				CartDAO cao = new CartDAOImpl(conn);
+				int deletedCount = cao.deleteCart(userPk, pdtIdArr);
+				if (deletedCount == 0) {
 					throw new RuntimeException();
 				}
 			}

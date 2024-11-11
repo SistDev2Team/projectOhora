@@ -842,17 +842,6 @@ span.material-symbols-outlined {
 	    }
 	}
    
-   function initCartCount(userPk){
-	   $.ajax({
-           url: "<%=contextPath %>/product/initcart.ajax",
-           type: "POST",
-           dataType: "json",
-           data: { userPk },
-           success: function (jsonResponse){
-        	   $(".EC-Layout-Basket-count").text(jsonResponse.count);
-          }
-       });
-   }
 
     // 비회원 장바구니 쿠키 함수
     const CookieUtil = {
@@ -939,7 +928,7 @@ span.material-symbols-outlined {
     	if (userPk == 0) {
         	updateCartCount();    		
     	} else{
-    		initCartCount(userPk);
+    		
     	}
     });
 </script>

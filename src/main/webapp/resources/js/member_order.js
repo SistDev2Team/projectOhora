@@ -36,6 +36,10 @@ $("button.btnRemove").on("click", function(){
 	}
 })
 
+$("#userCoupon").on('change', function(){
+	$("#txt_cpn_contents0").text($(this).val());
+})
+
 $("#btn_point").on("click", function(){
 	$("#input_point").val( $(".UseablePoint").data('point'));
 })

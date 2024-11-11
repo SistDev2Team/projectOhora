@@ -174,11 +174,20 @@ public class OrderDAOImpl implements OrderDAO{
 		int cpn_id;
 		Date icpn_issuedate;
 		String icpn_isused;
+		String cpn_info;
+		int cpn_discount_rate;
+		int cpn_max_amount;
+		int cpn_con_value;
+		String cpn_apply;
+		String cpn_con_type;
+		String cpn_discount_type;
+		Date cpn_startdate;
+		Date cpn_enddate;
 		
 		ArrayList<CouponDTO> list = null;
 		CouponDTO couponDTO = null;
 
-		String sql = "select * from o_issuedcoupon where user_id = ? AND icpn_isused = 'N' ";
+		String sql = "select * from o_issuedcoupon i JOIN o_coupon c ON i.cpn_id = c.cpn_id where user_id = ? AND icpn_isused = 'N' ";
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -193,6 +202,15 @@ public class OrderDAOImpl implements OrderDAO{
 		        	cpn_id = rs.getInt("cpn_id");
 		        	icpn_issuedate = rs.getDate("icpn_issuedate");
 		        	icpn_isused = rs.getString("icpn_isused");
+		        	cpn_info = rs.getString("cpn_info");
+		        	cpn_discount_rate = rs.getInt("cpn_discount_rate");
+		        	cpn_max_amount = rs.getInt("cpn_max_amount");
+		        	cpn_con_value = rs.getInt("cpn_con_value");
+		        	cpn_apply = rs.getString("cpn_apply");
+		        	cpn_con_type = rs.getString("cpn_con_type");
+		        	cpn_discount_type = rs.getString("cpn_discount_type");
+		        	cpn_startdate = rs.getDate("cpn_startdate");
+		        	cpn_enddate = rs.getDate("cpn_enddate");
 
 		        	couponDTO = new CouponDTO().builder()
 		                    .icpn_id(icpn_id)
@@ -200,6 +218,15 @@ public class OrderDAOImpl implements OrderDAO{
 		                    .cpn_id(cpn_id)
 		                    .icpn_issuedate(icpn_issuedate)
 		                    .icpn_isused(icpn_isused)
+		                    .cpn_info(cpn_info)
+		                    .cpn_discount_rate(cpn_discount_rate)
+		                    .cpn_max_amount(cpn_max_amount)
+		                    .cpn_con_value(cpn_con_value)
+		                    .cpn_apply(cpn_apply)
+		                    .cpn_con_type(cpn_con_type)
+		                    .cpn_discount_type(cpn_discount_type)
+		                    .cpn_startdate(cpn_startdate)
+		                    .cpn_enddate(cpn_enddate)
 		                    .build();
 
 		            list.add(couponDTO);
@@ -438,13 +465,28 @@ public class OrderDAOImpl implements OrderDAO{
 		return point;
 	}
 
+	@Override
+	public int deleteCoupon(Connection conn, int userPk, int icpnId) throws SQLException {
+		this.conn = conn;
+		String sql = "DELETE FROM O_ISSUEDCOUPON WHERE user_id = ? AND icpn_id = ? ";
+		
+		int deletedCount = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+		    pstmt.setInt(1, userPk);
+		    pstmt.setInt(2, icpnId);
+		    deletedCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+		        pstmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return deletedCount;
+	}
 
-	/*
-	 * @Override public int getOrderSeq(Connection conn) throws SQLException {
-	 * this.conn = conn; int seq = 0; try { stmt = conn.createStatement(); rs =
-	 * stmt.executeQuery("SELECT O_ORDER_SEQ.CURRVAL FROM DUAL "); if (rs.next()) {
-	 * seq = rs.getInt(1); } } catch (Exception e) { e.printStackTrace(); } finally
-	 * { try { rs.close(); stmt.close(); } catch (Exception e) {
-	 * e.printStackTrace(); } } return seq; }
-	 */
 }

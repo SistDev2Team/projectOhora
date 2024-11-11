@@ -428,7 +428,7 @@
                             <div class="thumbnail">
                             <input type="hidden" id="pdtId" name="pdtId" value="${pdt.pdt_id}">
                                 <a href="#">
-                                    <img src="https://ohora.kr/web/product/tiny/202410/b8ead469934d039305eba65f492d0d2f.jpg" alt="상품썸네일" width="90" height="90">
+                                    <img src="../resources/images/prd_image/imgs/${pdt.pdt_img_url}.jpg" alt="상품썸네일" width="90" height="90">
                                 </a>
                             </div>
                             <div class="description">
@@ -554,30 +554,19 @@
                 <div class="couponUseArea">
                     <strong class="heading4">
                         할인쿠폰
-                        <span class="coupCnt">
-                            1장
-                        </span>
+                        <span class="coupCnt">${empty couponList ? 0 : couponList.size()}장</span>
                     </strong>
+                    <br>
+                    <input type="hidden" name="icpnDc" value="3000">
+                    
+                    <select name="icpnId" id="userCoupon" style="width: 700px; height:50px; font-size: 16px" selected>
+                    		<option value="0">쿠폰 선택</option>
+                        	<c:forEach items="${ couponList }" var="cp" varStatus="status">
+								<option value="${ cp.icpn_id }">${cp.cpn_info}</option>
+							</c:forEach>
+							
+			        </select>
 
-                    <div class="cControl">
-
-                        <span class="dcPriceBox">
-                           
-                            <span class="totalDc">
-                                0
-                            </span>
-                            <input type="hidden" name="icpnId" value="0">
-                            <input type="hidden" name="icpnDc" value="3000">
-
-                        </span>
-                        <a href="#" id="gotoCoupon"></a>
-
-                    </div>
-                    <ul id="useCpList">
-                        <li id="useCpItem">
-                            <span id="txt_cpn_contents0">[주문별] [웰컴 쿠폰] 신규 회원 무료배송(2만원 이상 구매 시) (~2024-11-04 23:14:33) (결제조건: 제한 없음)</span>
-                        </li>
-                    </ul>
                 </div>
 
 

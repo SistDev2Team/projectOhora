@@ -212,8 +212,36 @@ public class CartDAOImpl implements CartDAO {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	@Override
+	public int deleteCart(int userPk, String[] pdtIdArr) throws SQLException {
 		
-		System.out.println("delete cart");
+		String sql = "DELETE FROM o_cartlist WHERE user_id = ? AND pdt_id IN ( ";
+		for (String pdtid : pdtIdArr) {
+			sql += "?, ";
+		}
+		sql = sql.substring(0, sql.length() - 2);
+		sql += " )";
+		int deletedCount = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+		    pstmt.setInt(1, userPk);
+		    for (int i = 2; i <= pdtIdArr.length+1; i++) {
+		    	pstmt.setString(i, pdtIdArr[i-2]);
+			}
+		    deletedCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+		        pstmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return deletedCount;
 		
 	}
 	

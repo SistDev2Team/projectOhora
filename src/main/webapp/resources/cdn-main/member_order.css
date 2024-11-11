@@ -3312,6 +3312,10 @@ body input[type="text"] {
 #txt_cpn_contents0{
 
 }
+#userCoupon {
+	display: block;
+	width: 300px;
+}
 
 #useCpList::after {
     display: block;

@@ -36,22 +36,24 @@ public class OrderHandler implements CommandHandler {
 		String[] pdtCountsArr = request.getParameterValues("pdtCount");
 		String[] pdtAmountsArr = request.getParameterValues("pdtAmount");
 		String[] pdtDcAmountsArr = request.getParameterValues("pdtDcAmount");
+		String[] pdtIdArr = request.getParameterValues("pdtId");
 		
 		int[] pdtCounts = new int[pdtCountsArr.length];
         for (int i = 0; i < pdtCountsArr.length; i++) {
         	pdtCounts[i] = Integer.parseInt(pdtCountsArr[i]);
         }
         int[] pdtAmounts = new int[pdtAmountsArr.length];
-        for (int i = 0; i < pdtCountsArr.length; i++) {
+        for (int i = 0; i < pdtAmountsArr.length; i++) {
         	pdtAmounts[i] = Integer.parseInt(pdtAmountsArr[i]);
         }
         int[] pdtDcAmounts = new int[pdtDcAmountsArr.length];
-        for (int i = 0; i < pdtCountsArr.length; i++) {
+        for (int i = 0; i < pdtDcAmountsArr.length; i++) {
         	pdtDcAmounts[i] = Integer.parseInt(pdtDcAmountsArr[i]);
         }
 		
 		for (int i = 0; i < pdtNames.length; i++) {
-			System.out.println("주문제품id: "+pdtNames[i] + ", 주문제품수량: "+pdtCounts[i]+", 주문제품가격: "+pdtAmounts[i]+", 주문제품할인가격: "+pdtDcAmounts[i]);
+			System.out.println("주문제품이름: "+pdtNames[i] + ", 주문제품수량: "+pdtCounts[i]+", 주문제품가격: "+pdtAmounts[i]+""
+					+ ",제품id: "+ pdtIdArr[i] + " , 주문제품할인가격: "+pdtDcAmounts[i]);
 		}
 		
 		int totalSum = Integer.parseInt(request.getParameter("totalSum"));
@@ -70,7 +72,6 @@ public class OrderHandler implements CommandHandler {
 		} catch (Exception e) {
 			icpnDc = 0;
 		}
-		
 		try {
 			input_point = Integer.parseInt(request.getParameter("input_point"));
 		} catch (Exception e) {
@@ -84,7 +85,7 @@ public class OrderHandler implements CommandHandler {
 		String path = "/projectOhora/ohora/endorder_log.jsp";
 		try {
 			orderId = orderPageService.OrderProcess(userPk, icpnId, rname, addr, zipcode, phone, email, password, totalSum, icpnDc
-					, discountSum, input_point, payOption, deliFee, pdtNames, pdtCounts, pdtAmounts, pdtDcAmounts);
+					, discountSum, input_point, payOption, deliFee, pdtIdArr, pdtNames, pdtCounts, pdtAmounts, pdtDcAmounts);
 			System.out.println("주문번호: "+orderId);
 	        LocalDateTime currentTime = LocalDateTime.now();
 	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");

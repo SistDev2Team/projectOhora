@@ -468,6 +468,23 @@
           pauseOnHover: false,
         });
       });
+      
+      function initCartCount(userPk){
+   	   $.ajax({
+              url: "<%=contextPath %>/product/initcart.ajax",
+              type: "POST",
+              dataType: "json",
+              data: { userPk },
+              success: function (jsonResponse){
+           	   $(".EC-Layout-Basket-count").text(jsonResponse.count);
+             }
+          });
+      }
+      
+      if (userPk != 0){
+    	  initCartCount(userPk);
+      }
+      
     </script>
 
     <script>

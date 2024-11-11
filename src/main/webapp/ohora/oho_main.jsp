@@ -618,19 +618,6 @@ System.out.print(" 로그인안함 userPk : " + userPk);
 	        console.error("update failed:", error);
 	    }
 	}
-   
-   function initCartCount(userPk){
-	   $.ajax({
-           url: "<%=contextPath %>/product/initcart.ajax",
-           type: "POST",
-           dataType: "json",
-           data: { userPk },
-           success: function (jsonResponse){
-        	   $(".EC-Layout-Basket-count").text(jsonResponse.count);
-          }
-       });
-   }
-
     // 비회원 장바구니 쿠키 함수
     const CookieUtil = {
         setCookie: function (name, value, days = 14) {
@@ -716,7 +703,7 @@ System.out.print(" 로그인안함 userPk : " + userPk);
     	if (userPk == 0) {
         	updateCartCount();    		
     	} else{
-    		initCartCount(userPk);
+    		
     	}
     });
 </script>

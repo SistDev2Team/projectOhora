@@ -26,4 +26,6 @@ public interface OrderDAO {
 	int updateUsePoint(Connection conn, int userPk, int point) throws SQLException;
 	
 	int checkPoint(Connection conn, int userPk) throws SQLException;
+	
+	int deleteCoupon(Connection conn, int userPk, int icpnId) throws SQLException;
 }

@@ -26,9 +26,7 @@ public class OrderPageHandler implements CommandHandler {
 		if (session.getAttribute("userPk") != null) {
 			userPk = (int) session.getAttribute("userPk");
 		}
-	    
-	    System.out.println(userPk);
-		
+
 		String[] pdtidArr = request.getParameterValues("pdtId");
 		String[] pdtCountArr = request.getParameterValues("pdtCount");
 		

@@ -128,6 +128,8 @@
                                             <div id="checkcolor${status.index}" class="checkcolor"
                                                 style="background-color: black;"></div>
                                         </label>
+                                        <input type="hidden" id="pdtId" name="pdtId" value="${dto.pdt_id}">
+                                		<input type="hidden" id="pdtCount" name="pdtCount" value="${dto.pdt_count}">
                                         &nbsp;
                                         <!-- // 개별 체크박스 -->
 
@@ -239,8 +241,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" id="pdtId" name="pdtId" value="${dto.pdt_id}">
-                                <input type="hidden" id="pdtCount" name="pdtCount" value="${dto.pdt_count}">
+                                
                                 <!-- 누적 계산 -->
                                 <c:set var="itemTotal" value="${dto.pdt_discount_amount * dto.pdt_count}" />
                                 <c:set var="itemDiscount"
@@ -356,7 +357,8 @@
                         <div class="xans-element- xans-order xans-order-totalorder SP_tableBtn_wrap">
                             <div class="SP_tableBtnAlign_right">
                                 <div class="btn buy_btn">
-                                    <a class="SP_cm_btn ">구매하기</a>
+                                	<a href="" class="SP_cm_btn">구매하기</a>
+
                                 </div>
                                 <div class="displaynone">
                                     <a href="/" class="SP_cm_btn">계속 쇼핑하기</a>
@@ -1122,7 +1124,9 @@
 
 	// 이벤트 바인딩
 	$(document).ready(function () {
-	    updateCartCount();
+		if (userPk == 0){
+	    	updateCartCount();			
+		}
 
 	    
 	});
@@ -1370,18 +1374,24 @@
     </script>
 
     <script>
-        document.querySelector("a.SP_cm_btn").onclick = function createOrderUrl() {
-            let Path = "/projectOhora/product/orderpage.do?";
-            const pdtIds = document.querySelectorAll("#pdtId");
-            const pdtCounts = document.querySelectorAll("#pdtCount");
-            for (let i = 0; i < pdtIds.length; i++) {
-                const pdtId = pdtIds[i].value;
-                const pdtCount = pdtCounts[i].value;
+    
+    $("a.SP_cm_btn").on("click", function createOrderUrl(e) {
+    	e.preventDefault();
+        let Path = "/projectOhora/product/orderpage.do?";
+        
+        $(".basket-checkbox.checked:checked").each(function () {
+            const pdtId = $(this).nextAll("input#pdtId").val();
+            const pdtCount = $(this).nextAll("input#pdtCount").val();
+
+            if (pdtId !== undefined && pdtCount !== undefined) {
                 Path += "pdtId=" + pdtId + "&pdtCount=" + pdtCount + "&";
             }
-            Path = Path.slice(0, -1);
-            location.href = Path;
-        }
+        });
+
+        // 마지막 & 제거
+        Path = Path.slice(0, -1);
+        location.href = Path;
+    });
 
     </script>
 

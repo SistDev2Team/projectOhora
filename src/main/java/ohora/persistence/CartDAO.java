@@ -18,5 +18,7 @@ public interface CartDAO {
 	ArrayList<ProductDTO> getCartItems(int userPk) throws SQLException;
 	
 	void deleteCart(int userPk, int pdtId) throws SQLException;
+	
+	int deleteCart(int userPk, String[] pdtIdArr ) throws SQLException;
 
 }
