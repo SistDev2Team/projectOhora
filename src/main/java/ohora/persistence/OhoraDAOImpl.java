@@ -1253,12 +1253,12 @@ public class OhoraDAOImpl implements OhoraDAO{
 		String sql = "SELECT COUNT(*) FROM O_ADDRESS WHERE USER_ID = ?";
 		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setInt(1, userPk);
-			ResultSet rs = pstmt.executeQuery();
-			if (rs.next()) {
-				return rs.getInt(1);
-			}	
+			try (ResultSet rs = pstmt.executeQuery()){
+				if (rs.next()) {
+					return rs.getInt(1);
+				}	
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
@@ -1278,61 +1278,60 @@ public class OhoraDAOImpl implements OhoraDAO{
 	        
 	        pstmtOrder.setInt(1, userPk);
 	        pstmtOrder.setInt(2, days);
-	        ResultSet rsOrder = pstmtOrder.executeQuery();
-
-	        while (rsOrder.next()) {
-	            // OrderDTO 객체 생성
-	            OrderDTO order = OrderDTO.builder()
-	                    .ordPk(rsOrder.getInt("ORD_PK"))
-	                    .ordId(rsOrder.getString("ORD_ID"))
-	                    .userId(rsOrder.getInt("USER_ID"))
-	                    .icpnId(rsOrder.getInt("ICPN_ID"))
-	                    .ordName(rsOrder.getString("ORD_NAME"))
-	                    .ordAddress(rsOrder.getString("ORD_ADDRESS"))
-	                    .ordZipcode(rsOrder.getString("ORD_ZIPCODE"))
-	                    .ordTel(rsOrder.getString("ORD_TEL"))
-	                    .ordEmail(rsOrder.getString("ORD_EMAIL"))
-	                    .ordPassword(rsOrder.getString("ORD_PASSWORD"))
-	                    .ordOrderDate(rsOrder.getDate("ORD_ORDERDATE"))
-	                    .ordTotalAmount(rsOrder.getInt("ORD_TOTAL_AMOUNT"))
-	                    .ordCpnDiscount(rsOrder.getInt("ORD_CPN_DISCOUNT"))
-	                    .ordPdtDiscount(rsOrder.getInt("ORD_PDT_DISCOUNT"))
-	                    .ordUsePoint(rsOrder.getInt("ORD_USEPOINT"))
-	                    .ordPayOption(rsOrder.getString("ORD_PAY_OPTION"))
-	                    .ordDeliveryFee(rsOrder.getInt("ORD_DELIVERY_FEE"))
-	                    .build();
-
-	            // OrderDetailDTO 리스트 생성
-	            List<OrderDetailDTO> orderDetails = new ArrayList<>();
-
-	            try (PreparedStatement pstmtDetail = conn.prepareStatement(sqlOrderDetail)) {
-	            	
-	                pstmtDetail.setInt(1, order.getOrdPk());
-	                ResultSet rsDetail = pstmtDetail.executeQuery();
-
-	                while (rsDetail.next()) {
-	                    OrderDetailDTO detail = OrderDetailDTO.builder()
-	                            .opdtId(rsDetail.getInt("OPDT_ID"))
-	                            .ordPk(rsDetail.getInt("ORD_PK"))
-	                            .opdtName(rsDetail.getString("OPDT_NAME"))
-	                            .opdtAmount(rsDetail.getInt("OPDT_AMOUNT"))
-	                            .opdtDcAmount(rsDetail.getInt("OPDT_DCAMOUNT"))
-	                            .opdtOpName(rsDetail.getString("OPDT_OPNAME"))
-	                            .opdtOpAmount(rsDetail.getInt("OPDT_OPAMOUNT"))
-	                            .opdtCount(rsDetail.getInt("OPDT_COUNT"))
-	                            .opdtState(rsDetail.getString("OPDT_STATE"))
-	                            .opdtRefund(rsDetail.getString("OPDT_REFUND"))
-	                            .opdtDelCompany(rsDetail.getString("OPDT_DELCOMPANY"))
-	                            .opdtDelNumber(rsDetail.getString("OPDT_DELNUMBER"))
-	                            .opdtConfirm(rsDetail.getString("OPDT_CONFIRM").charAt(0))
-	                            .build();
-	                    orderDetails.add(detail); // orderdetailsDTO에는 여러개의 OrderDetailDTO가 담기겠지
-	                }
-	            }
-	            order.setOrderDetails(orderDetails); // 그리고 여기서 Order에 여러개의 OrderDetailsDTO가 담긴걸 담으면	            
-	            orderList.add(order); // orderList에 OrderDTO 추가
-	        }
-	        
+	        try (ResultSet rsOrder = pstmtOrder.executeQuery()){
+	        	while (rsOrder.next()) {
+	        		// OrderDTO 객체 생성
+	        		OrderDTO order = OrderDTO.builder()
+	        				.ordPk(rsOrder.getInt("ORD_PK"))
+	        				.ordId(rsOrder.getString("ORD_ID"))
+	        				.userId(rsOrder.getInt("USER_ID"))
+	        				.icpnId(rsOrder.getInt("ICPN_ID"))
+	        				.ordName(rsOrder.getString("ORD_NAME"))
+	        				.ordAddress(rsOrder.getString("ORD_ADDRESS"))
+	        				.ordZipcode(rsOrder.getString("ORD_ZIPCODE"))
+	        				.ordTel(rsOrder.getString("ORD_TEL"))
+	        				.ordEmail(rsOrder.getString("ORD_EMAIL"))
+	        				.ordPassword(rsOrder.getString("ORD_PASSWORD"))
+	        				.ordOrderDate(rsOrder.getDate("ORD_ORDERDATE"))
+	        				.ordTotalAmount(rsOrder.getInt("ORD_TOTAL_AMOUNT"))
+	        				.ordCpnDiscount(rsOrder.getInt("ORD_CPN_DISCOUNT"))
+	        				.ordPdtDiscount(rsOrder.getInt("ORD_PDT_DISCOUNT"))
+	        				.ordUsePoint(rsOrder.getInt("ORD_USEPOINT"))
+	        				.ordPayOption(rsOrder.getString("ORD_PAY_OPTION"))
+	        				.ordDeliveryFee(rsOrder.getInt("ORD_DELIVERY_FEE"))
+	        				.build();
+	        		
+	        		// OrderDetailDTO 리스트 생성
+	        		List<OrderDetailDTO> orderDetails = new ArrayList<>();
+	        		
+	        		try (PreparedStatement pstmtDetail = conn.prepareStatement(sqlOrderDetail)) {
+	        			
+	        			pstmtDetail.setInt(1, order.getOrdPk());
+	        			try (ResultSet rsDetail = pstmtDetail.executeQuery()){
+	        				while (rsDetail.next()) {
+	        					OrderDetailDTO detail = OrderDetailDTO.builder()
+	        							.opdtId(rsDetail.getInt("OPDT_ID"))
+	        							.ordPk(rsDetail.getInt("ORD_PK"))
+	        							.opdtName(rsDetail.getString("OPDT_NAME"))
+	        							.opdtAmount(rsDetail.getInt("OPDT_AMOUNT"))
+	        							.opdtDcAmount(rsDetail.getInt("OPDT_DCAMOUNT"))
+	        							.opdtOpName(rsDetail.getString("OPDT_OPNAME"))
+	        							.opdtOpAmount(rsDetail.getInt("OPDT_OPAMOUNT"))
+	        							.opdtCount(rsDetail.getInt("OPDT_COUNT"))
+	        							.opdtState(rsDetail.getString("OPDT_STATE"))
+	        							.opdtRefund(rsDetail.getString("OPDT_REFUND"))
+	        							.opdtDelCompany(rsDetail.getString("OPDT_DELCOMPANY"))
+	        							.opdtDelNumber(rsDetail.getString("OPDT_DELNUMBER"))
+	        							.opdtConfirm(rsDetail.getString("OPDT_CONFIRM").charAt(0))
+	        							.build();
+	        					orderDetails.add(detail); // orderdetailsDTO에는 여러개의 OrderDetailDTO가 담기겠지
+	        				}
+	        			}
+	        		}
+	        		order.setOrderDetails(orderDetails); // 그리고 여기서 Order에 여러개의 OrderDetailsDTO가 담긴걸 담으면	            
+	        		orderList.add(order); // orderList에 OrderDTO 추가
+	        	}
+	        } 
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
