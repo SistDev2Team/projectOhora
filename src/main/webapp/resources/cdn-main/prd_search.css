@@ -1484,3 +1484,171 @@ iframe {
     width: 1200px;
     margin: 0 auto;
 }
+
+.search_keyword_wrapper {
+    height: 178px;
+}
+
+.search_container .xans-product-searchdata .searchField {
+    margin: 0;
+    padding: 10px 0 0;
+}
+
+.xans-product-searchdata .searchField {
+    padding: 30px 0 0;
+    margin: 0px 0 -10px;
+   background: url(//img.echosting.cafe24.com/skin/base/product/bg_search_field.gif) repeat-x 0 100%
+}
+
+.search_container .xans-product-searchdata .searchField fieldset {
+    margin: 0;
+}
+
+.xans-product-searchdata .searchField fieldset {
+    position: relative;
+    display: table;
+    margin: 0 auto 20px;
+    text-align: center;
+}
+
+.search_container fieldset {
+    display: block;
+    width: 100%;
+}
+
+
+#ec-product-searchdata-searchkeyword_form > fieldset > div {
+text-align: center;
+}
+
+.searchField fieldset .searchInput {
+    position: relative;
+    display: inline-block;
+    width: 800px;
+    padding: 0 36px 0 0;
+    border-bottom: 2px solid #111;
+    border-radius: 1px;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+}
+
+span.xans-layout-mobileaction {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    left: 20px;
+}
+
+span.xans-layout-mobileaction a {
+    display: inline-block;
+    vertical-align: top;
+    width: 35px;
+    height: 35px;
+    background: url(/web/upload/common/fix_back.png) no-repeat center;
+    background-size: 20px;
+    z-index: 1;
+}
+
+.xans-product-searchdata .searchField fieldset .searchInput .keyword {
+    background: #f4f4f4;
+    padding: 0;
+    height: auto;
+    line-height: 1;
+    font-size: 18px;
+    text-align: center;
+}
+
+.searchField .keyword {
+    border: 0;
+    padding: 0 10px;
+    width: 100%;
+    height: 32px;
+    line-height: 32px;
+    outline: 0;
+    background: #fff;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+}
+
+body input[type="text"] {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 100px;
+}
+
+input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+    overflow-clip-margin: 0px !important;
+    overflow: clip !important;
+}
+
+input[type="text" i] {
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+.xans-product-searchdata .searchField .btnSearch {
+    right: 20px;
+    background-size: 18px auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-size: 0;
+}
+
+.searchField .btnSearch {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    bottom: auto;
+    left: auto;
+    transform: translateY(-50%);
+    outline: 0;
+    background: url(/smartpc/_img/icon/ham_search.png);
+    background-size: cover;
+    width: 28px;
+    height: 28px;
+}
+
+.SP_subContHeader {
+    display: none;
+    padding: 0;
+}
+
+.prd_list_container .SP_subContHeader .SP_subTitle, .SP_subSection .SP_subTitle, .SP_subLoginHeader .SP_subTitle {
+    padding: 80px 0 70px;
+}
+
+.SP_subContHeader .SP_subTitle, .SP_subSection .SP_subTitle, .SP_subLoginHeader .SP_subTitle {
+    padding: 5px 0;
+    text-align: center;
+    font-size: 30px;
+    /* text-transform: lowercase; */
+}
+
+.eng_font, .eng_font * {
+    font-family: 'Libre Baskerville', 'Noto Sans KR', sans-serif !important;
+}
+
+#ivStyle .SP_subContHeader .SP_subTitle span, #ivStyle .SP_subSection .SP_subTitle span, #ivStyle .SP_subLoginHeader .SP_subTitle span {
+    min-width: 100%;
+    font-size: 28px;
+    letter-spacing: -2px !important;
+}
+
+.SP_subContHeader .SP_subTitle span, .SP_subSection .SP_subTitle span, .SP_subLoginHeader .SP_subTitle span {
+    display: inline-block;
+    position: relative;
+    font-size: 32px;
+    min-width: 1200px;
+    text-transform: lowercase;
+}

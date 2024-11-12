@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ page trimDirectiveWhitespaces="true"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<link rel="stylesheet" href="../resources/cdn-main/prd_detail_view.css">
+<link rel="stylesheet" href="${contextPath}/resources/cdn-main/prd_detail_view.css">
 <script src="../resources/cdn-main/example.js"></script>
 <script src="../resources/js/cart_cookie.js"></script>
 <style>
@@ -36,20 +37,20 @@ span.material-symbols-outlined {
 					<!-- 큰 이미지 -->
 					<div class="SP_thumbnail">
 						<img id="mainImage"
-							src="../resources/images/prd_image/imgs/${pdtDetail.pdt_img_url}.jpg"
+							src="${contextPath}/resources/images/prd_image/imgs/${pdtDetail.pdt_img_url}.jpg"
 							alt="${pdtDetail.pdt_name}" class="BigImage">
 					</div>
 					<!-- 작은 이미지 목록 -->
 					<div class="SP_listImg">
 						<ul>
 							<li><img
-								src="../resources/images/prd_image/imgs/${pdtDetail.pdt_img_url}.jpg"
+								src="${contextPath}/resources/images/prd_image/imgs/${pdtDetail.pdt_img_url}.jpg"
 								alt="Thumb 1"
-								onmouseover="changeImage('../resources/images/prd_image/imgs/${pdtDetail.pdt_img_url}.jpg')"></li>
+								onmouseover="changeImage('${contextPath}/resources/images/prd_image/imgs/${pdtDetail.pdt_img_url}.jpg')"></li>
 							<li><img
-								src="../resources/images/prd_image/imgs_hover/${pdtDetail.pdt_img_url}.jpg"
+								src="${contextPath}/resources/images/prd_image/imgs_hover/${pdtDetail.pdt_img_url}.jpg"
 								alt="Thumb 2"
-								onmouseover="changeImage('../resources/images/prd_image/imgs_hover/${pdtDetail.pdt_img_url}.jpg')"></li>
+								onmouseover="changeImage('${contextPath}/resources/images/prd_image/imgs_hover/${pdtDetail.pdt_img_url}.jpg')"></li>
 						</ul>
 					</div>
 				</div>
@@ -164,7 +165,7 @@ span.material-symbols-outlined {
 												<div class="SP_addSetInfo">
 													<div class="SP_addSetThumb">
 														<a href="#"><img
-															src="../resources/images/prd_image/imgs/${optprd.pdt_img_url}.jpg"
+															src="${contextPath}/resources/images/prd_image/imgs/${optprd.pdt_img_url}.jpg"
 															alt="" id="ec-add-product-composed-product-1810"></a>
 													</div>
 													<div class="SP_prdAddSetList">
@@ -271,12 +272,23 @@ span.material-symbols-outlined {
 						<div id="totalPrice" class="SP_totalPrice">
 						    <strong>총 상품금액 (개수)</strong> : 
 						    <span class="total SP_totalPriceNum">
-						        <strong>
-						            <em id="totalAmount">
-						                <fmt:formatNumber value="${pdtDetail.pdt_discount_amount}" type="number" groupingUsed="true" />
-						            </em>
-						            (<span id="totalQuantityDisplay">1</span>개)
-						        </strong>
+						    <c:choose>
+									<c:when test="${empty prdOptCmb}">
+										<strong>
+								            <em id="totalAmount">
+								                <fmt:formatNumber value="${pdtDetail.pdt_discount_amount}" type="number" groupingUsed="true" />
+								            </em>
+								            (<span id="totalQuantityDisplay">1</span>개)
+								        </strong>
+									</c:when>
+									<c:otherwise>
+										<em id="totalAmount">
+								                <fmt:formatNumber value="0" type="number" groupingUsed="true" />
+								            </em>
+								            (<span id="totalQuantityDisplay">0</span>개)
+									</c:otherwise>
+							</c:choose>
+						        
 						    </span>
 						</div>
 						<!----------------------------------- //최종 금액 ----------------------------------->
@@ -1226,8 +1238,65 @@ $(document).ready(function () {
            }
        });
        
- 	
- 	
+       
+       
+       
+       $(document).on("change", "#product_option_id1", function () {
+
+           const existingTotalQuantity = parseInt($("#totalQuantityDisplay").text(), 10) || 0;
+           const existingTotalAmount = parseInt($("#totalAmount").text().replace(/[^0-9.-]+/g, ""), 10) || 0;
+    	   
+           const $select = $(this);
+           const selectedOption = $select.find("option:selected");
+           const optionText = selectedOption.text().trim();
+           const optionValue = selectedOption.val();
+
+           // 이미 선택된 옵션 값 추적
+           const selectedOptions = [];
+           $(".add_product .product span").each(function () {
+               selectedOptions.push($(this).text().trim());
+           });
+
+           // 이미 선택된 옵션이 있는지 확인
+           if (selectedOptions.includes(optionText)) {
+               alert("이 옵션은 이미 선택되었습니다. 다시 선택할 수 없습니다.");
+               $select.val("*");  // 기본값으로 되돌리기
+               return;  // 함수 종료, 옵션 추가 안 함
+           }
+           
+           // 상품 정보 가져오기
+           const productName = `${pdtDetail.pdt_name}`;
+           const productId = `${pdtDetail.pdt_id}`;
+           const productDiscountAmount = `${pdtDetail.pdt_discount_amount}`;
+
+           // 새 옵션 행 생성
+           const newProductRow = `
+               <tr class="add_product" data-product-id="\${productId}">
+                   <td>
+                       <p class="product">\${productName}<br> - <span>\${optionText}</span></p>
+                   </td>
+                   <td>
+                       <span class="quantity" style="width:65px;">
+                           <input type="text" name="quantity_opt[]" class="quantity_opt" value="1" product-no="\${productId}">
+                           <a href="#none" class="up"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_up.gif" alt="수량증가"></a>
+                           <a href="#none" class="down"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_count_down.gif" alt="수량감소"></a>
+                       </span>
+                       <a href="#none" class="delete"><img src="//img.echosting.cafe24.com/design/skin/default/product/btn_price_delete.gif" alt="삭제"></a>
+                   </td>
+                   <td class="right">
+                       <span class="ec-front-product-item-price">\${formatPrice(parseInt(productDiscountAmount))}</span>
+                   </td>
+               </tr>`;
+
+           $(".add_products").append(newProductRow);
+
+           // 옵션 기본값으로 되돌리기
+           $select.val("*");
+
+           $("#totalQuantityDisplay").text(existingTotalQuantity + 1);
+           $("#totalAmount").text(formatPrice(existingTotalAmount + parseInt(productDiscountAmount)));
+       });
+       
     // 가격 포맷 함수
     function formatPrice(price) {
         return price.toLocaleString('ko-KR');
@@ -1235,6 +1304,7 @@ $(document).ready(function () {
     
 });
 </script>
+
   
 			<%@include file="footer.jsp"%>
 </body>

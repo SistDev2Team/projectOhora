@@ -6,7 +6,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
-   Integer userId = (Integer) session.getAttribute("userId");
+   Integer userId = (Integer) session.getAttribute("userPk");
    // 값 확인
    System.out.println("set userId : " + userId);
 %>

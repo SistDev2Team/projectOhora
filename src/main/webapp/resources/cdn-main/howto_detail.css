@@ -297,9 +297,7 @@ a {
     text-decoration: none;
 }
 a:-webkit-any-link {
-    color: -webkit-link;
     cursor: pointer;
-    text-decoration: underline;
 }
 .SP_tableSt01_isThAndTd.type2 td .detail {
     height: auto;
@@ -383,9 +381,7 @@ input[type="password" i] {
     border: 1px solid #000;
     text-decoration: none;
 }
-.SP_tableBtn_wrap .SP_cm_btn, .SP_submitBtn_wrap .SP_cm_btn:hover {
-	text-decoration: underline;
-}
+
 .SP_cm_btn {
     display: inline-block;
     vertical-align: top;
@@ -400,9 +396,6 @@ input[type="password" i] {
 }
 .prev a, .next a {
 	text-decoration: none;
-}
-.prev a:hover, .next a:hover {
-	text-decoration: underline;
 }
 
 form {
@@ -627,6 +620,4 @@ li {
     overflow: hidden;
     position: relative;
 }
-
-
 

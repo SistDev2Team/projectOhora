@@ -15,7 +15,7 @@
 <head>
 <meta charset="UTF-8">
 <title>오호라</title>
-<link rel="shortcut icon" type="image/x-icon" href="http://localhost/jspPro/images/SiSt.ico">
+<link rel="shortcut icon" href="https://www.ohora.kr/web/upload/favicon_20190801113230.ico" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
@@ -67,7 +67,7 @@
                   tabindex="0"
                 >
                   <a
-                    href="${contextPath}/event/event6.html"
+                    href="${contextPath}/event.do?_=index"
                     tabindex="0"
                     style="display: block"
                     ><img
@@ -127,6 +127,7 @@
           </div>
 
 
+
           <!-- 헤더 주메뉴 -->
           <div class="gnb_menu_container">
             <ul class="gnb_menu_wrap menu_1ul">
@@ -160,16 +161,16 @@
               <li class="eng_font menu_1li submenu">
 	              <a href="${contextPath}/product/list.do?cate_no=671&currentPage=1"><span>outlet</span></a>
               </li>
-              <li class="eng_font"><a href="${contextPath}/ohora/event_index.jsp">event</a></li>
-              <li class="eng_font"><a href="${contextPath}/ohora/event_index.jsp">event</a></li>
+              <li class="eng_font"><a href="${contextPath}/event.do?_=index">event</a></li>
               <li class="eng_font">
-                <a href="${contextPath}/ohora/howto.jsp">how to</a>
+                <a href="${contextPath}/howto.do?howto=main">how to</a>
               </li>
             </ul>
           </div>
           <!-- //헤더 주메뉴 -->
 
-          <div class="icon_wrap">
+
+         <div class="icon_wrap">
             <div class="small_icon search_fixed_btn"></div>
             <div
               class="xans-element- xans-layout xans-layout-orderbasketcount small_icon m_cart common_cart"
@@ -185,20 +186,20 @@
  
 
     <!-- 검색 -->
-    <div class="hd_search_container" style="overflow: hidden; display: none">
-      <div class="SP_search_wrap">
-        <div class="SP_utilListSearch_inner">
-          <form
-            id="searchBarForm"
-            name=""
-            action="/product/search.html"
-            method="get"
-            target="_self"
-            enctype="multipart/form-data"
-          >
-            <input id="banner_action" name="banner_action" value="" type="hidden" />
-            <div class="xans-element- xans-layout xans-layout-searchheader">
-          
+	<div class="hd_search_container" style="overflow: hidden; display: none">
+	      <div class="SP_search_wrap">
+	        <div class="SP_utilListSearch_inner">
+	          <form
+	            id="searchBarForm"
+	            name=""
+	            action="${contextPath}/product/search.do"
+	            method="get"
+	            target="_self"
+	            enctype="multipart/form-data"
+	          >
+	            <div class="xans-element- xans-layout xans-layout-searchheader">
+	
+	          
               <fieldset>
                 <legend style="display: none">검색</legend>
                 <input
@@ -214,7 +215,9 @@
                   onmousedown="SEARCH_BANNER.clickSearchForm(this)"
                   value=""
                   type="text"
-                /><button
+                />
+                <input id="currentPage" name="currentPage" value="1" type="hidden" />
+                <button
                   type="button"
                   class="SP_srh_submit_btn"
                   onclick="SEARCH_BANNER.submitSearchBanner(this); return false;"
@@ -231,7 +234,7 @@
           <ul>
             <li><a href="${contextPath}/product/list.do?cate_no=671&currentPage=1">#OUTLET 입장하기</a></li>
             <li><a href="${contextPath}/product/list.do?cate_no=120&currentPage=1">#BEST 디자인 추천</a></li>
-            <li><a href="${contextPath}/ohora/event_event6.jsp">#첫구매 젤램프 증정</a></li>
+            <li><a href="${contextPath}/event.do?_=event6">#첫구매 젤램프 증정</a></li>
           </ul>
         </div>
         <!--------------- 검색 키워드 --------------->
@@ -247,45 +250,45 @@
    
 
             <div class="big_txt">
-              <a class="eng_font big_" href="${contextPath}/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do?cate_no=121&currentPage=1">
                 <span>new</span>
               </a>
-              <a class="${contextPath}/product/list.do">
+              <a class="#">
                 <span></span>
               </a>
-              <a class="${contextPath}/product/list.do">
+              <a class="#">
                 <span></span>
               </a>
             </div>
             <div class="big_txt" style="margin-top: 60px;">
-              <a class="eng_font big_" href="${contextPath}/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do?cate_no=120&currentPage=1">
                 <span>best</span>
               </a>
-              <a href="${contextPath}/product/list.do">
+              <a href="${contextPath}/product/list.do?cate_no=125&currentPage=1">
                 <span>네일</span>
               </a>
-              <a href="${contextPath}/product/list.do">
+              <a href="${contextPath}/product/list.do?cate_no=127&currentPage=1">
                 <span>페디</span>
               </a>
             </div>
           </div>
           <div class="cate_wrap first">
             <div class="big_txt">
-              <a class="eng_font big_" href="${contextPath}/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do?cate_no=160&currentPage=1">
                 <span>nail</span>
               </a>
-              <a class="" href="${contextPath}/product/list.do">
+              <a class="" href="${contextPath}/product/list.do?cate_no=435&currentPage=1">
                 <span>젤스트립</span>
               </a>
-              <a class="" href="${contextPath}/product/list.do">
+              <a class="" href="${contextPath}/product/list.do?cate_no=436&currentPage=1">
                 <span>젤네일팁</span>
               </a>
             </div>
             <div class="big_txt" style="margin-top: 63px;">
-              <a class="eng_font big_" href="${contextPath}/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do?cate_no=161&currentPage=1">
                 <span>pedi</span>
               </a>
-              <a class="" href="${contextPath}/product/list.do">
+              <a class="" href="${contextPath}/product/list.do?cate_no=161&currentPage=1">
                 <span>젤스트립</span>
               </a>
             </div>
@@ -293,7 +296,7 @@
 
           <div class="cate_wrap first">
             <div class="big_txt">
-              <a class="eng_font big_" href="${contextPath}/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do?cate_no=671&currentPage=1">
                 <span>outlet</span>
               </a>
             </div>
@@ -306,12 +309,12 @@
             </div>
 
             <div class="big_txt" style="margin-top: 80px;">
-              <a class="eng_font big_" href="${contextPath}/product/list.do">
-                <span>custom</span>
+              <a class="#">
+                <span></span>
               </a>
             </div>
             <div class="big_txt" style="margin-top: 45px;">
-              <a class="eng_font big_" href="${contextPath}/product/list.do">
+              <a class="eng_font big_" href="${contextPath}/product/list.do?cate_no=49&currentPage=1">
                 <span>care &amp; tool</span>
               </a>
             </div>
@@ -326,7 +329,7 @@
           <div class="cate_wrap second">
   
             <div class="big_txt" style="margin-left: 35px; margin-bottom: 42px;">
-              <a class="big_ eng_font" href="${contextPath}/ohora/event_index.jsp">
+              <a class="big_ eng_font" href="${contextPath}/event.do?_=index">
                 <span>event</span>
               </a>
             </div>
@@ -334,7 +337,7 @@
             <div class="big_txt" style="margin-left: 35px;  margin-bottom: 42px;">
               <a
                 class="big_ eng_font"
-                href="${contextPath}/ohora/oho_review.jsp"
+                href="${contextPath}/review/reviewlist.do?pdt_id=1"
               >
                 <span>review</span>
               </a>
@@ -343,16 +346,16 @@
               <a class="big_ eng_font" href="#empty">
                 <span style="margin-top: 10px;">brand</span>
               </a>
-              <a class="" href="${contextPath}/ohora/ohora_Fend_brand4.jsp">
+              <a class="" href="${contextPath}/ohora_Fend_brand4.do">
                 <span>about</span>
               </a>
-              <a class="" href="#empty">
-                <span>membership</span>
+              <a class="" href="${contextPath}/membership.do">
+                <span>membership</span>	
               </a>
-              <a class="" href="${contextPath}/ohora/magazine.jsp">
+              <a class="" href="${contextPath}/magazine.do">
                 <span>magazine</span>
               </a>
-              <a class="" href="#empty">
+              <a class="" href="${contextPath}/product/list.do?cate_no=238&currentPage=1">
                 <span>collaboration</span>
               </a>
             </div>
@@ -437,14 +440,11 @@
             <!--// 오호라 크루 추천-->
             <div class="third_cate">
               <a href="https://oe9lp.channel.io/home"><span>CS Center</span></a>
-              <a href="${contextPath}/ohora/notice.jsp"
-                ><span>Notice</span></a
-              >
-              <a href="${contextPath}/ohora/FAQ.jsp"><span>FAQ</span></a>
-              <a href="${contextPath}/ohora/howto.jsp">How to</a>
+              <a href="${contextPath}/board/noticelist.do?currentPage=1"><span>Notice</span></a>
+              <a href="${contextPath}/board/faqlist.do?currentPage=1"><span>FAQ</span></a>
+              <a href="${contextPath}/howto.do?howto=main">How to</a>
             </div>
           </div>
-          
         </div>
       </div>
     </div>

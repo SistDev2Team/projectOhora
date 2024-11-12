@@ -47,6 +47,70 @@ public class OhoraDAOImpl implements OhoraDAO{
 		this.conn = conn;
 	}
 	
+	@Override
+	public ArrayList<DeptVO> selectTest() throws SQLException {
+		int deptno;
+		String dname;
+		String loc;
+		
+		ArrayList<DeptVO> list = null;
+		String sql = "SELECT * FROM dept";
+		
+		DeptVO dvo = null;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				list = new ArrayList<DeptVO>();
+				do {
+
+					deptno = rs.getInt("deptno");
+					dname = rs.getString("dname");
+					loc = rs.getString("loc");
+
+					dvo = new DeptVO().builder()
+							.deptno(deptno)
+							.dname(dname)
+							.loc(loc)
+							.build();
+
+					list.add(dvo);
+
+				} while (rs.next());
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				rs.close();
+				pstmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+
+	
+	// 상품 정렬하는 조건 메서드
+	public String prdSortCondition(String sql, int sort_method) {
+		switch (sort_method) {
+		    case 5:		// 신상품 순으로 정렬
+		        sql += " ORDER BY pdt_adddate DESC "; 
+		        break;
+		    case 6:		// 인기상품 순으로 정렬
+		    	sql += " ORDER BY pdt_sales_count DESC "; 
+		        break;
+		    case 8:		// 조회수 순으로 정렬
+		    	sql += " ORDER BY pdt_viewcount DESC "; 
+		        break;
+		}
+		return sql;
+	}
+	
 	// 상품 구분하는 조건 메서드
 	public String prdCondition(String sql, int categoryNumber) {
 		sql += " WHERE 1=1 ";
@@ -73,6 +137,14 @@ public class OhoraDAOImpl implements OhoraDAO{
 		    case 49:	// 케어&툴 상품
 		    	sql += " AND cat_id = 3";
 		        break;
+		    case 436:	// 네일 상품중에서 젤네일팁 상품
+		    	sql += " AND cat_id = 1 "
+		    		+  " AND scat_id = 2";
+		        break;
+		    case 435:	// 네일 상품중에서 젤스트립 상품
+		    	sql += " AND cat_id = 1 "
+			    	+  " AND scat_id = 1";
+		        break;
 		    case 432:	// 베스트 상품중에서 젤네일팁 상품
 		    	sql += " AND pdt_sales_count >= 300 "
 		    		+  " AND scat_id = 2";
@@ -93,6 +165,9 @@ public class OhoraDAOImpl implements OhoraDAO{
 		    	sql += " AND pdt_sales_count >= 300 "
 		    	    +  " AND cat_id = 3";
 		        break;
+		    case 238:	// 콜라보 상품이라고 하지만 뭔지 모르니까 내맘대로
+		    	sql += " AND pdt_discount_rate >= 50 ";
+		        break;
 		}
 		return sql;
 	}
@@ -112,11 +187,25 @@ public class OhoraDAOImpl implements OhoraDAO{
 		this.pstmt.close();
 		return totalRecords;
 	}
-
+	
 	@Override
 	public int getTotalRecords(String searchWord) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	    int totalRecords = 0;
+	    String sql = "SELECT COUNT(*) FROM O_PRODUCT WHERE REGEXP_LIKE(pdt_name, ?, 'i')";
+
+	    try {
+	        this.pstmt = this.conn.prepareStatement(sql);
+	        pstmt.setString(1, searchWord);
+	        this.rs = pstmt.executeQuery();
+	        
+	        if (rs.next()) {
+	            totalRecords = rs.getInt(1);
+	        }
+	    } finally {
+	        if (rs != null) rs.close();
+	        if (pstmt != null) pstmt.close();
+	    }
+	    return totalRecords;
 	}
 
 	@Override
@@ -136,9 +225,27 @@ public class OhoraDAOImpl implements OhoraDAO{
 
 	@Override
 	public int getTotalPages(int numberPerPage, String searchWord) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
+	    int totalPages = 0;
+	    String sql = " SELECT CEIL(COUNT(*) / ?) FROM O_PRODUCT WHERE REGEXP_LIKE(pdt_name, ?, 'i') ";
+
+	    try {
+	        this.pstmt = this.conn.prepareStatement(sql);
+	        this.pstmt.setInt(1, numberPerPage);
+	        this.pstmt.setString(2, searchWord);
+	        this.rs = this.pstmt.executeQuery();
+	        
+	        if (this.rs.next()) {
+	            totalPages = rs.getInt(1);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (this.rs != null) this.rs.close();
+	        if (this.pstmt != null) this.pstmt.close();
+	    }
+	    return totalPages;
 	}
+
 
 	@Override
 	public ArrayList<ProductDTO> prdCate(int currentPage, int numberPerPage, int categoryNumber) throws SQLException {
@@ -244,35 +351,41 @@ public class OhoraDAOImpl implements OhoraDAO{
 	}
 
 	@Override
-	public ArrayList<ProductDTO> search(String searchWord, int currentPage, int numberPerPage) throws SQLException {
+	public ArrayList<ProductDTO> prdSearch(String searchWord, int currentPage, int numberPerPage) throws SQLException {
 
-		int pdt_id;
-		String pdt_name;
-		int pdt_amount;
-		int pdt_discount_rate;
-		String pdt_img_url;
-		int pdt_review_count;
-		int pdt_discount_amount;
+		int pdt_id;					// 상품 ID
+		int cat_id;					// 카테고리 ID
+		int scat_id;				// 하위카테고리 ID
+		int pdt_number;				// 옵션갯수
+		String pdt_name;			// 상품명
+		int pdt_amount;				// 상품가격
+		int pdt_discount_rate;		// 할인율
+		String pdt_img_url;			// 이미지경로
+		int pdt_count;				// 재고수량
+		int pdt_review_count;		// 리뷰 수
+		int pdt_sales_count;		// 판매 수량
+		Date pdt_adddate;			// 상품 등록일
+		int pdt_viewcount;			// 조회수
+	    int pdt_discount_amount;
 		
 		ArrayList<ProductDTO> list = null;
 		
-		
-		
 		String sql = "SELECT * FROM ( "
-				+ "SELECT ROWNUM no, t.* FROM ("
-				+ "SELECT pdt_id, pdt_name, pdt_amount, pdt_discount_rate, pdt_img_url, pdt_review_count, pdt_adddate "
-				+ "FROM O_PRODUCT "
-				+ " WHERE REGEXP_LIKE(pdt_name, ?, 'i')  "
-				+ ") t "
-				+ ") b "
-				+ "WHERE no BETWEEN ? AND ? ";
-		
+		           + "SELECT ROWNUM no, t.* FROM ("
+		           + "SELECT pdt_id, cat_id, scat_id, pdt_number, pdt_name, pdt_amount, pdt_discount_rate, "
+		           + "pdt_img_url, pdt_count, pdt_review_count, pdt_sales_count, pdt_adddate, pdt_viewcount "
+		           + "FROM O_PRODUCT "
+		           + "WHERE REGEXP_LIKE(pdt_name, ?, 'i') "
+		           + ") t "
+		           + ") b "
+		           + "WHERE no BETWEEN ? AND ? ";
+
 		ProductDTO pdt = null;
 		int start = (currentPage-1) * numberPerPage + 1;
 		int end = start + numberPerPage -1;
 		int totalRecords = getTotalRecords(searchWord);
 		if (end > totalRecords) end = totalRecords;
-		
+
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, searchWord);
@@ -280,49 +393,61 @@ public class OhoraDAOImpl implements OhoraDAO{
 			pstmt.setInt(3, end);
 			rs = pstmt.executeQuery();
 			
-			if (rs.next()) {
-				list = new ArrayList<ProductDTO>();
-				do {
-					pdt_id = rs.getInt("pdt_id");
-					pdt_name = rs.getString("pdt_name");
-					pdt_amount = rs.getInt("pdt_amount");
-					pdt_discount_rate = rs.getInt("pdt_discount_rate");
-					pdt_img_url = rs.getString("pdt_img_url");
-					pdt_review_count = rs.getInt("pdt_review_count");
-					
-					if (pdt_discount_rate != 0) {
-						pdt_discount_amount = pdt_amount - (pdt_amount / pdt_discount_rate);						
-					} else {
-						pdt_discount_amount = pdt_amount;
-					}
 
-					pdt = new ProductDTO().builder()
-							.pdt_id(pdt_id)
-							.pdt_name(pdt_name)
-							.pdt_amount(pdt_amount)
-							.pdt_discount_rate(pdt_discount_rate)
-							.pdt_img_url(pdt_img_url)
-							.pdt_review_count(pdt_review_count)
-							.pdt_discount_amount(pdt_discount_amount)
-							.build();
+		    if (rs.next()) {
+		        list = new ArrayList<ProductDTO>();
+		        do {
+		        	pdt_id = rs.getInt("pdt_id");
+		        	cat_id = rs.getInt("cat_id");
+		        	scat_id = rs.getInt("scat_id");
+		        	pdt_number = rs.getInt("pdt_number");
+		            pdt_name = rs.getString("pdt_name");
+		            pdt_amount = rs.getInt("pdt_amount");
+		            pdt_discount_rate = rs.getInt("pdt_discount_rate");
+		            pdt_img_url = rs.getString("pdt_img_url");
+		            pdt_count = rs.getInt("pdt_count");
+		            pdt_review_count = rs.getInt("pdt_review_count");
+		            pdt_sales_count = rs.getInt("pdt_sales_count");
+		            pdt_adddate = rs.getDate("pdt_adddate");
+		            pdt_viewcount = rs.getInt("pdt_viewcount");
+		            pdt_discount_amount = (pdt_discount_rate != 0)
+		                ? pdt_amount - (int)(pdt_amount * pdt_discount_rate / 100.0f ) // 할인율 적용
+		                : pdt_amount;
+		            
+		            pdt = new ProductDTO().builder()
+		            		.pdt_id(pdt_id)
+		            		.cat_id(cat_id)
+		            		.scat_id(scat_id)
+		            		.pdt_number(pdt_number)
+		                    .pdt_name(pdt_name)
+		                    .pdt_amount(pdt_amount)
+		                    .pdt_discount_rate(pdt_discount_rate)
+		                    .pdt_img_url(pdt_img_url)
+		                    .pdt_count(pdt_count)
+		                    .pdt_review_count(pdt_review_count)
+		                    .pdt_sales_count(pdt_sales_count)
+		                    .pdt_adddate(pdt_adddate)
+		                    .pdt_viewcount(pdt_viewcount)
+		                    .pdt_discount_amount(pdt_discount_amount)
+		                    .build();
 
-					list.add(pdt);
+		            list.add(pdt);
 
-				} while (rs.next());
-				
-			}
+		        } while (rs.next());
+		    }
 		} catch (Exception e) {
-			e.printStackTrace();
+		    e.printStackTrace();
 		} finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		    try {
+		        rs.close();
+		        pstmt.close();
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		    }
 		}
 		return list;
 	}
+
 	
 	
 	/*
@@ -1698,6 +1823,109 @@ public class OhoraDAOImpl implements OhoraDAO{
 		    }
 
 		    return cartItems;
+		}
+
+		@Override
+		public ArrayList<ProductDTO> prdCate(int currentPage, int numberPerPage, int categoryNumber, int sort_method) throws SQLException {
+
+			int pdt_id;					// 상품 ID
+			int cat_id;					// 카테고리 ID
+			int scat_id;				// 하위카테고리 ID
+			int pdt_number;				// 옵션갯수
+			String pdt_name;			// 상품명
+			int pdt_amount;				// 상품가격
+			int pdt_discount_rate;		// 할인율
+			String pdt_img_url;			// 이미지경로
+			int pdt_count;				// 재고수량
+			int pdt_review_count;		// 리뷰 수
+			int pdt_sales_count;		// 판매 수량
+			Date pdt_adddate;			// 상품 등록일
+			int pdt_viewcount;			// 조회수
+		    int pdt_discount_amount;
+			
+			ArrayList<ProductDTO> list = null;
+			
+			String sql = "SELECT * FROM ( "
+			        + " SELECT ROWNUM no, t.* FROM ("
+			        + " SELECT pdt_id, cat_id, scat_id, pdt_number, pdt_name, pdt_amount, pdt_discount_rate, pdt_img_url, pdt_count, pdt_review_count,"
+			        + " pdt_sales_count, pdt_adddate, pdt_viewcount "
+			        + " FROM O_PRODUCT ";
+
+			sql = prdCondition(sql, categoryNumber);
+			sql = prdSortCondition(sql, sort_method);
+			
+			sql += " ) t "
+			     + " WHERE ROWNUM <= ? " // 상위 서브쿼리의 최대값 조건
+			     + " ) b "
+			     + " WHERE no >= ? "; // 바깥쪽에서 최소값 조건
+
+			
+			System.out.println("상품 정렬 SQL 쿼리 : " + sql);
+			
+			ProductDTO pdt = null;
+			int start = (currentPage - 1) * numberPerPage + 1;
+			int end = start + numberPerPage - 1;
+			int totalRecords = getTotalRecords(categoryNumber);
+			if (end > totalRecords) end = totalRecords;
+
+			try {
+			    pstmt = conn.prepareStatement(sql);
+			    pstmt.setInt(1, end);
+			    pstmt.setInt(2, start);
+			    rs = pstmt.executeQuery();
+
+			    if (rs.next()) {
+			        list = new ArrayList<ProductDTO>();
+			        do {
+			        	pdt_id = rs.getInt("pdt_id");
+			        	cat_id = rs.getInt("cat_id");
+			        	scat_id = rs.getInt("scat_id");
+			        	pdt_number = rs.getInt("pdt_number");
+			            pdt_name = rs.getString("pdt_name");
+			            pdt_amount = rs.getInt("pdt_amount");
+			            pdt_discount_rate = rs.getInt("pdt_discount_rate");
+			            pdt_img_url = rs.getString("pdt_img_url");
+			            pdt_count = rs.getInt("pdt_count");
+			            pdt_review_count = rs.getInt("pdt_review_count");
+			            pdt_sales_count = rs.getInt("pdt_sales_count");
+			            pdt_adddate = rs.getDate("pdt_adddate");
+			            pdt_viewcount = rs.getInt("pdt_viewcount");
+			            pdt_discount_amount = (pdt_discount_rate != 0)
+			                ? pdt_amount - (int)(pdt_amount * pdt_discount_rate / 100.0f ) // 할인율 적용
+			                : pdt_amount;
+			            
+			            pdt = new ProductDTO().builder()
+			            		.pdt_id(pdt_id)
+			            		.cat_id(cat_id)
+			            		.scat_id(scat_id)
+			            		.pdt_number(pdt_number)
+			                    .pdt_name(pdt_name)
+			                    .pdt_amount(pdt_amount)
+			                    .pdt_discount_rate(pdt_discount_rate)
+			                    .pdt_img_url(pdt_img_url)
+			                    .pdt_count(pdt_count)
+			                    .pdt_review_count(pdt_review_count)
+			                    .pdt_sales_count(pdt_sales_count)
+			                    .pdt_adddate(pdt_adddate)
+			                    .pdt_viewcount(pdt_viewcount)
+			                    .pdt_discount_amount(pdt_discount_amount)
+			                    .build();
+
+			            list.add(pdt);
+
+			        } while (rs.next());
+			    }
+			} catch (Exception e) {
+			    e.printStackTrace();
+			} finally {
+			    try {
+			        rs.close();
+			        pstmt.close();
+			    } catch (Exception e) {
+			        e.printStackTrace();
+			    }
+			}
+			return list;			
 		}
 }
 

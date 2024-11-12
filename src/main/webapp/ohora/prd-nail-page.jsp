@@ -14,7 +14,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<link rel="stylesheet" href="../resources/cdn-main/prd-page.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cdn-main/prd-page.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <script
@@ -234,15 +234,15 @@ span.material-symbols-outlined {
 		<div id="banner-image-wrap">
 			<c:choose>
 	        <c:when test="${param.cate_no == '44'}">
-	            <img src="../resources/images/main_all_img.jpg" alt="메인이미지" />
+	            <img src="${contextPath}/resources/images/main_all_img.jpg" alt="메인이미지" />
 	        </c:when>
 	        <c:when test="${param.cate_no == '120'}">
 	            <li data-path="120">
-		            <img src="../resources/images/main_best_img.jpg" alt="인기상품이미지" />
+		            <img src="${contextPath}/resources/images/main_best_img.jpg" alt="인기상품이미지" />
 	            </li>
 	        </c:when>
 	        <c:when test="${param.cate_no == '121'}">
-		            <img src="../resources/images/main_new_img.jpg" alt="신상품이미지" />
+		            <img src="${contextPath}/resources/images/main_new_img.jpg" alt="신상품이미지" />
 	        </c:when>
 	        </c:choose>
 		</div>
@@ -256,28 +256,42 @@ span.material-symbols-outlined {
 			<div id="sort-menu-wrap">
 				<div id="sort-type-wrap">
 					<div id="select-sort-wrap">
-						<span class="selected-type">정렬방식</span>
-						<ul class="sort_type_list" style="display: none;">
-							<li class="sort-way"><a href="">신상품</a></li>
-							<li class="sort-way"><a href="">인기상품</a></li>
-							<li class="sort-way"><a href="">조회수</a></li>
-						</ul>
-						<script>
-							document
-									.querySelector(".selected-type")
-									.addEventListener(
-											"click",
-											function() {
-												let st = document
-														.querySelector(".sort_type_list");
-												if (st.style.display == "none") {
-													st.style.display = "block";
-												} else {
-													st.style.display = "none"
-												}
-											});
-						</script>
+						<div class="sort_type_tt">
+							<c:if test='${param.sort_method == null}'><span class="selected">정렬방식</span></c:if>
+							<c:if test='${param.sort_method == 5}'><span class="selected">신상품</span></c:if>
+							<c:if test='${param.sort_method == 6}'><span class="selected">인기상품</span></c:if>
+							<c:if test='${param.sort_method == 8}'><span class="selected">조회수</span></c:if>
+						</div>
+					    <ul class="sort_type_list" style="display: none;">
+					        <li class="sort-way">
+					            <a href="${contextPath}/product/list.do?cate_no=${param.cate_no}&currentPage=1&sort_method=5">신상품</a>
+					        </li>
+					        <li class="sort-way">
+					            <a href="${contextPath}/product/list.do?cate_no=${param.cate_no}&currentPage=1&sort_method=6">인기상품</a>
+					        </li>
+					        <li class="sort-way">
+					            <a href="${contextPath}/product/list.do?cate_no=${param.cate_no}&currentPage=1&sort_method=8">조회수</a>
+					        </li>
+					    </ul>
 					</div>
+					
+					<script>
+					    // sort_type_tt 클릭 시 sort_type_list 표시 토글
+					    document.querySelector(".sort_type_tt").addEventListener("click", function() {
+					        const sortList = document.querySelector(".sort_type_list");
+					        sortList.style.display = (sortList.style.display === "none") ? "block" : "none";
+					    });
+					
+					    // 다른 곳 클릭 시 sort_type_list 숨김
+					    document.addEventListener("click", function(event) {
+					        const sortList = document.querySelector(".sort_type_list");
+					        const sortTitle = document.querySelector(".sort_type_tt");
+					
+					        if (!sortTitle.contains(event.target) && !sortList.contains(event.target)) {
+					            sortList.style.display = "none";
+					        }
+					    });
+					</script>
 
 					<button type="button" id="my-design">내가 원하는 디자인 찾기</button>
 				</div>
@@ -405,9 +419,9 @@ span.material-symbols-outlined {
 											<dl>
 												<a href="${contextPath}/product/detail.do?pdt_id=${pdt.pdt_id}&cate_no=${param.cate_no}" class="item-viewlink"></a>
 												<div class="item-image">
-													<img src="../resources/images/prd_image/imgs/${pdt.pdt_img_url}.jpg"
+													<img src="${contextPath}/resources/images/prd_image/imgs/${pdt.pdt_img_url}.jpg"
 														alt="" width="800" height="800" /> <img
-														src="../resources/images/prd_image/imgs_hover/${pdt.pdt_img_url}.jpg" alt=""
+														src="${contextPath}/resources/images/prd_image/imgs_hover/${pdt.pdt_img_url}.jpg" alt=""
 														width="800" height="800" />
 												</div>
 												<div class="item-info">
@@ -443,7 +457,7 @@ span.material-symbols-outlined {
 														</p>
 													</div>
 													<div class="cart-in">
-								                        <img src="../resources/images/btn_list_cart.gif" data-pdtid="${pdt.pdt_id}" alt="장바구니 추가 버튼" />
+								                        <img src="${contextPath}/resources/images/btn_list_cart.gif" data-pdtid="${pdt.pdt_id}" alt="장바구니 추가 버튼" />
 								                    </div>
 								                    
 												</div>
@@ -458,18 +472,18 @@ span.material-symbols-outlined {
 				</div>
 
 
-				<!-- prev [1start] 2 3 4 5 6 7 8 9 10 next -->
+				<!-- prev [1start] 2 3 4 5 6 7 8 9 10 next --> 
 				<div id="page-container">
-			        <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.first }" class="first">first</a>
-			        
-			        <c:if test="${ pvo.prev }">
-			            <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.start - 1 }" class="prev">prev</a>
-			        </c:if>
-			        
-			        <c:if test="${ not pvo.prev }">
-			            <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.first }" class="prev">prev</a>
-			        </c:if>
-			        
+				    <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.first }<c:if test='${ not empty param.sort_method }'>&sort_method=${param.sort_method}</c:if>" class="first">first</a>
+				    
+				    <c:if test="${ pvo.prev }">
+				        <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.start - 1 }<c:if test='${ not empty param.sort_method }'>&sort_method=${param.sort_method}</c:if>" class="prev">prev</a>
+				    </c:if>
+				    
+				    <c:if test="${ not pvo.prev }">
+				        <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.first }<c:if test='${ not empty param.sort_method }'>&sort_method=${param.sort_method}</c:if>" class="prev">prev</a>
+				    </c:if>
+				    
 				    <ol>
 				        <c:forEach begin="${ pvo.start }" end="${ pvo.end }" step="1" var="i">
 				            <c:choose>
@@ -477,22 +491,22 @@ span.material-symbols-outlined {
 				                    <li><a href="#" class="active">${ i }</a></li>
 				                </c:when>
 				                <c:otherwise>
-				                    <li><a href="list.do?cate_no=${param.cate_no}&currentPage=${ i }">${ i }</a></li>
+				                    <li><a href="list.do?cate_no=${param.cate_no}&currentPage=${ i }<c:if test='${ not empty param.sort_method }'>&sort_method=${param.sort_method}</c:if>">${ i }</a></li>
 				                </c:otherwise>
 				            </c:choose>
 				        </c:forEach>
 				    </ol>
-		            <c:choose>
-					    <c:when test="${ pvo.currentPage != pvo.last }">
-					        <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.currentPage + 1 }" class="next">next</a>
-					    </c:when>
-					    <c:otherwise>
-					        <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.last }" class="next">next</a>
-					    </c:otherwise>
-					</c:choose>
-
-			        
-			        <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.last }" class="last">last</a>
+				
+				    <c:choose>
+				        <c:when test="${ pvo.currentPage != pvo.last }">
+				            <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.currentPage + 1 }<c:if test='${ not empty param.sort_method }'>&sort_method=${param.sort_method}</c:if>" class="next">next</a>
+				        </c:when>
+				        <c:otherwise>
+				            <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.last }<c:if test='${ not empty param.sort_method }'>&sort_method=${param.sort_method}</c:if>" class="next">next</a>
+				        </c:otherwise>
+				    </c:choose>
+				
+				    <a href="list.do?cate_no=${param.cate_no}&currentPage=${ pvo.last }<c:if test='${ not empty param.sort_method }'>&sort_method=${param.sort_method}</c:if>" class="last">last</a>
 				</div>
 
 			</div>
@@ -501,16 +515,12 @@ span.material-symbols-outlined {
 	</div>
 	<!--아래 div-->
 
-
-
-
-
 	<div id="third-wrap";>
 		<form class="side-filter-main" action="" method="get">
 			<div id="searchArea" ; style="height: 919px; display: none;">
 				<h1 id="side-title">
 					내가 원하는 디자인 찾기 <span> <img
-						src="../resources/images/close_icon.png" alt="" />
+						src="${contextPath}/resources/images/close_icon.png" alt="" />
 					</span>
 				</h1>
 

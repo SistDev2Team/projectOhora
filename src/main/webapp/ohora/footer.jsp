@@ -97,10 +97,10 @@
         <div class="list" id="c">
           서비스
           <div class="sub" id="cc">
-            <a href="#">FAQ</a><br /><br />
-            <a href="#">상담톡</a><br /><br />
-            <a href="#">사용법</a><br /><br />
-            <a href="#">공지사항</a>
+            <a href="${contextPath}/board/faqlist.do">FAQ</a><br /><br />
+            <a href="https://oe9lp.channel.io/home">상담톡</a><br /><br />
+            <a href="${contextPath}/howto.do?howto=main">사용법</a><br /><br />
+            <a href="${contextPath}/board/noticelist.do"">공지사항</a>
           </div>
         </div>
       </div>
@@ -122,7 +122,7 @@
       </div>
       <div class="line"></div>
       <div class="bottom">
-        <span class="a"><a href="#">브랜드 소개</a></span>
+        <span class="a"><a href="${contextPath}/ohora_Fend_brand4.do">브랜드 소개</a></span>
         <span class="b"><a href="#">이용약관</a></span>
         <span class="c"><a href="#">개인정보처리방침</a></span>
       </div>

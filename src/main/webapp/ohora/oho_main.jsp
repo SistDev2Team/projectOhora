@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<link rel="stylesheet" href="../resources/cdn-main/oho_main.css">
+<link rel="stylesheet" href="${contextPath}/resources/cdn-main/oho_main.css">
  <!-- Link Swiper's CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -107,11 +108,11 @@ System.out.print(" 로그인안함 userPk : " + userPk);
     <li id="item${ status.index + 1 }" class="item-swiper-slide swiper-slide">
         <div class="container-complete" data-prd-num="${newPrd.pdt_id}">
             <dl>
-                <a href="/projectOhora/product/detail.do?pdt_id=${newPrd.pdt_id}&cate_no=121" class="viewlink"></a>
+                <a href="${contextPath}/product/detail.do?pdt_id=${newPrd.pdt_id}&cate_no=121" class="viewlink"></a>
                 <div class="base-img">
                     <div class="thumb">
-                        <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="../resources/images/prd_image/imgs/${newPrd.pdt_img_url}.jpg">
-                        <img loading="lazy" class="hover_img" width="800" height="800" src="../resources/images/prd_image/imgs_hover/${newPrd.pdt_img_url}.jpg">
+                        <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="${contextPath}/resources/images/prd_image/imgs/${newPrd.pdt_img_url}.jpg">
+                        <img loading="lazy" class="hover_img" width="800" height="800" src="${contextPath}/resources/images/prd_image/imgs_hover/${newPrd.pdt_img_url}.jpg">
                     </div>
                     <span class="soldout-img" style="display: ${newPrd.pdt_count==0 ? 'block' : 'none'};">
                         <a href="">
@@ -160,7 +161,7 @@ System.out.print(" 로그인안함 userPk : " + userPk);
                         </div>
                     </div>
 					<div class="cart-in">
-                        <img src="../resources/images/btn_list_cart.gif"
+                        <img src="${contextPath}/resources/images/btn_list_cart.gif"
                             data-pdtid="${newPrd.pdt_id}"
                             alt="장바구니 추가 버튼" />
                     </div>
@@ -187,105 +188,99 @@ System.out.print(" 로그인안함 userPk : " + userPk);
        </div>
        <!-- 이 달의 신상품 끝 -->
 
-
-       <div class="mainSection-best">
-           <h3>
-               <strong>주간 베스트</strong>
-               <a href="" class="main-moreBtn">+ 더보기</a>
-           </h3>
-
-           <div class="cate_tab">
-               <span class="on" data-cate="120">전체</span>
-               <span data-cate="125">네일</span>
-               <span data-cate="127">페디</span>
-               <span data-cate="49">케어&툴</span>
-           </div>	
-<div class="common_list_box2">
-               <div class="swiper-container swiper mySwiper3">
-                   <ul class="items-swiper-wrapper swiper-wrapper">
-					<c:forEach var="bestPrd" items="${bestProducts}"  varStatus="status">
-    <li id="item${ status.index + 1 }" class="item-swiper-slide swiper-slide">
-        <div class="container-complete" data-prd-num="${bestPrd.pdt_id}">
-            <dl>
-                <a href="/projectOhora/product/detail.do?pdt_id=${bestPrd.pdt_id}&cate_no=121" class="viewlink"></a>
-                <div class="base-img">
-                    <div class="thumb">
-                        <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="../resources/images/prd_image/imgs/${bestPrd.pdt_img_url}.jpg">
-                        <img loading="lazy" class="hover_img" width="800" height="800" src="../resources/images/prd_image/imgs_hover/${bestPrd.pdt_img_url}.jpg">
-                    </div>
-                    <span class="soldout-img" style="display: ${bestPrd.pdt_count==0 ? 'block' : 'none'};">
-                        <a href="">
-                            <span>coming<br>soon</span>
-                        </a>
-                    </span>
-                </div>
-                
-                <div class="base-mask">
-                    <dd class="name-container">
-                        <p class="name">
-                            <span>${bestPrd.pdt_name}</span>
-                        </p>
-                    </dd>    
-                    <dd class="price-container">
-                    	<c:choose>
-							<c:when test="${bestPrd.pdt_discount_rate != 0}">
-								<p class="normal-price">
-									<fmt:formatNumber value="${bestPrd.pdt_amount}"
-										type="number" pattern="#,##0" />
-								</p>
-								<p class="sale-price">
-									<fmt:formatNumber value="${bestPrd.pdt_discount_amount}"
-										type="number" pattern="#,##0" />
-								</p>
-								<p class="discount">${bestPrd.pdt_discount_rate}%</p>
-							</c:when>
-							<c:otherwise>
-								<p class="sale-price">
-									<fmt:formatNumber value="${bestPrd.pdt_amount}"
-										type="number" pattern="#,##0" />
-								</p>
-							</c:otherwise>
-						</c:choose>
-                    </dd>
-
-                    <dd class="prdRegiDate">등록일: ${bestPrd.pdt_adddate}</dd>
-
-                    <div class="prdInfoBot">
-                        <div class="rvCount">
-                            <div class="rvWrap">
-                                <p class="rv_count_wrap">
-                                    <span class="rv_count_value">${bestPrd.pdt_review_count}</span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-					<div class="cart-in">
-                        <img src="../resources/images/btn_list_cart.gif" data-pdtid="${bestPrd.pdt_id}" alt="장바구니 추가 버튼" />
-                    </div>
-
-                    <div class="only_info_dispNone">
-                        <span style="font-size:12px;color:#555555;"><!-- 해시태그 들어가야함 --></span>
-                    </div>
-                </div>
-            </dl>
-        </div>
-    </li>
-</c:forEach>
-
-                   </ul>
-                   <div class="swiper-scrollbar"></div>
- 
-
-                </div>
-
-                <div class="swiper-button-next2"></div>
-                <div class="swiper-button-prev2"></div>
-               </div>
-               <!-- 스와이퍼 컨테이너 -->
-           </div>
+     
+      <div class="mainSection-best">
+			   <h3>
+			       <strong>주간 베스트</strong>
+			       <a href="" class="main-moreBtn">+ 더보기</a>
+			   </h3>
+			
+			   <div class="cate_tab">
+			       <span class="on" data-cate="120">전체</span>
+			       <span data-cate="125">네일</span>
+			       <span data-cate="127">페디</span>
+			       <span data-cate="49">케어&툴</span>
+			   </div>    
+			
+			   <div class="common_list_box2">
+			       <div class="swiper-container swiper mySwiper3">
+			           <ul class="items-swiper-wrapper swiper-wrapper">
+			               <c:forEach var="bestPrd" items="${bestProducts}" varStatus="status">
+			                   <li id="item${status.index + 1}" class="item-swiper-slide swiper-slide">
+			                       <div class="container-complete" data-prd-num="${bestPrd.pdt_id}">
+			                           <dl>
+			                               <a href="${contextPath}/product/detail.do?pdt_id=${bestPrd.pdt_id}&cate_no=121" class="viewlink"></a>
+			                               <div class="base-img">
+			                                   <div class="thumb">
+			                                       <img loading="lazy" alt="" class="thumb_img" width="800" height="800" src="${contextPath}/resources/images/prd_image/imgs/${bestPrd.pdt_img_url}.jpg">
+			                                       <img loading="lazy" class="hover_img" width="800" height="800" src="${contextPath}/resources/images/prd_image/imgs_hover/${bestPrd.pdt_img_url}.jpg">
+			                                   </div>
+			                                   <span class="soldout-img" style="display: ${bestPrd.pdt_count==0 ? 'block' : 'none'};">
+			                                       <a href="">
+			                                           <span>coming<br>soon</span>
+			                                       </a>
+			                                   </span>
+			                               </div>
+			                               <div class="base-mask">
+			                                   <dd class="name-container">
+			                                       <p class="name">
+			                                           <span>${bestPrd.pdt_name}</span>
+			                                       </p>
+			                                   </dd>    
+			                                   <dd class="price-container">
+			                                       <c:choose>
+			                                           <c:when test="${bestPrd.pdt_discount_rate != 0}">
+			                                               <p class="normal-price">
+			                                                   <fmt:formatNumber value="${bestPrd.pdt_amount}" type="number" pattern="#,##0" />
+			                                               </p>
+			                                               <p class="sale-price">
+			                                                   <fmt:formatNumber value="${bestPrd.pdt_discount_amount}" type="number" pattern="#,##0" />
+			                                               </p>
+			                                               <p class="discount">${bestPrd.pdt_discount_rate}%</p>
+			                                           </c:when>
+			                                           <c:otherwise>
+			                                               <p class="sale-price">
+			                                                   <fmt:formatNumber value="${bestPrd.pdt_amount}" type="number" pattern="#,##0" />
+			                                               </p>
+			                                           </c:otherwise>
+			                                       </c:choose>
+			                                   </dd>
+			
+			                                   <dd class="prdRegiDate">등록일: ${bestPrd.pdt_adddate}</dd>
+			
+			                                   <div class="prdInfoBot">
+			                                       <div class="rvCount">
+			                                           <div class="rvWrap">
+			                                               <p class="rv_count_wrap">
+			                                                   <span class="rv_count_value">${bestPrd.pdt_review_count}</span>
+			                                               </p>
+			                                           </div>
+			                                       </div>
+			                                   </div>
+			
+			                                   <div class="cart-in">
+			                                       <img src="${contextPath}/resources/images/btn_list_cart.gif" data-pdtid="${bestPrd.pdt_id}" alt="장바구니 추가 버튼" />
+			                                   </div>
+			
+			                                   <div class="only_info_dispNone">
+			                                       <span style="font-size:12px;color:#555555;"></span>
+			                                   </div>
+			                               </div>
+			                           </dl>
+			                       </div>
+			                   </li>
+			               </c:forEach>
+			           </ul>
+			           <div class="swiper-scrollbar"></div>
+			       </div>
+			       <div class="swiper-button-next2"></div>
+			       <div class="swiper-button-prev2"></div>
+			   </div>
+			</div>
        </div>
        <!-- 주간 베스트 끝 -->
+
+
 
        <div class="find_color_container">
            <!-- 비포어로 배경색 있음 (회색) -->
