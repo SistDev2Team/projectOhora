@@ -1,0 +1,936 @@
+#ivStyle .SP_layoutFix {
+    width: 1050px;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.SP_layoutFix {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#SP_mypage_wrap .SP_subSection {
+    padding: 60px 0 30px;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.SP_subSection {
+    padding: 100px 0 30px;
+}
+
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.SP_subContHeader .SP_subTitle, .SP_subSection .SP_subTitle, .SP_subLoginHeader .SP_subTitle {
+    padding: 5px 0;
+    text-align: center;
+    font-size: 30px;
+    /* text-transform: lowercase; */
+}
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-block-end: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+#ivStyle .SP_subContHeader .SP_subTitle span, #ivStyle .SP_subSection .SP_subTitle span, #ivStyle .SP_subLoginHeader .SP_subTitle span {
+    min-width: 100%;
+    font-size: 28px;
+    letter-spacing: -2px !important;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.SP_subContHeader .SP_subTitle span, .SP_subSection .SP_subTitle span, .SP_subLoginHeader .SP_subTitle span {
+    display: inline-block;
+    position: relative;
+    font-size: 32px;
+    min-width: 1200px;
+    text-transform: lowercase;
+}
+.eng_font, .eng_font * {
+    font-family: 'Libre Baskerville', 'Noto Sans KR', sans-serif !important;
+}
+
+form {
+    display: block;
+    margin-top: 0em;
+    unicode-bidi: isolate;
+}
+
+#SP_mypage_wrap .SP_subSection {
+    padding: 60px 0 30px;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.SP_subSection {
+    padding: 100px 0 30px;
+}
+
+.SP_tableSt01_isThAndTd.type2 {
+    position: relative;
+    width: 100%;
+    margin-top: 0;
+    border: none;
+}
+.SP_tableSt01_isThAndTd {
+    position: relative;
+    width: 100%;
+    /* margin-top: 40px; */
+    /* border-top: 2px solid #111; */
+}
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+table {
+    width: 100%;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    unicode-bidi: isolate;
+    border-spacing: 2px;
+    border-color: gray;
+}
+
+caption {
+    display: none;
+}
+
+caption {
+    display: table-caption;
+    text-align: -webkit-center;
+    unicode-bidi: isolate;
+}
+
+colgroup {
+    display: table-column-group;
+    unicode-bidi: isolate;
+}
+
+col {
+    display: table-column;
+    unicode-bidi: isolate;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+.SP_tableSt01_isThAndTd tr {
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+.SP_tableSt01_isThAndTd th, .SP_tableSt01_isThumNail .left {
+    text-align: center;
+}
+.SP_tableSt01_isThAndTd th {
+    vertical-align: middle;
+    height: 46px;
+    font-size: 16px;
+    color: #111;
+    font-weight: 500;
+    background: #eeeeee;
+}
+
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+    unicode-bidi: isolate;
+}
+
+.SP_chgAdressTable_wrap .SP_tableSt01_isThAndTd th img {
+    vertical-align: middle;
+}
+
+img {
+    max-width: 100%;
+}
+img {
+    vertical-align: top;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.SP_tableSt01_isThAndTd.type2 td {
+    /* height: auto; */
+    /* padding: 10px; */
+}
+.SP_tableSt01_isThAndTd td {
+    vertical-align: middle;
+    height: 60px;
+    padding: 10px 0 10px 50px;
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    line-height: 1.4;
+}
+
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+}
+
+.xans-myshop-addrregister #ma_rcv_title, .xans-myshop-addrregister #ma_rcv_name {
+    width: 180px;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+body input[type="text"] {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 100px;
+}
+.SP_tableSt01_isThAndTd input {
+    vertical-align: middle;
+}
+
+input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+    overflow-clip-margin: 0px !important;
+    overflow: clip !important;
+}
+
+input[type="text" i] {
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
+}
+
+input {
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+.SP_tableSt01_isThAndTd tr {
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+    border-color: inherit;
+}
+
+.SP_tableSt01_isThAndTd th, .SP_tableSt01_isThumNail .left {
+    text-align: center;
+}
+.SP_tableSt01_isThAndTd th {
+    vertical-align: middle;
+    height: 46px;
+    font-size: 16px;
+    color: #111;
+    font-weight: 500;
+    background: #eeeeee;
+}
+
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+    unicode-bidi: isolate;
+}
+
+.SP_chgAdressTable_wrap .SP_tableSt01_isThAndTd th img {
+    vertical-align: middle;
+}
+
+img {
+    max-width: 100%;
+}
+img {
+    vertical-align: top;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.SP_tableSt01_isThAndTd tr {
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
+}
+
+.SP_tableSt01_isThAndTd th, .SP_tableSt01_isThumNail .left {
+    text-align: center;
+}
+.SP_tableSt01_isThAndTd th {
+    vertical-align: middle;
+    height: 46px;
+    font-size: 16px;
+    color: #111;
+    font-weight: 500;
+    background: #eeeeee;
+}
+
+.SP_chgAdressTable_wrap .SP_tableSt01_isThAndTd th img {
+    vertical-align: middle;
+}
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+img {
+    max-width: 100%;
+}
+img {
+    vertical-align: top;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.SP_tableSt01_isThAndTd.type2 td {
+    /* height: auto; */
+    /* padding: 10px; */
+}
+.SP_tableSt01_isThAndTd td {
+    vertical-align: middle;
+    height: 60px;
+    padding: 10px 0 10px 50px;
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    line-height: 1.4;
+}
+
+.SP_chgAdressTable_wrap .SP_tableSt01_isThAndTd #address_zip1 {
+    padding: 0;
+    text-align: center;
+}
+.xans-myshop-addrregister #address_zip1, .xans-myshop-addrregister #address_zip2 {
+    width: 60px;
+    text-align: center;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+body input[type="text"] {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 100px;
+}
+.SP_tableSt01_isThAndTd input {
+    vertical-align: middle;
+}
+
+input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+    overflow-clip-margin: 0px !important;
+    overflow: clip !important;
+}
+
+input[type="text" i] {
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+
+input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
+}
+
+input {
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+.SP_chgAdressTable_wrap .SP_tableSt01_isThAndTd .SP_cm_btn {
+    width: 60px;
+    height: 30px;
+    font-size: 11px;
+    line-height: 30px;
+}
+.SP_cm_btn.SP_btn_gray_bg {
+    background: #111;
+    color: #fff;
+}
+.SP_cm_btn.SP_btn_gray_bg {
+    background: #ece8e5;
+}
+.SP_tableSt01_isThAndTd td a {
+    color: #000;
+    /* border: 1px solid #000; */
+    /* padding: 3px 5px; */
+    /* font-size: 12px; */
+}
+.SP_cm_btn {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(33.333% - 10px);
+    height: 45px;
+    line-height: 45px;
+    font-size: 15px;
+    color: #000;
+    background: #fff;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.xans-myshop-addrregister #address_addr1, .xans-myshop-addrregister #address_addr2 {
+    width: 450px;
+    margin: 5px 0 0;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+body input[type="text"] {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 100px;
+}
+.SP_tableSt01_isThAndTd input {
+    vertical-align: middle;
+}
+
+input:not([type="image" i], [type="range" i], [type="checkbox" i], [type="radio" i]) {
+    overflow-clip-margin: 0px !important;
+    overflow: clip !important;
+}
+
+input[type="text" i] {
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+input:not([type="file" i], [type="image" i], [type="checkbox" i], [type="radio" i]) {
+}
+
+input {
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+.xans-myshop-addrregister #address_addr1, .xans-myshop-addrregister #address_addr2 {
+    width: 450px;
+    margin: 5px 0 0;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+body input[type="text"] {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 100px;
+}
+.SP_tableSt01_isThAndTd input {
+    vertical-align: middle;
+}
+
+.displaynone {
+    display: none !important;
+}
+
+.SP_tableSt01_isThAndTd tr {
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
+}
+
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.SP_tableSt01_isThAndTd th, .SP_tableSt01_isThumNail .left {
+    text-align: center;
+}
+.SP_tableSt01_isThAndTd th {
+    vertical-align: middle;
+    height: 46px;
+    font-size: 16px;
+    color: #111;
+    font-weight: 500;
+    background: #eeeeee;
+}
+
+.displaynone {
+    display: none !important;
+}
+
+.SP_tableSt01_isThAndTd.type2 td {
+    /* height: auto; */
+    /* padding: 10px; */
+}
+.SP_tableSt01_isThAndTd td {
+    vertical-align: middle;
+    height: 60px;
+    padding: 10px 0 10px 50px;
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    line-height: 1.4;
+}
+
+.xans-myshop-addrregister #ma_rcv_phone1, .xans-myshop-addrregister #ma_rcv_mobile_no1 {
+    width: 60px;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.SP_chgAdressTable_wrap .SP_tableSt01_isThAndTd select {
+    height: 30px;
+    border: 1px solid #d8d8d8;
+}
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+select {
+    height: 40px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    background: #FFF url(https://www.ohora.kr/smartpc/_img/icon/icon_select.png) no-repeat 85% center;
+    padding: 5px 0 5px 15px;
+    vertical-align: middle;
+    min-width: 100px;
+}
+
+select:not(:-internal-list-box) {
+    overflow: visible !important;
+}
+
+select {
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    box-sizing: border-box;
+    align-items: center;
+    -webkit-rtl-ordering: logical;
+    background-color: field;
+    cursor: default;
+    margin: 0em;
+    white-space: pre;
+    border-width: 1px;
+    border-style: solid;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    border-radius: 0px;
+}
+
+option {
+    font-weight: normal;
+    display: block;
+    padding-block-start: 0px;
+    padding-block-end: 1px;
+    min-block-size: 1.2em;
+    padding-inline: 2px;
+    white-space: nowrap;
+}
+
+.xans-myshop-addrregister #ma_rcv_phone2, .xans-myshop-addrregister #ma_rcv_phone3, .xans-myshop-addrregister #ma_rcv_mobile_no2, .xans-myshop-addrregister #ma_rcv_mobile_no3 {
+    width: 60px;
+    margin: 0 4px;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+body input[type="text"] {
+    display: inline-block;
+    vertical-align: middle;
+    height: 40px;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #000;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+    min-width: 100px;
+}
+.SP_tableSt01_isThAndTd input {
+    vertical-align: middle;
+}
+
+input {
+    text-rendering: auto;
+    color: fieldtext;
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    background-color: field;
+    margin: 0em;
+    padding: 1px 0px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding-block: 1px;
+    padding-inline: 2px;
+}
+
+.SP_tableSt01_isThAndTd tr {
+    border-bottom: 1px solid #eeeeee;
+    border-top: 1px solid #eeeeee;
+}
+
+.SP_tableSt01_isThAndTd.type2 td {
+    /* height: auto; */
+    /* padding: 10px; */
+}
+.SP_tableSt01_isThAndTd td {
+    vertical-align: middle;
+    height: 60px;
+    padding: 10px 0 10px 50px;
+    font-size: 15px;
+    color: #000;
+    text-align: left;
+    line-height: 1.4;
+}
+
+td {
+    display: table-cell;
+    vertical-align: inherit;
+    unicode-bidi: isolate;
+}
+
+.SP_chgAdressTable_wrap .SP_tableSt01_isThAndTd.type2 input[type="checkbox"] {
+    float: left;
+    margin-right: 10px;
+}
+.SP_tableSt01_isThAndTd input {
+    vertical-align: middle;
+}
+input[type="checkbox"] {
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    border: none;
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    border-radius: 100%;
+    background: #ddd url(https://www.ohora.kr/smartpc/_img/icon/input_unchked.svg) no-repeat center center;
+    background-size: cover;
+}
+input[type="checkbox"] {
+    display: inline-block;
+    margin: 1px 0 0 -17px;
+    vertical-align: top;
+    border-color: #000;
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border-radius: inherit;
+    background: none;
+    border: 1px solid #000;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+}
+
+label {
+    cursor: default;
+}
+
+.SP_tableBtn_wrap {
+    margin: 30px 0 125px !important;
+    text-align: center;
+}
+
+.SP_tableBtn_wrap .SP_tableBtnAlign_right {
+    text-align: right;
+    font-size: 0;
+    position: relative;
+}
+
+.SP_tableBtn_wrap .SP_tableBtnAlign_right a {
+    margin-left: 10px;
+}
+.SP_tableBtn_wrap .SP_btn_gray_bd {
+    color: #111;
+}
+.SP_tableBtn_wrap .SP_cm_btn, .SP_submitBtn_wrap .SP_cm_btn {
+    width: 140px;
+    font-size: 15px;
+    color: #000;
+    line-height: 43px;
+    padding-right: 20px;
+    text-align: center;
+    background: url(https://www.ohora.kr/smartpc/_img/icon/arrow_more.png) no-repeat 115px 13px;
+    background-size: 6%;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    border: 1px solid #000;
+}
+.SP_cm_btn.SP_btn_gray_bd {
+    border: 1px solid #ddd;
+}
+.SP_cm_btn {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(33.333% - 10px);
+    height: 45px;
+    line-height: 45px;
+    font-size: 15px;
+    color: #000;
+    background: #fff;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.SP_tableBtn_wrap .SP_tableBtnAlign_right a {
+    margin-left: 10px;
+}
+.SP_tableBtn_wrap .SP_btn_gray_bd {
+    color: #111;
+}
+.SP_tableBtn_wrap .SP_cm_btn, .SP_submitBtn_wrap .SP_cm_btn {
+    width: 140px;
+    font-size: 15px;
+    color: #000;
+    line-height: 43px;
+    padding-right: 20px;
+    text-align: center;
+    background: url(https://www.ohora.kr/smartpc/_img/icon/arrow_more.png) no-repeat 115px 13px;
+    background-size: 6%;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+    border: 1px solid #000;
+}
+.SP_cm_btn.SP_btn_gray_bd {
+    border: 1px solid #ddd;
+}
+.SP_cm_btn {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(33.333% - 10px);
+    height: 45px;
+    line-height: 45px;
+    font-size: 15px;
+    color: #000;
+    background: #fff;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+#SP_mypage_wrap .SP_subSection {
+    padding: 60px 0 30px;
+}
+#ivStyle * {
+    letter-spacing: 0px;
+}
+.SP_pageGuideText_wrap {
+    background: #fff;
+}
+.SP_pageGuideText_wrap {
+    background: #fafafa;
+    margin-top: 100px;
+    margin-bottom: -100px;
+}
+.SP_subSection {
+    padding: 100px 0 30px;
+}
+
+.SP_pageGuideTxt_tt {
+    display: inline-block;
+    font-size: 20px;
+    color: #000;
+    font-weight: normal;
+    line-height: 1;
+    padding: 15px 0;
+    border-bottom: 1px solid #000;
+    margin: 40px 0 45px;
+}
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+h1, h3 {
+    margin: 0;
+}
+
+h3 {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
+}
+
+.SP_pageGuideTxt_cont {
+    padding: 30px;
+    border: 1px solid #d8d8d8;
+}
+
+ol {
+    display: block;
+    list-style-type: decimal;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    unicode-bidi: isolate;
+}
+
+.SP_pageGuideTxt_cont li:first-child {
+    padding-top: 0;
+}
+.SP_pageGuideTxt_cont li {
+    font-size: 14px;
+    color: #999;
+    line-height: 1.8;
+}
+body, html, :lang(ko) {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+li {
+    list-style: none;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+    unicode-bidi: isolate;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}

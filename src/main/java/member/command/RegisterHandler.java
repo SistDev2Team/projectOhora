@@ -49,7 +49,7 @@ public class RegisterHandler implements CommandHandler {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date userBirth = dateFormat.parse(birthDateString);
 
-        // 비밀번호 암호화
+        
         String encryptedPassword = encryptPassword(userPassword);
 
         // 회원 정보 DTO 생성
@@ -69,7 +69,10 @@ public class RegisterHandler implements CommandHandler {
 
         // DB처리
         OhoraDAO ohoraDAO = new OhoraDAOImpl(ConnectionProvider.getConnection());
-        ohoraDAO.insertUser(user);
+        
+       int userPk = ohoraDAO.insertUser(user); // DB에 삽입은 되는데 그걸 DTO에 담은건 아니자나.
+        ohoraDAO.wellcomecoupon(userPk);
+        
 
         //아이디,이름,이메일,동의여부 들구가야댐
         request.setAttribute("userId", userLoginId);
@@ -83,8 +86,7 @@ public class RegisterHandler implements CommandHandler {
         return null;
     }
 
-    private String encryptPassword(String password) {
-        // salt 해준 뒤 hashing 하기
+    private String encryptPassword(String password) {    
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 

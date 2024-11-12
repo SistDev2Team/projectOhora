@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import net.sf.json.JSONObject;
 import ohora.domain.AddrDTO;
+import ohora.domain.CouponDTO;
 import ohora.domain.DeptVO;
+import ohora.domain.OrderDTO;
 import ohora.domain.ProductDTO;
 import ohora.domain.RevMedia;
 import ohora.domain.ReviewDTO;
@@ -44,9 +46,9 @@ public interface OhoraDAO {
 	// 상품 상세 정보
 	ProductDTO prdDetail(int pdt_id) throws SQLException;
 
-/* boolean userCheck(String userId, String password) throws SQLException; */ //로그인
-	
-	String findLoginId(String name, String contact, String contactType); // 아이디 찾기
+
+//-----------------------------------------------------------------------------------------------------------	
+    String findLoginId(String name, String contact, String contactType); // 아이디 찾기
 	
 	boolean checkPw(String userId, String contact, String userName, String contactMethod); //비번 찾기
 	
@@ -56,7 +58,7 @@ public interface OhoraDAO {
 	
 	boolean isDuplicate(String type, String value) throws SQLException;	// 회원가입시 입력값 중복처리용
 	
-	void insertUser(UserDTO user) throws SQLException; //회원가입
+	int insertUser(UserDTO user) throws SQLException; //회원가입
 
 	UserDTO myPage(int userPk); // 이름, 등급, 회원아이디, 멤버십등급 가지고 올 수 있음.
 
@@ -66,14 +68,34 @@ public interface OhoraDAO {
 
 	List<Integer> getOrderStateCounts(int userPk); // 주문 상태별 카운트 가져오기
 
-	List<Map<String, Object>> getOrderDetails(int userPk);
+	List<Map<String, Object>> getOrderDetails(int userPk); // 마이페이지용임
 	
 	boolean updateUser(int userPk, Map<String, Object> fieldsToUpdate);
 
 	boolean updateAddress(int userPk, String postcode, String addr1, String addr2);
 
-	AddrDTO getAddresses(int userPk); // AddrDTO 다가져오기
+	AddrDTO getAddresses(int userPk); // AddrDTO Y인거 가져오기
 
+	Map<String, Object> getOrder(int ORD_PK); //order 다가져오기 내가 왜 DTO로 안했을까?
+
+	List<Map<String, Object>> getOrderDetailsAll(int ORD_PK); //details 다 가져오기
+
+	void insertAddress(AddrDTO addrDTO); //주소 insert
+	
+	void resetDefaultAddress(int userPk); //이거는 Y값 있으면 제거용
+
+	List<AddrDTO> getAddressesAll(int userPk); //Addr 다가져오기~
+
+	void deleteAddress(int addrId); // 주소록 삭제
+
+	int getAddressCountByUser(int userPk); // 굳이 만들었어야 댔나 싶긴 한대
+
+	List<OrderDTO> getOrdersWithDetails(int userPk, int days); // 주문, 주문 상세를 기간별로 조회하자
+
+	void wellcomecoupon(int userPk);
+
+	List<CouponDTO> getCouponsByUserId(int userPk); // coupon	
+//-------------------------------------------------------------------------------------------------------------
 	// 리뷰
 	
 	ArrayList<ReviewDTO> select(Connection conn, int pdt_id, String sort) throws SQLException;

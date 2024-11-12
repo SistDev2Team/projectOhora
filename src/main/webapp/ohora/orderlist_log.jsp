@@ -10,132 +10,43 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<link rel="stylesheet" href="../resources/cdn-main/orderlist_log.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cdn-main/orderlist_log.css">
 <script src="http://localhost/jspPro/resources/cdn-main/example.js"></script>
 <style>
  span.material-symbols-outlined{
     vertical-align: text-bottom;
- }  
+ }
+ 
+ /* 테이블 스타일링 */
+/* 테이블의 가로 테두리만 남기기 */
+.SP_tableSt01_isThumNail {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.SP_tableSt01_isThumNail th, 
+.SP_tableSt01_isThumNail td {
+    border-top: 1px solid #ddd; /* 가로 테두리 */
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+    text-align: center;     
+    vertical-align: middle; /* 세로 가운데 정렬 */
+}
+
+/* 첫 번째 행에만 위쪽 테두리를 적용 */
+.SP_tableSt01_isThumNail thead th {
+    border-top: 2px solid #ddd; /* 헤더의 위쪽만 두껍게 */
+}
+
+
+.SP_subSection {
+    position: relative;
+    top: -60px; /* 위로 10px 이동 */
+}
+
 </style>
 </head>
 <body>
-    <img
-      src="https://www.ohora.kr/optimize/images/pc/common/PC_header_kakao_0526.webp"
-      alt=""
-      class="header"
-      style
-      width="100%"
-    />
-    <header>
-      <div class="SP_top_wrap">
-        <div class="layout_Top">
-          <div
-            class="xans-element- xans-layout xans-layout-statelogoff SP_gnb_inr"
-          >
-            <a href=""><span class="title">회원가입 &nbsp;&nbsp;|</span></a>
-            <a href="" class="log"><span class="title">로그인</span></a>
-          </div>
-        </div>
-      </div>
-
-      <div id="nav">
-        <div>
-          <div class="SMS_fixed_inner">
-            <div
-              class="xans-element- xans-layout xans-layout-logotop fixed_logo"
-            >
-              <a href="/" style="display: block; text-align: center">
-                <img
-                  src="https://ohora.kr/web/upload/logo/ohora_BI_logotype_w.png"
-                  id="navLogo"
-                />
-              </a>
-            </div>
-
-            <!-- 헤더 주메뉴 -->
-            <div class="gnb_menu_container no-hover">
-              <ul class="gnb_menu_wrap menu_1ul">
-                <li class="eng_font menu_1li submenu">
-                  <a href="/product/list.html?cate_no=121">new</a>
-                </li>
-                <li class="eng_font menu_1li submenu">
-                  <a href="/product/list.html?cate_no=120">best</a>
-                </li>
-
-                <li class="product">
-                  <a href="/product/list.html?cate_no=44">product</a>
-                  <!-- 마우스 오버 시 나오는 영역(product) -->
-                  <ul class="menu_2ul">
-                    <li>
-                      <a href="/product/list.html?cate_no=160"
-                        ><span>네일</span></a
-                      >
-                    </li>
-                    <li>
-                      <a href="/product/list.html?cate_no=161"
-                        ><span>페디</span></a
-                      >
-                    </li>
-                    <li>
-                      <a href="/product/list.html?cate_no=470"
-                        ><span>커스텀</span></a
-                      >
-                    </li>
-                    <li>
-                      <a href="/product/list.html?cate_no=49"
-                        ><span>케어 &amp; 툴</span></a
-                      >
-                    </li>
-                  </ul>
-                  <!-- //마우스 오버 시 나오는 영역(product) -->
-                </li>
-                <li class="eng_font menu_1li submenu">
-                  <a href="/product/list.html?cate_no=671">outlet</a>
-                </li>
-
-                <!-- 마우스 오버 시 나오는 영역(2+1) -->
-                <ul class="menu_2ul"></ul>
-                <!-- //마우스 오버 시 나오는 영역(2+1) -->
-                <li class="eng_font">
-                  <a href="/event/index.html">event</a>
-                </li>
-                <li class="eng_font">
-                  <a href="/board/gallery/list.html?board_no=13">how to</a>
-                </li>
-              </ul>
-            </div>
-            <!-- //헤더 주메뉴 -->
-            <div class="icon_wrap">
-              <div class="small_icon search_fixed_btn">
-                <img
-                  src="https://ohora.kr/web/upload/common/icon_ham_search.svg"
-                  alt=""
-                />
-              </div>
-              <div
-                class="xans-element- xans-layout xans-layout-orderbasketcount small_icon m_cart common_cart"
-              >
-                <a href="/order/basket.html"
-                  ><b class="count EC-Layout-Basket-count">0</b>
-                  <img
-                    src="https://ohora.kr/web/upload/common/icon_cart.svg"
-                    alt=""
-                /></a>
-              </div>
-              <div class="small_icon m_menu active">
-                <a class="SMS_menu">
-                  <img
-                    src="https://ohora.kr/web/upload/common/icon_menu.svg"
-                    alt=""
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
     <!-- 콘텐츠 -->
     <div id="contents">
       <script>
@@ -185,23 +96,16 @@
                     <option value="order_return">반품</option>
                   </select>
                 </div>
+                
                 <div class="SP_myOrderlist_li SP_ordSrh_chooseBtn">
-                  <a href="#none" class="SP_cm_btn SP_btn_gray_bd" days="00"
-                    >오늘</a
-                  >
-                  <a href="#none" class="SP_cm_btn SP_btn_gray_bd" days="07"
-                    >1주일</a
-                  >
-                  <a href="#none" class="SP_cm_btn SP_btn_gray_bd" days="30"
-                    >1개월</a
-                  >
-                  <a href="#none" class="SP_cm_btn SP_btn_gray_bd" days="90"
-                    >3개월</a
-                  >
-                  <a href="#none" class="SP_cm_btn SP_btn_gray_bd" days="180"
-                    >6개월</a
-                  >
-                </div>
+				  <a href="${pageContext.request.contextPath}/orderlist.do?days=0" class="SP_cm_btn SP_btn_gray_bd">오늘</a>
+				  <a href="${pageContext.request.contextPath}/orderlist.do?days=7" class="SP_cm_btn SP_btn_gray_bd">1주일</a>
+				  <a href="${pageContext.request.contextPath}/orderlist.do?days=30" class="SP_cm_btn SP_btn_gray_bd">1개월</a>
+				  <a href="${pageContext.request.contextPath}/orderlist.do?days=90" class="SP_cm_btn SP_btn_gray_bd">3개월</a>
+				  <a href="${pageContext.request.contextPath}/orderlist.do?days=180" class="SP_cm_btn SP_btn_gray_bd">6개월</a>
+				</div>
+                
+
                 <div class="SP_myOrderlist_li SP_ordSrh_chooseSel">
                   <span class="SP_startday"
                     ><input
@@ -270,39 +174,65 @@
           <div
             class="xans-element- xans-myshop xans-myshop-orderhistorylistitem SP_subSection"
           >
-            <!--
-            $login_url = /member/login.html
-          -->
-            <h3 class="SP_contTitle">주문 목록</h3>
-            <table border="1" summary="" class="SP_tableSt01_isThumNail">
-              <colgroup>
-                <col style="width: 200px" />
-                <col style="width: 120px" />
-                <col style="width: auto" />
-                <col style="width: 70x" />
-                <col style="width: 120px" />
-                <col style="width: 150px" />
-                <col style="width: 160px" />
-                <col style="width: 110px" />
-              </colgroup>
-              <thead>
-                <tr>
-                  <th scope="col">주문일자 [주문번호]</th>
-                  <th scope="col">이미지</th>
-                  <th scope="col">상품정보</th>
-                  <th scope="col">수량</th>
-                  <th scope="col">상품구매금액</th>
-                  <th scope="col">주문처리상태</th>
-                  <th scope="col">취소/교환/반품</th>
-                  <th scope="col">주문취소</th>
-                </tr>
-              </thead>
-            </table>
-            <p class="SP_message">주문 내역이 없습니다.</p>
-          </div>
-        </div>
-      </div>
 
+          
+				<h3 class="SP_contTitle">주문 목록</h3>
+				<table border="1" summary="" class="SP_tableSt01_isThumNail">
+				  <colgroup>
+				    <col style="width: 200px" />
+				    <col style="width: 120px" />
+				    <col style="width: auto" />
+				    <col style="width: 70px" />
+				    <col style="width: 120px" />
+				    <col style="width: 150px" />
+				    <col style="width: 160px" />
+				    <col style="width: 110px" />
+				  </colgroup>
+				  <thead>
+				    <tr>
+				      <th scope="col">주문일자</th>
+				      <th scope="col">이미지</th>
+				      <th scope="col">상품정보</th>
+				      <th scope="col">수량</th>
+				      <th scope="col">상품구매금액</th>
+				      <th scope="col">주문처리상태</th>
+				      <th scope="col">취소/교환/반품</th>
+				      <th scope="col">주문취소</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <c:forEach var="order" items="${orderList}">
+				      <c:forEach var="detail" items="${order.orderDetails}" varStatus="status">
+				        <tr>
+				          
+				          <c:if test="${status.first}">
+				            <td rowspan="${order.orderDetails.size()}">${order.ordOrderDate}</td>
+				          </c:if>
+				          <td>
+				            <img src="" alt="" style="width: 100px; height: auto;" />
+				          </td>
+				          <td>${detail.opdtName}</td>
+				          <td>${detail.opdtCount}</td>
+				          <td>${detail.opdtAmount}</td>
+				          <td>${detail.opdtState}</td>
+				          <td>${detail.opdtRefund}</td>
+				          <td>
+				<%--             <c:if test="${detail.opdtState == ''}">
+				              <a href="cancelOrder.do?orderId=${order.ordId}&detailId=${detail.opdtId}">취소</a>
+				            </c:if> --%>
+				          </td>
+				        </tr>
+				      </c:forEach>
+				    </c:forEach>
+				  </tbody>
+				</table>
+				
+				<c:if test="${empty orderList}">
+				  <p class="SP_message">주문 내역이 없습니다.</p>
+				</c:if>            
+          </div>
+        </div>             
+      </div>         
       <!-- cre.ma / init 스크립트 (PC) / 스크립트를 수정할 경우 연락주세요 (support@cre.ma) -->
       <script>
         (function (i, s, o, g, r, a, m) {

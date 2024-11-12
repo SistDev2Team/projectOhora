@@ -27,7 +27,10 @@ import lombok.NoArgsConstructor;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import ohora.domain.AddrDTO;
+import ohora.domain.CouponDTO;
 import ohora.domain.DeptVO;
+import ohora.domain.OrderDTO;
+import ohora.domain.OrderDetailDTO;
 import ohora.domain.ProductDTO;
 import ohora.domain.RevMedia;
 import ohora.domain.ReviewDTO;
@@ -447,147 +450,132 @@ public class OhoraDAOImpl implements OhoraDAO{
 		}
 		return list;
 	}
-
 	
-	
-	/*
-	 * @Override public boolean userCheck(String userId, String password) throws
-	 * SQLException { String sql =
-	 * "SELECT COUNT(*) FROM SCOTT.O_USER WHERE USER_LOGIN_ID = ? AND USER_PASSWORD = ?"
-	 * ; try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	 * pstmt.setString(1, userId); pstmt.setString(2, password); try (ResultSet rs =
-	 * pstmt.executeQuery()) { return rs.next() && rs.getInt(1) > 0; // 1이면있음 } } }
-	 */
-
-    @Override
-    public String findLoginId(String name, String contact, String contactType) {
-        String sql;
-        if (contactType.equals("email")) {
-            sql = "SELECT USER_LOGIN_ID FROM SCOTT.O_USER WHERE USER_NAME = ? AND USER_EMAIL = ?";
-        } else {
-            sql = "SELECT USER_LOGIN_ID FROM SCOTT.O_USER WHERE USER_NAME = ? AND USER_TEL = ?";
-        }
-
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, name); //이름
-            pstmt.setString(2, contact); //연락처
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getString("USER_LOGIN_ID"); // 같으면 아이디 반환
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public boolean checkPw(String userId, String contact, String userName, String contactMethod) {
-
-        String sql;
-
-        if (contactMethod.equals("email")) {
-           sql = "SELECT COUNT(*) FROM SCOTT.O_USER WHERE USER_LOGIN_ID = ? AND USER_NAME = ? AND USER_EMAIL = ?";
-
-        } else {
-            sql = "SELECT COUNT(*) FROM SCOTT.O_USER WHERE USER_LOGIN_ID = ? AND USER_NAME = ? AND USER_TEL = ?";
-        }
-        
-        boolean userExists = false;
-
-        try {
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, userId); //아이디
-            pstmt.setString(2, userName); //유저이름
-            pstmt.setString(3, contact); // 연락처
-            
-
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                userExists = rs.getInt(1) > 0; //있으면 true
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-			try {
-				rs.close();
-				pstmt.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-        return userExists;
-    }
 
 	@Override
-	public String updatePw(String userId, String encryptedPassword) {
-		
-		String sql = "UPDATE SCOTT.O_USER SET USER_PASSWORD = ? WHERE USER_LOGIN_ID = ?";
-	    
-	    try (
-	            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	                
-		        pstmt.setString(1, encryptedPassword);
-		        pstmt.setString(2, userId);
-		        pstmt.executeUpdate();
-	        	       
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    }
-		
+	public String findLoginId(String name, String contact, String contactType) {
+		String sql;
+		if (contactType.equals("email")) {
+			sql = "SELECT USER_LOGIN_ID FROM SCOTT.O_USER WHERE USER_NAME = ? AND USER_EMAIL = ?";
+		} else {
+			sql = "SELECT USER_LOGIN_ID FROM SCOTT.O_USER WHERE USER_NAME = ? AND USER_TEL = ?";
+		}
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, name); //이름
+			pstmt.setString(2, contact); //연락처
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getString("USER_LOGIN_ID"); // 같으면 아이디 반환
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 
-    @Override
-    public int validateUser(String userId, String password){
-        String sql = "SELECT USER_ID, USER_PASSWORD FROM SCOTT.O_USER WHERE USER_LOGIN_ID = ?";
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setString(1, userId); //유저아이디
-            try (ResultSet rs = pstmt.executeQuery()) {
-                if (rs.next()) {
-                    String storedPassword = rs.getString("USER_PASSWORD");
-                    if (BCrypt.checkpw(password, storedPassword)) { // 둘의 비번이 같다면
-                        return rs.getInt("USER_ID"); //PK값 받아오기
-                    }
-                }
-            }
-        } catch (SQLException e) {
+	@Override
+	public boolean checkPw(String userId, String contact, String userName, String contactMethod) {
+	    String sql;
+	    if (contactMethod.equals("email")) {
+	        sql = "SELECT COUNT(*) FROM SCOTT.O_USER WHERE USER_LOGIN_ID = ? AND USER_NAME = ? AND USER_EMAIL = ?";
+	    } else {
+	        sql = "SELECT COUNT(*) FROM SCOTT.O_USER WHERE USER_LOGIN_ID = ? AND USER_NAME = ? AND USER_TEL = ?";
+	    }
+
+	    boolean userExists = false;
+
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, userId); // 아이디
+	        pstmt.setString(2, userName); // 유저 이름
+	        pstmt.setString(3, contact); // 연락처
+
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if (rs.next()) {
+	                userExists = rs.getInt(1) > 0; // 있으면 true
+	            }
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return userExists;
+	}
+
+
+	@Override
+	public String updatePw(String userId, String encryptedPassword) {
+
+		String sql = "UPDATE SCOTT.O_USER SET USER_PASSWORD = ? WHERE USER_LOGIN_ID = ?";
+
+		try (
+				PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+			pstmt.setString(1, encryptedPassword);
+			pstmt.setString(2, userId);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
+	}
+
+
+	@Override
+	public int validateUser(String userId, String password){
+	    String sql = "SELECT USER_ID, USER_PASSWORD FROM SCOTT.O_USER WHERE USER_LOGIN_ID = ?";
+	    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+	        pstmt.setString(1, userId);
+	        try (ResultSet rs = pstmt.executeQuery()) {
+	            if (rs.next()) { // 아이디가 존재하는 경우
+	                String storedPassword = rs.getString("USER_PASSWORD"); // 비번비교
+	                if (BCrypt.checkpw(password, storedPassword)) { 
+	                    return rs.getInt("USER_ID"); // 로그인 성공, USER_ID 반환
+	                } else {
+	                    return -2; // 비밀번호 불일치
+	                }
+	            } else {
+	                return -3; // 아이디 없음
+	            }
+	        }
+	    } catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
-        return -1;
-    }
+		return -1;
+	}
 
 	@Override
 	public boolean isDuplicate(String type, String value) throws SQLException {
-		
-		 String sql = "";
-	        switch (type) {
-	        
-	            case "id":
-	                sql = "SELECT COUNT(*) FROM O_USER WHERE USER_LOGIN_ID = ?";
-	                break;
-	            case "email":
-	                sql = "SELECT COUNT(*) FROM O_USER WHERE USER_EMAIL = ?";
-	                break;
-	            case "phone":
-	                sql = "SELECT COUNT(*) FROM O_USER WHERE USER_TEL = ?";
-	                break;
-	            default:
-	                throw new IllegalArgumentException("Unknown type: " + type); //이 예외처리 필요없을꺼같은데
-	        }
 
-	        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-	            pstmt.setString(1, value);
-	            try (ResultSet rs = pstmt.executeQuery()) {
-	                if (rs.next()) {
-	                    return rs.getInt(1) > 0; 
-	                }
-	            } 
-	        }
-	        return false;
+		String sql = "";
+		switch (type) {
+
+		case "id":
+			sql = "SELECT COUNT(*) FROM O_USER WHERE USER_LOGIN_ID = ?";
+			break;
+		case "email":
+			sql = "SELECT COUNT(*) FROM O_USER WHERE USER_EMAIL = ?";
+			break;
+		case "phone":
+			sql = "SELECT COUNT(*) FROM O_USER WHERE USER_TEL = ?";
+			break;
+		default:
+			throw new IllegalArgumentException("Unknown type: " + type); //이 예외처리 필요없을꺼같은데
+		}
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, value);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1) > 0; 
+				}
+			} 
+		}
+		return false;
 	}
 
 	@Override
@@ -779,7 +767,8 @@ public class OhoraDAOImpl implements OhoraDAO{
 	//--------------------------------회원----------------------------------------
 	
 	@Override
-	public void insertUser(UserDTO user) throws SQLException{
+	public int insertUser(UserDTO user) throws SQLException{
+		int userPk = 0;
 		String sql = "INSERT INTO SCOTT.O_USER ("
 				+ "USER_ID, MEM_ID, AUTH_ID, USER_LOGIN_ID, USER_PASSWORD, "
 				+ "USER_NAME, USER_EMAIL, USER_TEL, USER_BIRTH, USER_POINT, "
@@ -787,23 +776,38 @@ public class OhoraDAOImpl implements OhoraDAO{
 				+ "VALUES ("
 				+ "SCOTT.O_USER_SEQ.NEXTVAL, ?, ?, ?, ?, "
 				+ "?, ?, ?, ?, ?, ?, ?)";
+ 
+		  try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		        pstmt.setInt(1, user.getMem_id());
+		        pstmt.setInt(2, user.getAuth_id());
+		        pstmt.setString(3, user.getUser_login_id());
+		        pstmt.setString(4, user.getUser_password());
+		        pstmt.setString(5, user.getUser_name());
+		        pstmt.setString(6, user.getUser_email());
+		        pstmt.setString(7, user.getUser_tel());
+		        pstmt.setDate(8, new java.sql.Date(user.getUser_birth().getTime()));
+		        pstmt.setInt(9, user.getUser_point());
+		        pstmt.setString(10, user.getUser_snsagree());
+		        pstmt.setDate(11, new java.sql.Date(user.getUser_joindate().getTime()));
 
-		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			pstmt.setInt(1, user.getMem_id());
-			pstmt.setInt(2, user.getAuth_id());
-			pstmt.setString(3, user.getUser_login_id());
-			pstmt.setString(4, user.getUser_password());
-			pstmt.setString(5, user.getUser_name());
-			pstmt.setString(6, user.getUser_email());
-			pstmt.setString(7, user.getUser_tel());
-			pstmt.setDate(8, new java.sql.Date(user.getUser_birth().getTime()));
-			pstmt.setInt(9, user.getUser_point());
-			pstmt.setString(10, user.getUser_snsagree());
-			pstmt.setDate(11, new java.sql.Date(user.getUser_joindate().getTime()));
-
-			pstmt.executeUpdate();
+		        int rowsAffected = pstmt.executeUpdate();
+		        
+		        if (rowsAffected > 0) {
+		            
+		            String currVal = "SELECT SCOTT.O_USER_SEQ.CURRVAL FROM DUAL";
+		            try (PreparedStatement currValPstmt = conn.prepareStatement(currVal);
+		                 ResultSet rs = currValPstmt.executeQuery()) {
+		                if (rs.next()) {
+		                    userPk = rs.getInt(1); // 생성된 USER_ID 가져오기
+		                    
+		                }
+		            } catch (Exception e) {
+						e.printStackTrace();
+					}
+		        }
+		    }
+		  return userPk;
 		}
-	}
 	
 	@Override
 	public UserDTO myPage(int userPk) {
@@ -837,6 +841,7 @@ public class OhoraDAOImpl implements OhoraDAO{
 		return null;
 	}
 
+
 	@Override
 	public int getAvailableCoupons(int userPk) {
 
@@ -859,7 +864,7 @@ public class OhoraDAOImpl implements OhoraDAO{
 		return 0; // 없으면 0
 
 	}
-
+	
 	@Override
 	public int getcartlist(int userPk) {
 
@@ -942,7 +947,8 @@ public class OhoraDAOImpl implements OhoraDAO{
 			try (ResultSet rs = pstmt.executeQuery()) {
 				while (rs.next()) {
 					Map<String, Object> orderDetail = new HashMap<>();
-					orderDetail.put("ORD_PK", rs.getString("ORD_PK")); //이거 필요없는디
+
+					orderDetail.put("ORD_PK", rs.getString("ORD_PK")); // 이 값을 넘겨
 					orderDetail.put("ORD_TOTAL_AMOUNT", rs.getInt("ORD_TOTAL_AMOUNT")); //결제금액
 					orderDetail.put("OPDT_NAME", rs.getString("OPDT_NAME")); // 상품명
 					orderDetail.put("OPDT_AMOUNT", rs.getInt("OPDT_AMOUNT")); // 상품금액
@@ -981,10 +987,10 @@ public class OhoraDAOImpl implements OhoraDAO{
 				pstmt.setObject(index++, value);
 			}
 			pstmt.setInt(index, userPk);
-			
-	        int rowsAffected = pstmt.executeUpdate();
-	        return rowsAffected > 0; // 성공 여부 반환	    
-	        
+
+			int rowsAffected = pstmt.executeUpdate();
+			return rowsAffected > 0; // 성공 여부 반환	    
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false; // 실패 시 false 반환
@@ -995,7 +1001,7 @@ public class OhoraDAOImpl implements OhoraDAO{
 
 	@Override
 	public boolean updateAddress(int userPk, String postcode, String addr1, String addr2) {
-		
+
 		System.out.println(" 주소정보 업데이트... " + userPk + ", postcode: " + postcode + ", addr1: " + addr1 + "addr2: " + addr2 );
 
 		String selectQuery = "SELECT COUNT(*) FROM SCOTT.O_ADDRESS WHERE USER_ID = ?";
@@ -1008,14 +1014,14 @@ public class OhoraDAOImpl implements OhoraDAO{
 			int addressCount = rs.getInt(1); // 해당 정보 있는지 먼저 확인해서
 			System.out.println("addressCount: " + addressCount);
 			rs.close();
-			if (addressCount > 0) { // 있으면 실행
+			if (addressCount > 0) { // 있으면 실행이라 DB 에 해당 회원 정보 없으면 update 안됨
 				try (PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
 					updateStmt.setString(1, postcode);
 					updateStmt.setString(2, addr1);
 					updateStmt.setString(3, addr2);
 					updateStmt.setInt(4, userPk);
 					int rowsAffected = updateStmt.executeUpdate();
-	                return rowsAffected > 0; // 성공 여부 반환
+					return rowsAffected > 0; // 성공 여부 반환
 				}
 			}
 		} 
@@ -1028,51 +1034,363 @@ public class OhoraDAOImpl implements OhoraDAO{
 
 	@Override
 	public AddrDTO getAddresses(int userPk) {
-		
+
 		AddrDTO address = null;
 
-		 String sql = "SELECT ADDR_ID, USER_ID, ADDR_NICK, ADDR_NAME, ADDR_HTEL, ADDR_TEL, " +
-	             "ADDR_ADDRESS_MAIN, ADDR_ADDRESS_DETAIL, ADDR_ZIPCODE, ADDR_MAIN " +
-	             "FROM SCOTT.O_ADDRESS " +
-	             "WHERE USER_ID = ? AND ADDR_MAIN = 'Y'";
+		String sql = "SELECT ADDR_ID, USER_ID, ADDR_NICK, ADDR_NAME, ADDR_HTEL, ADDR_TEL, " +
+				"ADDR_ADDRESS_MAIN, ADDR_ADDRESS_DETAIL, ADDR_ZIPCODE, ADDR_MAIN " +
+				"FROM SCOTT.O_ADDRESS " +
+				"WHERE USER_ID = ? AND ADDR_MAIN = 'Y'";
 
-		    try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-		        pstmt.setInt(1, userPk);  // userPk로 USER_ID를 조회
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, userPk);  // userPk로 USER_ID를 조회
 
-		        try (ResultSet rs = pstmt.executeQuery()) {
-		            while (rs.next()) {
-		                address = AddrDTO.builder()
-		                        .addr_id(rs.getInt("ADDR_ID")) // pk
-		                        .user_id(rs.getInt("USER_ID")) //userPk
-		                        .addr_nick(rs.getString("ADDR_NICK")) //배송지명
-		                        .addr_name(rs.getString("ADDR_NAME")) //수령인
-		                        .addr_htel(rs.getString("ADDR_HTEL"))//집전화
-		                        .addr_tel(rs.getString("ADDR_TEL"))//번호
-		                        .addr_address_main(rs.getString("ADDR_ADDRESS_MAIN"))   // 기본 주소
-		                        .addr_address_detail(rs.getString("ADDR_ADDRESS_DETAIL")) // 나머지 주소
-		                        .addr_zipcode(rs.getString("ADDR_ZIPCODE"))// 우편번호
-		                        .addr_main(rs.getString("ADDR_MAIN"))// 대표배송지
-		                        .build();
-		                
-		            }
-		        }
-		    } catch (Exception e) {
-		        e.printStackTrace();
-		      
-		    }
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					address = AddrDTO.builder()
+							.addr_id(rs.getInt("ADDR_ID")) // pk
+							.user_id(rs.getInt("USER_ID")) //userPk
+							.addr_nick(rs.getString("ADDR_NICK")) //배송지명
+							.addr_name(rs.getString("ADDR_NAME")) //수령인
+							.addr_htel(rs.getString("ADDR_HTEL"))//집전화
+							.addr_tel(rs.getString("ADDR_TEL"))//번호
+							.addr_address_main(rs.getString("ADDR_ADDRESS_MAIN"))   // 기본 주소
+							.addr_address_detail(rs.getString("ADDR_ADDRESS_DETAIL")) // 나머지 주소
+							.addr_zipcode(rs.getString("ADDR_ZIPCODE"))// 우편번호
+							.addr_main(rs.getString("ADDR_MAIN"))// 대표배송지
+							.build();
 
-		    // 없다면 확인은 하자
-		    if (address == null) {
-		        System.out.println("USER_ID " + userPk + "값 없음!");
-		    }
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 
-		    return address;
+		}
+
+		// 없다면 확인은 하자
+		if (address == null) {
+			System.out.println("USER_ID " + userPk + "값 없음!");
+		}
+
+		return address;
+
+	}
+	
+	@Override
+	public Map<String, Object> getOrder(int ORD_PK) {
+
+		String sql = "SELECT * FROM O_ORDER WHERE ORD_PK = ?";
+		Map<String, Object> order = new HashMap<>();
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, ORD_PK);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				if (rs.next()) {
+
+					//일단 다가져와ㅋㅋㅋㅋㅋ
+					order.put("ORD_PK", rs.getInt("ORD_PK"));
+					order.put("ORD_ID", rs.getString("ORD_ID"));
+					order.put("USER_ID", rs.getInt("USER_ID"));
+					order.put("ICPN_ID", rs.getInt("ICPN_ID"));
+					order.put("ORD_NAME", rs.getString("ORD_NAME"));
+					order.put("ORD_ADDRESS", rs.getString("ORD_ADDRESS"));
+					order.put("ORD_ZIPCODE", rs.getString("ORD_ZIPCODE"));
+					order.put("ORD_TEL", rs.getString("ORD_TEL"));
+					order.put("ORD_EMAIL", rs.getString("ORD_EMAIL"));
+					order.put("ORD_PASSWORD", rs.getString("ORD_PASSWORD"));
+					order.put("ORD_ORDERDATE", rs.getDate("ORD_ORDERDATE"));
+					order.put("ORD_TOTAL_AMOUNT", rs.getInt("ORD_TOTAL_AMOUNT"));
+					order.put("ORD_CPN_DISCOUNT", rs.getInt("ORD_CPN_DISCOUNT"));
+					order.put("ORD_PDT_DISCOUNT", rs.getInt("ORD_PDT_DISCOUNT"));
+					order.put("ORD_USEPOINT", rs.getInt("ORD_USEPOINT"));
+					order.put("ORD_PAY_OPTION", rs.getString("ORD_PAY_OPTION"));
+					order.put("ORD_DELIVERY_FEE", rs.getInt("ORD_DELIVERY_FEE"));
+
+				}
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return order;
+	}
+	
+	@Override
+	public List<Map<String, Object>> getOrderDetailsAll(int ORD_PK) {
+
+		String sql = "SELECT * FROM O_ORDDETAIL WHERE ORD_PK = ?";
+		List<Map<String, Object>> orderDetails = new ArrayList<>();
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, ORD_PK);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					Map<String, Object> detail = new HashMap<>();
+					detail.put("OPDT_ID", rs.getInt("OPDT_ID"));
+					detail.put("ORD_PK", rs.getInt("ORD_PK"));
+					detail.put("OPDT_NAME", rs.getString("OPDT_NAME"));
+					detail.put("OPDT_AMOUNT", rs.getInt("OPDT_AMOUNT"));
+					detail.put("OPDT_DCAMOUNT", rs.getInt("OPDT_DCAMOUNT"));
+					detail.put("OPDT_OPNAME", rs.getString("OPDT_OPNAME"));
+					detail.put("OPDT_OPAMOUNT", rs.getInt("OPDT_OPAMOUNT"));
+					detail.put("OPDT_COUNT", rs.getInt("OPDT_COUNT"));
+					detail.put("OPDT_STATE", rs.getString("OPDT_STATE"));
+					detail.put("OPDT_REFUND", rs.getString("OPDT_REFUND"));
+					detail.put("OPDT_DELCOMPANY", rs.getString("OPDT_DELCOMPANY"));
+					detail.put("OPDT_DELNUMBER", rs.getString("OPDT_DELNUMBER"));
+					detail.put("OPDT_CONFIRM", rs.getString("OPDT_CONFIRM"));
+					orderDetails.add(detail);
+				}
+			}
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return orderDetails;
+
+	}
+	
+	@Override
+	public void insertAddress(AddrDTO addrDTO) {
+
+		String sql = "INSERT INTO SCOTT.O_ADDRESS (ADDR_ID, USER_ID, ADDR_NICK, ADDR_NAME, ADDR_HTEL, ADDR_TEL, " +
+				"ADDR_ADDRESS_MAIN, ADDR_ADDRESS_DETAIL, ADDR_ZIPCODE, ADDR_MAIN) " +
+				"VALUES (O_ADDRESS_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, addrDTO.getUser_id());
+			pstmt.setString(2, addrDTO.getAddr_nick());
+			pstmt.setString(3, addrDTO.getAddr_name());
+			pstmt.setString(4, addrDTO.getAddr_htel());
+			pstmt.setString(5, addrDTO.getAddr_tel());
+			pstmt.setString(6, addrDTO.getAddr_address_main());
+			pstmt.setString(7, addrDTO.getAddr_address_detail());
+			pstmt.setString(8, addrDTO.getAddr_zipcode());
+			pstmt.setString(9, addrDTO.getAddr_main());
+
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	@Override
+	public void resetDefaultAddress(int userPk) {
+
+		String sql = "UPDATE SCOTT.O_ADDRESS SET ADDR_MAIN = 'N' WHERE USER_ID = ? AND ADDR_MAIN = 'Y'";
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, userPk);
+
+			int updatedRows = pstmt.executeUpdate();  // update 확인용
+
+			if (updatedRows > 0) {
+				System.out.println("기존 기본 배송지 update" + updatedRows );
+			} else {
+				System.out.println("기존 기본 배송지 없었음!");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public List<AddrDTO> getAddressesAll(int userPk) {
+
+		String sql = "SELECT * FROM SCOTT.O_ADDRESS WHERE USER_ID = ?";
+		List<AddrDTO> addressList = new ArrayList<>();
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, userPk);
+			try (ResultSet rs = pstmt.executeQuery()) {
+				while (rs.next()) {
+					AddrDTO address = AddrDTO.builder()
+							.addr_id(rs.getInt("ADDR_ID"))
+							.user_id(rs.getInt("USER_ID"))
+							.addr_nick(rs.getString("ADDR_NICK"))
+							.addr_name(rs.getString("ADDR_NAME"))
+							.addr_htel(rs.getString("ADDR_HTEL"))
+							.addr_tel(rs.getString("ADDR_TEL"))
+							.addr_address_main(rs.getString("ADDR_ADDRESS_MAIN"))
+							.addr_address_detail(rs.getString("ADDR_ADDRESS_DETAIL"))
+							.addr_zipcode(rs.getString("ADDR_ZIPCODE"))
+							.addr_main(rs.getString("ADDR_MAIN"))
+							.build();
+
+					addressList.add(address);
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return addressList;
+	}
+	
+
+	@Override
+	public void deleteAddress(int addrId) {
 		
-	}//update
-
-
+		String sql = "DELETE FROM O_ADDRESS WHERE ADDR_ID = ?";
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, addrId);
+            
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
+	}
 	
+
+	@Override
+	public int getAddressCountByUser(int userPk) {
+
+		String sql = "SELECT COUNT(*) FROM O_ADDRESS WHERE USER_ID = ?";
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, userPk);
+			ResultSet rs = pstmt.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1);
+			}	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
 	
+	@Override
+	public List<OrderDTO> getOrdersWithDetails(int userPk, int days) {
+	    
+		String sqlOrder = "SELECT * FROM SCOTT.O_ORDER WHERE USER_ID = ? " + 
+                "AND ORD_ORDERDATE >= SYSDATE - ? ORDER BY ORD_ORDERDATE DESC";
+
+	    String sqlOrderDetail = "SELECT * FROM SCOTT.O_ORDDETAIL WHERE ORD_PK = ?";
+
+	    List<OrderDTO> orderList = new ArrayList<>();
+
+	    try (PreparedStatement pstmtOrder = conn.prepareStatement(sqlOrder)) {
+	        
+	        pstmtOrder.setInt(1, userPk);
+	        pstmtOrder.setInt(2, days);
+	        ResultSet rsOrder = pstmtOrder.executeQuery();
+
+	        while (rsOrder.next()) {
+	            // OrderDTO 객체 생성
+	            OrderDTO order = OrderDTO.builder()
+	                    .ordPk(rsOrder.getInt("ORD_PK"))
+	                    .ordId(rsOrder.getString("ORD_ID"))
+	                    .userId(rsOrder.getInt("USER_ID"))
+	                    .icpnId(rsOrder.getInt("ICPN_ID"))
+	                    .ordName(rsOrder.getString("ORD_NAME"))
+	                    .ordAddress(rsOrder.getString("ORD_ADDRESS"))
+	                    .ordZipcode(rsOrder.getString("ORD_ZIPCODE"))
+	                    .ordTel(rsOrder.getString("ORD_TEL"))
+	                    .ordEmail(rsOrder.getString("ORD_EMAIL"))
+	                    .ordPassword(rsOrder.getString("ORD_PASSWORD"))
+	                    .ordOrderDate(rsOrder.getDate("ORD_ORDERDATE"))
+	                    .ordTotalAmount(rsOrder.getInt("ORD_TOTAL_AMOUNT"))
+	                    .ordCpnDiscount(rsOrder.getInt("ORD_CPN_DISCOUNT"))
+	                    .ordPdtDiscount(rsOrder.getInt("ORD_PDT_DISCOUNT"))
+	                    .ordUsePoint(rsOrder.getInt("ORD_USEPOINT"))
+	                    .ordPayOption(rsOrder.getString("ORD_PAY_OPTION"))
+	                    .ordDeliveryFee(rsOrder.getInt("ORD_DELIVERY_FEE"))
+	                    .build();
+
+	            // OrderDetailDTO 리스트 생성
+	            List<OrderDetailDTO> orderDetails = new ArrayList<>();
+
+	            try (PreparedStatement pstmtDetail = conn.prepareStatement(sqlOrderDetail)) {
+	            	
+	                pstmtDetail.setInt(1, order.getOrdPk());
+	                ResultSet rsDetail = pstmtDetail.executeQuery();
+
+	                while (rsDetail.next()) {
+	                    OrderDetailDTO detail = OrderDetailDTO.builder()
+	                            .opdtId(rsDetail.getInt("OPDT_ID"))
+	                            .ordPk(rsDetail.getInt("ORD_PK"))
+	                            .opdtName(rsDetail.getString("OPDT_NAME"))
+	                            .opdtAmount(rsDetail.getInt("OPDT_AMOUNT"))
+	                            .opdtDcAmount(rsDetail.getInt("OPDT_DCAMOUNT"))
+	                            .opdtOpName(rsDetail.getString("OPDT_OPNAME"))
+	                            .opdtOpAmount(rsDetail.getInt("OPDT_OPAMOUNT"))
+	                            .opdtCount(rsDetail.getInt("OPDT_COUNT"))
+	                            .opdtState(rsDetail.getString("OPDT_STATE"))
+	                            .opdtRefund(rsDetail.getString("OPDT_REFUND"))
+	                            .opdtDelCompany(rsDetail.getString("OPDT_DELCOMPANY"))
+	                            .opdtDelNumber(rsDetail.getString("OPDT_DELNUMBER"))
+	                            .opdtConfirm(rsDetail.getString("OPDT_CONFIRM").charAt(0))
+	                            .build();
+	                    orderDetails.add(detail); // orderdetailsDTO에는 여러개의 OrderDetailDTO가 담기겠지
+	                }
+	            }
+	            order.setOrderDetails(orderDetails); // 그리고 여기서 Order에 여러개의 OrderDetailsDTO가 담긴걸 담으면	            
+	            orderList.add(order); // orderList에 OrderDTO 추가
+	        }
+	        
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    
+	    return orderList;
+	}
+	
+	@Override
+	public void wellcomecoupon(int userPk) {
+
+		String sql = "INSERT INTO O_ISSUEDCOUPON (ICPN_ID, USER_ID, CPN_ID, ICPN_ISSUEDATE, ICPN_ISUSED) " +
+				"VALUES (O_ISSUEDCOUPON_SEQ.NEXTVAL, ?, 1, SYSDATE, 'N')";
+
+		try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setInt(1, userPk);
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public List<CouponDTO> getCouponsByUserId(int userPk) {
+		
+		
+		String sql = "SELECT C.CPN_INFO, C.CPN_DISCOUNT_RATE, C.CPN_CON_VALUE, C.CPN_APPLY, "
+                + "C.CPN_STARTDATE, C.CPN_ENDDATE, C.CPN_DISCOUNT_TYPE "
+                + "FROM SCOTT.O_ISSUEDCOUPON IC "
+                + "JOIN SCOTT.O_COUPON C ON IC.CPN_ID = C.CPN_ID "
+                + "WHERE IC.USER_ID = ? AND IC.ICPN_ISUSED = 'N'";
+		
+		 List<CouponDTO> coupons = new ArrayList<>();
+		 
+		 
+		 try (PreparedStatement pstmt = conn.prepareStatement(sql)) {			 
+			 pstmt.setInt(1, userPk);		 
+			 try (ResultSet rs = pstmt.executeQuery()) {
+	                while (rs.next()) {
+	                    CouponDTO coupon = CouponDTO.builder()
+	                        .cpn_info(rs.getString("CPN_INFO"))
+	                        .cpn_discount_rate(rs.getInt("CPN_DISCOUNT_RATE"))
+	                        .cpn_con_value(rs.getInt("CPN_CON_VALUE"))
+	                        .cpn_apply(rs.getString("CPN_APPLY"))
+	                        .cpn_startdate(rs.getDate("CPN_STARTDATE"))
+	                        .cpn_enddate(rs.getDate("CPN_ENDDATE"))
+	                        .cpn_discount_type(rs.getString("CPN_DISCOUNT_TYPE"))
+	                        .build();
+	                    coupons.add(coupon);
+	                }
+	            }
+		 } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		 return coupons;
+	}
+			
 	// 리뷰
 	
 	
@@ -1927,6 +2245,8 @@ public class OhoraDAOImpl implements OhoraDAO{
 			}
 			return list;			
 		}
+		
+		
 }
 
 

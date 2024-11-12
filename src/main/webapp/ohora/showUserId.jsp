@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <title>아이디 찾기 완료</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../resources/cdn-main/showUserId.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cdn-main/showUserId.css">
     <style>
 		    .container {
     display: flex;
@@ -67,10 +67,11 @@
 			         <c:if test="${not empty userId}">
                      회원님의 아이디는: ${userId} 입니다
                     </c:if>
-			        </div>			              
-        <div class="button-container">
-            <button onclick="location.href='${pageContext.request.contextPath}/ohora/login.jsp'">로그인 하러 가기</button>
-        </div>
+			        </div>			            
+      <div class="button-container">
+    <button onclick="location.href='${pageContext.request.contextPath}/loginHandlerstart.do'">로그인 하러 가기</button>
+</div>
+      
     </div>
 </body>
 </html>

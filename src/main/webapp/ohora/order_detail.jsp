@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +9,7 @@
 <title>ohora 오호라 공식몰</title>
 <link rel="shortcut icon" type="image/x-icon" href="../resources/images/favicon.ico">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<link rel="stylesheet" href="../resources/cdn-main/order_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cdn-main/order_detail.css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <%@include file="header.jsp" %>
@@ -30,7 +31,7 @@
 					</div>
 					<form id="detailForm" name="detailForm"
 						action="/exec/front/MyShop/OrderCancel/" method="POST"
-						enctype="multipart/form-data">
+						enctype="multipart/form-data"></form>
 						<input id="order_id" name="order_id" fw-filter="isFill"
 							fw-label="주문번호" fw-msg="" value="20241027-0001930" type="hidden">
 						<div
@@ -47,24 +48,28 @@
 										<tbody>
 											<tr>
 												<th scope="row">주문번호</th>
-												<td>20241027-0001930 <span></span>
+												<td><span>${order.ORD_ID}</span>
 												</td>
 											</tr>
 											<tr>
 												<th scope="row">주문일자</th>
-												<td>2024-10-27 18:44:44</td>
+												<td>${order.ORD_ORDERDATE}</td>
 											</tr>
 											<tr>
 												<th scope="row">주문자</th>
-												<td><span>고러브</span></td>
+												<td><span>${order.ORD_NAME}</span></td>
 											</tr>
-											<tr>
-												<th scope="row">주문처리상태</th>
-												<td class="SP_cm_btnChange"><span>취소</span>
-													<button type="submit"
-														class="SP_cm_btn SP_btn_gray_bd displaynone">주문취소</button>
-												</td>
-											</tr>
+											<c:forEach var="details" items="${orderDetails}" varStatus="status">
+											    <c:if test="${status.first}">
+											        <tr>
+											            <th scope="row">주문처리상태</th>
+											            <td class="SP_cm_btnChange">
+											                <span>${details.OPDT_STATE}</span>
+											                <button type="submit" class="SP_cm_btn SP_btn_gray_bd displaynone">주문취소</button>
+											            </td>
+											        </tr>
+											    </c:if>
+											</c:forEach>
 										</tbody>
 									</table>
 								</div>
@@ -81,31 +86,51 @@
 										<tbody>
 											<tr class="sum">
 												<th scope="row">총 주문금액</th>
+												
 												<td class="SP_cm_btnChange"><span class="gSpace20">
-														<strong class="txt14">0</strong> <span class="displaynone"></span>
-												</span> <a href="#none"
-													onclick="OrderLayer.onDiv('order_layer_detail', event);"
-													class="SP_cm_btn SP_btn_gray_bd">내역보기</a></td>
+						<strong class="txt14">
+						<fmt:formatNumber value="${ order.ORD_TOTAL_AMOUNT + order.ORD_CPN_DISCOUNT + order.ORD_PDT_DISCOUNT }" type="number" maxFractionDigits="0" />						
+						</strong> 
+														
+												<!-- <span class="displaynone"></span> -->
+												
+												</span> 
+												
+												<a href="#none" onclick="showOrderDetails()" 
+												class="SP_cm_btn SP_btn_gray_bd">내역보기</a>
+												</td>
+												
 											</tr>
+										
 										</tbody>
 										<tbody class="">
 											<tr class="sum">
 												<th scope="row">총 할인금액</th>
-												<td><strong class="txt14">3,700</strong></td>
+												<td><strong class="txt14"><fmt:formatNumber value="${order.ORD_PDT_DISCOUNT}" type="number" maxFractionDigits="0" />
+												</strong></td>
 											</tr>
+											
+											
 											<tr class="displaynone">
-												<th scope="row">쿠폰할인</th>
-												<td><span class="gSpace20">0</span> <a href="#none"
-													class="eUsedCouponDetail btnNormal">내역보기</a></td>
+												<th scope="row">쿠폰할인</th>										
+												<td><span class="gSpace20"><fmt:formatNumber value="${order.ORD_CPN_DISCOUNT}" type="number" maxFractionDigits="0" />
+												</span>
+												 <!-- <a href="#none"
+													class="eUsedCouponDetail btnNormal">내역보기</a> -->
+													
+													</td>
 											</tr>
 											<tr class="">
+												
 												<th scope="row">추가할인금액</th>
-												<td><span class="gSpace20">3,700</span> <a href="#none"
+												<td><span class="gSpace20"><fmt:formatNumber value="${order.ORD_CPN_DISCOUNT}" type="number" maxFractionDigits="0" />
+												</span> <a href="#none"
 													class="btnNormal"
-													onclick="OrderLayer.onDiv('order_layer_addsale', event);">내역보기</a>
+													onclick=>내역보기</a>
 												</td>
 											</tr>
 										</tbody>
+										
 										<tbody class="displaynone">
 											<tr class="sum">
 												<th scope="row">총 부가결제금액</th>
@@ -137,13 +162,17 @@
 										<tbody>
 											<tr class="sum">
 												<th scope="row">총 결제금액</th>
-												<td><span class="txtEm"> <strong class="txt18">14,100</strong>
+												
+												<td><span class="txtEm"> <strong class="txt18">
+												<fmt:formatNumber value="${order.ORD_TOTAL_AMOUNT}" type="number" maxFractionDigits="0" />
+												</strong>
 														<span class="displaynone"></span>
 												</span></td>
 											</tr>
 											<tr class="">
 												<th scope="row">결제수단</th>
-												<td><span><span>카카오페이(간편결제)</span></span>
+												
+												<td><span><span>${order.ORD_PAY_OPTION}</span></span>
 													<p>
 														<a target="_blank" href="" class="btnNormal displaynone">인터넷뱅킹
 															바로가기</a> <a target="_blank" href=""
@@ -161,67 +190,86 @@
 							</div>
 							<div class="SP_subSection">
 								<h3 class="SP_contTitle">주문 상품 정보</h3>
-
-								<div class="ec-base-table typeList">
-									<table border="1" summary="" class="SP_tableSt01_isThumNail ">
-										<caption>기본배송</caption>
-										<colgroup>
-											<col style="width: 92px">
-											<col style="width: auto">
-											<col style="width: 60px">
-											<col style="width: 100px">
-											<col style="width: 95px">
-											<col style="width: 110px">
-											<col style="width: 120px">
-										</colgroup>
-										<thead>
-											<tr>
-												<th scope="col">이미지</th>
-												<th scope="col">상품정보</th>
-												<th scope="col">수량</th>
-												<th scope="col">판매가</th>
-												<th scope="col">배송구분</th>
-												<th scope="col">주문처리상태</th>
-												<th scope="col">취소/교환/반품</th>
-											</tr>
-										</thead>
-										<tfoot class="right">
-											<tr>
-												<td colspan="7"><span class="gLeft">[기본배송]</span>
-													상품구매금액 <strong>0</strong><span class="displaynone">
-														+ 부가세 0</span> + 배송비 0 + 지역별배송비 0<span class="displaynone">
-														- 상품할인금액 0</span> = 합계 : <strong class="txtEm gIndent10"><span
-														class="txt18">0</span></strong> <span class="displaynone"></span></td>
-											</tr>
-										</tfoot>
-										<tbody
-											class="xans-element- xans-myshop xans-myshop-orderhistorydetailbasic center">
-											<tr class="xans-record-">
-												<td class="thumb"><a
-													href="/product/detail.html?product_no=2089&amp;cate_no=160"><img
-														src="//www.ohora.kr/web/product/tiny/202408/d2f98917c2be64437a36bcd6474375a0.jpg"
-														alt=""
-														onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';"></a></td>
-												<td class="left"><strong class="name"><a
-														href="/product/n-티니-네일/2089/category/160/"
-														class="ec-product-name">N 티니 네일</a></strong>
-													<div class="option "></div>
-													<p class="gBlank5 displaynone">무이자할부 상품</p></td>
-												<td>1</td>
-												<td class="right">
-													<div class="discount">
-														<strong>14,800</strong>
-														<div class="displaynone"></div>
-													</div>
-													<div class="">
-														<strong>11,100</strong>
-														<div class="displaynone"></div>
-													</div>
-												</td>
-												<td><div class="txtInfo">
-														기본배송
-														<div class="displaynone">(해외배송가능)</div>
-													</div></td>
+								
+																			<div class="ec-base-table typeList">
+											    <table border="1" summary="" class="SP_tableSt01_isThumNail ">
+											        <caption>기본배송</caption>
+											        <colgroup>
+											            <col style="width: 92px">
+											            <col style="width: auto">
+											            <col style="width: 60px">
+											            <col style="width: 100px">
+											            <col style="width: 95px">
+											            <col style="width: 110px">
+											            <col style="width: 120px">
+											        </colgroup>
+											        <thead>
+											            <tr>
+											                <th scope="col">이미지</th>
+											                <th scope="col">상품정보</th>
+											                <th scope="col">수량</th>
+											                <th scope="col">판매가</th>
+											                <th scope="col">배송구분</th>
+											                <th scope="col">주문처리상태</th>
+											                <th scope="col">취소/교환/반품</th>
+											            </tr>
+											        </thead>
+											        <tfoot class="right">
+											            <tr>
+											                <td colspan="7">
+											                    <span class="gLeft">[기본배송]</span>
+											                    상품구매금액 <strong>${order.ORD_TOTAL_AMOUNT}</strong><span class="displaynone"> + 부가세 0</span> + 배송비 ${order.ORD_DELIVERY_FEE} + 지역별배송비 0
+											                    <span class="displaynone"> - 상품할인금액 0</span> = 합계 : 
+											                    <strong class="txtEm gIndent10"><span class="txt18">${order.ORD_TOTAL_AMOUNT + order.ORD_DELIVERY_FEE}</span></strong> <span class="displaynone"></span>
+											                </td>
+											            </tr>
+											        </tfoot>
+											        <tbody class="xans-element- xans-myshop xans-myshop-orderhistorydetailbasic center">
+											        
+            <c:forEach var="details" items="${orderDetails}">
+                <tr class="xans-record-">
+                    <td class="thumb">
+                        <a href="/product/detail.html?product_no=2089&amp;cate_no=160">
+                            <img src="//www.ohora.kr/web/product/tiny/202408/d2f98917c2be64437a36bcd6474375a0.jpg"
+                                 alt=""
+                                 onerror="this.src='//img.echosting.cafe24.com/thumb/img_product_small.gif';">
+                        </a>
+                    </td>
+                    <td class="left">
+                        <strong class="name">
+                            <a href="/product/n-티니-네일/2089/category/160/" class="ec-product-name">${details.OPDT_NAME}</a>
+                        </strong>
+                        <div class="option "></div>
+                        <p class="gBlank5 displaynone">무이자할부 상품</p>
+                    </td>
+                    <td>${details.OPDT_COUNT}</td>
+                    
+                    <c:set var="dividedAmount" value="${details.OPDT_AMOUNT / details.OPDT_COUNT}" />
+                    <c:set var="dividedDCAmount" value="${details.OPDT_DCAMOUNT / details.OPDT_COUNT}" />
+                    
+                    <td class="right">
+                    
+                         <div class="discount">
+                            <strong><fmt:formatNumber value="${dividedAmount}" type="number" maxFractionDigits="0" /></strong>
+                            <div class="displaynone"></div>
+                        </div>
+                        <div>
+                            <strong><fmt:formatNumber value="${dividedDCAmount}" type="number" maxFractionDigits="0" /></strong>
+                            <div class="displaynone"></div>
+                        </div> 
+                        
+                    </td>
+                    <td>기본배송</td>
+                    <td>${details.OPDT_STATE}</td>
+                    <td>${details.OPDT_REFUND}</td>
+                </tr>
+            </c:forEach>
+											            
+											        </tbody>
+											    </table>
+											</div>
+																																
+													
 												<td class="SP_link state">
 													<p class="txtEm">취소완료</p>
 													<p class="displaynone">
@@ -281,7 +329,7 @@
 										<tfoot class="right">
 											<tr>
 												<td colspan="7"><span class="gLeft">[개별배송]</span>
-													상품구매금액 <strong>0</strong><span class="displaynone">
+													상품구매금액 <strong></strong><span class="displaynone">
 														+ 부가세 0</span> + 배송비 0 + 지역별배송비 0<span class="displaynone">
 														- 상품할인금액 0</span> = 합계 : <strong class="txtEm gIndent10"><span
 														class="txt18">0</span></strong> <span class="displaynone"></span></td>
@@ -317,10 +365,10 @@
 										<tfoot class="right">
 											<tr>
 												<td colspan="7"><span class="gLeft">[해외배송]</span>
-													상품구매금액 <strong>0</strong><span class="displaynone">
-														+ 부가세 0</span> + 배송비 0<span class="displaynone"> - 상품할인금액
-														0</span> = 합계 : <strong class="txtEm gIndent10"><span
-														class="txt18">0</span></strong> <span class="displaynone"></span></td>
+													상품구매금액 <strong>${order.ORD_TOTAL_AMOUNT}</strong><span class="displaynone">
+														+ 부가세 0</span> + 배송비 ${order.ORD_DELIVERY_FEE}<span class="displaynone"> - 상품할인금액
+														${order.ORD_PDT_DISCOUNT}</span> = 합계 : <strong class="txtEm gIndent10"><span
+														class="txt18"></span></strong> <span class="displaynone"></span></td>
 											</tr>
 										</tfoot>
 									</table>
@@ -353,6 +401,7 @@
 									</table>
 								</div>
 							</div>
+							
 							<div class="SP_subSection">
 								<h3 class="SP_contTitle">최종 결제 정보</h3>
 								<div class="ec-base-table">
@@ -364,8 +413,12 @@
 										</colgroup>
 										<tbody>
 											<tr>
+											
 												<th scope="row">총 결제금액</th>
-												<td><span class="txtEm"><strong class="txt18">0</strong></span>
+												<td><span class="txtEm"><strong class="txt18">
+												<fmt:formatNumber value="${order.ORD_TOTAL_AMOUNT + order.ORD_DELIVERY_FEE}" type="number" maxFractionDigits="0" />	
+							
+												</strong></span>
 													<span class="displaynone"></span></td>
 											</tr>
 										</tbody>
@@ -379,20 +432,24 @@
 											<col style="width: auto">
 										</colgroup>
 										<tbody
+											
 											class="xans-element- xans-myshop xans-myshop-orderhistorydetailpaymentfinal">
 											<tr class="xans-record-">
 												<th scope="row">상품구매금액</th>
-												<td><strong>0</strong>
+												<td><strong><fmt:formatNumber value="${order.ORD_TOTAL_AMOUNT}" type="number" maxFractionDigits="0" /></strong>
 													<p></p></td>
 											</tr>
 											<tr class="xans-record-">
 												<th scope="row">배송비</th>
-												<td><strong>0</strong>
+												<td><strong><fmt:formatNumber value="${order.ORD_DELIVERY_FEE}" type="number" maxFractionDigits="0" /></strong>
 													<p></p></td>
 											</tr>
 											<tr class="xans-record-">
 												<th scope="row">결제예정금액</th>
-												<td><strong>0</strong>
+												<td>
+												<strong>
+												<fmt:formatNumber value="${order.ORD_TOTAL_AMOUNT + order.ORD_DELIVERY_FEE}" type="number" maxFractionDigits="0" />	
+												</strong>
 													<p></p></td>
 											</tr>
 										</tbody>
@@ -402,95 +459,7 @@
 							<div class="SP_subSection displaynone">
 								<h3 class="SP_contTitle">취소/교환/반품 신청 정보</h3>
 							</div>
-							<div
-								class="xans-element- xans-myshop xans-myshop-orderhistorydetailrefundnew SP_subSection">
-								<h3 class="SP_contTitle">환불정보</h3>
-								<div class="ec-base-table total">
-									<table border="1" summary="" class="SP_tableSt01_isThAndTd">
-										<caption>환불정보</caption>
-										<colgroup>
-											<col style="width: 170px">
-											<col style="width: auto">
-											<col style="width: 80px">
-											<col style="width: 150px">
-										</colgroup>
-										<thead>
-											<tr>
-												<th scope="col">구분</th>
-												<th scope="col">상품정보</th>
-												<th scope="col">수량</th>
-												<th scope="col">상품구매금액</th>
-											</tr>
-										</thead>
-										<tbody class="xans-record-">
-											<tr>
-												<th scope="row">취소 대상</th>
-												<td class="productList" colspan="3">
-													<ul
-														class="xans-element- xans-myshop xans-myshop-cancelproduct">
-														<li class="xans-record-">
-															<div class="product">
-																<strong>N 티니 네일</strong> <span class="option"
-																	style="display: none;"></span>
-															</div>
-															<p class="quantity">1</p>
-															<p class="price">
-																<strong>14,800</strong>
-															</p>
-														</li>
-													</ul>
-												</td>
-											</tr>
-											<tr class="displaynone">
-												<th scope="row"></th>
-												<td class="productList" colspan="3"></td>
-											</tr>
-											<tr>
-												<th scope="row">환불일자 (처리상태)</th>
-												<td colspan="3">2024-10-27 18:47:05 <strong>(환불완료)</strong>
-												</td>
-											</tr>
-											<tr class="">
-												<th scope="row">환불금액</th>
-												<td colspan="3" class="total">상품금액 14,800 -3,700(상품별할인)
-													+3,000(배송비) = 합계 : <strong>14,100<span
-														class="displaynone"></span></strong>
-												</td>
-											</tr>
-											<tr class="displaynone">
-												<th scope="row">보류 사유</th>
-												<td colspan="3"></td>
-											</tr>
-											<tr>
-												<th scope="row">환불수단</th>
-												<td colspan="3">선불금(카카오페이)</td>
-											</tr>
-											<tr class="displaynone">
-												<th scope="row">환불계좌</th>
-												<td colspan="3">[] - 예금주 : - <a href="#none"
-													onclick="changeBankAccount('20241027-0001930', 'C20241027-0128532')"
-													class="btnNormal displaynone">환불계좌변경</a>
-												</td>
-											</tr>
-											<tr class="">
-												<th scope="row">할인 및 부가결제<br>복원 내역
-												</th>
-												<td colspan="3">
-													<ul class="coupon">
-														<li class="displaynone">쿠폰 복원 금액 : <strong>0</strong></li>
-														<li class="">할인 복원 금액 : <strong>3700</strong></li>
-														<li class="displaynone">적립금 복원 : <strong>0</strong></li>
-														<li class="displaynone">예치금 복원 : <strong>0</strong></li>
-														<li class="displaynone">네이버마일리지 &amp; 캐시 복원 : <strong>0</strong>
-															()
-														</li>
-													</ul>
-												</td>
-											</tr>
-										</tbody>
-									</table>
-								</div>
-							</div>
+							<!-- 환불정보 삭제  -->
 							<div class="SP_subSection">
 								<h3 class="SP_contTitle">배송지정보</h3>
 								<div class="ec-base-table">
@@ -517,7 +486,7 @@
 											</tr>
 											<tr>
 												<th scope="row">받으시는분</th>
-												<td><span>고러브</span></td>
+												<td><span>${order.ORD_NAME}</span></td>
 											</tr>
 											<tr class="displaynone">
 												<th scope="row">영문이름</th>
@@ -533,11 +502,11 @@
 											</tr>
 											<tr class="">
 												<th scope="row">우편번호</th>
-												<td><span>00000</span></td>
+												<td><span>${order.ORD_ZIPCODE}</span></td>
 											</tr>
 											<tr class="">
 												<th scope="row">주소</th>
-												<td><span>서울 양천구</span></td>
+												<td><span>${order.ORD_ADDRESS}</span></td>
 											</tr>
 											<tr class="displaynone">
 												<th scope="row">도시</th>
@@ -547,13 +516,13 @@
 												<th scope="row">주/지방</th>
 												<td></td>
 											</tr>
-											<tr>
+											<!-- <tr>
 												<th scope="row">일반전화</th>
 												<td></td>
-											</tr>
+											</tr> -->
 											<tr>
 												<th scope="row">휴대전화</th>
-												<td><span>010-1111-1111</span></td>
+												<td><span>${order.ORD_TEL}</span></td>
 											</tr>
 											<tr>
 												<th scope="row">배송메시지</th>
@@ -626,42 +595,45 @@
 										onclick="window.open('/myshop/order/store_pickup.html?order_id=20241027-0001930', '', 'scrollbars=yes, resizeable=0, status=0, directories=0, toolbar=0'); return false;"
 										class="SP_cm_btn SP_btn_gray_bd displaynone">수령지정보 인쇄</a>
 								</div>
-								<div class="SP_submitBtn_right">
+								
+<!-- 								<div class="SP_submitBtn_right">
 									<a href="/myshop/order/list.html?page=1"
 										class="SP_cm_btn SP_btn_gray_bd">목록보기</a>
-								</div>
+								</div> -->
+								
 							</div>
 							<div id="order_layer_detail" class="totalDetail ec-base-layer">
-								<div class="header">
-									<h3 class="">총 주문금액 상세내역</h3>
-								</div>
-								<div class="content">
-									<p>0</p>
-									<ul class="ec-base-desc typeDot gLarge rightDD">
-										<li><strong class="term">상품금액</strong><span class="desc">0</span>
-										</li>
-										<li class="displaynone"><strong class="term">부가세</strong><span
-											class="desc"></span></li>
-										<li><strong class="term">배송비</strong><span class="desc">0</span>
-										</li>
-										<li><strong class="term">지역별 배송비</strong><span
-											class="desc">0</span></li>
-									</ul>
-								</div>
+							
+							<div id="orderDetails" class="content" style="display: none;">
+							    <div class="header">
+							        <h3 class="">총 주문금액 상세내역</h3>
+							    </div>
+							    <div class="content">
+							        <p>0</p>
+							        <ul class="ec-base-desc typeDot gLarge rightDD">
+							            <li><strong class="term">상품금액</strong><span class="desc">0</span></li>
+							            <li class="displaynone"><strong class="term">부가세</strong><span class="desc"></span></li>
+							            <li><strong class="term">배송비</strong><span class="desc">0</span></li>
+							            <li><strong class="term">지역별 배송비</strong><span class="desc">0</span></li>
+							        </ul>
+							    </div>
+							</div>
+															
 								<a href="#none" class="close"
 									onclick="OrderLayer.offDiv('order_layer_detail');"><img
 									src="//img.echosting.cafe24.com/skin/base/common/btn_close.gif"
 									alt="닫기"></a>
 							</div>
 							<div id="order_layer_addsale" class="totalDetail ec-base-layer">
-								<h3 class="SP_contTitle">추가금액할인 내역보기</h3>
+							<!-- 추가금액할인 내역보기 -->
+								<h3 class="SP_contTitle"></h3>
 								<div class="content">
-									<p>3,700</p>
+									<p></p>
 									<ul class="ec-base-desc typeDot gLarge rightDD">
 										<li class="displaynone"><strong class="term">모바일할인</strong><span
+											class="desc"></span></li> <!-- 기간할인 -->
+										<li class=""><strong class="term"></strong><span
 											class="desc"></span></li>
-										<li class=""><strong class="term">기간할인</strong><span
-											class="desc">3,700</span></li>
 										<li class="displaynone"><strong class="term">회원할인</strong><span
 											class="desc">0</span></li>
 										<li class="displaynone"><strong class="term">재구매할인</strong><span
@@ -743,24 +715,37 @@
 		</div>
 		<script>
 		// go_top 버튼 스크립트
-        $(document).ready(function() {
-            // go_top 버튼 클릭 시 상단으로 부드럽게 이동
-            $('.go_top').on('click', function() {
-                $('html, body').animate({ scrollTop: 0 }, 400);
-                return false;
-            });
-            
-            // 스크롤 이벤트에 따라 go_top 버튼 표시
-            $(window).scroll(function() {
-                if ($(this).scrollTop() > 200) {
-                    $('#floating').fadeIn();
-                } else {
-                    $('#floating').fadeOut();
-                }
-            });
-        });
+		
+			$(document).ready(function() {
+			    $('.go_top').on('click', function() {
+			        $('html, body').animate({ scrollTop: 0 }, 400);
+			        return false;
+			    });
+			
+			    $(window).scroll(function() {
+			        if ($(this).scrollTop() > 200) {
+			            $('#floating').fadeIn();
+			        } else {
+			            $('#floating').fadeOut();
+			        }
+			    });
+			
+			    // 내역보기 버튼 클릭 시 상세 내용 표시 함수
+			    function showOrderDetails() {
+			    	alert("클릭!!!!!!");
+			        const orderDetails = document.getElementById("orderDetails");
+			        orderDetails.style.setProperty("display", "block", "important");
+			        orderDetails.style.zIndex = "1000"; // 다른 요소 위로 올리기
+			    }
+			
+			    // 버튼 클릭 시 showOrderDetails 함수 호출
+			    $('.SP_cm_btn.SP_btn_gray_bd').on('click', function() {
+			        showOrderDetails();
+			    });
+			});
+
 		</script>
-	</div>
+
 
 </body>
 <%@include file="footer.jsp" %>

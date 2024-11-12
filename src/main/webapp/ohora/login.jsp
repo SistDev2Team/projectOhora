@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<link rel="stylesheet" href="../resources/cdn-main/login.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cdn-main/login.css">
 <script src="http://localhost/jspPro/resources/cdn-main/example.js"></script>
 <style>
  span.material-symbols-outlined{
@@ -27,26 +27,36 @@
     </script>
 </c:if>
    
-    <c:if test="${param.error == 'true'}">
+	<c:if test="${param.error == 'username'}">
     <script>
-        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+        alert("존재하지 않는 아이디입니다.");
     </script>
-    </c:if>
-    
-    
-
-
+	</c:if>
+	
+	<c:if test="${param.error == 'password'}">
+	    <script>
+	        alert("비밀번호가 일치하지 않습니다.");
+	    </script>
+	</c:if>
+	
+	<c:if test="${param.error == 'unknown'}">
+	    <script>
+	        alert("로그인 중 문제가 발생했습니다. 다시 시도해주세요.");
+	    </script>
+	</c:if>
+		
     <div id="wrap" style="padding-top: 156px !important">
       <div id="container">
         <div id="contents">
           <div id="SMS_login_warp" class="login_container SP_layoutFix">
+          
              <form
                   id="member_form"
                   name="member_form"
                   action="${pageContext.request.contextPath}/login.do"
                   method="post"
-                  target="_self"
-                >
+                  target="_self">
+                
               <input
                 id="returnUrl"
                 name="returnUrl"
@@ -204,17 +214,20 @@
 
                       <div class="btnArea typeLogin">
                         <a
-                          href="/member/id/find_id.html"
+                          href="${pageContext.request.contextPath}/findIdstart.do"
                           class="btnLogin SMS_login_id SMSloginID_btnTD"
                           id="aa"
-                          ><b class="SMS_icon"></b>아이디 찾기</a
-                        >
-                        <a
-                          href="/member/passwd/find_passwd_info.html"
+                          ><b class="SMS_icon"></b>아이디 찾기</a>
+                         
+                        <a href="${pageContext.request.contextPath}/findPwstart.do"
+                        
                           class="btnLogin SMS_login_pw SMSloginPW_btnTD"
-                          id="aaa"
-                          ><b class="SMS_icon"></b>비밀번호 찾기</a
-                        >
+                          
+                          id="aaa">
+                          
+                        <b class="SMS_icon"></b>비밀번호 찾기</a>
+                        
+                        
                         <a
                           href="/member/login.html?noMemberOrder&amp;returnUrl=%2Fmyshop%2Forder%2Flist.html"
                           class="btnLogin SMS_login_id_join SMSjoin_btnTD"

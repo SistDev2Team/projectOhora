@@ -8,15 +8,28 @@
 <title>오호라</title>
 <link rel="shortcut icon" type="image/x-icon" href="http://localhost/jspPro/images/SiSt.ico">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="../resources/js/oho-signUpForm.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/oho-signUpForm.js"></script>
 <script> var contextPath = "${pageContext.request.contextPath}"; </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<link rel="stylesheet" href="../resources/cdn-main/oho-signUpForm.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cdn-main/oho-signUpForm.css">
 <style>
+
+
+#authSection {
+    display: none; /* 기본적으로 숨김 */
+    margin-top: 10px;
+    display: flex; /* 내부 요소를 수직 정렬하는 flex 레이아웃 */
+    gap: 10px; /* 인증번호 입력 필드와 버튼 사이 간격 */
+    align-items: center; /* 인증번호 필드와 버튼이 같은 높이에 정렬되도록 설정 */
+    position: relative;
+    left: -20px; /* 왼쪽으로 20px 이동 */
+}
+
  span.material-symbols-outlined{
     vertical-align: text-bottom;
  }
+ 
  /* 모달창 스타일 */
 .modal {
     display: none; /* 기본적으로 숨겨짐 */
@@ -70,7 +83,7 @@
 				<div class="layout-fix">
 				
 						<div class="memberJoin-wrap">
-                         <form action="${pageContext.request.contextPath}/register.do" method="post" onsubmit="return validateForm() && validatePassword();">
+                         <form action="${pageContext.request.contextPath}/register.do" method="post" onsubmit="return validateForm() && validatePassword() && validateAuth();">
 							<div class="innerJoinWrap">
 								<div class="innerJoin">
 									<h2 class="mem_joinTitle">회원가입</h2>
@@ -4451,17 +4464,35 @@
               
 													<!-- 휴대폰 번호 입력란 및 중복 확인 -->
 													<tr class="checked-vali">
+													
 													    <th scope="row">
 													        <span class="SP_th_Title">휴대폰</span>
 													     													        																	
 													        <span class="SP_required">*</span>
 													    </th>
+													    
 													    <td>
 													        <input type="text" id="phone" name="phone" data-checked="false">
 													        <button type="button" onclick="checkDuplication('phone', 'phone', 'phoneMsg')">휴대폰 인증</button>
+													        
 													        <!-- 중복 검사 완료 시 뜨는 메시지 -->
 													        <span id="phoneMsg" class="txtOK error"></span>
+													        
+												        	<!-- 인증번호 입력 및 확인 버튼 (초기에는 hidden 상태) -->
+													        <div id="authSection" style="display:none;">
+													        
+													            <input type="text" id="authCode" placeholder="인증번호 입력">
+													            <button type="button" onclick="verifyAuthCode()">인증번호 확인</button> <br>
+													            
+													         <span id="authMsg"></span>
+														         
+														    </div>
+														    
+														    
 													    </td>
+													    
+								
+														        											    
 													</tr>
 
                                             </tbody>

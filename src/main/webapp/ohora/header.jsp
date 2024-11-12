@@ -89,8 +89,9 @@
       <div id="SMS_fixed_wrap" class="SMS_fixed_wrap">
         <div class="SP_top_wrap">
           <div class="layout_Top">
-     <div class="xans-element- xans-layout xans-layout-statelogoff SP_gnb_inr">
-                 
+          
+  <div class="xans-element- xans-layout xans-layout-statelogoff SP_gnb_inr">
+                           
 				<c:if test="${not empty sessionScope.userPk}">
 				    <a href="${pageContext.request.contextPath}/oho_mypage.do">
 				    <span class="title">마이페이지</span>
@@ -100,15 +101,15 @@
 					</a>
 				</c:if>
 				
-			    <c:if test="${empty sessionScope.userPk}">
-					<a href="${pageContext.request.contextPath}/RegisterHandlerstart.do">
-					    <span class="title">회원가입</span>
-					</a>
-			    <a href="${pageContext.request.contextPath}/ohora/login.jsp" class="log">
-			        <span class="title">로그인</span>
-			    </a>
-			    </c:if>
-            
+							
+				    <c:if test="${empty sessionScope.userPk}">
+						<a href="${pageContext.request.contextPath}/RegisterHandlerstart.do">
+						    <span class="title">회원가입</span>
+						</a>
+				    <a href="${pageContext.request.contextPath}/loginHandlerstart.do" class="log">
+				        <span class="title">로그인</span>
+				    </a>
+				    </c:if>            
             </div>
             
           </div>

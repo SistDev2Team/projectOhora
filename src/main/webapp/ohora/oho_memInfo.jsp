@@ -140,19 +140,19 @@
 													<td>
 													    <div class="address">
 													       <input type="text" readonly="readonly" maxlength="14" id="postcode1" name="postcode1"
-                                                            value="${empty address ? '' : address.addrZipcode}">													       
+                                                            value="${empty address ? '' : address.addr_zipcode}">													       
 													        <a href="#" class="postBtn" onclick="addrFinder()" id="postBtn">우편번호</a>
 													    </div>
 													
 													    <div class="address">
-													        <input type="text" readonly="readonly" id="addr1" name="addr1" 
-													               value="${empty address ? '' : address.addrAddressMain}">
+													        <input type="text" readonly="readonly" id="addr1" name="addr1" style="width:600px;" 
+													               value="${empty address ? '' : address.addr_address_main}">
 													        <span class="addrguide">기본주소</span>
 													    </div>
 													
 													    <div class="address">
 													        <input type="text" id="addr2" name="addr2"
-													               value="${empty address ? '' : address.addrAddressDetail}">
+													               value="${empty address ? '' : address.addr_address_detail}">
 													        <span class="addrguide">나머지주소</span>
 													        <span class="addrguide">(선택입력가능)</span>
 													    </div>

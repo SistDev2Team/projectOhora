@@ -139,7 +139,7 @@
 <c:if test="${param.message == 'pwChanged'}">
     <script>
         alert("비밀번호가 성공적으로 변경되었습니다.");
-        location.href = '${pageContext.request.contextPath}/ohora/login.jsp';
+        location.href = '${pageContext.request.contextPath}/loginHandlerstart.do';
     </script>
 </c:if>
 
@@ -215,7 +215,7 @@
     function confirmCancel() {
         // confirm 창을 띄우고, 확인 버튼을 누르면 로그인 페이지로 이동
         if (confirm("비밀번호 변경을 취소하시겠습니까?")) {
-            window.location.href = '${pageContext.request.contextPath}/ohora/login.jsp';
+            window.location.href = '${pageContext.request.contextPath}/loginHandlerstart.do';
         }
     }
 </script>

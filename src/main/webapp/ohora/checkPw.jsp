@@ -16,6 +16,14 @@
     <meta name="google" content="notranslate">
 
     <style>
+    
+	    .disabled-button {
+	    background-color: #ccc; /* 비활성화된 것처럼 보이도록 회색 설정 */
+	    cursor: not-allowed; /* 클릭할 수 없음을 나타내는 커서 */
+	    /* pointer-events: none; 클릭 이벤트 방지 */
+	    }
+    
+    
         .container {
             overflow: hidden;
             width: 1920px;
@@ -196,24 +204,33 @@
         <span class="label-text">인증번호</span>
     </div>
     <input type="text" class="input-field" style="top: 115px;" name="verification_code" placeholder="인증번호를 입력하세요">
-
+    
+    <!-- 확인 버튼 -->	
+    <button type="button" class="input-field" style="top: 115px; left: 510px; width: 100px;" onclick="verifyCode()">확인</button>
+	
     <!-- 안내 문구 -->
     <div class="label-text" style="position: absolute; top: 165px; left: 170px; font-size: 10px;">
         1회 발송된 인증번호의 유효 시간은 3분이며,<br>
         1회 인증번호 발송 후 30초 이후에 재전송이 가능합니다.
     </div>
 
-    <!-- 확인 버튼 -->
-    <!-- <div class="button-container">
-        <button type="submit" class="button-text">확인</button>
-    </div> -->
+
     
-    <!-- checkPw.jsp -->
+<!-- checkPw.jsp로 이동 해야댐 -->
+    
 <div class="button-container">
 	 
-    <button type="button" onclick="location.href='${pageContext.request.contextPath}/ohora/changePw.jsp?userId=${userId}'">확인</button>
-
+     <%--  <button type="button" id="confirmButton" 
+      onclick="location.href='${pageContext.request.contextPath}/checkPw.do?userId=${userId}'" disabled>확인</button> --%>
+      
+      <button type="button" id="confirmButton" class="disabled-button" onclick="confirmAction()">확인</button>
+      
+      
 </div>
+
+
+
+
     
 
     <!-- 취소 버튼 -->
@@ -223,9 +240,93 @@
     </form>
 
 <script>
-    function sendVerificationCode() {
-        alert("인증번호가 전송되었습니다.");
+
+function sendVerificationCode() {
+	
+	
+	
+    const verificationMethod = document.querySelector('input[name="verification_method"]:checked').value; //라디오 버튼 값 받아오기
+    
+    const contact = document.querySelector('input[name="phone_number"]').value; // 사용자 contact 입력값
+    
+    if (!contact) {
+        alert("연락처를 입력해주세요.");
+        return;
     }
+    
+    // 버튼 중복 클릭 방지: 버튼 비활성화 후 30초 뒤 다시 활성화
+    const button = document.querySelector('button[onclick="sendVerificationCode()"]');
+    button.disabled = true; // 버튼 비활성화
+    setTimeout(() => {
+        button.disabled = false; // 30초 후 다시 활성화
+    }, 30000); // 30초
+
+    $.ajax({
+        url: "${pageContext.request.contextPath}/sendVerificationCode.ajax",
+        type: "GET",
+                //phone or email   
+        data: { verification_method: verificationMethod, contact: contact },
+        dataType: "json",
+        //call back
+        success: function(response) {
+        	
+        	//{"status":"success", "message":"인증번호가 전송되었습니다."}     	
+            if (response.status === "success") {
+            	
+                alert(response.message); // 인증번호 전송 성공
+            } else {
+                alert("인증번호 전송 실패: " + response.message); // 오류
+            }
+        },
+        //callback
+        error: function() {
+            alert("인증번호 전송 중 오류가 발생했습니다.");
+        }
+    });
+}
+
+function verifyCode() {
+	
+    const verificationCode = document.querySelector('input[name="verification_code"]').value;
+
+    $.ajax({
+        url: "${pageContext.request.contextPath}/verifyCode.ajax",
+        type: "POST",
+        data: { verification_code: verificationCode },
+        dataType: "json",
+        success: function(response) {
+            if (response.status === "success") {
+            	
+                alert("인증번호가 확인 되었습니다");               
+                enableConfirmButton(); //버튼 활성화  
+                
+            } else if (response.status === "expired") {
+                alert("인증번호가 만료되었습니다. 다시 요청하세요.");
+            } else {
+                alert("인증번호가 일치하지 않습니다.");
+            }
+        },
+        error: function() {
+            alert("인증번호 확인 중 오류가 발생했습니다.");
+        }
+    });
+}
+
+function confirmAction() {
+    
+	 if (document.getElementById("confirmButton").classList.contains("disabled-button")) {
+	        alert("인증번호를 먼저 확인해주세요.");
+	    } else {
+	        
+	        location.href = `${pageContext.request.contextPath}/checkPw.do?userId=${userId}`;
+	    }
+    
+}
+
+function enableConfirmButton() {
+	const confirmButton = document.getElementById("confirmButton");
+    confirmButton.classList.remove("disabled-button");
+}
 </script>
 
 

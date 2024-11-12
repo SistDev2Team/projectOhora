@@ -64,7 +64,13 @@
 <input id="certificationUrl" name="certificationUrl" value="/intro/adult_certification.html" type="hidden">
 <input id="sIsSnsCheckid" name="sIsSnsCheckid" value="" type="hidden">
 <input id="sProvider" name="sProvider" value="" type="hidden"><div class="xans-element- xans-member xans-member-login SP_join_snsList btnArea type1 sns "><li class="lg_naver"><a href="#none" class="btnNaver  sns_login_Btn" onclick="MemberAction.snsLogin('naver', '%2Findex.html')"><span class="txt"><strong>네이버</strong> 간편가입</span></a></li>
-<li class="normal_join"><a href="${pageContext.request.contextPath}/ohora/oho_signUpForm.jsp" class="SP_cm_btn SMSjoin_btnTD sns_login_Btn"><span class="txt">일반 회원가입</span></a></li>
+<li class="normal_join">
+
+<a href="${pageContext.request.contextPath}/registerHandlerstart.do" 
+
+class="SP_cm_btn SMSjoin_btnTD sns_login_Btn"><span class="txt">일반 회원가입</span></a></li>
+
+
 <li class="lg_apple"><a href="#none" class="btnApple  sns_login_Btn" onclick="MemberAction.snsLogin('apple', '%2Findex.html')"><span>Apple로 로그인</span></a></li>
 <!--li class="lg_kakao"><a href="#none" class=" sns_login_Btn" onclick="MemberAction.kakaosyncLogin('9ae31018e6a3df11adb5d4dfa9cc9d37')"><span class="txt"><strong>카카오</strong> 간편가입</span></a></li>
                             <li class="lg_facebook"><a href="#none" class=" sns_login_Btn" onclick="MemberAction.snsLogin('facebook', '%2Findex.html')"><span class="txt"><strong>페이스북</strong> 간편가입</span></a></li-->

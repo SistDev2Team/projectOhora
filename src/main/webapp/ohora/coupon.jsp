@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<link rel="stylesheet" href="../resources/cdn-main/coupon.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cdn-main/coupon.css">
 <script src="http://localhost/jspPro/resources/cdn-main/example.js"></script>
 <style>
  span.material-symbols-outlined{
@@ -21,6 +22,7 @@
 <body>
 <%@include file="header.jsp" %>
 <div id="SP_mypage_wrap">
+
 	<div class="SP_subSection">
 		<h2 class="SP_subTitle Nunito_Sans_font"><span class="eng_font">MY COUPON</span></h2>
 	</div>
@@ -163,53 +165,50 @@
 		<form id="frmCouponlist" name="frmCouponlist" action="" method="post" target="_self" enctype="multipart/form-data"><div class="xans-element- xans-myshop xans-myshop-couponlist couponListTable"><!--
 				$product_list_url = coupon_product_list.html
 			-->
-<h3 class="SP_contTitle">마이쿠폰 목록 (총 0장)</h3>
-<div class="ec-base-table typeList">
-				<table border="1" summary="" class="SP_tableSt01_isThead">
-<caption>마이 쿠폰 목록</caption>
-					<colgroup>
-<!-- <col style="width:45px" /> --><col style="width:300px">
-<col style="width:120px">
-<!-- <col style="width:130px" class="" /> --><col style="width:120px">
-<col style="width:120px">
-<col style="width:150px">
-<col style="width:auto">
-</colgroup>
-<thead><tr>
-<!-- <th scope="col">번호</th> --><th scope="col">쿠폰명</th>
-							<th scope="col">할인</th>
-							<th scope="col">적립</th>
-							<th scope="col">구매금액 조건</th>
-							<!-- <th scope="col" class="">결제수단</th> -->
-							<!-- <th scope="col">쿠폰 혜택</th> -->
-							<th scope="col">적용상품</th>
-							<th scope="col">사용기간</th>
-						</tr></thead>
-<tbody class="displaynone center">
-<tr class="">
-<!-- <td></td> --><td class="left"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<!-- <td class="left "></td> -->
-							<!-- <td></td> -->
-							<td></td>
-							<td class="left useDate"></td>
-						</tr>
-<tr class="">
-<!-- <td></td> --><td class="left"></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<!-- <td class="left "></td> -->
-							<!-- <td></td> -->
-							<td></td>
-							<td class="left useDate"></td>
-						</tr>
-</tbody>
-<tbody class=""><tr>
-<td colspan="7" class="SP_message">보유하고 계신 쿠폰 내역이 없습니다</td>
-						</tr></tbody>
+									<h3 class="SP_contTitle">마이쿠폰 목록 (총 0장)</h3>
+									<div class="ec-base-table typeList">
+									
+									<table border="1" summary="" class="SP_tableSt01_isThead">
+    <caption>마이 쿠폰 목록</caption>
+    <colgroup>
+        <col style="width:300px">
+        <col style="width:120px">
+        <col style="width:120px">
+        <col style="width:120px">
+        <col style="width:150px">
+        <col style="width:auto">
+    </colgroup>
+    <thead>
+        <tr>
+            <th scope="col">쿠폰명</th>
+            <th scope="col">할인</th>
+            <th scope="col">적립</th>
+            <th scope="col">구매금액 조건</th>
+            <th scope="col">적용상품</th>
+            <th scope="col">사용기간</th>
+        </tr>
+    </thead>
+    <tbody>
+        <c:choose>
+            <c:when test="${not empty couponList}">
+                <c:forEach var="coupon" items="${couponList}">
+                    <tr class="">
+                        <td class="left">${coupon.cpn_info}</td>
+                        <td>${coupon.cpn_discount_rate}%</td>
+                        <td>-</td>
+                        <td><fmt:formatNumber value="${coupon.cpn_con_value}" type="number" maxFractionDigits="0" /></td>                       
+                        <td>${coupon.cpn_apply == 'D' ? "배송비" : "상품"}</td>
+                        <td class="left useDate">${coupon.cpn_startdate} ~ ${coupon.cpn_enddate}</td>
+                    </tr>
+                </c:forEach>
+            </c:when>
+            <c:otherwise>
+                <tr>
+                    <td colspan="6" class="SP_message">보유하고 계신 쿠폰 내역이 없습니다</td>
+                </tr>
+            </c:otherwise>
+        </c:choose>
+    </tbody>
 </table>
 </div>
 <p class="ec-base-button displaynone"><span class="gRight"><a href="#none" class="btnSubmitFix sizeM" onclick="COUPON.useCoupon()">사용하기</a></span></p>

@@ -16,6 +16,7 @@ import java.sql.Connection;
 public class CheckDuplicateHandler implements CommandHandler {
     @Override
     public String process(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    	
         String type = request.getParameter("type"); // id, email, phone
         String value = request.getParameter("value");
               

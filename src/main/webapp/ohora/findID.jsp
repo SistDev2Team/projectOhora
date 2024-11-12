@@ -10,12 +10,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
-<link rel="stylesheet" href="../resources/cdn-main/findID.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/cdn-main/findID.css">
 <script src="http://localhost/jspPro/resources/cdn-main/findID.js"></script>
 
 </head>
 <body>
 
+<c:if test="${param.error == 'true'}">
+    <script>
+        alert("입력하신 정보로 가입된 회원 아이디는 존재하지 않습니다.");
+    </script> 
+</c:if>
+    
 <div class="container">
     <span class="title">ID FIND</span> 
     <span class="description">

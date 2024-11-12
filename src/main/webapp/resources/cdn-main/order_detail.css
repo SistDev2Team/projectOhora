@@ -251,11 +251,6 @@ strong {
 a {
     text-decoration: none;
 }
-a:-webkit-any-link {
-    color: -webkit-link;
-    cursor: pointer;
-    text-decoration: underline;
-}
 .xans-myshop-orderhistorydetail .ec-base-table tbody + tbody tr:first-child th, .xans-myshop-orderhistorydetail .ec-base-table tbody + tbody tr:first-child td {
     border-top: 1px solid #e9e9e9;
 }
@@ -375,7 +370,8 @@ p {
     unicode-bidi: isolate;
 }
 a {
-    text-decoration: none;
+    text-decoration: none!important;
+  /*   color: #111111!important; */
 }
 .SP_tableSt01_isThumNail td.SP_link.state .SP_linkP {
     margin-top: 3px;

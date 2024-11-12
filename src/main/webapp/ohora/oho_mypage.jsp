@@ -247,45 +247,53 @@
                                     </tr>
                                 </thead>
                                                     
-
-                                <tbody>
-                                <c:forEach var="entry" items="${groupedOrders}">
-                                <c:set var="orderDate" value="${entry.key}" />
-            					<c:set var="orders" value="${entry.value}" />
-            					
-            					<c:forEach var="orderDetail" items="${orders}" varStatus="status">
-            					
-                                    <tr class="table-record">
-                                    
-                                         <!-- 날짜는 첫 번째 행에만 표시 -->
-					                    <c:if test="${status.first}">
-					                        <td class="number center" rowspan="${orders.size()}">${orderDate}</td>
-					                    </c:if>
-
-                                        <!-- 상품정보 -->
-					                    <td class="subject alignLeft">
-					                        <a href="">${orderDetail.OPDT_NAME}</a>
-					                    </td>
-                                       
-					                    <!-- 상품금액 -->
-					                    <td class="price center"><fmt:formatNumber value="${orderDetail.OPDT_AMOUNT}" 
-					                    type="number" pattern="#,##0" /></td>
-					                    
-                                        <!-- 결제금액 -->					                    
-					                    <td class="totalprice"><fmt:formatNumber value="${orderDetail.ORD_TOTAL_AMOUNT}" 
-					                    type="number" pattern="#,##0" /></td>
-					
-					                    <!-- 주문상세 -->
-					                    <c:if test="${status.first}">
-					                    <td class="center number" rowspan="${orders.size()}">
-					                        <a href="" class="ordhistory-linkView">자세히보기</a>
-					                    </td>    
-					                    </c:if>                                                      
-                                    </tr>
+								<tbody>
+								    <c:forEach var="entry" items="${groupedOrders}">
+								        <c:set var="orderDate" value="${entry.key}" />
+								        <c:set var="orders" value="${entry.value}" />
+								        
+								        <c:forEach var="orderDetail" items="${orders}" varStatus="status">
+								        
+								            <tr class="table-record">
+								                
+								                <!-- 날짜는 첫 번째 행에만 표시 -->
+								                <c:if test="${status.first}">
+								                    <td class="number center" rowspan="${orders.size()}">${orderDate}</td>
+								                </c:if>
+								
+								                <!-- 상품정보 -->
+								                <td class="subject alignLeft">
+								                    <a href="">${orderDetail.OPDT_NAME}</a>
+								                </td>
+								                
+								                <!-- 상품금액 -->
+								                <td class="price center">
+								                    <fmt:formatNumber value="${orderDetail.OPDT_AMOUNT}" type="number" pattern="#,##0" />
+								                </td>
+								                
+								                <!-- 결제금액 -->					                    
+								                <td class="totalprice">
+								                    <fmt:formatNumber value="${orderDetail.ORD_TOTAL_AMOUNT}" type="number" pattern="#,##0" />
+								                </td>
+								                
+								                <!-- 주문상세: 첫 번째 행에만 표시 -->
+								                <c:if test="${status.first}">
+								                    <td class="center number" rowspan="${orders.size()}">
+								                        <form action="${pageContext.request.contextPath}/orderdetail.do" method="post">
+								                            <input type="hidden" name="ORD_PK" value="${orderDetail.ORD_PK}">
+								                            <button type="submit" class="ordhistory-linkView">자세히보기</button>
+								                        </form>
+								                    </td>
+								                </c:if>
+								            </tr>
+								        
+								        </c:forEach>
 								    </c:forEach>
-								    </c:forEach>
-								    </tbody>
-                                                                                                                             
+								</tbody>
+
+								    
+								    
+                                                                                                                            
 								     <!-- 주문 내역 없을 경우 -->
 								    <tbody class="noOrder ${empty groupedOrders ? '' : 'displayNone'}">
 								        <tr>
@@ -301,8 +309,8 @@
                     <div class="myShopMenu-layout">
                         <div class="myShopMenu-list">
                             <ul>
-                                <!-- li 마다 after로 > 모양있음 -->
-                                <li><a href="">주문내역</a></li>
+                              
+                                <li><a href="${pageContext.request.contextPath}/orderlist.do">주문내역</a></li>
                                 
 								<li>
 								    <a href="${pageContext.request.contextPath}/editstart.do">
@@ -310,7 +318,8 @@
 								    </a>
 								</li>
                                                                                                                                                       
-                                <li><a href="">배송주소록</a></li>
+                                <li><a href="${pageContext.request.contextPath}/addrstart.do">배송주소록</a></li>
+                                
                                 <li><a href="">이용약관</a></li>
                             </ul>
                         </div>
@@ -318,7 +327,7 @@
                         <div class="myShopMenu-list">
                             <ul>
                                 <li>
-                                    <a href="">쿠폰내역<span class="">
+                                    <a href="${pageContext.request.contextPath}/coupon.do">쿠폰내역<span class="">
                                         <span class="xans_myshop_main_coupon_cnt">${availableCoupons}</span>
                                         장</span>
                                     </a>
