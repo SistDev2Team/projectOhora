@@ -484,7 +484,7 @@
                 <!-- 상품 나열 끝  -->
 				<c:set var="deliFee" value="${(amountSum-discountSum) >50000 ? 0 : 3000}"></c:set>
                 <div class="totalPrice">
-                    <div class="title">
+                    <div class="title" style="display: flex;justify-content: space-between;">
                         <h3>배송비</h3>
                         <span class="deliFee-wrap">
                             <span id="deliFee">
