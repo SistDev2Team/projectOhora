@@ -165,7 +165,7 @@
 		<form id="frmCouponlist" name="frmCouponlist" action="" method="post" target="_self" enctype="multipart/form-data"><div class="xans-element- xans-myshop xans-myshop-couponlist couponListTable"><!--
 				$product_list_url = coupon_product_list.html
 			-->
-									<h3 class="SP_contTitle">마이쿠폰 목록 (총 0장)</h3>
+									<h3 class="SP_contTitle">마이쿠폰 목록 (총 ${couponList != null ? couponList.size() : 0 }  장)</h3>
 									<div class="ec-base-table typeList">
 									
 									<table border="1" summary="" class="SP_tableSt01_isThead">
